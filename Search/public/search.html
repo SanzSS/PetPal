@@ -17,11 +17,11 @@
                 <!-- Dropdown Menu -->
                 <details class="p-6">
                     <summary>Menu</summary>
-                    <ul class="absolute text-black bg-white w-auto rounded-md p-2 flex flex-col items-center border border-blue3 mt-2">
-                        <li><a href="" class="py-2">My Pets</a></li>
-                        <li><a href="" class="py-2">My Applications</a></li>
-                        <li><a href="" class="py-2">Notifications</a></li>
-                        <li><a href="" class="py-2">Log Out</a></li>
+                    <ul class="absolute text-black bg-white w-auto rounded-md p-2 flex flex-col items-center border border-blue3 mt-2 ml-[-40px]">
+                        <li><a href="" class="dropdown-menu-item">My Pets</a></li>
+                        <li><a href="" class="dropdown-menu-item">My Applications</a></li>
+                        <li><a href="" class="dropdown-menu-item">Notifications</a></li>
+                        <li><a href="" class="dropdown-menu-item">Log Out</a></li>
                     </ul>
                 </details>
             </div>
@@ -30,47 +30,57 @@
             <h1 class="text-6xl my-12 text-blue3 font-extrabold">Search</h1>
             <div class="grid grid-cols-[15%_85%] gap-2 w-3/4">
                 <!-- Filter Column -->
-                <form class="flex flex-col justify-around h-[500px] pt-[120px]">
-                    <p>Filter By:</p>
-                    <div class="w-full">
-                        <label for="">Breed</label>
+                <form class="flex flex-col justify-start pt-[120px]">
+                    <p class="mb-2">Filter By:</p>
+                    <div class="filter-div">
+                        <label for="filter-by-species">Species</label>
+                        <select id="filter-by-species" name="species" class="filter-menu">
+                            <option value=""></option>
+                            <option value="dog">Dogs</option>
+                            <option value="cat">Cats</option>
+                            <option value="hamster">Hamsters</option>
+                            <option value="turtle">Turtles</option>
+                        </select>
+                    </div>
+                    <div class="filter-div">
+                        <label for="filter-by-breed">Breed</label>
                         <select id="filter-by-breed" name="breed" class="filter-menu">
                             <option value=""></option>
-                            <option value="">A</option>
-                            <option value="">B</option>
-                            <option value="">C</option>
-                            <option value="">D</option>
+                            <option value="husky">Husky</option>
+                            <option value="bordercollie">Border Collie</option>
+                            <option value="germanshepard">German Shepard</option>
+                            <option value="chihuahua">Chihuahua</option>
                         </select>
                     </div>
-                    <div class="w-full">
-                        <label for="">Age</label>
+                    <div class="filter-div">
+                        <label for="filter-by-age">Age</label>
                         <select id="filter-by-age" name="age" class="filter-menu">
                             <option value=""></option>
-                            <option value="">Puppy (0-11 months)</option>
-                            <option value="">Young (1-3 years)</option>
-                            <option value="">Adult (4-11 years)</option>
-                            <option value="">Senior (12+ years)</option>
+                            <option value="puppy">Puppy (0-11 months)</option>
+                            <option value="young">Young (1-3 years)</option>
+                            <option value="adult">Adult (4-11 years)</option>
+                            <option value="senior">Senior (12+ years)</option>
                         </select>
                     </div>
-                    <div class="w-full">
-                        <label for="">Gender</label>
+                    <div class="filter-div">
+                        <label for="filter-by-gender">Gender</label>
                         <select id="filter-by-gender" name="gender" class="filter-menu">
                             <option value=""></option>
-                            <option value="">Male</option>
-                            <option value="">Female</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
                         </select>
                     </div>
-                    <div class="w-full">
-                        <label for="">Size</label>
+                    <div class="filter-div">
+                        <label for="filter-by-size">Size</label>
                         <select id="filter-by-size" name="size" class="filter-menu">
                             <option value=""></option>
-                            <option value="">0-20 lbs</option>
-                            <option value="">21-40 lbs</option>
-                            <option value="">40-60 lbs</option>
-                            <option value="">61+ lbs</option>
+                            <option value="0-20">0-20 lbs</option>
+                            <option value="21-40">21-40 lbs</option>
+                            <option value="41-60">41-60 lbs</option>
+                            <option value="61+">61+ lbs</option>
                         </select>
                     </div>
-                    <input type="submit" value="Save Filters" class="button">
+                    <input type="submit" value="Save Filters" class="button mt-2">
                 </form>
                 <!-- Search Column -->
                 <div class="h-full w-full gap-4">
