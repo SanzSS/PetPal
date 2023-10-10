@@ -8,13 +8,23 @@
 </head>
 <body class="min-h-screen bg-blue1 flex flex-col">
     <div class="flex-1 flex-col">
-        <nav class="flex bg-blue3 h-[70px] text-white justify-around items-center">
+        <!-- Navigation Bar -->
+        <nav class="flex bg-blue3 h-[70px] text-white justify-between items-center px-16">
             <a href="search.html"><h1 class="text-4xl text-white font-extrabold">PetPal</h1></a>
-            <a href="search.html">Search</a>
-            <a>My Applications</a>
-            <a>Notification Icon</a>
-            <a href="pet_creation.html">Create a Pet</a>
-            <a>My Pets</a>
+            <div class="flex">
+                <a href="search.html" class="p-6">Search</a>
+                <a href="pet_creation.html" class="p-6">Create a Pet</a>
+                <!-- Dropdown Menu -->
+                <details class="p-6">
+                    <summary>Menu</summary>
+                    <ul class="absolute text-black bg-white w-auto rounded-md p-2 flex flex-col items-center border border-blue3 mt-2">
+                        <li><a href="" class="py-2">My Pets</a></li>
+                        <li><a href="" class="py-2">My Applications</a></li>
+                        <li><a href="" class="py-2">Notifications</a></li>
+                        <li><a href="" class="py-2">Log Out</a></li>
+                    </ul>
+                </details>
+            </div>
         </nav>
         <main class="flex flex-col items-center pb-16">
             <h1 class="text-6xl my-12 text-blue3 font-extrabold">Create a Pet Listing</h1>
