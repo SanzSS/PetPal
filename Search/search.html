@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="output.css" type="text/css">
+    <title>Search</title>
+</head>
+<body class="min-h-screen bg-blue1 flex flex-col">
+    <div class="flex-1 flex-col">
+        <!-- Navigation Bar -->
+        <nav class="flex bg-blue3 h-[70px] text-white justify-between items-center px-16">
+            <a href="search.html"><h1 class="text-4xl text-white font-extrabold">PetPal</h1></a>
+            <div class="flex">
+                <a href="search.html" class="p-6">Search</a>
+                <a href="pet_creation.html" class="p-6">Create a Pet</a>
+                <!-- Dropdown Menu -->
+                <details class="p-6">
+                    <summary>Menu</summary>
+                    <ul class="absolute text-black bg-white w-auto rounded-md p-2 flex flex-col items-center border border-blue3 mt-2">
+                        <li><a href="" class="py-2">My Pets</a></li>
+                        <li><a href="" class="py-2">My Applications</a></li>
+                        <li><a href="" class="py-2">Notifications</a></li>
+                        <li><a href="" class="py-2">Log Out</a></li>
+                    </ul>
+                </details>
+            </div>
+        </nav>
+        <main class="flex flex-col items-center pb-16">
+            <h1 class="text-6xl my-12 text-blue3 font-extrabold">Search</h1>
+            <div class="grid grid-cols-[15%_85%] gap-2 w-3/4">
+                <!-- Filter Column -->
+                <form class="flex flex-col justify-around h-[500px] pt-[120px]">
+                    <p>Filter By:</p>
+                    <div class="w-full">
+                        <label for="">Breed</label>
+                        <select id="filter-by-breed" name="breed" class="filter-menu">
+                            <option value=""></option>
+                            <option value="">A</option>
+                            <option value="">B</option>
+                            <option value="">C</option>
+                            <option value="">D</option>
+                        </select>
+                    </div>
+                    <div class="w-full">
+                        <label for="">Age</label>
+                        <select id="filter-by-age" name="age" class="filter-menu">
+                            <option value=""></option>
+                            <option value="">Puppy (0-11 months)</option>
+                            <option value="">Young (1-3 years)</option>
+                            <option value="">Adult (4-11 years)</option>
+                            <option value="">Senior (12+ years)</option>
+                        </select>
+                    </div>
+                    <div class="w-full">
+                        <label for="">Gender</label>
+                        <select id="filter-by-gender" name="gender" class="filter-menu">
+                            <option value=""></option>
+                            <option value="">Male</option>
+                            <option value="">Female</option>
+                        </select>
+                    </div>
+                    <div class="w-full">
+                        <label for="">Size</label>
+                        <select id="filter-by-size" name="size" class="filter-menu">
+                            <option value=""></option>
+                            <option value="">0-20 lbs</option>
+                            <option value="">21-40 lbs</option>
+                            <option value="">40-60 lbs</option>
+                            <option value="">61+ lbs</option>
+                        </select>
+                    </div>
+                    <input type="submit" value="Save Filters" class="button">
+                </form>
+                <!-- Search Column -->
+                <div class="h-full w-full gap-4">
+                    <!-- Search -->
+                    <form class="col-span-2 h-[120px] p-2">
+                        <div class="flex justify-between">
+                            <input type="text" placeholder="Search pets" class="h-16 w-[83%] text-2xl p-4 rounded-xl shadow-md">
+                            <a href="" class="text-center w-[15%] bg-blue3 text-white font-extrabold text-2xl flex justify-center items-center rounded-xl shadow-md">
+                                Search
+                            </a>
+                        </div>
+                        <div class="block mt-2">
+                            <label for="sort">Sort By:</label>
+                            <select id="sort" name="sort-by" class="rounded shadow-md">
+                                <option value=""></option>
+                                <option value="">Breed A to Z</option>
+                                <option value="">Breed Z to A</option>
+                                <option value="">Most Recent</option>
+                                <option value="">Oldest</option>
+                            </select>
+                        </div>
+                    </form>
+                    <!-- Cards -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 p-2">
+                        <div class="card">
+                            <img src="dog.jpg" alt="" class="w-full h-[250px] object-cover">
+                            <div class="p-2">
+                                <span class="font-bold block">Name</span>
+                                <span class="block">Breed</span>
+                                <span class="block">Age</span>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="dog.jpg" alt="" class="w-full h-[250px] object-cover">
+                            <div class="p-2">
+                                <span class="font-bold block">Name</span>
+                                <span class="block">Breed</span>
+                                <span class="block">Age</span>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="dog.jpg" alt="" class="w-full h-[250px] object-cover">
+                            <div class="p-2">
+                                <span class="font-bold block">Name</span>
+                                <span class="block">Breed</span>
+                                <span class="block">Age</span>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="dog.jpg" alt="" class="w-full h-[250px] object-cover">
+                            <div class="p-2">
+                                <span class="font-bold block">Name</span>
+                                <span class="block">Breed</span>
+                                <span class="block">Age</span>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="dog.jpg" alt="" class="w-full h-[250px] object-cover">
+                            <div class="p-2">
+                                <span class="font-bold block">Name</span>
+                                <span class="block">Breed</span>
+                                <span class="block">Age</span>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="dog.jpg" alt="" class="w-full h-[250px] object-cover">
+                            <div class="p-2">
+                                <span class="font-bold block">Name</span>
+                                <span class="block">Breed</span>
+                                <span class="block">Age</span>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="dog.jpg" alt="" class="w-full h-[250px] object-cover">
+                            <div class="p-2">
+                                <span class="font-bold block">Name</span>
+                                <span class="block">Breed</span>
+                                <span class="block">Age</span>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="dog.jpg" alt="" class="w-full h-[250px] object-cover">
+                            <div class="p-2">
+                                <span class="font-bold block">Name</span>
+                                <span class="block">Breed</span>
+                                <span class="block">Age</span>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="dog.jpg" alt="" class="w-full h-[250px] object-cover">
+                            <div class="p-2">
+                                <span class="font-bold block">Name</span>
+                                <span class="block">Breed</span>
+                                <span class="block">Age</span>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="dog.jpg" alt="" class="w-full h-[250px] object-cover">
+                            <div class="p-2">
+                                <span class="font-bold block">Name</span>
+                                <span class="block">Breed</span>
+                                <span class="block">Age</span>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="dog.jpg" alt="" class="w-full h-[250px] object-cover">
+                            <div class="p-2">
+                                <span class="font-bold block">Name</span>
+                                <span class="block">Breed</span>
+                                <span class="block">Age</span>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="dog.jpg" alt="" class="w-full h-[250px] object-cover">
+                            <div class="p-2">
+                                <span class="font-bold block">Name</span>
+                                <span class="block">Breed</span>
+                                <span class="block">Age</span>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="dog.jpg" alt="" class="w-full h-[250px] object-cover">
+                            <div class="p-2">
+                                <span class="font-bold block">Name</span>
+                                <span class="block">Breed</span>
+                                <span class="block">Age</span>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="dog.jpg" alt="" class="w-full h-[250px] object-cover">
+                            <div class="p-2">
+                                <span class="font-bold block">Name</span>
+                                <span class="block">Breed</span>
+                                <span class="block">Age</span>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="dog.jpg" alt="" class="w-full h-[250px] object-cover">
+                            <div class="p-2">
+                                <span class="font-bold block">Name</span>
+                                <span class="block">Breed</span>
+                                <span class="block">Age</span>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="dog.jpg" alt="" class="w-full h-[250px] object-cover">
+                            <div class="p-2">
+                                <span class="font-bold block">Name</span>
+                                <span class="block">Breed</span>
+                                <span class="block">Age</span>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="dog.jpg" alt="" class="w-full h-[250px] object-cover">
+                            <div class="p-2">
+                                <span class="font-bold block">Name</span>
+                                <span class="block">Breed</span>
+                                <span class="block">Age</span>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="dog.jpg" alt="" class="w-full h-[250px] object-cover">
+                            <div class="p-2">
+                                <span class="font-bold block">Name</span>
+                                <span class="block">Breed</span>
+                                <span class="block">Age</span>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="dog.jpg" alt="" class="w-full h-[250px] object-cover">
+                            <div class="p-2">
+                                <span class="font-bold block">Name</span>
+                                <span class="block">Breed</span>
+                                <span class="block">Age</span>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="dog.jpg" alt="" class="w-full h-[250px] object-cover">
+                            <div class="p-2">
+                                <span class="font-bold block">Name</span>
+                                <span class="block">Breed</span>
+                                <span class="block">Age</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-4">
+                        <a href="" class="inline button px-2 py-1"><</a>
+                        <p class="inline button px-2 py-1">Page 1</p>
+                        <a href="" class="inline button px-2 py-1">></a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <footer class="flex w-full bg-blue3 text-white h-[3rem] justify-center items-center">
+        <p>Copyright 2023 by Victor Yao.</p>
+    </footer>
+</body>
+</html>
