@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="output.css" type="text/css">
+    <title>Create Pet</title>
+</head>
+<body class="min-h-screen bg-blue1 flex flex-col">
+    <div class="flex-1 flex-col">
+        <nav class="flex bg-blue3 h-[70px] text-white justify-around items-center">
+            <a href="search.html"><h1 class="text-4xl text-white font-extrabold">PetPal</h1></a>
+            <a href="search.html">Search</a>
+            <a>My Applications</a>
+            <a>Notification Icon</a>
+            <a href="pet_creation.html">Create a Pet</a>
+            <a>My Pets</a>
+        </nav>
+        <main class="flex flex-col items-center pb-16">
+            <h1 class="text-6xl my-12 text-blue3 font-extrabold">Create a Pet Listing</h1>
+            <form class="grid grid-cols-1 w-2/4 p-6 rounded-md border-blue3 border-4 bg-blue2">
+                <div class="flex flex-col">
+                    <label for="name" class="label">Pet Name</label>
+                    <input type="text" id="name" class="input box-border">
+                </div>
+                <div class="flex flex-col">
+                    <label for="photo" class="label">Photos</label>
+                    <input type="file" id="photo" class="input h-20 bg-white p-6" multiple>
+                </div>
+                <div class="flex flex-col">
+                    <label for="breed" class="label">Breed</label>
+                    <input type="text" id="breed" class="input">
+                </div>
+                <div class="flex flex-col">
+                    <label for="age" class="label">Age</label>
+                    <input type="text" id="age" class="input">
+                </div>
+                <div class="flex flex-col">
+                    <label for="gender" class="label">Gender</label>
+                    <select id="gender" name="gender" class="input">
+                        <option value=""></option>
+                        <option value="">Male</option>
+                        <option value="">Female</option>
+                    </select>
+                </div>
+                <div class="flex flex-col">
+                    <label for="size" class="label">Size (in lbs)</label>
+                    <input type="text" id="size" class="input">
+                </div>
+                <div class="flex flex-col">
+                    <label for="description" class="label">Description</label>
+                    <textarea id="description" class="input h-24"></textarea>
+                </div>
+                <div class="flex flex-col">
+                    <label for="medical" class="label">Medical History</label>
+                    <textarea id="medical" class="input h-24"></textarea>
+                </div>
+                <div class="flex flex-col">
+                    <label for="behaviour" class="label">Behaviour</label>
+                    <textarea id="behaviour" class="input h-24"></textarea>
+                </div>
+                <div class="flex flex-col">
+                    <label for="special" class="label">Special Needs or Requirements</label>
+                    <textarea id="special" class="input h-24"></textarea>
+                </div>
+                <div class="flex flex-col">
+                    <input type="submit" class="button mx-2 mt-4 mb-2" value="Create Pet Listing">
+                </div>
+            </form>
+        </main>
+    </div>
+    <footer class="flex w-full bg-blue3 text-white h-[3rem] justify-center items-center">
+        <p>Copyright 2023 by Victor Yao.</p>
+    </footer>
+</body>
+</html>

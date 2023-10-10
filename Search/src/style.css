@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.filter-menu {
+    @apply w-full rounded shadow-md
+}
+
+.card {
+    @apply border bg-white rounded shadow-md overflow-hidden
+}
+
+.button {
+    @apply text-white bg-blue3 font-bold rounded h-8 shadow-md
+}
+
+.input {
+    @apply rounded shadow-md bg-white m-2 p-2
+}
+
+.label {
+    @apply mt-2 ml-2
+}
