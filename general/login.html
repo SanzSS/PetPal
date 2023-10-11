@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="login.css">
+    <title>Kevin Login</title>
+</head>
+
+<body>
+    <div class="page-container">
+        <header>
+          <a href="login.html" class="text-teal-900 text-3xl font-bold m-4 no-underline ml-6" id="left">PetPal</a>
+        </header>
+          <div class="container" id="content">
+            <h1 id="website-name" class="text-teal-900 font-bold text-6xl pt-20">PetPal</h1>
+            <br>
+            <br>
+            <form action="https://postman-echo.com/post" method="POST" enctype="application/x-www-form-urlencoded">
+                <!-- <label for="email">Your Email:</label> -->
+                <input type="email" id="form-email" name="email" placeholder="Email" class="p-3 border border-solid border-teal-900 border-2 rounded-md" required>
+                <br>
+                <br>
+                <!-- <label for="password">Password:</label> -->
+                <input type="password" id="password" name="password" placeholder="Password" class="p-3 border border-solid border-teal-900 border-2 rounded-md" required> 
+                <br>
+                <br>
+                <input type="submit" value="Login" id="login" class="w-full p-3 rounded-md font-bold text-lg border-solid border-yellow-400 border-2 cursor-pointer p-3 justify-center inline-flex items-center no-underline text-center">
+                <br>
+                <br>
+            </form>
+            <details>
+                <summary id="forgot" class="flex items-center cursor-pointer">Forgot password?</summary>
+                <p>Aw man :&#40;</p>
+            </details>
+            <br>
+            <!-- <p>Don't have an account?</p> -->
+            <a href="signup.html" class="text-teal-900 text-base underline">Sign up</a>
+        </div>
+        <footer>
+          <p>Copyright 2023 by Angela Zhuo, Dian Rong, Sanzhar Shamshiyev, Victor Yao.</p>
+        </footer>
+      </div>
+
+</body>
+</html>

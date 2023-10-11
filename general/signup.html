@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="signup.css">
+    <title>Kevin Signup</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+
+<body>
+    <div class="page-container">
+        <header>
+          <a href="login.html" class="text-teal-900 text-3xl font-bold m-4 no-underline ml-6" id="left">PetPal</a>
+        </header>
+        <main>
+          <div class="container" id="content">
+            <h1 id="website-name" class="text-teal-900 font-bold text-6xl pt-20">PetPal</h1>
+            <br>
+            <br>
+            <form action="https://postman-echo.com/post" method="POST" enctype="application/x-www-form-urlencoded">
+                <!-- <label for="email">Your Email:</label> -->
+                <input type="text" id="fname" name="fname" placeholder="First Name" required class="p-3 border border-solid border-teal-900 border-2 rounded-md">
+                <br>
+                <br>
+                <input type="text" id="lname" name="lname" placeholder="Last Name" required class="p-3 border border-solid border-teal-900 border-2 rounded-md">
+                <br>
+                <br>
+                <input type="email" id="form-email" name="email" placeholder="Email" required class="p-3 border border-solid border-teal-900 border-2 rounded-md">
+                <br>
+                <br>
+                <!-- <label for="password">Password:</label> -->
+                <input type="password" id="password" name="password" placeholder="Password" required class="p-3 border border-solid border-teal-900 border-2 rounded-md"> 
+                <br>
+                <br>
+                <input type="password" id="password" name="password2" placeholder="Re-enter Password" required class="p-3 border border-solid border-teal-900 border-2 rounded-md"> 
+                <br>
+                <br>
+                <input type="text" id="city" name="city" placeholder="City" required class="p-3 border border-solid border-teal-900 border-2 rounded-md">
+                <br>
+                <br>
+                <label for="type">User type:   </label>
+                <select name="type" id="type" required class="p-3 border border-solid border-teal-900 border-2 rounded-md w-10/12 self-end">
+                  <option value="" class="placeholder" disabled="" selected="selected">Select</option>
+                    <option value="seeker">Pet Seeker</option>
+                    <option value="shelter">Pet Shelter</option>
+                  </select>
+                <br>
+                <br>
+                <input type="submit" class="text-yellow-400 border-solid border-yellow-400 border-2 rounded-md cursor-pointer bg-teal-900 p-3 justify-center inline-flex items-center no-underline text-center w-full" value="Sign up" id="signup">
+                <br>
+                <br>
+            </form>
+            <br>
+            <!-- <p>Don't have an account?</p> -->
+            <a href="login.html" id="login" class="underline">Login</a>
+        </div>
+        </main>
+        <footer>
+          <p>Copyright 2023 by Angela Zhuo, Dian Rong, Sanzhar Shamshiyev, Victor Yao.</p>
+        </footer>
+      </div>
+
+</body>
+</html>
