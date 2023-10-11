@@ -3,8 +3,24 @@
 @tailwind utilities;
 
 #notif {
-    width: 110rem;
+    width: 20rem;
     margin-bottom: 1rem;
+}
+ 
+@media (min-width: 768px) {
+    #notif {
+        width: 35rem/* 640px */;
+     }
+}
+
+@media (min-width: 1024px) {
+    #notif {
+        width: 110rem;
+    }
+} 
+
+#notif:hover {
+    background-color: rgb(59, 149, 205);
 }
 
 main {
