@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="output.css" type="text/css">
+    <title>Search</title>
+</head>
+<body class="min-h-screen bg-blue1 flex flex-col">
+    <div class="flex-1 flex-col">
+        <!-- Navigation Bar -->
+        <nav class="hidden sm:flex sm:bg-blue3 sm:h-[70px] sm:text-white sm:justify-between sm:items-center sm:px-16">
+            <a href="search-shelter.html"><h1 class="text-4xl text-white font-extrabold">PetPal</h1></a>
+            <div class="flex">
+                <a href="search-shelter.html" class="p-6">Search</a>
+                <a href="pet_creation.html" class="p-6">Create a Pet</a>
+                <a href="pet_update.html" class="p-6">Update Pet (Delete)</a>
+                <!-- Dropdown Menu -->
+                <details class="p-6">
+                    <summary class="cursor-pointer">Menu</summary>
+                    <ul class="absolute text-black bg-white w-auto rounded-md p-2 flex flex-col items-center border border-blue3 mt-2 ml-[-40px]">
+                        <li><a href="" class="dropdown-menu-item">My Pets</a></li>
+                        <li><a href="" class="dropdown-menu-item">Notifications</a></li>
+                        <li><a href="" class="dropdown-menu-item">Log Out</a></li>
+                    </ul>
+                </details>
+            </div>
+        </nav>
+        <!-- Mobile Navigation Bar -->
+        <nav class="sm:hidden flex flex-col bg-blue3 w-screen pb-4">
+            <a href="search-shelter.html" class="self-center pt-2"><h1 class="text-4xl text-white font-extrabold">PetPal</h1></a>
+            <details class="relative top-[-48px] right-4">
+                <summary class="absolute top-4 right-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-list text-white cursor-pointer" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                    </svg>
+                </summary>
+                <div class="mt-[64px] flex flex-col">
+                    <a href="search-seeker.html" class="text-white bg-blue3 pl-8 py-2">Search</a>
+                    <a href="pet_creation.html" class="text-white bg-blue3 pl-8 py-2">Create a Pet</a>
+                    <a href="" class="text-white bg-blue3 pl-8 py-2">My Pets</a>
+                    <a href="" class="text-white bg-blue3 pl-8 py-2">Notifications</a>
+                    <a href="" class="text-white bg-blue3 pl-8 pt-2 mb-[-48px]">Log Out</a>
+                </div>
+            </details>
+        </nav>
+        <main class="flex flex-col items-center pb-16">
+            <h1 class="text-6xl my-12 text-blue3 font-extrabold">Search</h1>
+            <div class="grid lg:grid-cols-[15%_85%] gap-2 sm:w-3/4 w-10/12">
+                <!-- Filter Column -->
+                <form class="hidden lg:flex lg:flex-col lg:justify-start lg:pt-[120px]">
+                    <p class="mb-2">Filter By:</p>
+                    <div class="filter-div">
+                        <label for="filter-by-species">Species</label>
+                        <select id="filter-by-species" name="species" class="filter-menu">
+                            <option value=""></option>
+                            <option value="dog">Dogs</option>
+                            <option value="cat">Cats</option>
+                            <option value="hamster">Hamsters</option>
+                            <option value="turtle">Turtles</option>
+                        </select>
+                    </div>
+                    <div class="filter-div">
+                        <label for="filter-by-breed">Breed</label>
+                        <select id="filter-by-breed" name="breed" class="filter-menu">
+                            <option value=""></option>
+                            <option value="husky">Husky</option>
+                            <option value="bordercollie">Border Collie</option>
+                            <option value="germanshepard">German Shepard</option>
+                            <option value="chihuahua">Chihuahua</option>
+                        </select>
+                    </div>
+                    <div class="filter-div">
+                        <label for="filter-by-age">Age</label>
+                        <select id="filter-by-age" name="age" class="filter-menu">
+                            <option value=""></option>
+                            <option value="puppy">Puppy (0-11 months)</option>
+                            <option value="young">Young (1-3 years)</option>
+                            <option value="adult">Adult (4-11 years)</option>
+                            <option value="senior">Senior (12+ years)</option>
+                        </select>
+                    </div>
+                    <div class="filter-div">
+                        <label for="filter-by-gender">Gender</label>
+                        <select id="filter-by-gender" name="gender" class="filter-menu">
+                            <option value=""></option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                    <div class="filter-div">
+                        <label for="filter-by-size">Size</label>
+                        <select id="filter-by-size" name="size" class="filter-menu">
+                            <option value=""></option>
+                            <option value="0-20">0-20 lbs</option>
+                            <option value="21-40">21-40 lbs</option>
+                            <option value="41-60">41-60 lbs</option>
+                            <option value="61+">61+ lbs</option>
+                        </select>
+                    </div>
+                    <input type="submit" value="Save Filters" class="button mt-2 cursor-pointer">
+                </form>
+                <!-- Search Column -->
+                <div class="h-full w-full gap-4">
+                    <!-- Search -->
+                    <form class="col-span-2 lg:p-4">
+                        <div class="flex justify-between">
+                            <input type="text" placeholder="Search pets" class="h-16 md:w-[83%] w-[75%] text-2xl p-4 rounded-xl shadow-md">
+                            <a href="" class="text-center md:w-[15%] w-[22%] bg-blue3 text-white font-extrabold text-2xl flex justify-center items-center rounded-xl shadow-md">
+                                Search
+                            </a>
+                        </div>
+                        <div class="block sm:mt-2 mt-4">
+                            <label for="sort">Sort By:</label>
+                            <select id="sort" name="sort-by" class="rounded shadow-md">
+                                <option value=""></option>
+                                <option value="">Breed A to Z</option>
+                                <option value="">Breed Z to A</option>
+                                <option value="">Most Recent</option>
+                                <option value="">Oldest</option>
+                            </select>
+                        </div>
+                    </form>
+                    <!-- Mobile Filter By Dropdown -->
+                    <details class="pt-4 lg:hidden">
+                        <summary class="mb-2 text-white bg-blue3 font-bold rounded p-2 shadow-md inline-block cursor-pointer">Filter By:</summary>
+                        <form class="flex flex-col justify-start lg:hidden">
+                            <div class="filter-div">
+                                <label for="filter-by-species">Species</label>
+                                <select id="filter-by-species" name="species" class="filter-menu">
+                                    <option value=""></option>
+                                    <option value="dog">Dogs</option>
+                                    <option value="cat">Cats</option>
+                                    <option value="hamster">Hamsters</option>
+                                    <option value="turtle">Turtles</option>
+                                </select>
+                            </div>
+                            <div class="filter-div">
+                                <label for="filter-by-breed">Breed</label>
+                                <select id="filter-by-breed" name="breed" class="filter-menu">
+                                    <option value=""></option>
+                                    <option value="husky">Husky</option>
+                                    <option value="bordercollie">Border Collie</option>
+                                    <option value="germanshepard">German Shepard</option>
+                                    <option value="chihuahua">Chihuahua</option>
+                                </select>
+                            </div>
+                            <div class="filter-div">
+                                <label for="filter-by-age">Age</label>
+                                <select id="filter-by-age" name="age" class="filter-menu">
+                                    <option value=""></option>
+                                    <option value="puppy">Puppy (0-11 months)</option>
+                                    <option value="young">Young (1-3 years)</option>
+                                    <option value="adult">Adult (4-11 years)</option>
+                                    <option value="senior">Senior (12+ years)</option>
+                                </select>
+                            </div>
+                            <div class="filter-div">
+                                <label for="filter-by-gender">Gender</label>
+                                <select id="filter-by-gender" name="gender" class="filter-menu">
+                                    <option value=""></option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                </select>
+                            </div>
+                            <div class="filter-div">
+                                <label for="filter-by-size">Size</label>
+                                <select id="filter-by-size" name="size" class="filter-menu">
+                                    <option value=""></option>
+                                    <option value="0-20">0-20 lbs</option>
+                                    <option value="21-40">21-40 lbs</option>
+                                    <option value="41-60">41-60 lbs</option>
+                                    <option value="61+">61+ lbs</option>
+                                </select>
+                            </div>
+                            <input type="submit" value="Save Filters" class="button mb-4 cursor-pointer">
+                        </form>
+                    </details>
+                    <!-- Cards -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 lg:p-2">
+                        <div class="card">
+                            <img src="dog.jpg" alt="" class="w-full h-[250px] object-cover">
+                            <div class="p-2">
+                                <span class="font-bold block">Name</span>
+                                <span class="block">Breed</span>
+                                <span class="block">Age</span>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="dog.jpg" alt="" class="w-full h-[250px] object-cover">
+                            <div class="p-2">
+                                <span class="font-bold block">Name</span>
+                                <span class="block">Breed</span>
+                                <span class="block">Age</span>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="dog.jpg" alt="" class="w-full h-[250px] object-cover">
+                            <div class="p-2">
+                                <span class="font-bold block">Name</span>
+                                <span class="block">Breed</span>
+                                <span class="block">Age</span>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="dog.jpg" alt="" class="w-full h-[250px] object-cover">
+                            <div class="p-2">
+                                <span class="font-bold block">Name</span>
+                                <span class="block">Breed</span>
+                                <span class="block">Age</span>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img src="dog.jpg" alt="" class="w-full h-[250px] object-cover">
+                            <div class="p-2">
+                                <span class="font-bold block">Name</span>
+                                <span class="block">Breed</span>
+                                <span class="block">Age</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center flex justify-center mt-4">
+                        <a href="" class="inline button px-2 py-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill text-white inline" viewBox="0 0 16 16">
+                                <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+                            </svg>
+                        </a>
+                        <p class="inline button px-2 py-1 mx-2">Page 1</p>
+                        <a href="" class="inline button px-2 py-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill text-white inline" viewBox="0 0 16 16">
+                                <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <footer class="flex w-full bg-blue3 text-white h-[3rem] justify-center items-center">
+        <p>Copyright 2023 by Victor Yao.</p>
+    </footer>
+</body>
+</html>
