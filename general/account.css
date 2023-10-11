@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    font-weight: bold;
+ }
+
+ input {
+    align-content: left;
+    border-color: black;
+    width: 100%;
+}
+
+input[type="checkbox"] {
+    width: 10px;
+    border-color: black;
+}
