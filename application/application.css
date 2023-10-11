@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    margin: 0;
+  background-color: #F7FFF7;
+   min-height: 100vh;
+   padding: 0;
+}
+
+span{
+    color:red;
+}
+
+p {
+    font-weight: bolder;
+}
+
+
+header {
+    /* padding: 5px 10px;
+   /* border-width:  10px 10px 10px 10px; */
+   /* height: 56px;
+   background-color: #4ECDC4;
+   font-size: 18px;
+   align-items: center;
+   display: flex; */ 
+
+}
+
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    text-align: left;
+}
+
+p {
+   font-size: 1rem;
+   margin-bottom: 1rem;
+   margin-top: 1rem;
+}
+
+input {
+    align-content: left;
+    border-color: black;
+    width: 100%;
+}
+
+select {
+    width: 100%;
+    border-color: black;
+}
+
+textarea {
+    width: 100%;
+    border-color: black;
+}
+input[type="checkbox"] {
+    width: 10px;
+    border-color: black;
+}

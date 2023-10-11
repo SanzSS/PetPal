@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#notif {
+    width: 110rem;
+    margin-bottom: 1rem;
+}
+
+main {
+    margin-bottom: 31.3rem;
+}
