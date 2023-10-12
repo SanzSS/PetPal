@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../general/style.css">
     <link rel="stylesheet" href="past-application.css">
     <title>PetPal Shelter Conversation</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -12,25 +11,25 @@
     <div class="page-container" class="flex-1 flex-col">
         <!-- Navigation Bar -->
         <nav class="hidden sm:flex sm:bg-blue3 sm:h-[70px] sm:text-white sm:justify-between sm:items-center sm:px-16">
-            <a href="search-shelter.html"><h1 class="text-4xl text-white font-extrabold">PetPal</h1></a>
+            <a href="../Search/search-shelter.html"><h1 class="text-4xl text-white font-extrabold">PetPal</h1></a>
             <div class="flex">
-                <a href="search-shelter.html" class="p-6">Search</a>
-                <a href="pet_creation.html" class="p-6">Create a Pet</a>
-                <a href="pet_update.html" class="p-6">Update Pet (Delete)</a>
+                <a href="../Search/search-shelter.html" class="p-6">Search</a>
+                <a href="../Search/pet_creation.html" class="p-6">Create a Pet</a>
+                <a href="../Search/pet_update.html" class="p-6">Update Pet (Delete)</a>
                 <!-- Dropdown Menu -->
                 <details class="p-6">
                     <summary class="cursor-pointer">Menu</summary>
                     <ul class="absolute text-black bg-white w-auto rounded-md p-2 flex flex-col items-center border border-blue3 mt-2 ml-[-40px]">
-                        <li><a href="" class="dropdown-menu-item">My Pets</a></li>
-                        <li><a href="" class="dropdown-menu-item">Notifications</a></li>
-                        <li><a href="" class="dropdown-menu-item">Log Out</a></li>
+                        <li><a href="../shelter/shelter-listings.html" class="dropdown-menu-item">My Pets</a></li>
+                        <li><a href="../general/notifications.html" class="dropdown-menu-item">Notifications</a></li>
+                        <li><a href="../general/login.html" class="dropdown-menu-item">Log Out</a></li>
                     </ul>
                 </details>
             </div>
         </nav>
         <!-- Mobile Navigation Bar -->
         <nav class="sm:hidden flex flex-col bg-blue3 w-screen pb-4">
-            <a href="search-shelter.html" class="self-center pt-2"><h1 class="text-4xl text-white font-extrabold">PetPal</h1></a>
+            <a href="../Search/search-shelter.html" class="self-center pt-2"><h1 class="text-4xl text-white font-extrabold">PetPal</h1></a>
             <details class="relative top-[-48px] right-4">
                 <summary class="absolute top-4 right-4">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-list text-white cursor-pointer" viewBox="0 0 16 16">
@@ -38,11 +37,11 @@
                     </svg>
                 </summary>
                 <div class="mt-[64px] flex flex-col">
-                    <a href="search-shelter.html" class="text-white bg-blue3 pl-8 py-2">Search</a>
-                    <a href="pet_creation.html" class="text-white bg-blue3 pl-8 py-2">Create a Pet</a>
-                    <a href="" class="text-white bg-blue3 pl-8 py-2">My Pets</a>
-                    <a href="" class="text-white bg-blue3 pl-8 py-2">Notifications</a>
-                    <a href="" class="text-white bg-blue3 pl-8 pt-2 mb-[-48px]">Log Out</a>
+                    <a href="../Search/search-shelter.html" class="text-white bg-blue3 pl-8 py-2">Search</a>
+                    <a href="../Search/pet_creation.html" class="text-white bg-blue3 pl-8 py-2">Create a Pet</a>
+                    <a href="../shelter/shelter-listings.html" class="text-white bg-blue3 pl-8 py-2">My Pets</a>
+                    <a href="../general/notifications.html" class="text-white bg-blue3 pl-8 py-2">Notifications</a>
+                    <a href="../general/login.html" class="text-white bg-blue3 pl-8 pt-2 mb-[-48px]">Log Out</a>
                 </div>
             </details>
         </nav>
@@ -64,7 +63,7 @@
                         <p class="text-right border border-yellow-400 border-solid rounded-md bg-yellow-400 text-black p-4">:&#40;</p>
                     </div>
                     <div class="w-full" id="chatbox">
-                        <form action="https://postman-echo.com/post" method="POST" enctype="application/x-www-form-urlencoded" class="flex justify-between items-center flex-row">
+                        <form action="conversation-sent.html" method="POST" enctype="application/x-www-form-urlencoded" class="flex justify-between items-center flex-row">
                             <input type="text" id="message" name="message" placeholder="Type your message" required class="p-3 border border-solid border-teal-900 border-2 rounded-md">
                             <input type="submit" value="Send" id="send" class="p-3 rounded-md font-bold text-lg border-solid border-yellow-400 border-2 cursor-pointer p-3 justify-center inline-flex items-center no-underline text-center">
                         </form>
