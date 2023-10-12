@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+a {
+    font-family: Inter, Arial, Helvetica, sans-serif;
+    color: #1A535C;
+    font-size: 16px;
+}
+
+#website-name {
+    color: #1A535C;
+    font-family: Inter, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 60px;
+    padding-top: 88px;
+}
+
+input {
+    padding: 0.8rem;
+    width: 615px;
+    border: 1px solid #1A535C;
+    border-radius: 3px;
+}
+
+details > summary {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+details > summary::-webkit-details-marker {
+    display: none;
+}
+
+#login {
+    font-weight: bold;
+    font-size: 18px;
+    background-color: #1A535C;
+    color: #FFE66D;
+}
+
+#login:hover {
+    background-color: #FFE66D;
+    color:#1A535C;
+    border-color: #1A535C;
+}
+
+#forgot {
+    font-family: Inter, Arial, Helvetica, sans-serif;
+    color: #1A535C;
+    font-size: 16px;
+    text-decoration: underline;
+}
+
+footer {
+    height: 3rem;
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ }
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.page-container {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    margin: 0;
+}
