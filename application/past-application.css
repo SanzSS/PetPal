@@ -576,28 +576,24 @@ video {
   margin-bottom: 2.5rem;
 }
 
-.ml-6 {
-  margin-left: 1.5rem;
+.mb-4 {
+  margin-bottom: 1rem;
 }
 
-.mt-20 {
-  margin-top: 5rem;
+.ml-6 {
+  margin-left: 1.5rem;
 }
 
 .mt-10 {
   margin-top: 2.5rem;
 }
 
-.mt-40 {
-  margin-top: 10rem;
+.mt-20 {
+  margin-top: 5rem;
 }
 
 .mt-4 {
   margin-top: 1rem;
-}
-
-.mb-4 {
-  margin-bottom: 1rem;
 }
 
 .flex {
@@ -620,12 +616,24 @@ video {
   cursor: pointer;
 }
 
+.flex-row {
+  flex-direction: row;
+}
+
 .items-center {
   align-items: center;
 }
 
 .justify-center {
   justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.self-end {
+  align-self: flex-end;
 }
 
 .rounded-md {
@@ -670,6 +678,10 @@ video {
 
 .p-4 {
   padding: 1rem;
+}
+
+.pb-20 {
+  padding-bottom: 5rem;
 }
 
 .pb-3 {
@@ -813,23 +825,50 @@ summary:hover {
 
 #chat {
   display: grid;
-  grid-template-columns: auto auto;
-  grid-template-rows: auto auto auto auto;
+  grid-template-columns: auto auto auto;
+  grid-template-rows: auto auto auto auto auto;
 }
 
 #seeker1 {
   grid-row-start: 2;
   grid-column-start: 2;
+  grid-column-end: 4;
 }
 
 #seeker2 {
   grid-row-start: 3;
   grid-column-start: 2;
+  grid-column-end: 4;
 }
 
 #seeker3 {
   grid-row-start: 4;
   grid-column-start: 2;
+  grid-column-end: 4;
+}
+
+#chatbox {
+  grid-row-start: 5;
+  grid-column-start: 1;
+  grid-column-end: 4;
+}
+
+#message {
+  width: 65%;
+}
+
+#send {
+  width: 33%;
+  font-weight: bold;
+  font-size: 18px;
+  color:#FFE66D;
+  background-color: #1A535C;
+}
+
+#send:hover {
+  background-color: #FFE66D;
+  color:#1A535C;
+  border-color: #1A535C;
 }
 
 .hover\:border-teal-900:hover {
