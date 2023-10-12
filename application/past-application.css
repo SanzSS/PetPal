@@ -568,10 +568,6 @@ video {
   }
 }
 
-.fixed {
-  position: fixed;
-}
-
 .absolute {
   position: absolute;
 }
