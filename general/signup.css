@@ -949,6 +949,25 @@ select {
   border-color: #1A535C;
 }
 
+footer {
+  height: 3rem;
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
 .hover\:border-teal-900:hover {
   --tw-border-opacity: 1;
   border-color: rgb(19 78 74 / var(--tw-border-opacity));

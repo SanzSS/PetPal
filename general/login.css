@@ -640,6 +640,10 @@ video {
   min-height: 100vh;
 }
 
+.w-1\/2 {
+  width: 50%;
+}
+
 .w-10\/12 {
   width: 83.333333%;
 }
@@ -654,10 +658,6 @@ video {
 
 .w-screen {
   width: 100vw;
-}
-
-.w-1\/2 {
-  width: 50%;
 }
 
 .flex-1 {
@@ -953,6 +953,25 @@ details > summary::-webkit-details-marker {
   color: #1A535C;
   font-size: 16px;
   text-decoration: underline;
+}
+
+footer {
+  height: 3rem;
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
 }
 
 .hover\:border-teal-900:hover {
