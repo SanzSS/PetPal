@@ -945,6 +945,15 @@ video {
   background-color: rgb(250 204 21 / var(--tw-bg-opacity));
 }
 
+.bg-green-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(74 222 128 / var(--tw-bg-opacity));
+}
+
+.fill-blue3 {
+  fill: #1A535C;
+}
+
 .p-2 {
   padding: 0.5rem;
 }
