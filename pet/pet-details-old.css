@@ -77,6 +77,10 @@ details > summary {
     list-style: none;
 }
 
+.header-item {
+    @apply transition ease-out duration-300 hover:bg-blue4 hover:rounded 
+}
+
 main {
     display: flex;
     justify-content: center;

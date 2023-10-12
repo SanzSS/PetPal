@@ -8,6 +8,10 @@ a {
     font-size: 16px;
 }
 
+.header-item {
+    @apply transition ease-out duration-300 hover:bg-blue4 hover:rounded 
+}
+
 #website-name {
     color: #1A535C;
     font-family: Inter, Arial, Helvetica, sans-serif;

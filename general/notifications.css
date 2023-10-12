@@ -23,6 +23,10 @@
     background-color: rgb(59, 149, 205);
 }
 
+.header-item {
+    @apply transition ease-out duration-300 hover:bg-blue4 hover:rounded 
+}
+
 #footer {
     font-size: 1rem;
     margin-bottom: 1rem;

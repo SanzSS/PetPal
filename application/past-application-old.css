@@ -143,6 +143,10 @@ main {
     flex-direction: column;
 }
 
+.header-item {
+    @apply transition ease-out duration-300 hover:bg-blue4 hover:rounded 
+}
+
 @media (max-width: 640px) {
     .container {
       max-width: 50%;
