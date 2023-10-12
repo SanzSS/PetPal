@@ -1,9 +1,13 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./application/*.html",
-            "./general/*.html",
-            "./pet/*.html",
-          "./application/conversation.html"],
+    content: [
+    './public/**/*.{html,js}',
+    './application/**/*.{html,js}',
+    './general/**/*.{html,js}',
+    './Search/**/*.{html,js}',
+    './shelter/**/*.{html,js}',
+    '*.{html,js}'
+],
   theme: {
     extend: {
       colors: {
