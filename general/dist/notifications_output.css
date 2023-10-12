@@ -747,6 +747,10 @@ video {
   margin-top: 64px;
 }
 
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+
 .box-border {
   box-sizing: border-box;
 }
@@ -1410,6 +1414,11 @@ video {
   color: rgb(250 204 21 / var(--tw-text-opacity));
 }
 
+.text-red-700 {
+  --tw-text-opacity: 1;
+  color: rgb(185 28 28 / var(--tw-text-opacity));
+}
+
 .underline {
   text-decoration-line: underline;
 }
@@ -1457,22 +1466,40 @@ video {
 #notif {
   width: 100%;
   margin-bottom: 1rem;
+  font-size: small;
 }
 
 @media (min-width: 768px) {
   #notif {
     width: 100%/* 640px */;
+    font-size: medium;
   }
 }
 
 @media (min-width: 1024px) {
   #notif {
     width: 100%;
+    font-size: medium;
   }
 }
 
 #notif:hover {
   background-color: rgb(59, 149, 205);
+}
+
+.header-item {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+
+.header-item:hover {
+  border-radius: 0.25rem;
+  --tw-bg-opacity: 1;
+  background-color: rgb(34 108 119 / var(--tw-bg-opacity));
 }
 
 #footer {
@@ -1642,10 +1669,20 @@ details > summary::-webkit-details-marker {
   .md\:w-\[70\%\] {
     width: 70%;
   }
+
+  .md\:text-6xl {
+    font-size: 3.75rem;
+    line-height: 1;
+  }
 }
 
 @media (min-width: 1024px) {
   .lg\:w-\[70\%\] {
     width: 70%;
+  }
+
+  .lg\:text-6xl {
+    font-size: 3.75rem;
+    line-height: 1;
   }
 }

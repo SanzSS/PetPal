@@ -576,12 +576,20 @@ video {
   visibility: collapse;
 }
 
+.fixed {
+  position: fixed;
+}
+
 .absolute {
   position: absolute;
 }
 
 .relative {
   position: relative;
+}
+
+.bottom-0 {
+  bottom: 0px;
 }
 
 .right-4 {
@@ -659,12 +667,12 @@ video {
   margin-left: 0.5rem;
 }
 
-.ml-\[-34px\] {
-  margin-left: -34px;
+.ml-\[-22px\] {
+  margin-left: -22px;
 }
 
-.ml-\[-40px\] {
-  margin-left: -40px;
+.ml-\[-34px\] {
+  margin-left: -34px;
 }
 
 .mr-4 {
@@ -697,6 +705,10 @@ video {
 
 .mt-\[64px\] {
   margin-top: 64px;
+}
+
+.mb-1 {
+  margin-bottom: 0.25rem;
 }
 
 .box-border {
@@ -739,6 +751,10 @@ video {
   display: none;
 }
 
+.h-1 {
+  height: 0.25rem;
+}
+
 .h-11 {
   height: 2.75rem;
 }
@@ -759,6 +775,10 @@ video {
   height: 6rem;
 }
 
+.h-3 {
+  height: 0.75rem;
+}
+
 .h-32 {
   height: 8rem;
 }
@@ -773,10 +793,6 @@ video {
 
 .h-\[3rem\] {
   height: 3rem;
-}
-
-.h-\[70px\] {
-  height: 70px;
 }
 
 .h-full {
@@ -1262,6 +1278,11 @@ video {
   color: rgb(250 204 21 / var(--tw-text-opacity));
 }
 
+.text-red-700 {
+  --tw-text-opacity: 1;
+  color: rgb(185 28 28 / var(--tw-text-opacity));
+}
+
 .underline {
   text-decoration-line: underline;
 }
@@ -1464,6 +1485,21 @@ details > summary {
 
 details > summary::-webkit-details-marker {
   display: none;
+}
+
+.header-item {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+
+.header-item:hover {
+  border-radius: 0.25rem;
+  --tw-bg-opacity: 1;
+  background-color: rgb(34 108 119 / var(--tw-bg-opacity));
 }
 
 .hover\:rounded:hover {
