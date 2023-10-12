@@ -568,10 +568,6 @@ video {
   }
 }
 
-.fixed {
-  position: fixed;
-}
-
 .absolute {
   position: absolute;
 }
@@ -1359,7 +1355,7 @@ main {
 }
 
 .shelter-hover:hover {
-  font-weight: bold;
+  font-weight: 800;
 }
 
 .hover\:border:hover {
