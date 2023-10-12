@@ -1348,6 +1348,11 @@ main {
   border-color: rgb(19 78 74 / var(--tw-border-opacity));
 }
 
+.hover\:border-blue4:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(34 108 119 / var(--tw-border-opacity));
+}
+
 .hover\:bg-white:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -1450,6 +1455,11 @@ main {
   .md\:text-6xl {
     font-size: 3.75rem;
     line-height: 1;
+  }
+
+  .md\:text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
   }
 }
 
