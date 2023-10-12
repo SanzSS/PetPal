@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shelter-stylesheet" href="shelter-style.css">
+    <link rel="all-stylesheet" href="../style.css">
+    <link href="/dist/output.css" rel="d-stylesheet">
+    <link href="../Search/output.css" rel="stylesheet">
+    <title>Applications</title>
+</head>
+<body class="min-h-screen bg-blue1 flex flex-col">
+    <div class="flex-1 flex-col">
+        <!-- Navigation Bar -->
+        <nav class="flex bg-blue3 h-[70px] text-white justify-between items-center px-16">
+            <a href="../Search/search.html"><h1 class="text-4xl text-white font-extrabold">PetPal</h1></a>
+            <div class="flex">
+                <a href="../Search/search.html" class="p-6">Search</a>
+                <a href="../Search/pet_creation.html" class="p-6">Create a Pet</a>
+                <!-- Dropdown Menu -->
+                <details class="p-6">
+                    <summary>Menu</summary>
+                    <ul class="absolute text-black bg-white w-auto rounded-md p-2 flex flex-col items-center border border-blue3 mt-2 ml-[-40px]">
+                        <li><a href="shelter-listings.html" class="dropdown-menu-item">My Pets</a></li>
+                        <li><a href="" class="dropdown-menu-item">My Applications</a></li>
+                        <li><a href="" class="dropdown-menu-item">Notifications</a></li>
+                        <li><a href="" class="dropdown-menu-item">Log Out</a></li>
+                    </ul>
+                </details>
+            </div>
+        </nav>
+        <main class="flex flex-col items-center pb-16">
+            <h1 class="text-6xl my-12 text-blue3 font-extrabold">Applications for Sherlock</h1>
+            <div class="grid gap-2 w-3/4">
+                <!-- Search Column -->
+                <div class="h-full w-full gap-4">
+                    <!-- Search -->
+                    <form class="col-span-2 h-[120px] p-2">
+                        <div class="flex justify-between">
+                            <input type="text" placeholder="Search applications" class="h-16 w-[83%] text-2xl p-4 rounded-xl shadow-md">
+                            <a href="" class="text-center w-[15%] bg-blue3 text-white font-extrabold text-2xl flex justify-center items-center rounded-xl shadow-md">
+                                Search
+                            </a>
+                        </div>
+                    </form>
+                    <!-- Cards -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 p-2">
+                        <div class="card">
+                            <div class="p-2">
+                                <span class="font-bold block">Name: Shakira</span>
+                                <span class="block">Address: Trooonto</span>
+                                <span class="block">Score: 10</span>
+                                <a href="../application/fake-application.html" class="underline">View Full Application</a>
+                            </div>
+                        </div>
+                        <div class="card">
+                          <div class="p-2">
+                            <span class="font-bold block">Name: Ill</span>
+                            <span class="block">Address: Aa</span>
+                            <span class="block">Score: 50</span>
+                            <a href="../Search/public/pet_update.html" class="underline">View Full Application</a>
+                          </div>
+                        </div>
+                        <div class="card">
+                          <div class="p-2">
+                            <span class="font-bold block">Name: Tuvalu</span>
+                            <span class="block">Address: STA302</span>
+                            <span class="block">Score: 90</span>
+                            <a href="../Search/public/pet_update.html" class="underline">View Full Application</a>
+                          </div>
+                        </div>
+                        <div class="card">
+                          <div class="p-2">
+                            <span class="font-bold block">Name: Krishna</span>
+                            <span class="block">Address: India</span>
+                            <span class="block">Score: 0</span>
+                            <a href="../application/past_application.html" class="underline">View Full Application</a>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-4">
+                        <a href="" class="inline button px-2 py-1"><</a>
+                        <p class="inline button px-2 py-1">Page 1</p>
+                        <a href="" class="inline button px-2 py-1">></a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <footer class="flex w-full bg-blue3 text-white h-[3rem] justify-center items-center">
+        <p>Copyright 2023 by Victor Yao, Dian Rong, Angela Zhuo and Sanzhar Shamshiyev.</p>
+    </footer>
+</body>
+</html>

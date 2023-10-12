@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shelter-stylesheet" href="shelter-style.css">
+    <link rel="all-stylesheet" href="../style.css">
+    <link href="/dist/output.css" rel="d-stylesheet">
+    <link href="../Search/output.css" rel="stylesheet">
+    <title>Pet Listings</title>
+</head>
+<body class="min-h-screen bg-blue1 flex flex-col">
+    <div class="flex-1 flex-col">
+        <!-- Navigation Bar -->
+        <nav class="flex bg-blue3 h-[70px] text-white justify-between items-center px-16">
+            <a href="../Search/search.html"><h1 class="text-4xl text-white font-extrabold">PetPal</h1></a>
+            <div class="flex">
+                <a href="../Search/search.html" class="p-6">Search</a>
+                <a href="../Search/pet_creation.html" class="p-6">Create a Pet</a>
+                <!-- Dropdown Menu -->
+                <details class="p-6">
+                    <summary>Menu</summary>
+                    <ul class="absolute text-black bg-white w-auto rounded-md p-2 flex flex-col items-center border border-blue3 mt-2 ml-[-40px]">
+                        <li><a href="shelter-listings.html" class="dropdown-menu-item">My Pets</a></li>
+                        <li><a href="" class="dropdown-menu-item">My Applications</a></li>
+                        <li><a href="" class="dropdown-menu-item">Notifications</a></li>
+                        <li><a href="" class="dropdown-menu-item">Log Out</a></li>
+                    </ul>
+                </details>
+            </div>
+        </nav>
+        <main class="flex flex-col items-center pb-16">
+            <h1 class="text-6xl my-12 text-blue3 font-extrabold">Pet Listings</h1>
+            <div class="grid gap-2 w-3/4">
+                <!-- Search Column -->
+                <div class="h-full w-full gap-4">
+                    <!-- Search -->
+                    <form class="col-span-2 h-[120px] p-2">
+                        <div class="flex justify-between">
+                            <input type="text" placeholder="Search pets" class="h-16 w-[83%] text-2xl p-4 rounded-xl shadow-md">
+                            <a href="" class="text-center w-[15%] bg-blue3 text-white font-extrabold text-2xl flex justify-center items-center rounded-xl shadow-md">
+                                Search
+                            </a>
+                        </div>
+                        <div class="block mt-2">
+                            <label for="sort">Availability:</label>
+                            <select id="sort" name="sort-by" class="rounded shadow-md">
+                                <option value=""></option>
+                                <option value="">Available</option>
+                                <option value="">Adopted</option>
+                                <option value="">Pending</option>
+                                <option value="">Withdrawn</option>
+                            </select>
+                        </div>
+                    </form>
+                    <!-- Cards -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 p-2">
+                        <div class="card">
+                            <img src="https://i.pinimg.com/564x/6c/b2/b0/6cb2b0f06f0a41bf73c9dcd21bbcdbc0.jpg" alt="ikea shark eating dinner" class="w-full h-[250px] object-cover">
+                            <div class="p-2">
+                                <span class="font-bold block">Name: Shakira </span>
+                                <span class="block">Available</span>
+                                <a href="../Search/public/pet_update.html" class="underline underline-offset-auto">Edit Listing</a>
+                                <br>
+                                <a href="../shelter/shelter-applications.html" class="underline">View Applications</a>
+                            </div>
+                        </div>
+                        <div class="card">
+                          <img src="https://sadanduseless.b-cdn.net/wp-content/uploads/2018/10/ikea-shark2.jpg" alt="ikea shark drinking coffee" class="w-full h-[250px] object-cover">
+                          <div class="p-2">
+                              <span class="font-bold block">Name: Shanzhar </span>
+                              <span class="block">Withdrawn</span>
+                              <a href="../Search/public/pet_update.html" class="underline underline-offset-auto">Edit Listing</a>
+                              <br>
+                              <a href="../shelter/shelter-applications.html" class="underline">View Applications</a>
+                          </div>
+                        </div>
+                        <div class="card">
+                          <img src="https://i.pinimg.com/564x/2d/2a/30/2d2a306b687243060aca986723143e8b.jpg" alt="ikea shark poking its head out of laundry" class="w-full h-[250px] object-cover">
+                          <div class="p-2">
+                              <span class="font-bold block">Name: Sherlock </span>
+                              <span class="block">Adopted</span>
+                              <a href="../Search/public/pet_update.html" class="underline underline-offset-auto">Edit Listing</a>
+                              <br>
+                              <a href="../shelter/shelter-applications.html" class="underline">View Applications</a>
+                          </div>
+                        </div>
+                        <div class="card">
+                          <img src="https://mustsharenews.com/wp-content/uploads/2019/12/ikea-shark-20.jpg" alt="ikea shark at work" class="w-full h-[250px] object-cover">
+                          <div class="p-2">
+                              <span class="font-bold block">Name: Shebastian </span>
+                              <span class="block">Pending</span>
+                              <a href="../Search/public/pet_update.html" class="underline underline-offset-auto">Edit Listing</a>
+                              <br>
+                              <a href="../shelter/shelter-applications.html" class="underline">View Applications</a>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-4">
+                        <a href="" class="inline button px-2 py-1"><</a>
+                        <p class="inline button px-2 py-1">Page 1</p>
+                        <a href="" class="inline button px-2 py-1">></a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <footer class="flex w-full bg-blue3 text-white h-[3rem] justify-center items-center">
+        <p>Copyright 2023 by Victor Yao, Dian Rong, Angela Zhuo and Sanzhar Shamshiyev.</p>
+    </footer>
+</body>
+</html>
