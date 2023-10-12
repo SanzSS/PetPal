@@ -610,6 +610,10 @@ video {
   margin-bottom: 3rem;
 }
 
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+
 .mb-10 {
   margin-bottom: 2.5rem;
 }
@@ -750,10 +754,6 @@ video {
   height: 2.25rem;
 }
 
-.h-\[120px\] {
-  height: 120px;
-}
-
 .h-\[250px\] {
   height: 250px;
 }
@@ -798,10 +798,6 @@ video {
   width: 100%;
 }
 
-.w-\[15\%\] {
-  width: 15%;
-}
-
 .w-\[22\%\] {
   width: 22%;
 }
@@ -820,10 +816,6 @@ video {
 
 .w-\[75\%\] {
   width: 75%;
-}
-
-.w-\[83\%\] {
-  width: 83%;
 }
 
 .w-auto {
@@ -1168,6 +1160,11 @@ video {
   color: rgb(243 244 246 / var(--tw-text-opacity));
 }
 
+.text-red-700 {
+  --tw-text-opacity: 1;
+  color: rgb(185 28 28 / var(--tw-text-opacity));
+}
+
 .text-teal-900 {
   --tw-text-opacity: 1;
   color: rgb(19 78 74 / var(--tw-text-opacity));
@@ -1249,7 +1246,7 @@ input[type="checkbox"] {
 #chat {
   display: grid;
   grid-template-columns: auto auto auto;
-  grid-template-rows: auto auto auto auto auto;
+  grid-template-rows: auto auto auto auto auto auto;
   width: 80vw;
 }
 
@@ -1260,32 +1257,42 @@ input[type="checkbox"] {
   width: 80vw;
 }
 
-#seeker1 {
+#shelter {
   grid-row-start: 2;
-  grid-column-start: 2;
-  grid-column-end: 4;
 }
 
-#seeker2 {
+#title2 {
   grid-row-start: 3;
-  grid-column-start: 2;
-  grid-column-end: 4;
+  grid-column-start: 3;
+  text-align: right;
 }
 
-#seeker3 {
+#seeker1 {
   grid-row-start: 4;
   grid-column-start: 2;
   grid-column-end: 4;
 }
 
-#seeker4 {
+#seeker2 {
   grid-row-start: 5;
   grid-column-start: 2;
   grid-column-end: 4;
 }
 
-#chatbox {
+#seeker3 {
   grid-row-start: 6;
+  grid-column-start: 2;
+  grid-column-end: 4;
+}
+
+#seeker4 {
+  grid-row-start: 7;
+  grid-column-start: 2;
+  grid-column-end: 4;
+}
+
+#chatbox {
+  grid-row-start: 8;
   grid-column-start: 1;
   grid-column-end: 4;
 }
@@ -1400,14 +1407,14 @@ main {
   border-color: rgb(0 0 0 / var(--tw-border-opacity));
 }
 
-.hover\:border-teal-900:hover {
-  --tw-border-opacity: 1;
-  border-color: rgb(19 78 74 / var(--tw-border-opacity));
-}
-
 .hover\:border-blue4:hover {
   --tw-border-opacity: 1;
   border-color: rgb(34 108 119 / var(--tw-border-opacity));
+}
+
+.hover\:border-teal-900:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(19 78 74 / var(--tw-border-opacity));
 }
 
 .hover\:bg-white:hover {
@@ -1509,14 +1516,14 @@ main {
     width: 83%;
   }
 
-  .md\:text-6xl {
-    font-size: 3.75rem;
-    line-height: 1;
-  }
-
   .md\:text-4xl {
     font-size: 2.25rem;
     line-height: 2.5rem;
+  }
+
+  .md\:text-6xl {
+    font-size: 3.75rem;
+    line-height: 1;
   }
 }
 
