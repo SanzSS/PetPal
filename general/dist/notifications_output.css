@@ -763,6 +763,14 @@ video {
   width: 100%;
 }
 
+.w-3 {
+  width: 0.75rem;
+}
+
+.w-1\/2 {
+  width: 50%;
+}
+
 .border-collapse {
   border-collapse: collapse;
 }
@@ -1034,7 +1042,7 @@ video {
 
 @media (min-width: 1024px) {
   #notif {
-    width: 110rem;
+    width: 50rem;
   }
 }
 
@@ -1055,10 +1063,30 @@ main {
   .md\:w-\[40rem\] {
     width: 40rem;
   }
+
+  .md\:w-1\/2 {
+    width: 50%;
+  }
 }
 
 @media (min-width: 1024px) {
-  .lg\:w-\[100rem\] {
-    width: 100rem;
+  .lg\:w-\[50rem\] {
+    width: 50rem;
+  }
+
+  .lg\:w-10 {
+    width: 2.5rem;
+  }
+
+  .lg\:w-3\/4 {
+    width: 75%;
+  }
+
+  .lg\:w-1\/2 {
+    width: 50%;
+  }
+
+  .lg\:w-\[\] {
+    width: ;
   }
 }
