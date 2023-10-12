@@ -11,7 +11,7 @@
 }
 
 .card {
-    @apply border bg-white rounded shadow-md overflow-hidden hover:
+    @apply border bg-white rounded shadow-md overflow-hidden
 }
 
 .button {
