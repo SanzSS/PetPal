@@ -6,7 +6,7 @@ p {
     font-size: 1rem;
     margin-bottom: 1rem;
     margin-top: 1rem;
-    font-weight: bold;
+  
  }
 
  input {
@@ -58,4 +58,8 @@ details > summary {
 }
 details > summary::-webkit-details-marker {
     display: none;
+}
+
+.header-item {
+    @apply transition ease-out duration-300 hover:bg-blue4 hover:rounded 
 }

@@ -6,3 +6,12 @@ img {
     height: 200px;
     width: 200px;
 }
+
+#response {
+    margin: 0.5rem;
+}
+
+.link-hover:hover {
+    font-weight: bold !important;
+  }
+  

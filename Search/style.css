@@ -15,7 +15,7 @@
 }
 
 .button {
-    @apply text-white bg-blue3 font-bold rounded h-8 shadow-md
+    @apply text-white bg-blue3 font-bold rounded h-8 shadow-md hover:border-black hover:text-blue3 hover:bg-white hover:border-2
 }
 
 .input {
@@ -32,6 +32,10 @@
 
 .card-description {
     @apply block text-gray-600
+}
+
+.header-item {
+    @apply transition ease-out duration-300 hover:bg-blue4 hover:rounded 
 }
 
 details > summary {

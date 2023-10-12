@@ -14,7 +14,7 @@ span{
 }
 
 p {
-    font-weight: bolder;
+
 }
 
 
@@ -27,6 +27,10 @@ header {
    align-items: center;
    display: flex; */ 
 
+}
+
+.header-item {
+    @apply transition ease-out duration-300 hover:bg-blue4 hover:rounded 
 }
 
 

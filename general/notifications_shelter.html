@@ -10,23 +10,24 @@
     <div id="header" >
         <header class="w-screen">
             <nav class="hidden sm:flex sm:bg-blue3 sm:h-[70px] sm:text-white sm:justify-between sm:items-center sm:px-16">
-                <a href="../Search/search-seeker.html"><h1 class="text-4xl text-white font-extrabold">PetPal</h1></a>
+                <a href="../Search/search-shelter.html"><h1 class="text-4xl text-white font-extrabold">PetPal</h1></a>
                 <div class="flex justify-evenly items-center">
-                    <a href="../Search/search-seeker.html" class="p-4 header-item">Search</a>
+                    <a href="../Search/search-shelter.html" class="header-item p-4">Search</a>
+                    <a href="../Search/pet_creation.html" class="header-item p-4">Create a Pet</a>
                     <!-- Dropdown Menu -->
-                    <details class="p-6">
+                    <details>
                         <summary class="cursor-pointer header-item p-4">Menu</summary>
-                        <ul class="absolute text-black bg-white w-auto rounded-md p-2 flex flex-col items-center border border-blue3 mt-1 ml-[-34px]">
-                            <li><a href="../application/past-application.html" class="dropdown-menu-item">My Applications</a></li>
+                        <ul class="absolute text-black bg-white w-auto rounded-md p-2 flex flex-col items-center border border-blue3 mt-1 ml-[-22px]">
+                            <li><a href="../shelter/shelter-listings.html" class="dropdown-menu-item">My Pets</a></li>
                             <li><a href="" class="dropdown-menu-item">Notifications</a></li>
-                            <li><a href="login.html" class="dropdown-menu-item">Log Out</a></li>
+                            <li><a href="../general/login-shelter.html" class="dropdown-menu-item">Log Out</a></li>
                         </ul>
                     </details>
                 </div>
             </nav>
             <!-- Mobile Navigation Bar -->
             <nav class="sm:hidden flex flex-col bg-blue3 w-screen pb-4">
-                <a href="../Search/search-seeker.html" class="self-center pt-2"><h1 class="text-4xl text-white font-extrabold">PetPal</h1></a>
+                <a href="search-shelter.html" class="self-center pt-2"><h1 class="text-4xl text-white font-extrabold">PetPal</h1></a>
                 <details class="relative top-[-48px] right-4">
                     <summary class="absolute top-4 right-4">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-list text-white cursor-pointer" viewBox="0 0 16 16">
@@ -34,10 +35,11 @@
                         </svg>
                     </summary>
                     <div class="mt-[64px] flex flex-col">
-                        <a href="../Search/search-seeker.html" class="text-white bg-blue3 pl-8 py-2 header-item">Search</a>
-                        <a href="../application/past-application.html" class="text-white bg-blue3 pl-8 py-2 header-item">My Applications</a>
+                        <a href="../Search/search-shelter.html" class="text-white bg-blue3 pl-8 py-2 header-item">Search</a>
+                        <a href="../Search/pet_creation.html" class="text-white bg-blue3 pl-8 py-2 header-item">Create a Pet</a>
+                        <a href="../shelter/shelter-listings.html" class="text-white bg-blue3 pl-8 py-2 header-item">My Pets</a>
                         <a href="" class="text-white bg-blue3 pl-8 py-2 header-item">Notifications</a>
-                        <a href="login.html" class="text-white bg-blue3 pl-8 py-2 mb-[-48px] header-item">Log Out</a>
+                        <a href="../general/login-shelter.html" class="text-white bg-blue3 pl-8 py-2 mb-[-48px] header-item">Log Out</a>
                     </div>
                 </details>
             </nav>
@@ -48,11 +50,11 @@
             <h1 class="text-6xl my-12 text-blue3 font-extrabold">
                 Notifications
             </h1>
-            <a href="../application/conversation.html" class="w-[75%]">
+            <a href="../shelter/shelter-info.html" class="w-[75%]">
         <div id="notif" class="h-32 bg-slate-50 border border-gray-300 shadow-lg flex items-center p-3 border-l-blue-500">
             <img src="./images/old-woman.jpeg" alt="User Avatar" class="w-9 h-9 rounded-full mr-4">
             <div>
-                <p class="mb-3"> <span class="font-bold">Your mom</span> sent you a new message!</p> 
+                <p class="mb-3"> <span class="font-bold">Betty</span> left you a review!</p> 
                 <p class="mb-3.5 font-light">Your dog is so pretty  </p>
                 <p class="font-extralight text-xs"> Sent 10 seconds ago</p>
             </div>
@@ -62,32 +64,26 @@
         <div id="notif" class="h-32 bg-slate-50 border border-gray-300 shadow-lg flex items-center p-3">
             <img src="./images/john.jpeg" alt="User Avatar" class="w-9 h-9 rounded-full mr-4">
             <div>
-                <p class="mb-3"> <span class="font-bold">John Doe</span> sent you a new message!</p> 
-                <p class="mb-3.5 font-light">Hi </p>
+                <p class="mb-3"> <span class="font-bold">John Doe</span> sent you a message!</p> 
+                <p class="mb-3.5 font-light">When can I come pick up Cornelius?</p>
                 <p class="font-extralight text-xs"> Sent 24 days ago</p>
             </div>
         </div>
-        </a>
-        <a href="../application/past-application.html" class="w-[75%]">
-        <div id="notif" class="h-32 bg-slate-50 border border-gray-300 shadow-lg flex items-center p-3">
+    </a>
+        <a href="../shelter/shelter-applications.html" class="w-[75%]">
+        <div id="notif" class="h-32 bg-slate-50 border border-gray-300 shadow-lg flex items-center p-3 w-[100%]">
+            
             <img src="./images/Exclamation-Mark.png" alt="User Avatar" class="w-9 h-9 rounded-full mr-4">
             <div>
                 <p class="mb-3"> <span class="font-bold">Status Update</span></p> 
-                <p class="mb-3.5 font-light">There has been an update on your application for Sardine! </p>
+                <p class="mb-3.5 font-light">A new application! </p>
                 <p class="font-extralight text-xs"> Sent 2000 years ago</p>
             </div>
+        
         </div>
-        </a>
-        <a href="" class="w-[75%]">
-        <div id="notif" class="h-32 bg-slate-50 border border-gray-300 shadow-lg flex items-center p-3">
-            <img src="./images/Exclamation-Mark.png" alt="User Avatar" class="w-9 h-9 rounded-full mr-4">
-            <div>
-                <p class="mb-3"> <span class="font-bold">New Listing</span></p> 
-                <p class="mb-3.5 font-light">A new pet for you has been listed! </p>
-                <p class="font-extralight text-xs"> Sent when Jesus was just a baby</p>
-            </div>
-        </div>
-        </a>
+    </a>
+        
+     
     
     </main>
     <footer class="fixed w-full bg-blue3 text-white h-[3rem] justify-center items-center text-center bottom-0">
