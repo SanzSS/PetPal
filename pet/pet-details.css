@@ -1052,7 +1052,7 @@ h1 {
   grid-row-start: 1;
   margin-right: 1rem;
 }
-.shelter-hover:hover {
+.link:hover {
   font-weight: bold;
 }
 
