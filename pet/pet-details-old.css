@@ -48,6 +48,14 @@ h1 {
     border-color: #1A535C;
 }
 
+#adopt-disabled {
+    font-weight: bold;
+    font-size: 18px;
+    background-color: #d3d3d3;
+    color: black;
+    cursor: not-allowed;
+}
+
 footer {
     height: 3rem;
     width: 100%;
