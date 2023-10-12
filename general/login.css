@@ -1103,6 +1103,10 @@ footer {
   margin: 0;
 }
 
+details > summary {
+  list-style: none;
+}
+
 .hover\:border:hover {
   border-width: 1px;
 }
