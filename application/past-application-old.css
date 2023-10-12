@@ -159,5 +159,8 @@ main {
     #app-container {
         width: 80vw;
     }
+    footer > p {
+        text-align: center;
+    }
   }
 

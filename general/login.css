@@ -1274,6 +1274,10 @@ main {
   input {
     width: 70vw;
   }
+
+  footer > p {
+    text-align: center;
+  }
 }
 
 .hover\:border:hover {

@@ -1275,6 +1275,10 @@ main {
     align-items: center;
     flex-direction: column;
   }
+
+  footer > p {
+    text-align: center;
+  }
 }
 
 .hover\:border:hover {
