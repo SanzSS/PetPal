@@ -2,6 +2,10 @@
 module.exports = {
     content: [
     './public/**/*.{html,js}',
+    './application/**/*.{html,js}',
+    './general/**/*.{html,js}',
+    './Search/**/*.{html,js}',
+    './shelter/**/*.{html,js}',
     '*.{html,js}'
 ],
   theme: {
