@@ -919,8 +919,16 @@ video {
   width: 2.25rem;
 }
 
+.w-\[100\%\] {
+  width: 100%;
+}
+
 .w-\[70\%\] {
   width: 70%;
+}
+
+.w-\[75\%\] {
+  width: 75%;
 }
 
 .w-auto {
@@ -933,22 +941,6 @@ video {
 
 .w-screen {
   width: 100vw;
-}
-
-.w-\[100\%\] {
-  width: 100%;
-}
-
-.w-\[\] {
-  width: ;
-}
-
-.w-\[40rem\] {
-  width: 40rem;
-}
-
-.w-\[75\%\] {
-  width: 75%;
 }
 
 .flex-1 {
@@ -1640,10 +1632,20 @@ details > summary::-webkit-details-marker {
   .md\:w-\[70\%\] {
     width: 70%;
   }
+
+  .md\:text-6xl {
+    font-size: 3.75rem;
+    line-height: 1;
+  }
 }
 
 @media (min-width: 1024px) {
   .lg\:w-\[70\%\] {
     width: 70%;
+  }
+
+  .lg\:text-6xl {
+    font-size: 3.75rem;
+    line-height: 1;
   }
 }
