@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#notif {
+    width: 75%;
+    margin-bottom: 1rem;
+}
+ 
+@media (min-width: 768px) {
+    #notif {
+        width: 75%/* 640px */;
+     }
+}
+
+@media (min-width: 1024px) {
+    #notif {
+        width: 75%;
+    }
+} 
+
+#notif:hover {
+    background-color: rgb(59, 149, 205);
+}
+
+main {
+    margin-bottom: 31.3rem;
+}
+
+
+.filter-menu {
+    @apply w-full rounded shadow-md
+}
+
+.filter-div {
+    @apply mb-6 w-full
+}
+
+.card {
+    @apply border bg-white rounded shadow-md overflow-hidden
+}
+
+.button {
+    @apply text-white bg-blue3 font-bold rounded h-8 shadow-md
+}
+
+.input {
+    @apply rounded shadow-md bg-white m-2 p-2
+}
+
+.label {
+    @apply mt-2 ml-2
+}
+
+.dropdown-menu-item {
+    @apply my-2 px-1 hover:bg-blue2 rounded transition ease-out duration-300
+}
+
+.card-description {
+    @apply block text-gray-600
+}
+
+details > summary {
+    list-style: none;
+}
+details > summary::-webkit-details-marker {
+    display: none;
+}
