@@ -1204,7 +1204,14 @@ h1 {
 #name {
   grid-column-start: 2;
   grid-row-start: 1;
+<<<<<<< HEAD
   text-align: left;
+=======
+  margin-right: 1rem;
+}
+.link:hover {
+  font-weight: bold;
+>>>>>>> 286f32d83dcca67e686431b78000df31fe916a34
 }
 
 #adopt {
