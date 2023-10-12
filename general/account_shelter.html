@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account</title>
+    <link href="./dist/account_output.css" rel="stylesheet">
+</head>
+<body class="min-h-screen bg-blue1 flex flex-col">
+    
+        <header class="w-screen">
+            <nav class="hidden sm:flex sm:bg-blue3 sm:h-[70px] sm:text-white sm:justify-between sm:items-center sm:px-16">
+                <a href="../Search/search-shelter.html"><h1 class="text-4xl text-white font-extrabold">PetPal</h1></a>
+                <div class="flex justify-evenly items-center">
+                    <a href="../Search/search-shelter.html" class="header-item p-4">Search</a>
+                    <a href="../Search/pet_creation.html" class="header-item p-4">Create a Pet</a>
+                    <!-- Dropdown Menu -->
+                    <details>
+                        <summary class="cursor-pointer header-item p-4">Menu</summary>
+                        <ul class="absolute text-black bg-white w-auto rounded-md p-2 flex flex-col items-center border border-blue3 mt-1 ml-[-22px]">
+                            <li><a href="../shelter/shelter-listings.html" class="dropdown-menu-item">My Pets</a></li>
+                            <li><a href="notifications_shelter.html" class="dropdown-menu-item">Notifications</a></li>
+                            <li><a href="login-shelter.html" class="dropdown-menu-item">Log Out</a></li>
+                        </ul>
+                    </details>
+                </div>
+            </nav>
+            <!-- Mobile Navigation Bar -->
+            <nav class="sm:hidden flex flex-col bg-blue3 w-screen pb-4">
+                <a href="search-shelter.html" class="self-center pt-2"><h1 class="text-4xl text-white font-extrabold">PetPal</h1></a>
+                <details class="relative top-[-48px] right-4">
+                    <summary class="absolute top-4 right-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-list text-white cursor-pointer" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                        </svg>
+                    </summary>
+                    <div class="mt-[64px] flex flex-col">
+                        <a href="../Search/search-shelter.html" class="text-white bg-blue3 pl-8 py-2 header-item">Search</a>
+                        <a href="../Search/pet_creation.html" class="text-white bg-blue3 pl-8 py-2 header-item">Create a Pet</a>
+                        <a href="../shelter/shelter-listings.html" class="text-white bg-blue3 pl-8 py-2 header-item">My Pets</a>
+                        <a href="notifications_shelter.html" class="text-white bg-blue3 pl-8 py-2 header-item">Notifications</a>
+                        <a href="../general/login-shelter.html" class="text-white bg-blue3 pl-8 py-2 mb-[-48px] header-item">Log Out</a>
+                    </div>
+                </details>
+            </nav>
+        </header>
+
+    <main class="items-center  text-left flex flex-col h-3/4 pb-16">
+        <div class="items-center flex justify-center flex-col">
+            <div class="flex justify-center items-center flex-col">
+            <h1 class="text-6xl mt-12 text-blue3 font-extrabold text-center mb-10">
+                Account Settings
+            </h1>
+            <img src="./images/pfp.jpeg" alt="User Avatar" class="w-30 h-30 rounded-full">
+    </div>
+        </div>
+    <div class="h-1/2 rounded-md border-blue3 border-4 bg-blue2 shadow-lg items-left flex p-3 mt-4 lg:w-[70%] flex-col w-[70%] md:w-[70%]">
+        <div class="self-end bg-gray-500 border border-black rounded-md w-14 text-center font-bold hover:bg-white">
+        <button>Edit</button>
+        </div>
+        <p>
+            Email address: 
+        </p>
+        <div>
+            <input type="email" class="border rounded-md shadow-md" placeholder=" johndoe@gmail.com">
+        </div>
+        
+        <p>
+            Shelter Name:
+        </p>
+        <div>
+            <input type="text" class="border rounded-md shadow-md" placeholder=" The Best Pets">
+        </div>
+        <p>
+            Phone Number:
+        </p>
+        <div>
+            <input type="number" class="border rounded-md shadow-md" placeholder=" 111-111-111">
+        </div>
+        <p>
+            Location:
+        </p>
+        <div>
+            <input type="text" id="location" placeholder="Toronto, Canada, The Best Pets" readonly class="border rounded-md shadow-md">
+        </div>
+
+    </div>
+    </main>
+    <footer class="fixed w-full bg-blue3 text-white h-[3rem] justify-center items-center text-center bottom-0">
+        <p>Copyright 2023 by Victor Yao, Dian Rong, Angela Zhuo and Sanzhar Shamshiyev.</p>
+    </footer>
+</body>
+</html>

@@ -3,19 +3,19 @@
 @tailwind utilities;
 
 #notif {
-    width: 75%;
+    width: 100%;
     margin-bottom: 1rem;
 }
  
 @media (min-width: 768px) {
     #notif {
-        width: 75%/* 640px */;
+        width: 100%/* 640px */;
      }
 }
 
 @media (min-width: 1024px) {
     #notif {
-        width: 75%;
+        width: 100%;
     }
 } 
 
@@ -23,9 +23,12 @@
     background-color: rgb(59, 149, 205);
 }
 
-main {
-    margin-bottom: 31.3rem;
-}
+#footer {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+  
+ }
 
 
 .filter-menu {
@@ -65,4 +68,8 @@ details > summary {
 }
 details > summary::-webkit-details-marker {
     display: none;
+}
+
+.header-item {
+    @apply transition ease-out duration-300 hover:bg-blue4 hover:rounded 
 }

@@ -11,13 +11,13 @@
     <div id="header">
         <header class="w-screen">
             <nav class="hidden sm:flex sm:bg-blue3 sm:h-[70px] sm:text-white sm:justify-between sm:items-center sm:px-16">
-                <a href="../Search/search-seeker.html"><h1 class="text-4xl text-white font-extrabold hover:font-{300}">PetPal</h1></a>
-                <div class="flex">
-                    <a href="../Search/search-seeker.html" class="p-6">Search</a>
+                <a href="../Search/search-seeker.html"><h1 class="text-4xl text-white font-extrabold">PetPal</h1></a>
+                <div class="flex justify-evenly items-center">
+                    <a href="../Search/search-seeker.html" class="p-4 header-item">Search</a>
                     <!-- Dropdown Menu -->
                     <details class="p-6">
-                        <summary class="cursor-pointer">Menu</summary>
-                        <ul class="absolute text-black bg-white w-auto rounded-md p-2 flex flex-col items-center border border-blue3 mt-2 ml-[-40px]">
+                        <summary class="cursor-pointer header-item p-4">Menu</summary>
+                        <ul class="absolute text-black bg-white w-auto rounded-md p-2 flex flex-col items-center border border-blue3 mt-1 ml-[-34px]">
                             <li><a href="past-application.html" class="dropdown-menu-item">My Applications</a></li>
                             <li><a href="../general/notifications.html" class="dropdown-menu-item">Notifications</a></li>
                             <li><a href="../general/login.html" class="dropdown-menu-item">Log Out</a></li>
@@ -27,7 +27,7 @@
             </nav>
             <!-- Mobile Navigation Bar -->
             <nav class="sm:hidden flex flex-col bg-blue3 w-screen pb-4">
-                <a href="search-seeker.html" class="self-center pt-2"><h1 class="text-4xl text-white font-extrabold">PetPal</h1></a>
+                <a href="../Search/search-seeker.html" class="self-center pt-2"><h1 class="text-4xl text-white font-extrabold">PetPal</h1></a>
                 <details class="relative top-[-48px] right-4">
                     <summary class="absolute top-4 right-4">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-list text-white cursor-pointer" viewBox="0 0 16 16">
@@ -35,10 +35,10 @@
                         </svg>
                     </summary>
                     <div class="mt-[64px] flex flex-col">
-                        <a href="../Search/search-seeker.html" class="text-white bg-blue3 pl-8 py-2">Search</a>
-                        <a href="" class="text-white bg-blue3 pl-8 py-2">My Applications</a>
-                        <a href="../general/notifications.html" class="text-white bg-blue3 pl-8 py-2">Notifications</a>
-                        <a href="" class="text-white bg-blue3 pl-8 pt-2 mb-[-48px]">Log Out</a>
+                        <a href="../Search/search-seeker.html" class="text-white bg-blue3 pl-8 py-2 header-item">Search</a>
+                        <a href="past-application.html" class="text-white bg-blue3 pl-8 py-2 header-item">My Applications</a>
+                        <a href="../general/notifications" class="text-white bg-blue3 pl-8 py-2 header-item">Notifications</a>
+                        <a href="../general/login.html" class="text-white bg-blue3 pl-8 py-2 mb-[-48px] header-item">Log Out</a>
                     </div>
                 </details>
             </nav>
