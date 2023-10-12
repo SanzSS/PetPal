@@ -49,17 +49,27 @@
             </details>
         </nav>
         <main class="flex flex-col items-center pb-16">
-            <h1 class="text-6xl my-12 text-blue3 font-extrabold">Applications for Sherlock</h1>
+            <h1 class="text-4xl my-12 text-blue3 font-extrabold md:text-6xl text-center">Applications for Sherlock</h1>
             <div class="grid gap-2 w-3/4">
                 <!-- Search Column -->
                 <div class="h-full w-full gap-4">
                     <!-- Search -->
-                    <form class="col-span-2 h-[120px] p-2">
+                    <form class="col-span-2 lg:p-4">
                         <div class="flex justify-between">
-                            <input type="text" placeholder="Search applications" class="h-16 w-[83%] text-2xl p-4 rounded-xl shadow-md">
-                            <a href="" class="text-center w-[15%] bg-blue3 text-white font-extrabold text-2xl flex justify-center items-center rounded-xl shadow-md">
+                            <input type="text" placeholder="Search pets" class="h-16 md:w-[83%] w-[75%] text-2xl p-4 rounded-xl shadow-md">
+                            <a href="" class="text-center md:w-[15%] w-[22%] bg-blue3 text-white font-extrabold text-2xl flex justify-center items-center rounded-xl shadow-md hover:text-blue3 hover:bg-white hover:border-2 hover:border-blue4">
                                 Search
                             </a>
+                        </div>
+                        <div class="block mt-2">
+                            <label for="sort">Availability:</label>
+                            <select id="sort" name="sort-by" class="rounded shadow-md">
+                                <option value=""></option>
+                                <option value="">Approved</option>
+                                <option value="">Pending</option>
+                                <option value="">Rejected</option>
+                                <option value="">Withdrawn</option>
+                            </select>
                         </div>
                     </form>
                     <!-- Cards -->
@@ -77,7 +87,7 @@
                             <span class="font-bold block">Name: Ill</span>
                             <span class="block">Address: Aa</span>
                             <span class="block">Score: 50</span>
-                            <a href="../Search/public/pet_update.html" class="underline">View Full Application</a>
+                            <a href="../application/fake-application.html" class="underline">View Full Application</a>
                           </div>
                         </div>
                         <div class="card">
@@ -85,7 +95,7 @@
                             <span class="font-bold block">Name: Tuvalu</span>
                             <span class="block">Address: STA302</span>
                             <span class="block">Score: 90</span>
-                            <a href="../Search/public/pet_update.html" class="underline">View Full Application</a>
+                            <a href="../application/fake-application.html" class="underline">View Full Application</a>
                           </div>
                         </div>
                         <div class="card">
@@ -93,7 +103,7 @@
                             <span class="font-bold block">Name: Krishna</span>
                             <span class="block">Address: India</span>
                             <span class="block">Score: 0</span>
-                            <a href="../application/past_application.html" class="underline">View Full Application</a>
+                            <a href="../application/fake-application.html" class="underline">View Full Application</a>
                           </div>
                         </div>
                     </div>

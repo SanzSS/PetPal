@@ -9,22 +9,41 @@
 <body class="min-h-screen bg-blue1 flex flex-col">
     <div class="flex-1 flex-col">
         <!-- Navigation Bar -->
-        <nav class="flex bg-blue3 h-[70px] text-white justify-between items-center px-16">
-            <a href="../Search/search-shelter.html"><h1 class="text-4xl text-white font-extrabold">PetPal</h1></a>
-            <div class="flex">
-                <a href="../Search/search-shelter.html" class="p-6">Search</a>
-                <a href="../Search/pet_creation.html" class="p-6">Create a Pet</a>
+        <nav class="hidden sm:flex sm:bg-blue3 sm:h-[70px] sm:text-white sm:justify-between sm:items-center sm:px-16">
+            <a href="../search/search-shelter.html"><h1 class="text-4xl text-white font-extrabold">PetPal</h1></a>
+            <div class="flex justify-evenly items-center">
+                <a href="../search/search-shelter.html" class="header-item p-4">Search</a>
+                <a href="../search/pet_creation.html" class="header-item p-4">Create a Pet</a>
                 <!-- Dropdown Menu -->
-                <details class="p-6">
-                    <summary>Menu</summary>
-                    <ul class="absolute text-black bg-white w-auto rounded-md p-2 flex flex-col items-center border border-blue3 mt-2 ml-[-40px]">
+                <details>
+                    <summary class="cursor-pointer header-item p-4">Menu</summary>
+                    <ul class="absolute text-black bg-white w-auto rounded-md p-2 flex flex-col items-center border border-blue3 mt-1 ml-[-22px]">
+                        <li><a href="../general/account_shelter.html" class="dropdown-menu-item">My Account</a></li>
                         <li><a href="../shelter/shelter-listings.html" class="dropdown-menu-item">My Pets</a></li>
-                        <li><a href="" class="dropdown-menu-item">My Applications</a></li>
-                        <li><a href="" class="dropdown-menu-item">Notifications</a></li>
-                        <li><a href="" class="dropdown-menu-item">Log Out</a></li>
+                        <li><a href="../general/notifications_shelter.html" class="dropdown-menu-item">Notifications</a></li>
+                        <li><a href="../general/login.html" class="dropdown-menu-item">Log Out</a></li>
                     </ul>
                 </details>
             </div>
+        </nav>
+        <!-- Mobile Navigation Bar -->
+        <nav class="sm:hidden flex flex-col bg-blue3 w-screen pb-4">
+            <a href="../search/search-shelter.html" class="self-center pt-2"><h1 class="text-4xl text-white font-extrabold">PetPal</h1></a>
+            <details class="relative top-[-48px] right-4">
+                <summary class="absolute top-4 right-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-list text-white cursor-pointer" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                    </svg>
+                </summary>
+                <div class="mt-[64px] flex flex-col">
+                    <a href="../search/search-shelter.html" class="text-white bg-blue3 pl-8 py-2 header-item">Search</a>
+                    <a href="../search/pet_creation.html" class="text-white bg-blue3 pl-8 py-2 header-item">Create a Pet</a>
+                    <a href="../general/account_shelter.html" class="text-white bg-blue3 pl-8 py-2 header-item">My Account</a>
+                    <a href="../shelter/shelter-listings.html" class="text-white bg-blue3 pl-8 py-2 header-item">My Pets</a>
+                    <a href="../general/notifications_shelter.html" class="text-white bg-blue3 pl-8 py-2 header-item">Notifications</a>
+                    <a href="../general/login.html" class="text-white bg-blue3 pl-8 py-2 mb-[-48px] header-item">Log Out</a>
+                </div>
+            </details>
         </nav>
         <main>
             <form class="w-3/4">
