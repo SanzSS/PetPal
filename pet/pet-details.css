@@ -1095,6 +1095,13 @@ details > summary {
   list-style: none;
 }
 
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 .hover\:border:hover {
   border-width: 1px;
 }
