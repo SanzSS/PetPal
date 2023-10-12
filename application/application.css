@@ -106,3 +106,7 @@ details > summary {
 details > summary::-webkit-details-marker {
     display: none;
 }
+
+.header-item {
+    @apply transition ease-out duration-300 hover:bg-blue4 hover:rounded 
+}

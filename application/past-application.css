@@ -1352,6 +1352,21 @@ main {
   flex-direction: column;
 }
 
+.header-item {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+
+.header-item:hover {
+  border-radius: 0.25rem;
+  --tw-bg-opacity: 1;
+  background-color: rgb(34 108 119 / var(--tw-bg-opacity));
+}
+
 @media (max-width: 640px) {
   .container {
     max-width: 50%;
