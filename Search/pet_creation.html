@@ -10,16 +10,16 @@
     <div class="flex-1 flex-col">
         <!-- Navigation Bar -->
         <nav class="hidden sm:flex sm:bg-blue3 sm:h-[70px] sm:text-white sm:justify-between sm:items-center sm:px-16">
-            <a href="search.html"><h1 class="text-4xl text-white font-extrabold">PetPal</h1></a>
+            <a href="search-shelter.html"><h1 class="text-4xl text-white font-extrabold">PetPal</h1></a>
             <div class="flex">
-                <a href="search.html" class="p-6">Search</a>
+                <a href="search-shelter.html" class="p-6">Search</a>
                 <a href="pet_creation.html" class="p-6">Create a Pet</a>
+                <a href="pet_update.html" class="p-6">Update Pet (Delete)</a>
                 <!-- Dropdown Menu -->
                 <details class="p-6">
-                    <summary>Menu</summary>
+                    <summary class="cursor-pointer">Menu</summary>
                     <ul class="absolute text-black bg-white w-auto rounded-md p-2 flex flex-col items-center border border-blue3 mt-2 ml-[-40px]">
                         <li><a href="" class="dropdown-menu-item">My Pets</a></li>
-                        <li><a href="" class="dropdown-menu-item">My Applications</a></li>
                         <li><a href="" class="dropdown-menu-item">Notifications</a></li>
                         <li><a href="" class="dropdown-menu-item">Log Out</a></li>
                     </ul>
@@ -28,7 +28,7 @@
         </nav>
         <!-- Mobile Navigation Bar -->
         <nav class="sm:hidden flex flex-col bg-blue3 w-screen pb-4">
-            <a href="search.html" class="self-center pt-2"><h1 class="text-4xl text-white font-extrabold">PetPal</h1></a>
+            <a href="search-shelter.html" class="self-center pt-2"><h1 class="text-4xl text-white font-extrabold">PetPal</h1></a>
             <details class="relative top-[-48px] right-4">
                 <summary class="absolute top-4 right-4">
                     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-list text-white" viewBox="0 0 16 16">
@@ -36,18 +36,17 @@
                     </svg>
                 </summary>
                 <div class="mt-[64px] flex flex-col">
-                    <a href="search.html" class="text-white bg-blue3 pl-8 py-2">Search</a>
+                    <a href="search-shelter.html" class="text-white bg-blue3 pl-8 py-2">Search</a>
                     <a href="pet_creation.html" class="text-white bg-blue3 pl-8 py-2">Create a Pet</a>
                     <a href="" class="text-white bg-blue3 pl-8 py-2">My Pets</a>
-                    <a href="" class="text-white bg-blue3 pl-8 py-2">My Applications</a>
                     <a href="" class="text-white bg-blue3 pl-8 py-2">Notifications</a>
                     <a href="" class="text-white bg-blue3 pl-8 pt-2 mb-[-48px]">Log Out</a>
                 </div>
             </details>
         </nav>
         <main class="flex flex-col items-center pb-16">
-            <h1 class="text-6xl my-12 text-blue3 font-extrabold">Create a Pet Listing</h1>
-            <form class="grid grid-cols-1 w-2/4 p-6 rounded-md border-blue3 border-4 bg-blue2">
+            <h1 class="text-4xl sm:text-6xl my-12 text-blue3 font-extrabold">Create a Pet Listing</h1>
+            <form class="grid grid-cols-1 w-10/12 xl:w-3/4 2xl:w-2/4 max-w-[836px] p-6 rounded-md border-blue3 border-4 bg-blue2">
                 <div class="flex flex-col">
                     <label for="name" class="label">Pet Name</label>
                     <input type="text" id="name" class="input box-border">
@@ -99,7 +98,7 @@
         </main>
     </div>
     <footer class="flex w-full bg-blue3 text-white h-[3rem] justify-center items-center">
-        <p>Copyright 2023 by Victor Yao.</p>
+        <p>Copyright 2023 by Victor Yao, Dian Rong, Angela Zhuo and Sanzhar Shamshiyev.</p>
     </footer>
 </body>
 </html>
