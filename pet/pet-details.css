@@ -649,6 +649,10 @@ video {
   margin-top: 64px;
 }
 
+.mb-20 {
+  margin-bottom: 5rem;
+}
+
 .flex {
   display: flex;
 }
@@ -1045,6 +1049,7 @@ h1 {
   color: #1A535C;
   font-weight: bold;
   font-size: 40px;
+  text-align: center;
 }
 
 #name {

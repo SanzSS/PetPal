@@ -84,3 +84,20 @@ main {
     align-items: center;
     flex-direction: column;
 }
+
+@media (max-width: 640px) {
+    .container {
+      max-width: 50%;
+      padding-left: 5%;
+      padding-right: 5%;
+    }
+    input {
+        width: 70vw;
+    }
+    form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+  }
