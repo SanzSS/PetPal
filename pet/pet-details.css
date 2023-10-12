@@ -1247,6 +1247,14 @@ h1 {
   border-color: #1A535C;
 }
 
+#adopt-disabled {
+  font-weight: bold;
+  font-size: 18px;
+  background-color: #d3d3d3;
+  color: black;
+  cursor: not-allowed;
+}
+
 footer {
   height: 3rem;
   width: 100%;
@@ -1275,6 +1283,21 @@ footer {
 
 details > summary {
   list-style: none;
+}
+
+.header-item {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+}
+
+.header-item:hover {
+  border-radius: 0.25rem;
+  --tw-bg-opacity: 1;
+  background-color: rgb(34 108 119 / var(--tw-bg-opacity));
 }
 
 main {
