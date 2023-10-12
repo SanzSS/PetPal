@@ -1207,6 +1207,8 @@ select {
   padding: 0.8rem;
   border: 1px solid #1A535C;
   border-radius: 3px;
+  width: 80%;
+  align-self: flex-end;
 }
 
 #signup {
@@ -1278,6 +1280,15 @@ main {
 
   footer > p {
     text-align: center;
+  }
+
+  select {
+    width: 70vw;
+    align-self: center;
+  }
+
+  #signup {
+    width: 70vw;
   }
 }
 

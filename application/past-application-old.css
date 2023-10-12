@@ -48,12 +48,14 @@ input[type="checkbox"] {
     display: grid;
     grid-template-columns: auto auto auto;
     grid-template-rows: auto auto auto auto auto;
+    width: 80vw;
 }
 
 #chat2 {
     display: grid;
     grid-template-columns: auto auto auto;
     grid-template-rows: auto auto auto auto auto auto;
+    width: 80vw;
 }
 
 #seeker1 {
