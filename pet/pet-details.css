@@ -735,6 +735,11 @@ video {
   border-color: rgb(250 204 21 / var(--tw-border-opacity));
 }
 
+.border-white {
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity));
+}
+
 .bg-blue1 {
   --tw-bg-opacity: 1;
   background-color: rgb(247 255 247 / var(--tw-bg-opacity));
@@ -937,11 +942,11 @@ h1 {
   font-weight: bold;
   font-size: 18px;
   background-color: #1A535C;
-  color: white;
+  color: #FFE66D;
 }
 
 #adopt:hover {
-  background-color: white;
+  background-color: #FFE66D;
   color:#1A535C;
   border-color: #1A535C;
 }
