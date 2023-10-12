@@ -568,6 +568,11 @@ video {
   margin-bottom: 3rem;
 }
 
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
 .mb-2 {
   margin-bottom: 0.5rem;
 }
@@ -594,6 +599,10 @@ video {
 
 .mt-\[64px\] {
   margin-top: 64px;
+}
+
+.ml-1 {
+  margin-left: 0.25rem;
 }
 
 .box-border {
@@ -801,6 +810,11 @@ video {
   padding-bottom: 0.5rem;
 }
 
+.px-1 {
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
+
 .pb-16 {
   padding-bottom: 4rem;
 }
@@ -939,6 +953,12 @@ video {
 .dropdown-menu-item:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(172 224 232 / var(--tw-bg-opacity));
+}
+
+.card-description {
+  display: block;
+  --tw-text-opacity: 1;
+  color: rgb(75 85 99 / var(--tw-text-opacity));
 }
 
 details > summary {

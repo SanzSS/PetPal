@@ -30,6 +30,10 @@
     @apply my-2 px-1 hover:bg-blue2 rounded transition ease-out duration-300
 }
 
+.card-description {
+    @apply block text-gray-600
+}
+
 details > summary {
     list-style: none;
 }
