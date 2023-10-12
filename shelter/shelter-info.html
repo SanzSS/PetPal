@@ -10,25 +10,42 @@
     <title>Applications</title>
 </head>
 <body class="min-h-screen bg-blue1 flex flex-col">
-    <div class="flex-1 flex-col">
-        <!-- Navigation Bar -->
-        <nav class="flex bg-blue3 h-[70px] text-white justify-between items-center px-16">
-            <a href="../Search/search.html"><h1 class="text-4xl text-white font-extrabold">PetPal</h1></a>
-            <div class="flex">
-                <a href="../Search/search.html" class="p-6">Search</a>
-                <a href="../Search/pet_creation.html" class="p-6">Create a Pet</a>
-                <!-- Dropdown Menu -->
-                <details class="p-6">
-                    <summary>Menu</summary>
-                    <ul class="absolute text-black bg-white w-auto rounded-md p-2 flex flex-col items-center border border-blue3 mt-2 ml-[-40px]">
-                        <li><a href="shelter-listings.html" class="dropdown-menu-item">My Pets</a></li>
-                        <li><a href="" class="dropdown-menu-item">My Applications</a></li>
-                        <li><a href="" class="dropdown-menu-item">Notifications</a></li>
-                        <li><a href="" class="dropdown-menu-item">Log Out</a></li>
-                    </ul>
+    <div id="header">
+        <header class="w-screen">
+            <nav class="hidden sm:flex sm:bg-blue3 sm:h-[70px] sm:text-white sm:justify-between sm:items-center sm:px-16">
+                <a href="../Search/search-seeker.html"><h1 class="text-4xl text-white font-extrabold">PetPal</h1></a>
+                <div class="flex">
+                    <a href="../Search/search-seeker.html" class="p-6">Search</a>
+                    <!-- Dropdown Menu -->
+                    <details class="p-6">
+                        <summary class="cursor-pointer">Menu</summary>
+                        <ul class="absolute text-black bg-white w-auto rounded-md p-2 flex flex-col items-center border border-blue3 mt-2 ml-[-40px]">
+                            <li><a href="shelter-listings.html" class="dropdown-menu-item">My Pets</a></li>
+                            <li><a href="../general/notifications.html" class="dropdown-menu-item">Notifications</a></li>
+                            <li><a href="" class="dropdown-menu-item">Log Out</a></li>
+                        </ul>
+                    </details>
+                </div>
+            </nav>
+            <!-- Mobile Navigation Bar -->
+            <nav class="sm:hidden flex flex-col bg-blue3 w-screen pb-4">
+                <a href="search-seeker.html" class="self-center pt-2"><h1 class="text-4xl text-white font-extrabold">PetPal</h1></a>
+                <details class="relative top-[-48px] right-4">
+                    <summary class="absolute top-4 right-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-list text-white cursor-pointer" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                        </svg>
+                    </summary>
+                    <div class="mt-[64px] flex flex-col">
+                        <a href="../Search/search-seeker.html" class="text-white bg-blue3 pl-8 py-2">Search</a>
+                        <a href="shelter-listings.html" class="text-white bg-blue3 pl-8 py-2">My Pets</a>
+                        <a href="../general/notifications.html" class="text-white bg-blue3 pl-8 py-2">Notifications</a>
+                        <a href="" class="text-white bg-blue3 pl-8 pt-2 mb-[-48px]">Log Out</a>
+                    </div>
                 </details>
-            </div>
-        </nav>
+            </nav>
+        </header>
+    </div>
         <main class="flex flex-col items-center pb-16">
             <h1 class="text-6xl my-12 text-blue3 font-extrabold">Shark Shelter</h1>
             <div class="grid gap-2 w-3/4">
@@ -52,13 +69,13 @@
                       </div>
                 </div>
 
-                <h1 class="font-bold block text-2xl pb-3 text-blue3"> Mission Statement </h1>
+                <h1 class="font-bold block text-2xl	underline pb-3 text-blue3"> Mission Statement </h1>
                 <div class="card">
                     <div class="p-2">
                     <span class="block"> Ridding the world of pests, one rat at a time. </span>
                     </div>
                 </div>
-                <h1 class="font-bold block text-2xl pb-3 text-blue3"> Contact Information </h1>
+                <h1 class="font-bold block text-2xl	underline pb-3 text-blue3"> Contact Information </h1>
                 <div class="card">
                     <div class="p-2">
                     <span class="block">Phone Number: 111-222-3333</span>

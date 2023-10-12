@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="signup.css">
+    <title>PetPal Signup</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+
+<body class="min-h-screen bg-blue1 flex flex-col">
+  <div class="page-container" class="flex-1 flex-col">
+        <!-- Navigation Bar -->
+        <nav class="hidden sm:flex sm:bg-blue3 sm:h-[70px] sm:text-white sm:justify-between sm:items-center sm:px-16">
+          <a href="login.html"><h1 class="text-4xl text-white font-extrabold">PetPal</h1></a>
+      </nav>
+      <!-- Mobile Navigation Bar -->
+      <nav class="sm:hidden flex flex-col bg-blue3 w-screen pb-4">
+          <a href="login.html" class="self-center pt-2"><h1 class="text-4xl text-white font-extrabold">PetPal</h1></a>
+      </nav>
+        <main>
+          <div class="container" id="content">
+            <h1 id="website-name" class="text-teal-900 font-bold text-6xl pt-10">PetPal</h1>
+            <br>
+            <br>
+            <form action="login.html" method="POST" enctype="application/x-www-form-urlencoded" class="w-1/2">
+                <!-- <label for="email">Your Email:</label> -->
+                <input type="text" id="fname" name="fname" placeholder="First Name" required class="p-3 border border-solid border-teal-900 border-2 rounded-md">
+                <br>
+                <br>
+                <input type="text" id="lname" name="lname" placeholder="Last Name" required class="p-3 border border-solid border-teal-900 border-2 rounded-md">
+                <br>
+                <br>
+                <input type="email" id="form-email" name="email" placeholder="Email" required class="p-3 border border-solid border-teal-900 border-2 rounded-md">
+                <br>
+                <br>
+                <!-- <label for="password">Password:</label> -->
+                <input type="password" id="password" name="password" placeholder="Password" required class="p-3 border border-solid border-teal-900 border-2 rounded-md"> 
+                <br>
+                <br>
+                <input type="password" id="password" name="password2" placeholder="Re-enter Password" required class="p-3 border border-solid border-teal-900 border-2 rounded-md"> 
+                <br>
+                <br>
+                <input type="text" id="city" name="city" placeholder="City" required class="p-3 border border-solid border-teal-900 border-2 rounded-md">
+                <br>
+                <br>
+                <label for="type">User type:   </label>
+                <select name="type" id="type" required class="p-3 border border-solid border-teal-900 border-2 rounded-md w-10/12 self-end">
+                  <option value="" class="placeholder" disabled="" selected="selected">Select</option>
+                    <option value="seeker">Pet Seeker</option>
+                    <option value="shelter">Pet Shelter</option>
+                  </select>
+                <br>
+                <br>
+                <input type="submit" class="text-yellow-400 border-solid border-yellow-400 border-2 rounded-md cursor-pointer bg-teal-900 p-3 justify-center inline-flex items-center no-underline text-center w-full" value="Sign up" id="signup">
+                <br>
+                <br>
+            </form>
+            <br>
+            <!-- <p>Don't have an account?</p> -->
+            <a href="login.html" id="login" class="underline mb-4">Login</a>
+        </div>
+        </main>
+        <footer class="flex w-full bg-blue3 text-white h-[3rem] justify-center items-center">
+          <p>Copyright 2023 by Victor Yao, Dian Rong, Angela Zhuo and Sanzhar Shamshiyev.</p>
+      </footer>
+      </div>
+
+</body>
+</html>

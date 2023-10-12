@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+ }
+
+ h1 {
+    color: #1A535C;
+    font-weight: bold;
+    font-size: 60px;
+ }
+
+input {
+    align-content: left;
+    border-color: black;
+    width: 100%;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+select {
+    width: 100%;
+    border-color: black;
+}
+
+textarea {
+    width: 100%;
+    border-color: black;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+input[type="checkbox"] {
+    width: 10px;
+    border-color: black;
+}
+
+#app:hover {
+    color: #1A535C;
+    font-weight: bold;
+}
+
+#chat {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto auto auto;
+}
+
+#chat2 {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto auto auto auto;
+}
+
+#seeker1 {
+    grid-row-start: 2;
+    grid-column-start: 2;
+    grid-column-end: 4;
+}
+
+#seeker2 {
+    grid-row-start: 3;
+    grid-column-start: 2;
+    grid-column-end: 4;
+}
+
+#seeker3 {
+    grid-row-start: 4;
+    grid-column-start: 2;
+    grid-column-end: 4;
+}
+
+#seeker4 {
+    grid-row-start: 5;
+    grid-column-start: 2;
+    grid-column-end: 4;
+}
+
+#chatbox {
+    grid-row-start: 6;
+    grid-column-start: 1;
+    grid-column-end: 4;  
+}
+
+#message {
+    width: 65%;
+}
+
+#send {
+    width: 33%;
+    font-weight: bold;
+    font-size: 18px;
+    color:#FFE66D;
+    background-color: #1A535C;
+}
+  
+#send:hover {
+    background-color: #FFE66D;
+    color:#1A535C;
+    border-color: #1A535C;
+}
+
+footer {
+    height: 3rem;
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+ }
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.page-container {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    margin: 0;
+}
+
+details > summary {
+    list-style: none;
+}
