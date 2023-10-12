@@ -611,12 +611,12 @@ video {
   width: 0.5rem;
 }
 
-.w-\[100rem\] {
-  width: 100rem;
-}
-
 .w-\[15\%\] {
   width: 15%;
+}
+
+.w-\[20rem\] {
+  width: 20rem;
 }
 
 .w-auto {
@@ -627,16 +627,8 @@ video {
   width: 100%;
 }
 
-.w-\[200rem\] {
-  width: 200rem;
-}
-
-.w-\[10rem\] {
-  width: 10rem;
-}
-
-.w-\[20rem\] {
-  width: 20rem;
+.w-3 {
+  width: 0.75rem;
 }
 
 .border-collapse {
@@ -882,29 +874,17 @@ input[type="checkbox"] {
 }
 
 @media (min-width: 768px) {
-  .md\:w-\[\] {
-    width: ;
-  }
-
   .md\:w-\[40rem\] {
     width: 40rem;
   }
 }
 
 @media (min-width: 1024px) {
-  .lg\:w-\[\] {
-    width: ;
+  .lg\:w-3\/4 {
+    width: 75%;
   }
 
-  .lg\:w-\[50rem\] {
-    width: 50rem;
-  }
-
-  .lg\:w-\[60rem\] {
-    width: 60rem;
-  }
-
-  .lg\:w-\[70rem\] {
-    width: 70rem;
+  .lg\:w-1\/2 {
+    width: 50%;
   }
 }
