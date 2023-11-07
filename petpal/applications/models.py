@@ -7,7 +7,7 @@ from ..applications.models import Application
 class Comment(models.Model):
     # set up choices for whether the comment is on a shelter or an application
     TYPE_CHOICES = [
-        ("shelter", "sheler"),
+        ("shelter", "shelter"),
         ("application", "application")
     ]
 
