@@ -1,30 +1,20 @@
-from datetime import datetime
 from django.db import models
 from django.conf import settings
 
-from ..applications.models import Application
+from ..petlistings import PetListing
 
 # Create your models here.
-class Comment(models.Model):
-    # set up choices for whether the comment is on a shelter or an application
-    TYPE_CHOICES = [
-        ("shelter", "shelter"),
-        ("application", "application")
-    ]
 
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="comments", 
+class Application(models.Model):
+    date = models.DateTimeField()
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, 
+                             related_name='applications', 
                              on_delete=models.CASCADE)
-    content = models.TextField()
-    creation_date = models.DateTimeField(default=datetime.now)
+    pet = models.ForeignKey(PetListing, on_delete=models.CASCADE)
 
-    # what the comment is left on
-    type = models.CharField(choices=TYPE_CHOICES)
-
-    # if the comment is on an application, then this is null 
-    shelter = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="comments", 
-                                blank=True, null=True, on_delete=models.CASCADE)
-
-    # if the comment is on a shelter, then this is null
-    application = models.ForeignKey(Application, related_name="comments",
-                                    blank=True, null=True, on_delete=models.CASCADE)
-    
+class ApplicationAnswer(models.Model):
+    application = models.ForeignKey(Application, 
+                                    on_delete=models.CASCADE, 
+                                    related_name="answers")
+    question_num = models.IntegerField(blank=False, null=False)
+    answer = models.TextField()
