@@ -18,4 +18,3 @@ class ApplicationAnswer(models.Model):
                                     related_name="answers")
     question_num = models.IntegerField(blank=False, null=False)
     answer = models.TextField()
-    
