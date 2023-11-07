@@ -1,5 +1,5 @@
 from django.db import models
-from accounts import Shelter
+from ..accounts.models import User
 from datetime import datetime
 from django.core.validators import MinValueValidator
 
@@ -12,7 +12,7 @@ class PetListing(models.Model):
     breed = models.CharField(max_length=255)
     age = models.PositiveIntegerField()
     weight = models.FloatField(validators=[MinValueValidator(0.0)])
-    shelter = models.ForeignKey(Shelter, on_delete=models.SET_NULL)
+    shelter = models.ForeignKey(User, on_delete=models.SET_NULL)
     description = models.TextField(blank=True, null=True)
     behaviour = models.TextField(blank=True, null=True)
     medical_history = models.TextField(blank=True, null=True)
