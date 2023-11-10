@@ -17,7 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+from . import views
+
+app_name = "comments"
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('comments/', include('comments.urls', namespace='comments'))
+    path('application/<int:application_id>/', views.ApplicationView.as_view(), name="application"),
+    path('shelter/<int:shelter_id>/', views.ShelterView.as_view(), name="shelter"),
 ]
