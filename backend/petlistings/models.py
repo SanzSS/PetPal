@@ -15,7 +15,7 @@ class PetListing(models.Model):
     class Genders(models.TextChoices):
         MALE = 'male', 'Male'
         FEMALE = 'female', 'Female'
-        
+
     status = models.CharField(max_length=9, choices=Statuses.choices, default=Statuses.AVAILABLE)
     name = models.CharField(max_length=255)
     gender = models.CharField(max_length=6, choices=Genders.choices)
@@ -29,3 +29,7 @@ class PetListing(models.Model):
     medical_history = models.TextField(blank=True, null=True)
     special_requirements = models.TextField(blank=True, null=True)
     listing_date = models.DateTimeField(default=datetime.now)
+
+class ListingImage(models.Model):
+    listing = models.ForeignKey(PetListing, related_name='images', on_delete=models.CASCADE, null=True)
+    image = models.ImageField(upload_to='listingimages/')
