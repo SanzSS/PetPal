@@ -4,6 +4,10 @@ from rest_framework.serializers import (CharField, IntegerField, ModelSerializer
                                         Serializer, ValidationError)
 from .models import Application, ApplicationAnswer
 from .constants import APPLICATION_QUESTIONS
+from notifications.models import Notification
+from django.contrib.contenttypes.models import ContentType
+from django.shortcuts import get_object_or_404
+from petlistings.models import PetListing
 
 
 class ApplicationAnswerSerializer(ModelSerializer):
@@ -69,6 +73,9 @@ class ApplicationSerializer(ModelSerializer):
         for answer in answers_data:
             question_num = APPLICATION_QUESTIONS.get(answer.get('question'))
             ApplicationAnswer.objects.create(application=application.id, question_num=question_num, answer=answer.get('answer'))
+
+        # pet = get_object_or_404(PetListing, id=pet_id)
+        # Notification.objects.create(content=application, sender=user.id, receiver=pet.shelter)
 
         return application
     
