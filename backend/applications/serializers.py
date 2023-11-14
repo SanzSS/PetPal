@@ -5,11 +5,9 @@ from rest_framework.serializers import (CharField, IntegerField, ModelSerializer
 from .models import Application, ApplicationAnswer
 from .constants import APPLICATION_QUESTIONS
 
-class QuestionSerializer(Serializer):
-    question_text = CharField()
 
 class ApplicationAnswerSerializer(ModelSerializer):
-    question = QuestionSerializer(read_only=True)
+    question = CharField()
 
     class Meta:
         model = ApplicationAnswer
@@ -33,8 +31,19 @@ class ApplicationSerializer(ModelSerializer):
         # }
         answers_data = data.get('answers', [])
 
+        errors = []
+
         # answer_dict: {"answer": "value1", "question": "Your address:"}
         for answer_dict in answers_data:
+            if 'answer' not in answer_dict and 'question' in answer_dict:
+                errors.append("Each answer must have an 'answer' field.")
+            elif 'question' not in answer_dict and 'answer' in answer_dict:
+                errors.append("Each answer must have a 'question' field.")
+            if 'question' in answer_dict:
+                q = answer_dict.get('question')
+                if q not in APPLICATION_QUESTIONS:
+                    errors.append(f"'{q}' is not a valid question")
+
             serializer = ApplicationAnswerSerializer(data=answer_dict)
             serializer.is_valid(raise_exception=True)
 
@@ -43,22 +52,23 @@ class ApplicationSerializer(ModelSerializer):
 
         missing_questions = APPLICATION_QUESTIONS.keys() - answered_questions
         for question in missing_questions:
-            raise ValidationError(
-                {"answers": f"Answer for questions {question} is required."}
-            )
+            errors.append(f"Answer for question '{question}' is required.")
 
+        if errors:
+            raise ValidationError({"answers": errors})
+    
         return data
     
     def create(self, validated_data):
         user = validated_data.get('user')
         date = validated_data.get('date')
-        pet_id = validated_data.get('pet_id')
-        answers_data = validated_data.pop('answers')
+        pet_id = validated_data.get('pet')
+        answers_data = validated_data.get('answers')
         application = Application.objects.create(user=user.id, date=date, pet=pet_id)
 
         for answer in answers_data:
-            question_num = APPLICATION_QUESTIONS[answer['question_text']] 
-            ApplicationAnswer.objects.create(application=application.id, **answer)
+            question_num = APPLICATION_QUESTIONS.get(answer.get('question'))
+            ApplicationAnswer.objects.create(application=application.id, question_num=question_num, answer=answer.get('answer'))
 
         return application
     

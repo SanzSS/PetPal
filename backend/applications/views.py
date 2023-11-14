@@ -15,4 +15,4 @@ class ApplicationsCreate(CreateAPIView):
 
     def perform_create(self, serializer):
         petlisting_id = self.kwargs.get('petlisting_id')
-        serializer.save(user=self.request.user, date=timezone.now(), pet_id=petlisting_id)
+        serializer.save(user=self.request.user, date=timezone.now(), pet=petlisting_id)
