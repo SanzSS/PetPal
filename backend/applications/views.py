@@ -33,19 +33,6 @@ class ApplicationsView(CreateAPIView, UpdateAPIView):
 
     def perform_update(self, serializer):
         user = self.request.user
-        app = self.get_object()
-        existing_status = app.status
-        new_status = self.request.query_params.get('status')
-        if user.user_type == 'seeker':
-            if existing_status != Application.Status.PENDING and existing_status != Application.Status.ACCEPTED:
-                return Response({"message": "Seekers can only update pending or accepted applications."}, status=HTTP_403_FORBIDDEN)
-            if new_status != Application.Status.WITHDRAWN:
-                return Response({"message": "Seekers can only withdraw applications."}, status=HTTP_403_FORBIDDEN)
-        else:
-            if existing_status != Application.Status.PENDING:
-                return Response({"message": "Shelters can only update pending applications."}, status=HTTP_403_FORBIDDEN)
-            if new_status != Application.Status.ACCEPTED and new_status != Application.Status.DENIED:
-                return Response({"message": "Shelters can only accept or deny applications."}, status=HTTP_403_FORBIDDEN)
         serializer.save(user=user)
 
     def post(self, request, *args, **kwargs):

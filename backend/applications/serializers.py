@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.password_validation import validate_password
-from rest_framework.serializers import (CharField, DateTimeField, IntegerField, ModelSerializer,
+from rest_framework.serializers import (CharField, ChoiceField, DateTimeField, IntegerField, ModelSerializer,
                                         Serializer, ValidationError)
 from .models import Application, ApplicationAnswer
 from .constants import APPLICATION_QUESTIONS
@@ -8,6 +8,8 @@ from notifications.models import Notification
 # from django.contrib.contenttypes.models import ContentType
 from django.shortcuts import get_object_or_404
 from petlistings.models import PetListing
+from rest_framework.response import Response
+from rest_framework.status import HTTP_403_FORBIDDEN, HTTP_405_METHOD_NOT_ALLOWED, HTTP_404_NOT_FOUND
 
 
 class UserSerializer(ModelSerializer):
@@ -110,7 +112,7 @@ class UpdateApplicationSerializer(ModelSerializer):
     user = UserSerializer(read_only=True)
     pet = PetListingSerializer(read_only=True)
     date = DateTimeField(read_only=True)
-    status = CharField()
+    status = ChoiceField(choices=Application.Status.choices)
 
     class Meta:
         model = Application
@@ -118,12 +120,14 @@ class UpdateApplicationSerializer(ModelSerializer):
         read_only_fields = ['date', 'user', 'pet', 'answers']
 
     def validate(self, data):
-        status = data.get('status', '')
+        status = data.get('status')
 
         errors = []
-        if status not in [choice.value for choice in Application.Status]:
-            errors.append(f"'{status}' is not a valid status.")
-
+        if status is None:
+            errors.append("status field cannot be blank.")
+        # elif status not in [choice.value for choice in Application.Status]:
+        #     errors.append(f"'{status}' is not a valid status.")
+            
         if errors:
             raise ValidationError({"status": errors})
     
@@ -132,6 +136,20 @@ class UpdateApplicationSerializer(ModelSerializer):
     def update(self, instance, validated_data):
         status = validated_data.get('status')
         user = validated_data.get('user')
+
+        existing_status = instance.status
+        if user.user_type == 'seeker':
+            if existing_status != Application.Status.PENDING and existing_status != Application.Status.ACCEPTED:
+                return Response({"message": "Seekers can only update pending or accepted applications."}, status=HTTP_403_FORBIDDEN)
+            if status != Application.Status.WITHDRAWN:
+                return Response({"message": "Seekers can only withdraw applications."}, status=HTTP_403_FORBIDDEN)
+        else:
+            if existing_status != Application.Status.PENDING:
+                return Response({"message": "Shelters can only update pending applications."}, status=HTTP_403_FORBIDDEN)
+            if status != Application.Status.ACCEPTED and status != Application.Status.DENIED:
+                print(status)
+                return Response({"message": "Shelters can only accept or deny applications."}, status=HTTP_403_FORBIDDEN)
+            
         instance.status = status
         instance.save()
 
