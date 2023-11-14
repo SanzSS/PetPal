@@ -37,11 +37,12 @@ class ApplicationSerializer(ModelSerializer):
     user = UserSerializer(read_only=True)
     pet = PetListingSerializer(read_only=True)
     date = DateTimeField(read_only=True)
+    status = CharField(read_only=True)
 
     class Meta:
         model = Application
-        fields = ['date', 'user', 'pet', 'answers']
-        read_only_fields = ['date', 'user', 'pet']
+        fields = ['date', 'user', 'pet', 'answers', 'status']
+        read_only_fields = ['date', 'user', 'pet', 'status']
 
     def validate(self, data):
         # answers_data format: 
@@ -69,7 +70,7 @@ class ApplicationSerializer(ModelSerializer):
 
             serializer = ApplicationAnswerSerializer(data=answer_dict)
             serializer.is_valid(raise_exception=True)
-
+        
         # Check if all questions are answered
         answered_questions = {answer_dict.get('question_num') for answer_dict in answers_data}
 
@@ -78,6 +79,11 @@ class ApplicationSerializer(ModelSerializer):
             question = APPLICATION_QUESTIONS[question_num - 1]
             errors.append(f"Answer for question {question_num}: '{question}' is required.")
 
+        # check for duplicates
+        questions_list = [answer_dict.get('question_num') for answer_dict in answers_data]
+        if len(answered_questions) != len(questions_list):
+            errors.append("There are duplicate question numbers.")
+        
         if errors:
             raise ValidationError({"answers": errors})
     
