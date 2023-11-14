@@ -5,7 +5,7 @@ from rest_framework.serializers import (CharField, DateTimeField, IntegerField, 
 from .models import Application, ApplicationAnswer
 from .constants import APPLICATION_QUESTIONS
 from notifications.models import Notification
-from django.contrib.contenttypes.models import ContentType
+# from django.contrib.contenttypes.models import ContentType
 from django.shortcuts import get_object_or_404
 from petlistings.models import PetListing
 
