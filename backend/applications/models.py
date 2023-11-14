@@ -1,9 +1,10 @@
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.conf import settings
-
+from django.contrib.contenttypes.fields import GenericRelation
 from petlistings.models import PetListing
 from .constants import NUM_QUESTIONS
+from notifications.models import Notification
 
 # Create your models here.
 
@@ -22,13 +23,14 @@ class Application(models.Model):
         choices=Status.choices,
         default=Status.PENDING
     )
+    notif = GenericRelation(Notification)
 
 class ApplicationAnswer(models.Model):
     application = models.ForeignKey(Application,
                                     on_delete=models.CASCADE,
                                     related_name="answers")
     question_num = models.IntegerField(
-        validators=[MinValueValidator(1), MaxValueValidator(22)],
+        validators=[MinValueValidator(1), MaxValueValidator(NUM_QUESTIONS)],
         blank=False, null=False)
     answer = models.TextField()
 
