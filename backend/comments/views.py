@@ -7,12 +7,14 @@ from rest_framework.generics import ListCreateAPIView
 from rest_framework.permissions import IsAuthenticated
 
 from .models import Comment, Review
+from .paginanation import CommentPagination
 from .serializers import CommentSerializer, ReviewSerializer
 
 # Create your views here.
 class ApplicationView(ListCreateAPIView):
     permission_classes = [IsAuthenticated]
     serializer_class = CommentSerializer
+    pagination_class = CommentPagination
     
     # want to get first 10 comments on an application
     def get_queryset(self):
@@ -34,7 +36,7 @@ class ApplicationView(ListCreateAPIView):
 class ShelterView(ListCreateAPIView):
     permission_classes = [IsAuthenticated]
     serializer_class = ReviewSerializer
-    
+    pagination_class = CommentPagination
     
     # want to get all comments on a shelter
     def get_queryset(self):
