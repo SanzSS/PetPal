@@ -26,4 +26,5 @@ class ApplicationsCreate(CreateAPIView):
 
     def perform_create(self, serializer):
         petlisting_id = self.kwargs.get('petlisting_id')
-        serializer.save(user=self.request.user, date=timezone.now(), pet=petlisting_id)
+        pet = get_object_or_404(PetListing, id=petlisting_id)
+        serializer.save(user=self.request.user, date=timezone.now(), pet=pet)

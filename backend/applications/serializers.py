@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.contrib.auth.password_validation import validate_password
-from rest_framework.serializers import (CharField, IntegerField, ModelSerializer,
+from rest_framework.serializers import (CharField, DateTimeField, IntegerField, ModelSerializer,
                                         Serializer, ValidationError)
 from .models import Application, ApplicationAnswer
 from .constants import APPLICATION_QUESTIONS
@@ -10,27 +10,45 @@ from django.shortcuts import get_object_or_404
 from petlistings.models import PetListing
 
 
+class UserSerializer(ModelSerializer):
+    class Meta:
+        model = get_user_model()
+        fields = ["email", "name", "user_type"]
+
+class PetListingSerializer(ModelSerializer):
+    class Meta:
+        model = PetListing
+        fields = ["name", 
+                  "gender", 
+                  "species", 
+                  "breed", 
+                  "age"]
+
 class ApplicationAnswerSerializer(ModelSerializer):
-    question = CharField()
+    # question = CharField()
 
     class Meta:
         model = ApplicationAnswer
-        fields = ['question', 'answer']
+        fields = ['question_num', 'answer']
 
 
 class ApplicationSerializer(ModelSerializer):
     answers = ApplicationAnswerSerializer(many=True)
+    user = UserSerializer(read_only=True)
+    pet = PetListingSerializer(read_only=True)
+    date = DateTimeField(read_only=True)
 
     class Meta:
         model = Application
-        fields = ["answers"]
+        fields = ['date', 'user', 'pet', 'answers']
+        read_only_fields = ['date', 'user', 'pet']
 
     def validate(self, data):
         # answers_data format: 
         #         data = {
         #     "answers": [
-        #         {"answer": "value1", "question": "Your address:"},
-        #         {"answer": "value2", "question": "City:"},
+        #         {"answer": "value1", "question_num": 1},
+        #         {"answer": "value2", "question_num": 2},
         #     ]
         # }
         answers_data = data.get('answers', [])
@@ -39,24 +57,26 @@ class ApplicationSerializer(ModelSerializer):
 
         # answer_dict: {"answer": "value1", "question": "Your address:"}
         for answer_dict in answers_data:
-            if 'answer' not in answer_dict and 'question' in answer_dict:
+            # this part is redundant
+            if 'answer' not in answer_dict and 'question_num' in answer_dict:
                 errors.append("Each answer must have an 'answer' field.")
-            elif 'question' not in answer_dict and 'answer' in answer_dict:
-                errors.append("Each answer must have a 'question' field.")
-            if 'question' in answer_dict:
-                q = answer_dict.get('question')
-                if q not in APPLICATION_QUESTIONS:
-                    errors.append(f"'{q}' is not a valid question")
+            elif 'question_num' not in answer_dict and 'answer' in answer_dict:
+                errors.append("Each answer must have a 'question_num' field.")
+            if 'question_num' in answer_dict:
+                q_num = answer_dict.get('question_num')
+                if q_num < 1 or q_num > len(APPLICATION_QUESTIONS):
+                    errors.append(f"'{q_num}' is not a valid question number")
 
             serializer = ApplicationAnswerSerializer(data=answer_dict)
             serializer.is_valid(raise_exception=True)
 
         # Check if all questions are answered
-        answered_questions = {answer_dict.get('question') for answer_dict in answers_data}
+        answered_questions = {answer_dict.get('question_num') for answer_dict in answers_data}
 
-        missing_questions = APPLICATION_QUESTIONS.keys() - answered_questions
-        for question in missing_questions:
-            errors.append(f"Answer for question '{question}' is required.")
+        missing_questions = set(range(1, len(APPLICATION_QUESTIONS) + 1)) - answered_questions
+        for question_num in missing_questions:
+            question = APPLICATION_QUESTIONS[question_num - 1]
+            errors.append(f"Answer for question {question_num}: '{question}' is required.")
 
         if errors:
             raise ValidationError({"answers": errors})
@@ -66,16 +86,15 @@ class ApplicationSerializer(ModelSerializer):
     def create(self, validated_data):
         user = validated_data.get('user')
         date = validated_data.get('date')
-        pet_id = validated_data.get('pet')
+        pet = validated_data.get('pet')
         answers_data = validated_data.get('answers')
-        application = Application.objects.create(user=user.id, date=date, pet=pet_id)
+        application = Application.objects.create(user=user, date=date, pet=pet)
 
         for answer in answers_data:
-            question_num = APPLICATION_QUESTIONS.get(answer.get('question'))
-            ApplicationAnswer.objects.create(application=application.id, question_num=question_num, answer=answer.get('answer'))
+            question_num = answer.get('question_num')
+            ApplicationAnswer.objects.create(application=application, question_num=question_num, answer=answer.get('answer'))
 
-        # pet = get_object_or_404(PetListing, id=pet_id)
-        # Notification.objects.create(content=application, sender=user.id, receiver=pet.shelter)
+        # Notification.objects.create(content=application, sender=user, receiver=pet.shelter)
 
         return application
     
