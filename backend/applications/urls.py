@@ -1,9 +1,9 @@
 from django.urls import path
 
-from .views import ApplicationsCreate
+from .views import ApplicationsView
 
 app_name = "applications"
 
 urlpatterns = [
-    path("<int:petlisting_id>/", ApplicationsCreate.as_view(), name="application-create"),
+    path("<int:petlisting_id>/", ApplicationsView.as_view(), name="application-create"),
 ]

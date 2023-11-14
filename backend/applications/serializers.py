@@ -32,7 +32,7 @@ class ApplicationAnswerSerializer(ModelSerializer):
         fields = ['question_num', 'answer']
 
 
-class ApplicationSerializer(ModelSerializer):
+class CreateApplicationSerializer(ModelSerializer):
     answers = ApplicationAnswerSerializer(many=True)
     user = UserSerializer(read_only=True)
     pet = PetListingSerializer(read_only=True)
@@ -103,4 +103,44 @@ class ApplicationSerializer(ModelSerializer):
         # Notification.objects.create(content=application, sender=user, receiver=pet.shelter)
 
         return application
+    
+
+class UpdateApplicationSerializer(ModelSerializer):
+    answers = ApplicationAnswerSerializer(many=True, read_only=True)
+    user = UserSerializer(read_only=True)
+    pet = PetListingSerializer(read_only=True)
+    date = DateTimeField(read_only=True)
+    status = CharField()
+
+    class Meta:
+        model = Application
+        fields = ['date', 'user', 'pet', 'answers', 'status']
+        read_only_fields = ['date', 'user', 'pet', 'answers']
+
+    def validate(self, data):
+        status = data.get('status', '')
+
+        errors = []
+        if status not in [choice.value for choice in Application.Status]:
+            errors.append(f"'{status}' is not a valid status.")
+
+        if errors:
+            raise ValidationError({"status": errors})
+    
+        return data
+
+    def update(self, instance, validated_data):
+        status = validated_data.get('status')
+        user = validated_data.get('user')
+        instance.status = status
+        instance.save()
+
+        # if user.user_type == "shelter":
+        #     # receiver is the seeker who made the application
+        #     Notification.objects.create(content=instance, sender=user, receiver=instance.user)
+        # else:
+        #     # receiver is the shelter of the pet
+        #     Notification.objects.create(content=instance, sender=user, receiver=instance.pet.shelter)
+
+        return instance
     
