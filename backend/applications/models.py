@@ -1,7 +1,7 @@
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.conf import settings
-from django.contrib.contenttypes.fields import GenericRelation
+# from django.contrib.contenttypes.fields import GenericRelation
 from petlistings.models import PetListing
 from .constants import NUM_QUESTIONS
 from notifications.models import Notification
@@ -23,7 +23,7 @@ class Application(models.Model):
         choices=Status.choices,
         default=Status.PENDING
     )
-    notif = GenericRelation(Notification)
+    # notif = GenericRelation(Notification)
 
 class ApplicationAnswer(models.Model):
     application = models.ForeignKey(Application,
