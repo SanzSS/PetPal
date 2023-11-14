@@ -11,4 +11,5 @@ class PetListingSerializer(ModelSerializer):
 
     class Meta:
         model = PetListing
-        fields = '__all__'
+        fields ='__all__'
+        read_only_fields = ['shelter']
