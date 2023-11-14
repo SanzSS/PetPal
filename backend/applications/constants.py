@@ -22,3 +22,5 @@ APPLICATION_QUESTIONS = [
     "Is any member of your family allergic to dogs?:",
     "Are you applying for a young puppy (6 months old or younger)?",
 ]
+
+NUM_QUESTIONS = 22
