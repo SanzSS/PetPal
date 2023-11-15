@@ -50,13 +50,19 @@ class CommentView(ListCreateAPIView):
         return comments_queryset.order_by("-creation_date")
 
     def perform_create(self, serializer):
-        new_comment = self.serializer_class.save()
+        application_id = self.kwargs['application_id']
+        print("x")
+        application = get_object_or_404(Application, id=application_id)
+        print("x")
+
+        # Hm
+        serializer.validated_data['user_id'] = self.request.user.id
+        serializer.validated_data['application'] = application
+
+        new_comment = serializer.save()
 
         content_type = ContentType.objects.get_for_model(Comment)
 
-        # figure out who the receiver is
-        application_id = self.kwargs['application_id']
-        application = get_object_or_404(Application, id=application_id)
         # make sure the below line works
         application.last_update = datetime.now
         if self.request.user == application.user:
@@ -100,7 +106,7 @@ class ReviewView(ListCreateAPIView):
 
         new_review = serializer.save()
 
-        content_type = ContentType.objects.get_for_model(Comment)
+        content_type = ContentType.objects.get_for_model(Review)
 
 
         if parent_review is None:
