@@ -1,13 +1,12 @@
-from django.shortcuts import render
 from .models import PetListing, ListingImage
 from accounts.models import User
 from .serializers import PetListingSerializer
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from django.shortcuts import get_object_or_404
-from rest_framework.permissions import IsAuthenticated, AllowAny
 from .pagination import PetListingPagination
 from django.http import HttpResponse
 from rest_framework.response import Response
+from django.db.models import Q
 
 # Create your views here.
 
@@ -32,7 +31,7 @@ class Listing(ListCreateAPIView):
             queryset = queryset.filter(species=species)
         if age:
             if age == 'baby':
-                queryset = queryset.filter(months_old__gte=0, months_old__lte=11)
+                queryset = queryset.filter(months_old__gte=0, months_old__lte=11).filter(Q(years_old=0) | Q(years_old__isnull=True))
             elif age == 'juvenile':
                 queryset = queryset.filter(years_old__gte=1, years_old__lte=3)
             elif age == 'adult':
@@ -68,7 +67,7 @@ class Listing(ListCreateAPIView):
             sort.append('listing_date')
 
         queryset = queryset.order_by(*sort)
-
+        
         return queryset
 
     def perform_create(self, serializer):
@@ -104,7 +103,19 @@ class ManageListing(RetrieveUpdateDestroyAPIView):
             listing = get_object_or_404(PetListing, pk=pk)
             shelter = get_object_or_404(User, pk=listing.shelter.id)
             if self.request.user == shelter:
-                return super().put(request)
+                serializer = PetListingSerializer(listing, data=request.data, partial=True)
+                if serializer.is_valid():
+                    listing = serializer.save()
+                    images = self.request.data.getlist('images')
+                    if images:
+                        old_images = listing.images.all()
+                        for image in old_images:
+                            image.delete()
+                        for image_data in images:
+                            image, _ = ListingImage.objects.get_or_create(listing=listing, image=image_data)
+                            listing.images.add(image)
+                        listing.save()
+                    return super().put(request)
             else:
                 return HttpResponse(status=403)
         else:
@@ -115,19 +126,38 @@ class ManageListing(RetrieveUpdateDestroyAPIView):
             listing = get_object_or_404(PetListing, pk=pk)
             shelter = get_object_or_404(User, pk=listing.shelter.id)
             if self.request.user == shelter:
-                return super().patch(request)
+                serializer = PetListingSerializer(listing, data=request.data, partial=True)
+                if serializer.is_valid():
+                    listing = serializer.save()
+                    images = self.request.data.getlist('images')
+                    if images:
+                        old_images = listing.images.all()
+                        for image in old_images:
+                            image.delete()
+                        for image_data in images:
+                            image, _ = ListingImage.objects.get_or_create(listing=listing, image=image_data)
+                            listing.images.add(image)
+                        listing.save()
+                    return super().patch(request)
             else:
                 return HttpResponse(status=403)
         else:
             return HttpResponse(status=401)
         
-    def delete(self, request, pk):
+    def destroy(self, request, pk):
         if self.request.user.is_authenticated:
             listing = get_object_or_404(PetListing, pk=pk)
             shelter = get_object_or_404(User, pk=listing.shelter.id)
             if self.request.user == shelter:
-                return super().delete(request)
+                return super().destroy(request)
             else:
                 return HttpResponse(status=403)
         else:
             return HttpResponse(status=401)
+        
+    def perform_destroy(self, instance):
+        old_images = instance.images.all()
+        for image in old_images:
+            image.delete()
+        return super().perform_destroy(instance)
+        
