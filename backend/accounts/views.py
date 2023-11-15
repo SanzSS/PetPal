@@ -32,6 +32,9 @@ class ViewSeeker(permissions.BasePermission):
             applications = Application.objects.filter(user=user, status=Application.Status.PENDING)
             if applications.exists():
                 return True
+        # a user can view its own account
+        if user == view.request.user:
+            return True
         return False
 
 
@@ -69,7 +72,7 @@ class GetAccount(RetrieveAPIView, UpdateAPIView):
             Application.objects.filter(user=user_id).delete()
         User.objects.get(pk=user_id).delete()
         return Response({"detail": "Account Successfully Deleted."},
-                            status=status.HTTP_204_ACCEPTED)
+                            status=status.HTTP_204_NO_CONTENT)
     #
     def get_serializer_class(self):
         if self.request.method == 'PATCH':

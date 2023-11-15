@@ -15,7 +15,7 @@ class CreateUserSerializer(ModelSerializer):
         fields = ["email", "name", "password1", "password2", "user_type", "avatar"]
         extra_kwargs = {"password1": {"write_only": True}}
 
-    def validate_password(self, value):
+    def validate_password1(self, value):
         password = self.context["request"].data.get("password1")
         try:
             validate_password(password)
@@ -25,6 +25,8 @@ class CreateUserSerializer(ModelSerializer):
                 error_messages["password"].append(f"{error.message} ({error.code})")
 
             raise ValidationError(error_messages)
+        
+        return password
 
     def validate(self, data):
         if data["password1"] != data["password2"]:
@@ -51,4 +53,17 @@ class UserSerializer(ModelSerializer):
 class UpdateUserSerializer(ModelSerializer):
     class Meta:
         model = User
-        fields = ['email', 'name', 'avatar']
+        fields = ['email', 'name', 'password', 'avatar']
+        extra_kwargs = {
+            'password': {'write_only': True}
+        }
+
+    def update(self, instance, validated_data):
+        password = validated_data.pop('password', None)
+        instance = super().update(instance, validated_data)
+
+        if password:
+            instance.set_password(password)
+            instance.save()
+
+        return instance
