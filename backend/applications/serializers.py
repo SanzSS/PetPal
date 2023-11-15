@@ -20,10 +20,10 @@ class UserSerializer(ModelSerializer):
 class PetListingSerializer(ModelSerializer):
     class Meta:
         model = PetListing
-        fields = ["name", 
-                  "gender", 
-                  "species", 
-                  "breed", 
+        fields = ["name",
+                  "gender",
+                  "species",
+                  "breed",
                   "age"]
 
 class ApplicationAnswerSerializer(ModelSerializer):
@@ -32,6 +32,15 @@ class ApplicationAnswerSerializer(ModelSerializer):
     class Meta:
         model = ApplicationAnswer
         fields = ['question_num', 'answer']
+
+class ApplicationSerializer(ModelSerializer):
+    answers = ApplicationAnswerSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Application
+        fields = ['date', 'pet', 'status']
+
+
 
 
 class CreateApplicationSerializer(ModelSerializer):
@@ -47,7 +56,7 @@ class CreateApplicationSerializer(ModelSerializer):
         read_only_fields = ['date', 'user', 'pet', 'status']
 
     def validate(self, data):
-        # answers_data format: 
+        # answers_data format:
         #         data = {
         #     "answers": [
         #         {"answer": "value1", "question_num": 1},
@@ -72,7 +81,7 @@ class CreateApplicationSerializer(ModelSerializer):
 
             serializer = ApplicationAnswerSerializer(data=answer_dict)
             serializer.is_valid(raise_exception=True)
-        
+
         # Check if all questions are answered
         answered_questions = {answer_dict.get('question_num') for answer_dict in answers_data}
 
@@ -85,12 +94,12 @@ class CreateApplicationSerializer(ModelSerializer):
         questions_list = [answer_dict.get('question_num') for answer_dict in answers_data]
         if len(answered_questions) != len(questions_list):
             errors.append("There are duplicate question numbers.")
-        
+
         if errors:
             raise ValidationError({"answers": errors})
-    
+
         return data
-    
+
     def create(self, validated_data):
         user = validated_data.get('user')
         date = validated_data.get('date')
@@ -105,7 +114,7 @@ class CreateApplicationSerializer(ModelSerializer):
         # Notification.objects.create(content=application, sender=user, receiver=pet.shelter)
 
         return application
-    
+
 
 class UpdateApplicationSerializer(ModelSerializer):
     answers = ApplicationAnswerSerializer(many=True, read_only=True)
@@ -127,10 +136,10 @@ class UpdateApplicationSerializer(ModelSerializer):
             errors.append("status field cannot be blank.")
         # elif status not in [choice.value for choice in Application.Status]:
         #     errors.append(f"'{status}' is not a valid status.")
-            
+
         if errors:
             raise ValidationError({"status": errors})
-    
+
         return data
 
     def update(self, instance, validated_data):
@@ -149,7 +158,7 @@ class UpdateApplicationSerializer(ModelSerializer):
             if status != Application.Status.ACCEPTED and status != Application.Status.DENIED:
                 print(status)
                 return Response({"message": "Shelters can only accept or deny applications."}, status=HTTP_403_FORBIDDEN)
-            
+
         instance.status = status
         instance.save()
 
@@ -161,4 +170,3 @@ class UpdateApplicationSerializer(ModelSerializer):
         #     Notification.objects.create(content=instance, sender=user, receiver=instance.pet.shelter)
 
         return instance
-    
