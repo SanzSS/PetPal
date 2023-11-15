@@ -24,9 +24,8 @@ from accounts.models import User
 class CommentPermission(permissions.BasePermission):
     def has_permission(self, request, view):
         application_id = view.kwargs['application_id']
-        comments_queryset = get_list_or_404(Comment, application=application_id)
+        application = get_object_or_404(Application, id=application_id)
 
-        application = comments_queryset[0].application
         applicant = application.user
         shelter = application.pet.shelter
 
@@ -51,9 +50,7 @@ class CommentView(ListCreateAPIView):
 
     def perform_create(self, serializer):
         application_id = self.kwargs['application_id']
-        print("x")
         application = get_object_or_404(Application, id=application_id)
-        print("x")
 
         # Hm
         serializer.validated_data['user_id'] = self.request.user.id
@@ -72,6 +69,9 @@ class CommentView(ListCreateAPIView):
 
         Notification.objects.create(content_type=content_type, content_id=new_comment.id,
                                     content=new_comment, sender=self.request.user, receiver=receiver, state=False)
+        
+    def post(self, request, *args, **kwargs):
+        return super().post(request, *args, **kwargs)
 
 
 class ReviewView(ListCreateAPIView):
