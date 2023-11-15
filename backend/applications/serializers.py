@@ -5,7 +5,6 @@ from rest_framework.serializers import (CharField, ChoiceField, DateTimeField, I
 from .models import Application, ApplicationAnswer
 from .constants import APPLICATION_QUESTIONS
 from notifications.models import Notification
-# from django.contrib.contenttypes.models import ContentType
 from django.shortcuts import get_object_or_404
 from petlistings.models import PetListing
 from rest_framework.response import Response
@@ -21,10 +20,12 @@ class PetListingSerializer(ModelSerializer):
     class Meta:
         model = PetListing
         fields = ["name",
+                  "status",
                   "gender",
                   "species",
                   "breed",
-                  "age"]
+                  "months_old",
+                  "years_old"]
 
 class ApplicationAnswerSerializer(ModelSerializer):
     # question = CharField()
@@ -113,7 +114,7 @@ class CreateApplicationSerializer(ModelSerializer):
             question_num = answer.get('question_num')
             ApplicationAnswer.objects.create(application=application, question_num=question_num, answer=answer.get('answer'))
 
-        # Notification.objects.create(content=application, sender=user, receiver=pet.shelter)
+        Notification.objects.create(content=application, sender=user, receiver=pet.shelter)
 
         return application
 
@@ -164,11 +165,11 @@ class UpdateApplicationSerializer(ModelSerializer):
         instance.status = status
         instance.save()
 
-        # if user.user_type == "shelter":
-        #     # receiver is the seeker who made the application
-        #     Notification.objects.create(content=instance, sender=user, receiver=instance.user)
-        # else:
-        #     # receiver is the shelter of the pet
-        #     Notification.objects.create(content=instance, sender=user, receiver=instance.pet.shelter)
+        if user.user_type == "shelter":
+            # receiver is the seeker who made the application
+            Notification.objects.create(content=instance, sender=user, receiver=instance.user)
+        else:
+            # receiver is the shelter of the pet
+            Notification.objects.create(content=instance, sender=user, receiver=instance.pet.shelter)
 
         return instance
