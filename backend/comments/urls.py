@@ -16,22 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,
-)
+
+from . import views
+
+app_name = "comments"
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('accounts/', include('accounts.urls', namespace='accounts')),
-
-     path('comments/', include('comments.urls', namespace='comments')),
-
-
-    path('applications/', include('applications.urls', namespace='applications')),
-
-    path('listings/', include('petlistings.urls', namespace='petlistings')),
-    path('notifications/', include('notifications.urls', namespace='notifications'))
+    path('application/<int:application_id>/', views.CommentView.as_view(), name="application"),
+    path('shelter/<int:shelter_id>/', views.ReviewView.as_view(), name="shelter"),
+    path('shelter/<int:shelter_id>/<int:parent_review_id>/', views.ReviewView.as_view(), name="shelter-response"),
 ]
