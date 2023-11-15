@@ -24,12 +24,9 @@ class ViewSeeker(permissions.BasePermission):
             return True
         # shelter can only view seeker if seeker has an active application w a shelter
         if view.request.user.user_type == "shelter":
-            print("y")
             applications = Application.objects.filter(user=user, status=Application.Status.PENDING)
             if applications.exists():
                 return True
-            print(applications)
-            print(Application.objects.all())
         return False
 
 
