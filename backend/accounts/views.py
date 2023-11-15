@@ -20,6 +20,8 @@ from rest_framework.response import Response
 class ViewSeeker(permissions.BasePermission):
     def has_permission(self, request, view):
         user_id = view.kwargs['user_id']
+        if request.method == 'PATCH' and request.user.pk != user_id:
+            return False
         user = get_object_or_404(User, id=user_id)
 
         if user.user_type == "shelter":
@@ -42,20 +44,21 @@ class ShelterList(ListAPIView):
         shelters = User.objects.filter(user_type=User.UserType.SHELTER)
         return shelters
 
-class UpdateAccount(UpdateAPIView):
-    serializer_class = UpdateUserSerializer
-    permission_classes = [IsAuthenticated]
-    def get_object(self):
-        return self.request.user
 
-class Delete(APIView):
-    permission_classes = [IsAuthenticated]
+class GetAccount(RetrieveAPIView, UpdateAPIView):
+    # serializer_class = UserSerializer
+    permission_classes = [IsAuthenticated, ViewSeeker]
 
     def get_object(self):
-        return get_object_or_404(User, id=self.kwargs.get('user_id'))
-    def get(self, request, user_id):
+        user_id = self.kwargs['user_id']
+        if self.request.method == 'PATCH':
+            return self.request.user
+        user = get_object_or_404(User, id=user_id)
+        return user
+    #
+    def delete(self, request, user_id):
         if self.request.user.pk != self.get_object().pk:
-            return Response({"detail": "You do not have permission to delete this notification."},
+            return Response({"detail": "You do not have permission to delete this account."},
                             status=status.HTTP_401_UNAUTHORIZED)
         Notification.objects.filter(receiver=user_id).delete()
         if User.objects.get(pk=user_id).user_type == User.UserType.SHELTER:
@@ -65,14 +68,12 @@ class Delete(APIView):
         User.objects.get(pk=user_id).delete()
         return Response({"detail": "Account Successfully Deleted."},
                             status=status.HTTP_202_ACCEPTED)
+    #
+    def get_serializer_class(self):
+        if self.request.method == 'PATCH':
+            return UpdateUserSerializer
+        if self.request.method == 'GET':
+            return UserSerializer
 
 
-class GetAccount(RetrieveAPIView):
-    serializer_class = UserSerializer
-    permission_classes = [IsAuthenticated, ViewSeeker]
-
-    def get_object(self):
-        user_id = self.kwargs['user_id']
-        user = get_object_or_404(User, id=user_id)
-        return user
 

@@ -17,7 +17,7 @@ from rest_framework.views import APIView
 
 # Create your views here.
 
-class UpdateNotif(APIView):
+class Notif(APIView):
     model = Notification
     permission_classes = [IsAuthenticated]
 
@@ -45,6 +45,13 @@ class UpdateNotif(APIView):
         key2 = self.kwargs.get('notif_id')
         notif = get_object_or_404(Notification, receiver=key1, pk=key2)
         return notif
+
+    def delete(self, request, notif_id):
+        receiver = self.get_object().receiver
+        Notification.objects.filter(receiver=receiver).delete()
+        return Response({
+            "detail": "Notification Successfully Deleted."},
+            status=status.HTTP_202_ACCEPTED)
 
 class NotifList(APIView):
     model = Notification
@@ -97,21 +104,3 @@ class NotifList(APIView):
             return Response({
                                 "detail": "You do not have permission to view these notifications."},
                             status=status.HTTP_401_UNAUTHORIZED)
-
-class Delete(APIView):
-    permission_classes = [IsAuthenticated]
-
-    def get_object(self):
-        return get_object_or_404(Notification, pk=self.kwargs.get('notif_id'))
-
-    def get(self, request, notif_id):
-        user = self.request.user
-        receiver = self.get_object().receiver
-        if user.pk != receiver.pk:
-            return Response({
-                                "detail": "You do not have permission to delete this notification."},
-                            status=status.HTTP_401_UNAUTHORIZED)
-        Notification.objects.filter(receiver=receiver).delete()
-        return Response({
-                                "detail": "Notification Successfully Deleted."},
-                            status=status.HTTP_202_ACCEPTED)
