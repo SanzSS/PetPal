@@ -22,3 +22,5 @@ class Review(models.Model):
 
     shelter = models.ForeignKey(settings.AUTH_USER_MODEL,
                                 blank=True, null=True, on_delete=models.CASCADE, related_name='reviews')
+    # to allow replies
+    parent_review = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True)
