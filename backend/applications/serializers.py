@@ -7,7 +7,6 @@ from .constants import APPLICATION_QUESTIONS
 from notifications.models import Notification
 from django.shortcuts import get_object_or_404
 from petlistings.models import PetListing
-from rest_framework.response import Response
 from rest_framework.status import HTTP_403_FORBIDDEN, HTTP_405_METHOD_NOT_ALLOWED, HTTP_404_NOT_FOUND
 
 
@@ -137,8 +136,8 @@ class UpdateApplicationSerializer(ModelSerializer):
         errors = []
         if status is None:
             errors.append("status field cannot be blank.")
-        # elif status not in [choice.value for choice in Application.Status]:
-        #     errors.append(f"'{status}' is not a valid status.")
+        elif status not in [choice.value for choice in Application.Status]:
+            errors.append(f"'{status}' is not a valid status.")
 
         if errors:
             raise ValidationError({"status": errors})
@@ -152,16 +151,14 @@ class UpdateApplicationSerializer(ModelSerializer):
         existing_status = instance.status
         if user.user_type == 'seeker':
             if existing_status != Application.Status.PENDING and existing_status != Application.Status.ACCEPTED:
-                return Response({"message": "Seekers can only update pending or accepted applications."}, status=HTTP_403_FORBIDDEN)
+                raise ValidationError({"status:": "Seekers can only update pending or accepted applications."})
             if status != Application.Status.WITHDRAWN:
-                return Response({"message": "Seekers can only withdraw applications."}, status=HTTP_403_FORBIDDEN)
+                raise ValidationError({"status": "Seekers can only withdraw applications."})
         else:
             if existing_status != Application.Status.PENDING:
-                return Response({"message": "Shelters can only update pending applications."}, status=HTTP_403_FORBIDDEN)
+                raise ValidationError({"status": "Shelters can only update pending applications."})
             if status != Application.Status.ACCEPTED and status != Application.Status.DENIED:
-                print(status)
-                return Response({"message": "Shelters can only accept or deny applications."}, status=HTTP_403_FORBIDDEN)
-
+                raise ValidationError({"status": "Shelters can only accept or deny applications."})
         instance.status = status
         instance.save()
 
@@ -171,7 +168,7 @@ class UpdateApplicationSerializer(ModelSerializer):
         else:
             # receiver is the shelter of the pet
             Notification.objects.create(content=instance, sender=user, receiver=instance.pet.shelter)
-
+        
         return instance
 
 class ListApplicationSerializer(ModelSerializer):

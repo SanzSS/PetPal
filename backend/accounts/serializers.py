@@ -51,4 +51,4 @@ class UserSerializer(ModelSerializer):
 class UpdateUserSerializer(ModelSerializer):
     class Meta:
         model = User
-        fields = ['email', 'name', 'password', 'avatar']
+        fields = ['email', 'name', 'avatar']
