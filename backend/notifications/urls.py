@@ -6,6 +6,10 @@ from . import views
 app_name = "notifications"
 
 urlpatterns = [
-    path('seeker/<int:seeker_id>/', views.NotifSeekerList.as_view(), name="seeker_notifs"),
-    path('shelter/<int:shelter_id>/', views.NotifShelterList.as_view(), name="shelter_notifs"),
+    path('', views.NotifList.as_view(), name="notifs"),
+    path('unread/', views.FilterUnread.as_view(), name="unread_notifs"),
+    path('read/', views.FilterRead.as_view(), name="read_notifs"),
+    path('<int:notif_id>/', views.UpdateNotif.as_view(),
+         name="update_shelter_notif")
+
 ]
