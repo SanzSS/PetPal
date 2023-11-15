@@ -51,7 +51,7 @@ class Notif(APIView):
         Notification.objects.filter(receiver=receiver).delete()
         return Response({
             "detail": "Notification Successfully Deleted."},
-            status=status.HTTP_202_ACCEPTED)
+            status=status.HTTP_204_ACCEPTED)
 
 class NotifList(APIView):
     model = Notification
