@@ -14,6 +14,11 @@ class Listing(ListCreateAPIView):
     serializer_class = PetListingSerializer
     pagination_class = PetListingPagination
 
+    def get(self, request):
+        if not self.request.user.is_authenticated:
+            return Response({"detail": "You must be logged in to view pet listings."}, status=status.HTTP_401_UNAUTHORIZED)
+        return super().get(request)
+
     def get_queryset(self):
         queryset = PetListing.objects.all()
 
@@ -93,6 +98,9 @@ class ManageListing(RetrieveUpdateDestroyAPIView):
     serializer_class = PetListingSerializer
 
     def retrieve(self, request, pk):
+        if not self.request.user.is_authenticated:
+            return Response({"detail": "You must be logged in to view pet listings."}, status=status.HTTP_401_UNAUTHORIZED)
+        
         listing = self.get_object()
         images = [image.image.url for image in listing.images.all()]
         data = self.get_serializer(listing).data
