@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'comments',
     'petlistings',
     'notifications',
-    'rest_framework',
 ]
 
 MIDDLEWARE = [

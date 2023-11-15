@@ -20,11 +20,3 @@ class ReviewSerializer(serializers.ModelSerializer):
         model = Review
         fields = ['user', 'content']
 
-# list serializers
-# class CommentListSerializer(serializers.ModelSerializer):
-#     application = serializers.PrimaryKeyRelatedField(read_only=True)
-#     comments = serializers.ListField(child=CommentSerializer())
-
-# class ReviewListSerializer(serializers.ModelSerializer):
-#     shelter = serializers.PrimaryKeyRelatedField(read_only=True)
-#     comments = serializers.ListField(child=ReviewSerializer())

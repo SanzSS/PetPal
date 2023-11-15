@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 from django.http import JsonResponse
 from django.shortcuts import render, get_list_or_404, get_object_or_404
@@ -13,6 +14,7 @@ from applications.models import Application
 from .models import Comment, Review
 from .paginanation import CommentPagination
 from .serializers import CommentSerializer, ReviewSerializer
+from accounts.models import User
 
 # Create your views here.
 
@@ -75,19 +77,26 @@ class ReviewView(ListCreateAPIView):
         return review_queryset.order_by("-creation_date")
 
     def perform_create(self, serializer):
-        new_review = self.serializer_class.save()
+        print("h")
+        shelter_id = self.kwargs['shelter_id']
+        shelter_user = get_object_or_404(User, id=shelter_id)
+
+        # Hm
+        serializer.validated_data['user_id'] = self.request.user.id
+        serializer.validated_data['shelter'] = shelter_user
+        new_review = serializer.save()
 
         content_type = ContentType.objects.get_for_model(Comment)
 
         # to figure out who to notify
         parent_review_id = self.kwargs.get('parent_review_id', None)
 
-        response = get_object_or_404(Review, parent_review=parent_review_id)
+        parent_review = Review.objects.get(id=parent_review_id)
 
-        if response == None:
+        if parent_review == None:
             receiver = new_review.shelter
         else:
-            receiver = response
+            receiver = parent_review.user
 
         Notification.objects.create(content_type=content_type, content_id=new_review.id,
                                     content=new_review, sender=self.request.user, receiver=receiver, state=False)
