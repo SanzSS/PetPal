@@ -6,12 +6,13 @@ from rest_framework.response import Response
 from rest_framework.status import HTTP_403_FORBIDDEN, HTTP_405_METHOD_NOT_ALLOWED, HTTP_404_NOT_FOUND
 
 from .models import Application, PetListing
-from .serializers import CreateApplicationSerializer, UpdateApplicationSerializer
+from .serializers import CreateApplicationSerializer, UpdateApplicationSerializer, ApplicationSerializer
 
 # Create your views here.
 
 class ApplicationsView(CreateAPIView, UpdateAPIView):
     permission_classes = [IsAuthenticated]
+
 
     def get_object(self):
         petlisting_id = self.kwargs.get('petlisting_id')
@@ -25,7 +26,9 @@ class ApplicationsView(CreateAPIView, UpdateAPIView):
             return CreateApplicationSerializer
         elif self.request.method == 'PATCH':
             return UpdateApplicationSerializer
-        
+        elif self.request.method =='GET':
+            return ApplicationSerializer
+
     def perform_create(self, serializer):
         petlisting_id = self.kwargs.get('petlisting_id')
         pet = get_object_or_404(PetListing, id=petlisting_id)
@@ -56,17 +59,17 @@ class ApplicationsView(CreateAPIView, UpdateAPIView):
         try:
             Application.objects.get(pet=pet)
         except Application.DoesNotExist:
-            return Response({"message": "Not found."}, 
+            return Response({"message": "Not found."},
                             status=HTTP_404_NOT_FOUND)
         try:
             app = Application.objects.get(user=user, pet=pet)
         except Application.DoesNotExist:
-            return Response({"message": "Only the seeker who applied for this pet and the shelter of the pet may update this application."}, 
+            return Response({"message": "Only the seeker who applied for this pet and the shelter of the pet may update this application."},
                             status=HTTP_403_FORBIDDEN)
         if user != app.user and user != app.pet.shelter:
-            return Response({"message": "Only the seeker who applied for this pet and the shelter of the pet may update this application."}, 
+            return Response({"message": "Only the seeker who applied for this pet and the shelter of the pet may update this application."},
                             status=HTTP_403_FORBIDDEN)
         return super().patch(request, *args, **kwargs)
-    
+
     def put(self, request, *args, **kwargs):
         return Response({'detail': 'Method Not Allowed.'}, status=HTTP_405_METHOD_NOT_ALLOWED)
