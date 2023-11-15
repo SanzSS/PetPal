@@ -11,7 +11,7 @@ from .models import User
 from notifications.models import Notification
 from petlistings.models import PetListing
 from applications.models import Application
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 # Create your views here.
 
 # helper function to detect if the client has permission to edit or view the application
@@ -32,6 +32,7 @@ class ViewSeeker(permissions.BasePermission):
 
 class AccountsCreate(CreateAPIView):
     serializer_class = CreateUserSerializer
+    permission_classes = [AllowAny]
 
 class ShelterList(ListAPIView):
     serializer_class = UserSerializer
