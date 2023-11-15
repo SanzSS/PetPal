@@ -8,6 +8,7 @@ from rest_framework.serializers import ValidationError
 
 from .models import Application, PetListing
 from .serializers import CreateApplicationSerializer, UpdateApplicationSerializer, ApplicationSerializer, ListApplicationSerializer
+from .pagination import ApplicationPagination
 
 # Create your views here.
 
@@ -79,6 +80,8 @@ class ApplicationsView(CreateAPIView, UpdateAPIView, RetrieveAPIView):
 class ApplicationsListView(ListAPIView):
     permission_classes = [IsAuthenticated]
     serializer_class = ListApplicationSerializer
+    pagination_class = ApplicationPagination
+
 
     def get_queryset(self):
         user = self.request.user
