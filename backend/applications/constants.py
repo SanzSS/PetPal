@@ -1,0 +1,26 @@
+APPLICATION_QUESTIONS = [
+    "Your address:",
+    "City:", 
+    "Postal Code:",
+    "Phone number:",
+    "Email:",
+    "Are you 21 years of age and over?:",
+    "List all members of your household including number of children and their ages. Who will be primarily responsible for the care of this pet?",
+    "Do you live in a house, apartment, condominium or townhouse?:",
+    "Do you own or rent your home?:",
+    "How long have you lived at your current address (in years)?:",
+    "Do you have plans to move from your current address within the next 3 months?:",
+    "Do you have a securely fenced in yard?:",
+    "Do you have a pool?:",
+    "Why have you chosen this particular pet?:",
+    "Please explain your reasons for wanting to adopt a pet:",
+    "For whom are you adopting a pet? For you or for someone else? (If for someone else, who?):",
+    "What experience do you have as a pet owner? If you have been a pet owner, please tell us about your previous pets:",
+    "How long has it been since you've had a pet in your life?:",
+    "Do you have dog training experience? And if so, what training do you have?:",
+    "Do you currently have any pets?:",
+    "Is any member of your family allergic to dogs?:",
+    "Are you applying for a young puppy (6 months old or younger)?",
+]
+
+NUM_QUESTIONS = 22

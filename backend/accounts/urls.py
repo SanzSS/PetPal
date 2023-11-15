@@ -10,4 +10,5 @@ urlpatterns = [
     path("shelters/", ShelterList.as_view(), name="shelter-list"),
     path("<int:shelter_id>/delete/", views.delete, name="shelter_delete"),
     path("update/", UpdateAccount.as_view(), name="update_account"),
+    path("<int:user_id>/", views.GetAccount.as_view(), name="get-account")
 ]
