@@ -5,6 +5,7 @@ from django.views.generic import UpdateView
 from rest_framework import status
 from rest_framework.pagination import PageNumberPagination
 
+
 from .models import Notification
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
@@ -82,3 +83,4 @@ class FilterRead(NotifList):
             receiver=self.request.user.pk, state=True).order_by(
             '-creation_date')
         return queryset
+

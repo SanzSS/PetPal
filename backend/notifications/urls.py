@@ -11,4 +11,5 @@ urlpatterns = [
     path('read/', views.FilterRead.as_view(), name="read_notifs"),
     path('<int:notif_id>/', views.UpdateNotif.as_view(),
          name="update_shelter_notif")
+
 ]
