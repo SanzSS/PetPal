@@ -48,7 +48,7 @@ class Notif(APIView):
 
     def delete(self, request, notif_id):
         receiver = self.get_object().receiver
-        Notification.objects.filter(receiver=receiver).delete()
+        Notification.objects.filter(receiver=receiver, pk=notif_id).delete()
         return Response({
             "detail": "Notification Successfully Deleted."},
             status=status.HTTP_204_NO_CONTENT)
