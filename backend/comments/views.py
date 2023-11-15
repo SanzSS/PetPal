@@ -7,8 +7,8 @@ from rest_framework.exceptions import PermissionDenied
 from rest_framework.generics import ListCreateAPIView
 from rest_framework.permissions import IsAuthenticated
 
-from ..notifications.models import Notification
-from ..applications.models import Application
+from notifications.models import Notification
+from applications.models import Application
 
 from .models import Comment, Review
 from .paginanation import CommentPagination
@@ -24,18 +24,18 @@ class CommentPermission(permissions.BasePermission):
 
         application = comments_queryset[0].application
         applicant = application.user
-        shelter = application.pet.shelter 
+        shelter = application.pet.shelter
 
         if self.request.user != applicant and self.request.user != shelter:
             raise PermissionDenied("You do not have permission to create this object.")
 
         return True
-    
+
 class CommentView(ListCreateAPIView):
     permission_classes = [IsAuthenticated, CommentPermission]
     serializer_class = CommentSerializer
     pagination_class = CommentPagination
-    
+
     # want to get first 10 comments on an application
     def get_queryset(self):
         # get the application
@@ -57,7 +57,7 @@ class CommentView(ListCreateAPIView):
         elif self.request.user == application.pet.shelter:
             receiver = application.user
 
-        Notification.objects.create(content_type=content_type, content_id=new_comment.id, 
+        Notification.objects.create(content_type=content_type, content_id=new_comment.id,
                                     content=new_comment, sender=self.request.user, receiver=receiver, state=False)
 
 
@@ -65,15 +65,15 @@ class ReviewView(ListCreateAPIView):
     permission_classes = [IsAuthenticated]
     serializer_class = ReviewSerializer
     pagination_class = CommentPagination
-    
+
     # want to get all comments on a shelter
     def get_queryset(self):
         shelter_id = self.kwargs['shelter_id']
-        
+
         review_queryset = get_list_or_404(Review, shelter=shelter_id).order_by("-creation_date")
 
         return review_queryset.order_by("-creation_date")
-    
+
     def perform_create(self, serializer):
         new_review = self.serializer_class.save()
 
@@ -88,6 +88,6 @@ class ReviewView(ListCreateAPIView):
             receiver = new_review.shelter
         else:
             receiver = response
-        
-        Notification.objects.create(content_type=content_type, content_id=new_review.id, 
+
+        Notification.objects.create(content_type=content_type, content_id=new_review.id,
                                     content=new_review, sender=self.request.user, receiver=receiver, state=False)
