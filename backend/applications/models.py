@@ -1,3 +1,4 @@
+from django.contrib.contenttypes.fields import GenericRelation
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.conf import settings
@@ -23,6 +24,7 @@ class Application(models.Model):
         choices=Status.choices,
         default=Status.PENDING
     )
+
     last_update = models.DateTimeField(auto_now=True)
     # notif = GenericRelation(Notification)
 
