@@ -1,12 +1,12 @@
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
-from rest_framework.generics import CreateAPIView, UpdateAPIView, RetrieveAPIView
+from rest_framework.generics import CreateAPIView, UpdateAPIView, RetrieveAPIView, ListAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.status import HTTP_403_FORBIDDEN, HTTP_405_METHOD_NOT_ALLOWED, HTTP_404_NOT_FOUND
 
 from .models import Application, PetListing
-from .serializers import CreateApplicationSerializer, UpdateApplicationSerializer, ApplicationSerializer
+from .serializers import CreateApplicationSerializer, UpdateApplicationSerializer, ApplicationSerializer, ListApplicationSerializer
 
 # Create your views here.
 
@@ -73,3 +73,25 @@ class ApplicationsView(CreateAPIView, UpdateAPIView, RetrieveAPIView):
 
     def put(self, request, *args, **kwargs):
         return Response({'detail': 'Method Not Allowed.'}, status=HTTP_405_METHOD_NOT_ALLOWED)
+
+
+class ApplicationsListView(ListAPIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = ListApplicationSerializer
+
+    def get_queryset(self):
+        user = self.request.user
+        if user.user_type == 'seeker':
+            # seeker can see all of their applications
+            apps = Application.objects.filter(user=user)
+            print(apps)
+            return apps
+        else:
+            # shelter can see applications for all of their pets
+            pets_owned = PetListing.objects.filter(shelter=user)
+            apps = Application.objects.filter(pet__in=pets_owned)
+            print(apps)
+            return apps
+
+    # def get(self, request, *args, **kwargs):
+    #     return super().get(request, *args, **kwargs)

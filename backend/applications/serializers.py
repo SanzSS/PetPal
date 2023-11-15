@@ -173,3 +173,15 @@ class UpdateApplicationSerializer(ModelSerializer):
             Notification.objects.create(content=instance, sender=user, receiver=instance.pet.shelter)
 
         return instance
+
+class ListApplicationSerializer(ModelSerializer):
+    answers = ApplicationAnswerSerializer(many=True, read_only=True)
+    user = UserSerializer(read_only=True)
+    pet = PetListingSerializer(read_only=True)
+    date = DateTimeField(read_only=True)
+    status = CharField(read_only=True)
+
+    class Meta:
+        model = Application
+        fields = ['date', 'user', 'pet', 'answers', 'status']
+        read_only_fields = ['date', 'user', 'pet', 'answers', 'status']
