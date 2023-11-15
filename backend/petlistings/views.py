@@ -4,8 +4,8 @@ from .serializers import PetListingSerializer
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from django.shortcuts import get_object_or_404
 from .pagination import PetListingPagination
-from django.http import HttpResponse
 from rest_framework.response import Response
+from rest_framework import status
 from django.db.models import Q
 
 # Create your views here.
@@ -71,19 +71,21 @@ class Listing(ListCreateAPIView):
         return queryset
 
     def perform_create(self, serializer):
-        if self.request.user.is_authenticated:
-            if self.request.user.user_type == 'shelter':
-                serializer.validated_data['shelter'] = self.request.user
-                if serializer.is_valid():
-                    listing = serializer.save()
-                    images = self.request.data.getlist('images')
-                    for image_data in images:
-                        image, _ = ListingImage.objects.get_or_create(listing=listing, image=image_data)
-                        listing.images.add(image)
-            else:
-                return HttpResponse(status=403)
-        else:
-            return HttpResponse(status=401)
+        if not self.request.user.is_authenticated:
+            return Response({"detail": "You must be logged in to create listings."}, status=status.HTTP_401_UNAUTHORIZED)
+        
+        if self.request.user.user_type != 'shelter':
+            return Response({"detail": "You do not have permission to create listings."}, status=status.HTTP_403_FORBIDDEN)
+        
+        serializer.validated_data['shelter'] = self.request.user
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
+        listing = serializer.save()
+        images = self.request.data.getlist('images')
+        for image_data in images:
+            image, _ = ListingImage.objects.get_or_create(listing=listing, image=image_data)
+            listing.images.add(image)
 
 
 class ManageListing(RetrieveUpdateDestroyAPIView):
@@ -99,61 +101,68 @@ class ManageListing(RetrieveUpdateDestroyAPIView):
         return Response(data)
         
     def put(self, request, pk):
-        if self.request.user.is_authenticated:
-            listing = get_object_or_404(PetListing, pk=pk)
-            shelter = get_object_or_404(User, pk=listing.shelter.id)
-            if self.request.user == shelter:
-                serializer = PetListingSerializer(listing, data=request.data, partial=True)
-                if serializer.is_valid():
-                    listing = serializer.save()
-                    images = self.request.data.getlist('images')
-                    if images:
-                        old_images = listing.images.all()
-                        for image in old_images:
-                            image.delete()
-                        for image_data in images:
-                            image, _ = ListingImage.objects.get_or_create(listing=listing, image=image_data)
-                            listing.images.add(image)
-                        listing.save()
-                    return super().put(request)
-            else:
-                return HttpResponse(status=403)
-        else:
-            return HttpResponse(status=401)
+        if not self.request.user.is_authenticated:
+            return Response({"detail": "You must be logged in to edit your pet listing."}, status=status.HTTP_401_UNAUTHORIZED)
+        
+        listing = get_object_or_404(PetListing, pk=pk)
+        shelter = get_object_or_404(User, pk=listing.shelter.id)
+        if self.request.user != shelter:
+            return Response({"detail": "You must be a shelter to edit your pet listing."}, status=status.HTTP_403_FORBIDDEN)
+        
+        serializer = PetListingSerializer(listing, data=request.data, partial=True)
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
+        listing = serializer.save()
+        images = self.request.data.getlist('images')
+        if images:
+            old_images = listing.images.all()
+            for image in old_images:
+                image.delete()
+            for image_data in images:
+                image, _ = ListingImage.objects.get_or_create(listing=listing, image=image_data)
+                listing.images.add(image)
+            listing.save()
+        return super().put(request)
+            
 
     def patch(self, request, pk):
-        if self.request.user.is_authenticated:
-            listing = get_object_or_404(PetListing, pk=pk)
-            shelter = get_object_or_404(User, pk=listing.shelter.id)
-            if self.request.user == shelter:
-                serializer = PetListingSerializer(listing, data=request.data, partial=True)
-                if serializer.is_valid():
-                    listing = serializer.save()
-                    images = self.request.data.getlist('images')
-                    if images:
-                        old_images = listing.images.all()
-                        for image in old_images:
-                            image.delete()
-                        for image_data in images:
-                            image, _ = ListingImage.objects.get_or_create(listing=listing, image=image_data)
-                            listing.images.add(image)
-                        listing.save()
-                    return super().patch(request)
-            else:
-                return HttpResponse(status=403)
-        else:
-            return HttpResponse(status=401)
+        if not self.request.user.is_authenticated:
+            return Response({"detail": "You must be logged in to edit your pet listing."}, status=status.HTTP_401_UNAUTHORIZED)
+        
+        listing = get_object_or_404(PetListing, pk=pk)
+        shelter = get_object_or_404(User, pk=listing.shelter.id)
+        if self.request.user != shelter:
+            return Response({"detail": "You must be a shelter to edit your pet listing."}, status=status.HTTP_403_FORBIDDEN)
+        
+        serializer = PetListingSerializer(listing, data=request.data, partial=True)
+        if not serializer.is_valid():
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        
+        listing = serializer.save()
+        images = self.request.data.getlist('images')
+        if images:
+            old_images = listing.images.all()
+            for image in old_images:
+                image.delete()
+            for image_data in images:
+                image, _ = ListingImage.objects.get_or_create(listing=listing, image=image_data)
+                listing.images.add(image)
+            listing.save()
+        return super().patch(request)
+            
         
     def destroy(self, request, pk):
-        if self.request.user.is_authenticated:
-            listing = get_object_or_404(PetListing, pk=pk)
-            shelter = get_object_or_404(User, pk=listing.shelter.id)
-            if self.request.user == shelter:
-                return super().destroy(request)
-            else:
-                return HttpResponse(status=403)
+        if not self.request.user.is_authenticated:
+            return Response({"detail": "You must be logged in to delete your pet listing."}, status=status.HTTP_401_UNAUTHORIZED)
+        
+        listing = get_object_or_404(PetListing, pk=pk)
+        shelter = get_object_or_404(User, pk=listing.shelter.id)
+        if self.request.user == shelter:
+            return super().destroy(request)
         else:
-            return HttpResponse(status=401)
+            return Response({"detail": "You must be a shelter to delete your pet listing."}, status=status.HTTP_403_FORBIDDEN)
+            
         
     def perform_destroy(self, instance):
         old_images = instance.images.all()
