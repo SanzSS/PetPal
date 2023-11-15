@@ -22,8 +22,8 @@ class PetListing(models.Model):
     gender = models.CharField(max_length=6, choices=Genders.choices)
     species = models.CharField(max_length=255)
     breed = models.CharField(max_length=255)
-    months_old = models.PositiveIntegerField(validators=[MaxValueValidator(11.0)], null=True)
-    years_old = models.PositiveIntegerField(null=True)
+    months_old = models.PositiveIntegerField(validators=[MaxValueValidator(11.0)], null=True, default=0)
+    years_old = models.PositiveIntegerField(null=True, default=0)
     size = models.FloatField(validators=[MinValueValidator(0.0)])
     shelter = models.ForeignKey(User, on_delete=models.CASCADE)
     description = models.TextField(blank=True, null=True)
@@ -32,11 +32,11 @@ class PetListing(models.Model):
     special_requirements = models.TextField(blank=True, null=True)
     listing_date = models.DateTimeField(default=datetime.now)
 
-    def save(self, *args, **kwargs):
-        if not self.months_old and not self.years_old:
-            raise ValidationError('At least one of months_old or years_old must have a value.')
+    #def save(self, *args, **kwargs):
+    #    if not self.months_old and not self.years_old:
+    #        raise ValidationError('At least one of months_old or years_old must be greater than 0.')
 
-        super().save(*args, **kwargs)
+    #    super().save(*args, **kwargs)
 
 class ListingImage(models.Model):
     listing = models.ForeignKey(PetListing, related_name='images', on_delete=models.CASCADE)
