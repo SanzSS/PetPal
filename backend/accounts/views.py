@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render
-from rest_framework import permissions
+from rest_framework import permissions, status
 from rest_framework.generics import CreateAPIView, ListAPIView, UpdateAPIView, RetrieveAPIView
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.views import APIView
@@ -12,6 +12,8 @@ from notifications.models import Notification
 from petlistings.models import PetListing
 from applications.models import Application
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+
 # Create your views here.
 
 # helper function to detect if the client has permission to edit or view the application
@@ -50,35 +52,20 @@ class Delete(APIView):
     permission_classes = [IsAuthenticated]
 
     def get_object(self):
-        return get_object_or_404(User, id=self.kwargs.get('shelter_id'))
-    def get(self, request, shelter_id):
+        return get_object_or_404(User, id=self.kwargs.get('user_id'))
+    def get(self, request, user_id):
         if self.request.user.pk != self.get_object().pk:
-            return HttpResponse(status=401)
-        Notification.objects.filter(receiver=shelter_id).delete()
-        if User.objects.get(pk=shelter_id).user_type == User.UserType.SHELTER:
-            PetListing.objects.filter(shelter=shelter_id).delete()
+            return Response({"detail": "You do not have permission to delete this notification."},
+                            status=status.HTTP_401_UNAUTHORIZED)
+        Notification.objects.filter(receiver=user_id).delete()
+        if User.objects.get(pk=user_id).user_type == User.UserType.SHELTER:
+            PetListing.objects.filter(shelter=user_id).delete()
         else:
-            Application.objects.filter(user=shelter_id).delete()
-        User.objects.get(pk=shelter_id).delete()
-        return HttpResponse(status=204)
+            Application.objects.filter(user=user_id).delete()
+        User.objects.get(pk=user_id).delete()
+        return Response({"detail": "Account Successfully Deleted."},
+                            status=status.HTTP_202_ACCEPTED)
 
-def delete(request, shelter_id):
-    user = request.user
-    print(user)
-    print(user.is_authenticated)
-    if user.pk != shelter_id or not user.is_authenticated:
-        return HttpResponse(status=401)
-    Notification.objects.filter(receiver=shelter_id).delete()
-    Notification.save()
-    if User.objects.get(pk=shelter_id).user_type == User.UserType.SHELTER:
-        PetListing.objects.filter(shelter=shelter_id).delete()
-        PetListing.save()
-    else:
-        Application.objects.filter(user=shelter_id).delete()
-        Application.save()
-    User.objects.get(pk=shelter_id).delete()
-    User.save()
-    return HttpResponse(status=204)
 
 class GetAccount(RetrieveAPIView):
     serializer_class = UserSerializer
