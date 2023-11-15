@@ -64,7 +64,7 @@ class NotifList(APIView):
         sort_errors = []
         if filter and filter not in ['read', 'unread']:
             filter_errors.append(f"'{filter}' is not a valid status.")
-        if sort and sort not in ['create_time', 'update_time']:
+        if sort and sort not in ['create_time']:
             sort_errors.append(
                 f"'{sort}' should be 'create_time'.")
 
