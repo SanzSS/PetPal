@@ -35,13 +35,15 @@ class ApplicationAnswerSerializer(ModelSerializer):
 
 class ApplicationSerializer(ModelSerializer):
     answers = ApplicationAnswerSerializer(many=True, read_only=True)
+    user = UserSerializer(read_only=True)
+    pet = PetListingSerializer(read_only=True)
+    date = DateTimeField(read_only=True)
+    status = CharField(read_only=True)
 
     class Meta:
         model = Application
-        fields = ['date', 'pet', 'status']
-
-
-
+        fields = ['date', 'pet', 'status', 'answers', 'user']
+        read_only_fields = ['date', 'pet', 'status', 'answers', 'user']
 
 class CreateApplicationSerializer(ModelSerializer):
     answers = ApplicationAnswerSerializer(many=True)
