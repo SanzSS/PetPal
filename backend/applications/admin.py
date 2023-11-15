@@ -3,5 +3,6 @@ from .models import Application, ApplicationAnswer
 
 # Register your models here.
 
-# admin.site.register(Application, ApplicationAnswer)
+admin.site.register(Application)
+admin.site.register(ApplicationAnswer)
 
