@@ -36,8 +36,8 @@ class Notif(APIView):
             return redirect(reverse_lazy('comments:shelter',
                                 kwargs={'shelter_id': content.shelter.pk}))
         if notif.content_type.model == 'application':
-            return redirect(reverse_lazy('applications:application',
-                                kwargs={'petlisting_id': content.pet.pk,
+            return redirect(reverse_lazy('applications:application-get-update',
+                                kwargs={'application_id': notif.content_id,
                                         }))
 
     def get_object(self, queryset=None):
@@ -51,7 +51,7 @@ class Notif(APIView):
         Notification.objects.filter(receiver=receiver).delete()
         return Response({
             "detail": "Notification Successfully Deleted."},
-            status=status.HTTP_204_ACCEPTED)
+            status=status.HTTP_204_NO_CONTENT)
 
 class NotifList(APIView):
     model = Notification
