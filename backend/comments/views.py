@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
 from django.http import JsonResponse
@@ -54,6 +56,8 @@ class CommentView(ListCreateAPIView):
         # figure out who the receiver is
         application_id = self.kwargs['application_id']
         application = get_object_or_404(Application, id=application_id)
+        # make sure the below line works
+        application.last_update = datetime.now
         if self.request.user == application.user:
             receiver = application.pet.shelter
         elif self.request.user == application.pet.shelter:
@@ -72,28 +76,33 @@ class ReviewView(ListCreateAPIView):
     def get_queryset(self):
         shelter_id = self.kwargs['shelter_id']
 
-        review_queryset = get_list_or_404(Review, shelter=shelter_id).order_by("-creation_date")
+        test = get_list_or_404(Review, shelter=shelter_id)
+        review_queryset = Review.objects.filter(shelter=shelter_id)
 
         return review_queryset.order_by("-creation_date")
 
     def perform_create(self, serializer):
-        print("h")
         shelter_id = self.kwargs['shelter_id']
         shelter_user = get_object_or_404(User, id=shelter_id)
+        # to figure out who to notify
+        parent_review_id = self.kwargs.get('parent_review_id', None)
 
         # Hm
         serializer.validated_data['user_id'] = self.request.user.id
         serializer.validated_data['shelter'] = shelter_user
+
+        if parent_review_id is not None:
+            parent_review = Review.objects.get(id=parent_review_id)
+            serializer.validated_data['parent_review'] = parent_review
+        else:
+            parent_review = None
+
         new_review = serializer.save()
 
         content_type = ContentType.objects.get_for_model(Comment)
 
-        # to figure out who to notify
-        parent_review_id = self.kwargs.get('parent_review_id', None)
 
-        parent_review = Review.objects.get(id=parent_review_id)
-
-        if parent_review == None:
+        if parent_review is None:
             receiver = new_review.shelter
         else:
             receiver = parent_review.user
