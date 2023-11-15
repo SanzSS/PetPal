@@ -49,8 +49,26 @@ class UpdateAccount(UpdateAPIView):
     def get_object(self):
         return self.request.user
 
+class Delete(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self):
+        return get_object_or_404(User, id=self.kwargs.get('shelter_id'))
+    def get(self, request, shelter_id):
+        if self.request.user.pk != self.get_object().pk:
+            return HttpResponse(status=401)
+        Notification.objects.filter(receiver=shelter_id).delete()
+        if User.objects.get(pk=shelter_id).user_type == User.UserType.SHELTER:
+            PetListing.objects.filter(shelter=shelter_id).delete()
+        else:
+            Application.objects.filter(user=shelter_id).delete()
+        User.objects.get(pk=shelter_id).delete()
+        return HttpResponse(status=204)
+
 def delete(request, shelter_id):
     user = request.user
+    print(user)
+    print(user.is_authenticated)
     if user.pk != shelter_id or not user.is_authenticated:
         return HttpResponse(status=401)
     Notification.objects.filter(receiver=shelter_id).delete()
@@ -68,7 +86,7 @@ def delete(request, shelter_id):
 class GetAccount(RetrieveAPIView):
     serializer_class = UserSerializer
     permission_classes = [IsAuthenticated, ViewSeeker]
-    
+
     def get_object(self):
         user_id = self.kwargs['user_id']
         user = get_object_or_404(User, id=user_id)

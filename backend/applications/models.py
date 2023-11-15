@@ -1,3 +1,4 @@
+from django.contrib.contenttypes.fields import GenericRelation
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.conf import settings
@@ -23,7 +24,7 @@ class Application(models.Model):
         choices=Status.choices,
         default=Status.PENDING
     )
-    # notif = GenericRelation(Notification)
+    notif = GenericRelation(Notification)
 
 class ApplicationAnswer(models.Model):
     application = models.ForeignKey(Application,

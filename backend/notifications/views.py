@@ -1,10 +1,9 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect
 
-from django.views.generic import UpdateView
 from rest_framework import status
 from rest_framework.pagination import PageNumberPagination
-
+from rest_framework.permissions import IsAuthenticated
 
 from .models import Notification
 from django.shortcuts import get_object_or_404
@@ -17,24 +16,29 @@ from rest_framework.views import APIView
 
 # Create your views here.
 
-class UpdateNotif(UpdateView):
+class UpdateNotif(APIView):
     model = Notification
+    permission_classes = [IsAuthenticated]
 
-    def get(self, request, *args, **kwargs):
-        if not self.request.user.is_authenticated:
-            return HttpResponse(status=401)
+
+    def get(self, request, notif_id):
         notif = self.get_object()
         notif.state = True
         notif.save()
         content = notif.content
+        print(notif.content_type.model)
         if notif.content_type.model == 'comment':
-            return reverse_lazy('application', kwargs={'application_id':
+            return redirect(reverse_lazy('comments:application', kwargs={'application_id':
                                                            content.comments,
-                                                       'start': 0})
+                                                       'start': 0}))
         if notif.content_type.model == 'review':
-            return reverse_lazy('shelter',
+            return redirect(reverse_lazy('comments:shelter',
                                 kwargs={'shelter_id': content.reviews,
-                                        'start': 0})
+                                        'start': 0}))
+        if notif.content_type.model == 'application':
+            return redirect(reverse_lazy('applications:application-create',
+                                kwargs={'petlisting_id': content.pet.pk,
+                                        }))
 
     def get_object(self, queryset=None):
         key1 = self.request.user.pk
