@@ -36,7 +36,7 @@ class User(AbstractUser):
         choices=UserType.choices,
         # default=UserType.SEEKER,
     )
-    avatar = models.ImageField(upload_to='images/', null=True)
+    avatar = models.ImageField(upload_to='images/', null=True, blank=True)
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["name", "user_type"]
 
