@@ -12,9 +12,9 @@ from .pagination import ApplicationPagination
 
 # Create your views here.
 
-class ApplicationsView(CreateAPIView, UpdateAPIView, RetrieveAPIView):
+class ApplicationsCreateView(CreateAPIView):
     permission_classes = [IsAuthenticated]
-
+    serializer_class = CreateApplicationSerializer
 
     def get_object(self):
         petlisting_id = self.kwargs.get('petlisting_id')
@@ -23,22 +23,10 @@ class ApplicationsView(CreateAPIView, UpdateAPIView, RetrieveAPIView):
         app = Application.objects.get(user=user, pet=pet)
         return app
 
-    def get_serializer_class(self):
-        if self.request.method == 'POST':
-            return CreateApplicationSerializer
-        elif self.request.method == 'PATCH':
-            return UpdateApplicationSerializer
-        elif self.request.method =='GET':
-            return ApplicationSerializer
-
     def perform_create(self, serializer):
         petlisting_id = self.kwargs.get('petlisting_id')
         pet = get_object_or_404(PetListing, id=petlisting_id)
         serializer.save(user=self.request.user, date=timezone.now(), pet=pet)
-
-    def perform_update(self, serializer):
-        user = self.request.user
-        serializer.save(user=user)
 
     def post(self, request, *args, **kwargs):
         petlisting_id = self.kwargs.get('petlisting_id')
@@ -54,20 +42,36 @@ class ApplicationsView(CreateAPIView, UpdateAPIView, RetrieveAPIView):
             pass
         return super().post(request, *args, **kwargs)
 
-    def patch(self, request, *args, **kwargs):
-        petlisting_id = self.kwargs.get('petlisting_id')
-        pet = get_object_or_404(PetListing, id=petlisting_id)
+
+class ApplicationsUpdateGetView(UpdateAPIView, RetrieveAPIView):
+    permission_classes = [IsAuthenticated]
+
+    def get_serializer_class(self):
+        if self.request.method == 'GET':
+            return ApplicationSerializer
+        elif self.request.method == 'PATCH':
+            return UpdateApplicationSerializer
+    
+    def get_object(self):
+        application_id = self.kwargs.get('application_id')
+        app = get_object_or_404(Application, id=application_id)
+        return app
+    
+    def perform_update(self, serializer):
+        user = self.request.user
+        serializer.save(user=user)
+
+    def get(self, request, *args, **kwargs):
         user = request.user
-        try:
-            Application.objects.get(pet=pet)
-        except Application.DoesNotExist:
-            return Response({"message": "Not found."},
-                            status=HTTP_404_NOT_FOUND)
-        try:
-            app = Application.objects.get(user=user, pet=pet)
-        except Application.DoesNotExist:
-            return Response({"message": "Only the seeker who applied for this pet and the shelter of the pet may update this application."},
+        app = self.get_object()
+        if user != app.user and user != app.pet.shelter:
+            return Response({"message": "Only the seeker who applied for this pet and the shelter of the pet may see this application."},
                             status=HTTP_403_FORBIDDEN)
+        return super().get(request, *args, **kwargs)
+
+    def patch(self, request, *args, **kwargs):
+        user = request.user
+        app = self.get_object()
         if user != app.user and user != app.pet.shelter:
             return Response({"message": "Only the seeker who applied for this pet and the shelter of the pet may update this application."},
                             status=HTTP_403_FORBIDDEN)
@@ -75,7 +79,7 @@ class ApplicationsView(CreateAPIView, UpdateAPIView, RetrieveAPIView):
 
     def put(self, request, *args, **kwargs):
         return Response({'detail': 'Method Not Allowed.'}, status=HTTP_405_METHOD_NOT_ALLOWED)
-
+    
 
 class ApplicationsListView(ListAPIView):
     permission_classes = [IsAuthenticated]
