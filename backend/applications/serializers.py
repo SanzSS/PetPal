@@ -15,7 +15,7 @@ from rest_framework.status import HTTP_403_FORBIDDEN, HTTP_405_METHOD_NOT_ALLOWE
 class UserSerializer(ModelSerializer):
     class Meta:
         model = get_user_model()
-        fields = ["email", "name", "user_type"]
+        fields = ["email", "name", "user_type", "avatar"]
 
 class PetListingSerializer(ModelSerializer):
     class Meta:
