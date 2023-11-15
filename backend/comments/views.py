@@ -30,7 +30,7 @@ class CommentPermission(permissions.BasePermission):
         applicant = application.user
         shelter = application.pet.shelter
 
-        if self.request.user != applicant and self.request.user != shelter:
+        if view.request.user != applicant and view.request.user != shelter:
             raise PermissionDenied("You do not have permission to create this object.")
 
         return True
@@ -44,7 +44,8 @@ class CommentView(ListCreateAPIView):
     def get_queryset(self):
         # get the application
         application_id = self.kwargs['application_id']
-        comments_queryset = get_list_or_404(Comment, application=application_id)
+        test = get_list_or_404(Comment, application=application_id)
+        comments_queryset = Comment.objects.filter(application=application_id)
 
         return comments_queryset.order_by("-creation_date")
 
