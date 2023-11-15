@@ -135,7 +135,7 @@ AUTH_USER_MODEL = 'accounts.User'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny' # .isAuthenticated for not testing
+        'rest_framework.permissions.IsAuthenticated' # .isAuthenticated for not testing
     ],
     'DEFAULT_RENDERER_CLASSES': [
         'rest_framework.renderers.JSONRenderer',
