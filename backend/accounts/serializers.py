@@ -2,6 +2,8 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.password_validation import validate_password
 from rest_framework.serializers import (CharField, ModelSerializer,
                                         ValidationError)
+from .models import User
+
 
 
 class CreateUserSerializer(ModelSerializer):
@@ -10,7 +12,7 @@ class CreateUserSerializer(ModelSerializer):
 
     class Meta:
         model = get_user_model()
-        fields = ["email", "name", "password1", "password2", "user_type"]
+        fields = ["email", "name", "password1", "password2", "user_type", "avatar"]
         extra_kwargs = {"password1": {"write_only": True}}
 
     def validate_password(self, value):
@@ -36,5 +38,17 @@ class CreateUserSerializer(ModelSerializer):
             name=validated_data["name"],
             password=validated_data["password1"],
             user_type=validated_data["user_type"],
+            avatar=validated_data.get("avatar")
         )
         return user
+
+
+class UserSerializer(ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['email', 'name', 'user_type', 'avatar']
+
+class UpdateUserSerializer(ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['email', 'name', 'password1', 'password2', 'avatar']
