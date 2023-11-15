@@ -4,6 +4,7 @@ from rest_framework.generics import CreateAPIView, UpdateAPIView, RetrieveAPIVie
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.status import HTTP_403_FORBIDDEN, HTTP_405_METHOD_NOT_ALLOWED, HTTP_404_NOT_FOUND
+from rest_framework.serializers import ValidationError
 
 from .models import Application, PetListing
 from .serializers import CreateApplicationSerializer, UpdateApplicationSerializer, ApplicationSerializer, ListApplicationSerializer
@@ -81,17 +82,41 @@ class ApplicationsListView(ListAPIView):
 
     def get_queryset(self):
         user = self.request.user
+
         if user.user_type == 'seeker':
             # seeker can see all of their applications
             apps = Application.objects.filter(user=user)
-            print(apps)
-            return apps
         else:
             # shelter can see applications for all of their pets
             pets_owned = PetListing.objects.filter(shelter=user)
             apps = Application.objects.filter(pet__in=pets_owned)
-            print(apps)
-            return apps
 
-    # def get(self, request, *args, **kwargs):
-    #     return super().get(request, *args, **kwargs)
+        filter = self.request.query_params.get('filter', None)
+        sort = self.request.query_params.get('sort', 'create_time')  # Default to 'create_time'
+
+        filter_errors = []
+        sort_errors = []
+        if filter and filter not in [choice.value for choice in Application.Status]:
+            filter_errors.append(f"'{filter}' is not a valid status.")
+        if sort not in ['create_time', 'update_time']:
+            sort_errors.append(f"'{sort}' should be either 'create_time' or 'update_time'.")
+
+        errors = {}
+        if filter_errors:
+            errors["filter"] = filter_errors
+        if sort_errors:
+            errors["sort"] = sort_errors
+        
+        if errors:
+            raise ValidationError(errors)
+        
+        status_choices = [status.value for status in Application.Status]
+        if filter and filter in status_choices:
+            apps = apps.filter(status=filter)
+
+        if sort == 'update_time':
+            apps = apps.order_by('-last_update')
+        else:
+            apps = apps.order_by('-date')
+        return apps
+    

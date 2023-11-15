@@ -108,7 +108,7 @@ class CreateApplicationSerializer(ModelSerializer):
         date = validated_data.get('date')
         pet = validated_data.get('pet')
         answers_data = validated_data.get('answers')
-        application = Application.objects.create(user=user, date=date, pet=pet)
+        application = Application.objects.create(user=user, date=date, pet=pet, last_update=date)
 
         for answer in answers_data:
             question_num = answer.get('question_num')
@@ -181,7 +181,36 @@ class ListApplicationSerializer(ModelSerializer):
     date = DateTimeField(read_only=True)
     status = CharField(read_only=True)
 
+    filter = ChoiceField(choices=Application.Status.choices, write_only=True, required=False)
+    sort = ChoiceField(choices=['create_time', 'update_time'], write_only=True, required=False)
+
     class Meta:
         model = Application
-        fields = ['date', 'user', 'pet', 'answers', 'status']
-        read_only_fields = ['date', 'user', 'pet', 'answers', 'status']
+        fields = ['date', 'user', 'pet', 'answers', 'status', 'filter', 'sort', 'last_update']
+        read_only_fields = ['date', 'user', 'pet', 'answers', 'status', 'last_update']
+
+    def to_representation(self, instance):
+        return super().to_representation(instance)
+
+    # def validate(self, data):
+    #     filter = data.get('filter', None)
+    #     sort = data.get('sort', 'create_time')
+
+    #     filter_errors = []
+    #     sort_errors = []
+    #     if filter and filter not in [choice.value for choice in Application.Status]:
+    #         filter_errors.append(f"'{filter}' is not a valid status.")
+    #     if sort not in ['create_time', 'update_time']:
+    #         sort_errors.append(f"'{sort}' should be either 'create_time' or 'update_time'.")
+
+    #     errors = {}
+    #     if filter_errors:
+    #         errors["filter"] = filter_errors
+    #     if sort_errors:
+    #         errors["sort"] = sort_errors
+        
+    #     if errors:
+    #         raise ValidationError(errors)
+
+    #     return data
+
