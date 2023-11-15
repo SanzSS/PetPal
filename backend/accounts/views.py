@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.shortcuts import render
-from rest_framework import permissions
+from rest_framework import permissions, status
 from rest_framework.generics import CreateAPIView, ListAPIView, UpdateAPIView, RetrieveAPIView
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.views import APIView
@@ -11,6 +11,9 @@ from .models import User
 from notifications.models import Notification
 from petlistings.models import PetListing
 from applications.models import Application
+from rest_framework.response import Response
+
+
 from rest_framework.permissions import IsAuthenticated, AllowAny
 # Create your views here.
 
@@ -18,6 +21,8 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 class ViewSeeker(permissions.BasePermission):
     def has_permission(self, request, view):
         user_id = view.kwargs['user_id']
+        if request.method == 'PATCH' and request.user.pk != user_id:
+            return False
         user = get_object_or_404(User, id=user_id)
 
         if user.user_type == "shelter":
@@ -41,52 +46,36 @@ class ShelterList(ListAPIView):
         shelters = User.objects.filter(user_type=User.UserType.SHELTER)
         return shelters
 
-class UpdateAccount(UpdateAPIView):
-    serializer_class = UpdateUserSerializer
-    permission_classes = [IsAuthenticated]
-    def get_object(self):
-        return self.request.user
 
-class Delete(APIView):
-    permission_classes = [IsAuthenticated]
-
-    def get_object(self):
-        return get_object_or_404(User, id=self.kwargs.get('shelter_id'))
-    def get(self, request, shelter_id):
-        if self.request.user.pk != self.get_object().pk:
-            return HttpResponse(status=401)
-        Notification.objects.filter(receiver=shelter_id).delete()
-        if User.objects.get(pk=shelter_id).user_type == User.UserType.SHELTER:
-            PetListing.objects.filter(shelter=shelter_id).delete()
-        else:
-            Application.objects.filter(user=shelter_id).delete()
-        User.objects.get(pk=shelter_id).delete()
-        return HttpResponse(status=204)
-
-def delete(request, shelter_id):
-    user = request.user
-    print(user)
-    print(user.is_authenticated)
-    if user.pk != shelter_id or not user.is_authenticated:
-        return HttpResponse(status=401)
-    Notification.objects.filter(receiver=shelter_id).delete()
-    Notification.save()
-    if User.objects.get(pk=shelter_id).user_type == User.UserType.SHELTER:
-        PetListing.objects.filter(shelter=shelter_id).delete()
-        PetListing.save()
-    else:
-        Application.objects.filter(user=shelter_id).delete()
-        Application.save()
-    User.objects.get(pk=shelter_id).delete()
-    User.save()
-    return HttpResponse(status=204)
-
-class GetAccount(RetrieveAPIView):
-    serializer_class = UserSerializer
+class GetAccount(RetrieveAPIView, UpdateAPIView):
+    # serializer_class = UserSerializer
     permission_classes = [IsAuthenticated, ViewSeeker]
 
     def get_object(self):
         user_id = self.kwargs['user_id']
+        if self.request.method == 'PATCH':
+            return self.request.user
         user = get_object_or_404(User, id=user_id)
         return user
+    #
+    def delete(self, request, user_id):
+        if self.request.user.pk != self.get_object().pk:
+            return Response({"detail": "You do not have permission to delete this account."},
+                            status=status.HTTP_401_UNAUTHORIZED)
+        Notification.objects.filter(receiver=user_id).delete()
+        if User.objects.get(pk=user_id).user_type == User.UserType.SHELTER:
+            PetListing.objects.filter(shelter=user_id).delete()
+        else:
+            Application.objects.filter(user=user_id).delete()
+        User.objects.get(pk=user_id).delete()
+        return Response({"detail": "Account Successfully Deleted."},
+                            status=status.HTTP_204_ACCEPTED)
+    #
+    def get_serializer_class(self):
+        if self.request.method == 'PATCH':
+            return UpdateUserSerializer
+        if self.request.method == 'GET':
+            return UserSerializer
+
+
 
