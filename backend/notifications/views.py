@@ -65,7 +65,7 @@ class NotifList(APIView):
         else:
             return Response({
                                 "detail": "You do not have permission to view these notifications."},
-                            status=status.HTTP_403_FORBIDDEN)
+                            status=status.HTTP_401_UNAUTHORIZED)
 
 class FilterUnread(NotifList):
     model = Notification
