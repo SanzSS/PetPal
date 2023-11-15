@@ -117,6 +117,9 @@ class ManageListing(RetrieveUpdateDestroyAPIView):
         if self.request.user != shelter:
             return Response({"detail": "You must be a shelter to edit your pet listing."}, status=status.HTTP_403_FORBIDDEN)
         
+        if not self.request.data:
+            return Response({"detail": "No data provided for update."}, status=status.HTTP_400_BAD_REQUEST)
+        
         serializer = PetListingSerializer(listing, data=request.data, partial=True)
         if not serializer.is_valid():
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -142,6 +145,9 @@ class ManageListing(RetrieveUpdateDestroyAPIView):
         shelter = get_object_or_404(User, pk=listing.shelter.id)
         if self.request.user != shelter:
             return Response({"detail": "You must be a shelter to edit your pet listing."}, status=status.HTTP_403_FORBIDDEN)
+
+        if not self.request.data:
+            return Response({"detail": "No data provided for update."}, status=status.HTTP_400_BAD_REQUEST)
         
         serializer = PetListingSerializer(listing, data=request.data, partial=True)
         if not serializer.is_valid():
