@@ -112,10 +112,13 @@ class ManageListing(RetrieveUpdateDestroyAPIView):
         if not self.request.user.is_authenticated:
             return Response({"detail": "You must be logged in to edit your pet listing."}, status=status.HTTP_401_UNAUTHORIZED)
         
+        if self.request.user.user_type != 'shelter':
+            return Response({"detail": "You cannot edit pet listings."}, status=status.HTTP_403_FORBIDDEN)
+
         listing = get_object_or_404(PetListing, pk=pk)
         shelter = get_object_or_404(User, pk=listing.shelter.id)
         if self.request.user != shelter:
-            return Response({"detail": "You must be a shelter to edit your pet listing."}, status=status.HTTP_403_FORBIDDEN)
+            return Response({"detail": "You cannot edit another shelter's pet listing."}, status=status.HTTP_403_FORBIDDEN)
         
         if not self.request.data:
             return Response({"detail": "No data provided for update."}, status=status.HTTP_400_BAD_REQUEST)
@@ -141,10 +144,13 @@ class ManageListing(RetrieveUpdateDestroyAPIView):
         if not self.request.user.is_authenticated:
             return Response({"detail": "You must be logged in to edit your pet listing."}, status=status.HTTP_401_UNAUTHORIZED)
         
+        if self.request.user.user_type != 'shelter':
+            return Response({"detail": "You cannot edit pet listings."}, status=status.HTTP_403_FORBIDDEN)
+        
         listing = get_object_or_404(PetListing, pk=pk)
         shelter = get_object_or_404(User, pk=listing.shelter.id)
         if self.request.user != shelter:
-            return Response({"detail": "You must be a shelter to edit your pet listing."}, status=status.HTTP_403_FORBIDDEN)
+            return Response({"detail": "You cannot edit another shelter's pet listing."}, status=status.HTTP_403_FORBIDDEN)
 
         if not self.request.data:
             return Response({"detail": "No data provided for update."}, status=status.HTTP_400_BAD_REQUEST)
@@ -170,12 +176,15 @@ class ManageListing(RetrieveUpdateDestroyAPIView):
         if not self.request.user.is_authenticated:
             return Response({"detail": "You must be logged in to delete your pet listing."}, status=status.HTTP_401_UNAUTHORIZED)
         
+        if self.request.user.user_type != 'shelter':
+            return Response({"detail": "You cannot delete pet listings."}, status=status.HTTP_403_FORBIDDEN)
+        
         listing = get_object_or_404(PetListing, pk=pk)
         shelter = get_object_or_404(User, pk=listing.shelter.id)
         if self.request.user == shelter:
             return super().destroy(request)
         else:
-            return Response({"detail": "You must be a shelter to delete your pet listing."}, status=status.HTTP_403_FORBIDDEN)
+            return Response({"detail": "You cannot delete another shelter's pet listing."}, status=status.HTTP_403_FORBIDDEN)
             
         
     def perform_destroy(self, instance):
