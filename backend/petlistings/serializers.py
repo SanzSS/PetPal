@@ -8,7 +8,7 @@ class ListingImageSerializer(ModelSerializer):
         fields = '__all__'
 
 class PetListingSerializer(ModelSerializer):
-    images = ListingImageSerializer(many=True, required=False)
+    images = ListingImageSerializer(many=True, required=False, read_only=True)
 
     class Meta:
         model = PetListing
