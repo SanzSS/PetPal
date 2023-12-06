@@ -10,6 +10,10 @@
     @apply mb-6 w-full
 }
 
+.sort-div {
+    @apply mb-6 flex justify-between
+}
+
 .card {
     @apply border bg-white rounded shadow-md overflow-hidden
 }
