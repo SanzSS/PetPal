@@ -30,8 +30,11 @@ const PetDetail = () => {
         });
     };
 
-    let statusColor = 'black'
+    const listingDate = listing.listing_date;
+    const date = new Date(listingDate);
+    const formattedDate = date.toLocaleDateString();
 
+    let statusColor = 'black'
     if (listing.status === 'available') {
         statusColor = 'text-green-600'
     }
@@ -41,7 +44,7 @@ const PetDetail = () => {
     else if (listing.status === 'adopted') {
         statusColor = 'text-red-600'
     }
-    else {
+    else if (listing.status === 'withdrawn') {
         statusColor = 'text-gray-600'
     }
 
@@ -110,7 +113,7 @@ const PetDetail = () => {
                 </div>
                 <div>
                     <h2>Listing Date</h2>
-                    <p>{listing?.listing_date}</p>
+                    <p>{formattedDate}</p>
                 </div>
             </div>
         </main>

@@ -1,7 +1,7 @@
 from .models import PetListing, ListingImage
 from accounts.models import User
-from .serializers import PetListingSerializer
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from .serializers import PetListingSerializer, FilterSerializer
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView
 from django.shortcuts import get_object_or_404
 from .pagination import PetListingPagination
 from rest_framework.response import Response
@@ -101,6 +101,20 @@ class Listing(ListCreateAPIView):
         for image_data in images:
             image, _ = ListingImage.objects.get_or_create(listing=listing, image=image_data)
             listing.images.add(image)
+
+
+class Filters(ListAPIView):
+    serializer_class = FilterSerializer
+    queryset = PetListing.objects.values('species', 'breed').distinct()
+    pagination_class = None
+
+    def get(self, request):
+        if not self.request.user.is_authenticated:
+            return Response({"detail": "You must be logged in to view pet listings."}, status=status.HTTP_401_UNAUTHORIZED)
+        serializer = self.get_serializer(self.get_queryset(), many=True)
+        species_list = [item['species'] for item in serializer.data]
+        breed_list = [item['breed'] for item in serializer.data]
+        return Response({'species': species_list, 'breeds': breed_list})
 
 
 class ManageListing(RetrieveUpdateDestroyAPIView):

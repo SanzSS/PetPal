@@ -2,7 +2,7 @@ const domain = "http://localhost:8000";
 
 export async function fetchWithAuthorization(url, settings, navigate) {
     //const token = "Bearer " + localStorage.getItem('access');
-    const token = "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAxOTEyMDQyLCJpYXQiOjE3MDE4OTA0NDIsImp0aSI6Ijc5YmUxYzIxMjIwYjQyYTE4MzkwMTVmYTE1ZGQ4N2UzIiwidXNlcl9pZCI6M30.Pq8TtDjEgDE5xfXW6oV1A9nqCsi2O6-lwS3QJnbjDHc";
+    const token = "Bearer " + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAxOTk4MzY0LCJpYXQiOjE3MDE5NzY3NjQsImp0aSI6IjYwNjE1N2Y4OTkxNzQ3NDFhODk5MmUyN2IzYmZmZWI2IiwidXNlcl9pZCI6M30.GrVmRE9uYy7WWoh8UcHUY9GQbza1MmkrJPeLrVXvTkI";
 
     if (!settings.headers) {
         settings.headers = {};

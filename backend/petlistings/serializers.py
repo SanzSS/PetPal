@@ -48,3 +48,8 @@ class PetListingSerializer(ModelSerializer):
                 raise serializers.ValidationError('At least one of months_old or years_old must be greater than 0.')        
 
         return super().update(instance, validated_data)
+    
+class FilterSerializer(ModelSerializer):
+    class Meta:
+        model = PetListing
+        fields = ['species', 'breed']

@@ -1,32 +1,31 @@
 import { useState } from 'react';
 
-const ListingSortOptionsResponsive = ({setQuery}) => {
+const ListingSortOptionsResponsive = ({setSearchParams, query}) => {
 
-    const [newFilters, setNewFilters] = useState({
-        sort_by_breed: false,
-        sort_by_age: false,
-        sort_by_size: false,
-        sort_by_listing_date: false,
+    const [newSort, setNewSort] = useState({
+        sort_by_breed: query.sort_by_breed,
+        sort_by_age: query.sort_by_age,
+        sort_by_size: query.sort_by_size,
+        sort_by_listing_date: query.sort_by_listing_date,
     });
 
     const handleInputChange = (e) => {
         const {name, checked} = e.target;
-        setNewFilters((prevFilters) => ({
-            ...prevFilters,
+        setNewSort((prevSort) => ({
+            ...prevSort,
             [name]: checked
         }));
+    };
 
-        setQuery((prevQuery) => ({
-            ...prevQuery,
-            sort: {
-                ...prevQuery.sort,
-                [name]: checked
-            },
+    const handleSaveSort = () => {
+        setSearchParams(() => ({
+            ...query,
+            ...newSort,
             page: 1
         }));
     };
 
-    return <form className="lg:flex lg:flex-col lg:justify-start lg:pt-[120px]">
+    return <form className="flex flex-col justify-start lg:hidden">
         <p className="mb-2">Sort By:</p>
         <div className="sort-div">
             <label for="sort-by-breed">Breed</label>
@@ -44,6 +43,7 @@ const ListingSortOptionsResponsive = ({setQuery}) => {
             <label for="sort-by-listing-date">Listing Date</label>
             <input className="transform scale-125 cursor-pointer" type="checkbox" id="sort-by-listing-date" name="sort_by_listing_date" onChange={handleInputChange} />
         </div>
+        <input onClick={handleSaveSort} type="button" value="Sort" className="button mt-2 cursor-pointer mb-4" />
     </form>
 }
 
