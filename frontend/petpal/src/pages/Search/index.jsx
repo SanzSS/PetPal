@@ -21,7 +21,7 @@ const Search = () => {
     const query = useMemo(() => ({
         page: parseInt(searchParams.get("page") ?? 1),
         search: searchParams.get("search") ?? '',
-        status: searchParams.get("status") ?? '',
+        status: searchParams.get("status") ?? 'available',
         species: searchParams.get("species") ?? '',
         breed: searchParams.get("breed") ?? '',
         age: searchParams.get("age") ?? '',
