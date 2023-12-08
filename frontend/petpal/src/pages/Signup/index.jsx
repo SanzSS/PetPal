@@ -1,6 +1,7 @@
 import './style.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Signup = () => {
 
@@ -100,36 +101,20 @@ const Signup = () => {
         toSend.append('avatar', formData.avatar);
 
         if (validate_form()) {
-            fetch('http://127.0.0.1:8000/accounts/', {
-                method: 'POST', 
-                body: formData,
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                },
-            })
-            .then(response => {
-                if (!response.ok) {
-                    console.log(response);
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                } else {
-                    navigate("/");
-                }
-            })
-            .catch(async (error) => {
-                if (error instanceof TypeError) {
-                    // Network error or other issues
-                } else {
-                    // HTTP error
-                    if (error.response) {
-                        if (error.status === 400) {
-                            const errorString = error.data;
+            try {
+                await axios.post('http://127.0.0.1:8000/accounts/', formData);
+                navigate("/");
+            } catch (error) {
+                console.error(error)
+                if (error.response) {
+                        if (error.response.status === 400) {
+                            const errorString = error.response.data;
                             setSignupError(errorString);
                         } else {
                             setSignupError('An error occurred during signup.');
                         }
-                    }
                 }
-            });
+            }
         }
     }
 
