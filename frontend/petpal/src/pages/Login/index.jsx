@@ -1,9 +1,11 @@
 import './style.css';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { TokenContext } from '../../contexts/TokenContext';
 
 const Login = () => {
     let navigate = useNavigate();
+    const { setToken } = useContext(TokenContext);
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -62,6 +64,7 @@ const Login = () => {
                 return response.json();
             })
             .then(data => {
+                setToken(data.token);
                 navigate("/search");
             })
             .catch(error => {
@@ -105,9 +108,9 @@ const Login = () => {
                 <p className="error">{formErrors.password}</p>
                 <br/>
                 <input type="submit" value="Login" id="login" onClick={(event) => login(event)} className="w-full p-3 rounded-md font-bold text-lg border-solid border-yellow-400 border-2 cursor-pointer p-3 justify-center inline-flex items-center no-underline text-center"/>
-                <br/>
-                <br/>
+                <br></br>
                 <p className="error">{loginError}</p>
+                <br></br>
             </form>
             <details className="mb-1">
                 <summary id="forgot" className="flex items-center cursor-pointer mb-1">Forgot password?</summary>
