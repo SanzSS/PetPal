@@ -2,6 +2,7 @@ import './style.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Signup = () => {
 
@@ -186,7 +187,7 @@ const Signup = () => {
                 <br></br>
             </form>
             <br></br>
-            <a href="login.html" id="login" className="underline mb-20">Login</a>
+            <Link to="/" id="login" className="underline mb-20">Login</Link>
             </div>
             </main>
         </>
