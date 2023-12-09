@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'comments',
     'petlistings',
     'notifications',
+    'keywords',
     'corsheaders',
 ]
 
