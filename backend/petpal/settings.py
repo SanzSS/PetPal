@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'comments',
     'petlistings',
     'notifications',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -57,9 +58,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "corsheaders.middleware.CorsMiddleware",
-    "django.middleware.common.CommonMiddleware",
-]
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 
 ROOT_URLCONF = 'petpal.urls'
 
@@ -158,6 +158,6 @@ SIMPLE_JWT = {
 }
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
+    "http://localhost:3000",  # React server
+    "http://127.0.0.1:3000"
 ]
