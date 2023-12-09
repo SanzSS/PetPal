@@ -1,4 +1,3 @@
-import './style.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -61,7 +60,7 @@ const ViewAccount = () => {
         </div>
     <div className="h-[20rem] rounded-md border-blue3 border-4 bg-blue2 shadow-lg flex items-left p-3 mt-4 lg:w-[70%] flex-col w-[70%] md:w-[70%]">
         <div className="self-end bg-gray-500 border border-black rounded-md w-14 text-center font-bold hover:bg-white">
-        <Link to="/my_profile/edit">Edit</Link>
+        <Link to="/account/edit">Edit</Link>
         </div>
         <p>
             Email address: 

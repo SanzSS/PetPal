@@ -1,4 +1,3 @@
-import './style.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -140,57 +139,58 @@ const Signup = () => {
     };
     
     return <> 
-            <main>
-            <div className="container" id="content">
-            <h1 id="website-name" className="text-teal-900 font-bold text-6xl pt-10">PetPal</h1>
-            <br></br>
-            <br></br>
-            <form className="w-1/2">
-                <input type="text" id="name" name="name" placeholder="Name" required onChange={handleInputChange} className="p-3 border border-solid border-teal-900 border-2 rounded-md"/>
+            <main className="flex flex-col justify-center items-center mt-8">
+                <div className="grid grid-cols-1 w-10/12 xl:w-3/4 2xl:w-2/4 max-w-[836px] p-6" id="content">
+                <h1 id="website-name" className="text-blue3 font-bold text-6xl pt-10 text-center">PetPal</h1>
                 <br></br>
-                <p className="error">{formErrors.name}</p>
                 <br></br>
-                <input type="email" id="form-email" name="email" placeholder="Email" required onChange={handleInputChange} className="p-3 border border-solid border-teal-900 border-2 rounded-md"/>
-                <br></br>
-                <p className="error">{formErrors.email}</p>
-                <br></br>
-                <input type="password" id="password1" name="password1" placeholder="Password" required onChange={handleInputChange} className="p-3 border border-solid border-teal-900 border-2 rounded-md"/> 
-                <br></br>
-                <p className="error">{formErrors.password1}</p>
-                <br></br>
-                <input type="password" id="password2" name="password2" placeholder="Re-enter Password" required onChange={handleInputChange} className="p-3 border border-solid border-teal-900 border-2 rounded-md"/> 
-                <br></br>
-                <p className="error">{formErrors.password2}</p>
-                <br></br>
-                <label htmlFor="user_type">User type:   </label>
-                <select name="user_type" id="type" required onChange={handleInputChange} className="p-3 border border-solid border-teal-900 border-2 rounded-md">
-                    <option value="" className="placeholder" disabled="" selected="selected">Select</option>
-                    <option value="seeker">Pet Seeker</option>
-                    <option value="shelter">Pet Shelter</option>
-                </select>
-                <br></br>
-                <p className="error">{formErrors.user_type}</p>
-                <br></br>
-                <label htmlFor="avatar">Avatar:</label>
+                <form>
+                    <input type="text" id="name" name="name" placeholder="Name" required onChange={handleInputChange} className="p-3 border-solid border-blue3 border-2 rounded-md w-full"/>
+                    <br></br>
+                    <p className="error">{formErrors.name}</p>
+                    <br></br>
+                    <input type="email" id="form-email" name="email" placeholder="Email" required onChange={handleInputChange} className="p-3 border-solid border-blue3 border-2 rounded-md w-full"/>
+                    <br></br>
+                    <p className="error">{formErrors.email}</p>
+                    <br></br>
+                    <input type="password" id="password1" name="password1" placeholder="Password" required onChange={handleInputChange} className="p-3 border-solid border-blue3 border-2 rounded-md w-full"/> 
+                    <br></br>
+                    <p className="error">{formErrors.password1}</p>
+                    <br></br>
+                    <input type="password" id="password2" name="password2" placeholder="Re-enter Password" required onChange={handleInputChange} className="p-3 border-solid border-blue3 border-2 rounded-md w-full"/> 
+                    <br></br>
+                    <p className="error">{formErrors.password2}</p>
+                    <br></br>
+                    <label htmlFor="user_type" className="pb-2">User type:   </label>
+                    <select name="user_type" id="type" required onChange={handleInputChange} className="p-3 border-solid border-blue3 border-2 rounded-md w-full">
+                        <option value="" className="placeholder" disabled="" selected="selected">Select</option>
+                        <option value="seeker">Pet Seeker</option>
+                        <option value="shelter">Pet Shelter</option>
+                    </select>
+                    <br></br>
+                    <p className="error">{formErrors.user_type}</p>
+                    <br></br>
+                    <label htmlFor="avatar">Avatar:</label>
+                    <br></br>
                     <input
                         type="file"
                         id="avatar"
                         name="avatar"
                         accept="image/*"
                         onChange={handleFileChange}
-                        className="p-3 border border-solid border-teal-900 border-2 rounded-md"
+                        className="p-3 border-solid border-blue3 border-2 rounded-md bg-white w-full"
                     />
-                <br />
-                <p className="error">{formErrors.avatar}</p>
-                <br />
-                <input type="submit" onClick={(event) => signup(event)} className="text-yellow-400 border-solid border-yellow-400 border-2 rounded-md cursor-pointer bg-teal-900 p-3 justify-center inline-flex items-center no-underline text-center w-full" value="Sign up" id="signup"/>
+                    <br />
+                    <p className="error">{formErrors.avatar}</p>
+                    <br />
+                    <input type="submit" onClick={(event) => signup(event)} className="button w-full cursor-pointer" value="Sign up" id="signup"/>
+                    <br></br>
+                    {signupError && <p className="error">{JSON.stringify(signupError)}</p>}
+                    <br></br>
+                </form>
                 <br></br>
-                {signupError && <p className="error">{JSON.stringify(signupError)}</p>}
-                <br></br>
-            </form>
-            <br></br>
-            <Link to="/" id="login" className="underline mb-20">Login</Link>
-            </div>
+                <Link to="/" id="login" className="underline mb-20 text-center">Login</Link>
+                </div>
             </main>
         </>
 }

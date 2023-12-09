@@ -61,6 +61,7 @@ const Search = () => {
         .then(response => response.json())
         .then(json => {
             setAllFilters(json)
+            setAllFilters({...allFilters, shelters: []})
         })
         .catch(error => {
             console.error('Error fetching data', error);
@@ -74,7 +75,7 @@ const Search = () => {
                 {/* Filter Column */}
                 <div>
                     <ListingSortOptions setSearchParams={setSearchParams} query={query}/>
-                    <ListingFilterOptions setSearchParams={setSearchParams} speciesFilter={allFilters.species} breedsFilter={allFilters.breeds} query={query}/>
+                    <ListingFilterOptions setSearchParams={setSearchParams} sheltersFilter={allFilters.shelters} speciesFilter={allFilters.species} breedsFilter={allFilters.breeds} query={query}/>
                 </div>
                 {/* Search Column */}
                 <div className="h-full w-full gap-4">
@@ -91,7 +92,7 @@ const Search = () => {
                     {/* Mobile Filter By Dropdown */}
                     <details className="pt-4 lg:hidden">
                         <summary className="mb-2 text-white bg-blue3 font-bold rounded p-2 shadow-md inline-block cursor-pointer hover:text-blue3 hover:bg-white hover:border-2 hover:border-blue3 border-2 border-blue3">Filter By:</summary>
-                        <ListingFilterOptionsResponsive setSearchParams={setSearchParams} speciesFilter={allFilters.species} breedsFilter={allFilters.breeds} query={query}/>
+                        <ListingFilterOptionsResponsive setSearchParams={setSearchParams} sheltersFilter={allFilters.shelters} speciesFilter={allFilters.species} breedsFilter={allFilters.breeds} query={query}/>
                     </details>
                     <details className="pt-4 lg:hidden">
                         <summary className="mb-2 text-white bg-blue3 font-bold rounded p-2 shadow-md inline-block cursor-pointer hover:text-blue3 hover:bg-white hover:border-2 hover:border-blue3 border-2 border-blue3">Sort By:</summary>
