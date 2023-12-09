@@ -99,8 +99,10 @@ const Signup = () => {
         toSend.append('password1', formData.password1);
         toSend.append('password2', formData.password2);
         toSend.append('user_type', formData.user_type);
-        toSend.append('avatar', formData.avatar);
-
+        if (formData.avatar) {
+            toSend.append('avatar', formData.avatar);
+        }
+        
         if (validate_form()) {
             try {
                 await axios.post('http://127.0.0.1:8000/accounts/', toSend);
@@ -183,7 +185,7 @@ const Signup = () => {
                 <br />
                 <input type="submit" onClick={(event) => signup(event)} className="text-yellow-400 border-solid border-yellow-400 border-2 rounded-md cursor-pointer bg-teal-900 p-3 justify-center inline-flex items-center no-underline text-center w-full" value="Sign up" id="signup"/>
                 <br></br>
-                <p className="error">{JSON.stringify(signupError)}</p>
+                {signupError && <p className="error">{JSON.stringify(signupError)}</p>}
                 <br></br>
             </form>
             <br></br>

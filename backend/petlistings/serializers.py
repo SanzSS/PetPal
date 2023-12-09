@@ -8,7 +8,7 @@ class ListingImageSerializer(ModelSerializer):
         fields = '__all__'
 
 class PetListingSerializer(ModelSerializer):
-    images = ListingImageSerializer(many=True, required=False)
+    images = ListingImageSerializer(many=True, required=False, read_only=True)
 
     class Meta:
         model = PetListing
@@ -48,3 +48,8 @@ class PetListingSerializer(ModelSerializer):
                 raise serializers.ValidationError('At least one of months_old or years_old must be greater than 0.')        
 
         return super().update(instance, validated_data)
+    
+class FilterSerializer(ModelSerializer):
+    class Meta:
+        model = PetListing
+        fields = ['species', 'breed']
