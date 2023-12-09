@@ -1,6 +1,5 @@
 import './style.css';
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/TokenContext';
@@ -8,7 +7,6 @@ import { jwtDecode } from "jwt-decode";
 
 const ViewAccount = () => {
     const { token } = useAuth();
-    let navigate = useNavigate();
 
     const [userId, setUserId] = useState('');
     const [email, setEmail] = useState('');
@@ -18,7 +16,6 @@ const ViewAccount = () => {
     useEffect(() => {
         if (token) {
             try {
-                console.log(token);
                 const decodedToken = jwtDecode(token);
                 if (decodedToken) {
                     setUserId(decodedToken.user_id);
@@ -57,7 +54,7 @@ const ViewAccount = () => {
             <h1 className="text-6xl mt-12 text-blue3 font-extrabold text-center mb-10">
                 Account Settings
             </h1>
-            <img src={avatar} alt="User Avatar" className="w-30 h-30 rounded-full"/>
+            <img src={`media/${avatar}`} alt="User Avatar" className="w-30 h-30 rounded-full"/>
     </div>
         </div>
     <div className="h-[20rem] rounded-md border-blue3 border-4 bg-blue2 shadow-lg flex items-left p-3 mt-4 lg:w-[70%] flex-col w-[70%] md:w-[70%]">
