@@ -5,19 +5,19 @@ import { useState, useEffect } from 'react';
 const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAyMDAwNjkxLCJpYXQiOjE3MDE5NzkwOTEsImp0aSI6IjllZDIzMmY4Y2UyMTRlNjc4OTQ2ODdkMTVkOThiZWFlIiwidXNlcl9pZCI6MX0.A2gpcpTMMzyX5Oa88ymjaEIXLAwuWWw3LXblY5FycxE";
 const Notifications = () => {
     const [notifs, setNotifs] = useState([]);
-    let next = null;
-    let prev = null;
+    const [next, setNext] = useState(null);
+    const [prev, setPrev] = useState(null);
     const [url, setUrl] = useState('http://127.0.0.1:8000/notifications/');
     useEffect(() => {axios.get(url, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       }).then((response) => {
-        next = response.data.next;
-        prev = response.data.previous;
-        let text = null;
-        let temp = [...notifs]
-        for (let i = 0; i < response.data.count; i++) {
+        setNext(response.data.next);
+        setPrev(response.data.previous);
+        let text = 'hello';
+        let temp = [...notifs];
+        for (let i = 0; i < response.data.results.length; i++) {
             if (response.data.results[i].content.type === 'comment') {
                 text = 'left you a comment!';
             } else if (response.data.results[i].content.type === 'review') {
@@ -25,7 +25,6 @@ const Notifications = () => {
             } else if (response.data.results[i].content.type === 'application') {
                 text = 'submitted an application!';
             };
-            console.log(response.data.results[i]);
             const notification = {
                 notif: response.data.results[i],
                 text: text,
@@ -38,10 +37,8 @@ const Notifications = () => {
     })
     .catch((error) => {
         console.log(error);
-
     });}, [url]);
-    console.log(notifs);
-    console.log(notifs[1]);
+    console.log(next);
     const handleButtonClick = (event) => {
         const notif_id = null
         axios.delete(url + notif_id, {
@@ -52,7 +49,7 @@ const Notifications = () => {
             console.log(response);
             window.location.reload();
         })
-    }
+    };
     return <body className="min-h-screen bg-blue1 flex flex-col">
             <div className="flex-1 flex-col">
                     <main className="items-center justify-center text-left flex flex-col">
@@ -60,7 +57,6 @@ const Notifications = () => {
                     Notifications
                 </h1>
                 {notifs.map((obj, index) => {
-                    console.log(index);
                     let style = 'h-32 bg-slate-50 border border-gray-300 shadow-lg flex items-center p-3 gap-[75%]';
                     if (!obj.notif.state) {
                         style = 'h-32 bg-slate-50 border border-gray-300 shadow-lg flex items-center p-3 gap-[75%] border-l-blue-500';
@@ -85,6 +81,7 @@ const Notifications = () => {
             }
         }} className="bg-blue3 border border-blue3 text-white items-center font-bold py-2 px-4 rounded-md mt-8 mb-8 w-[6.5rem] hover:bg-white hover:text-blue3">Previous</button>
         <button onClick={() => {
+            console.log(next);
             if (next != null) {
                 setUrl(next);
                 setNotifs([]);
