@@ -1,12 +1,12 @@
 import './style.css';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { TokenContext } from '../../contexts/TokenContext';
+import { useAuth } from '../../contexts/TokenContext';
 import { Link } from 'react-router-dom';
 
 const Login = () => {
     let navigate = useNavigate();
-    const { setToken } = useContext(TokenContext);
+    const { setToken } = useAuth();
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -65,7 +65,7 @@ const Login = () => {
                 return response.json();
             })
             .then(data => {
-                setToken(data.token);
+                setToken(data.access);
                 navigate("/search");
             })
             .catch(error => {

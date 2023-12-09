@@ -3,11 +3,11 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import useAuth from '../../components/Auth/useAuth';
+import { useAuth } from '../../contexts/TokenContext';
 import { jwtDecode } from "jwt-decode";
 
 const ViewAccount = () => {
-    const token = useAuth();
+    const { token } = useAuth();
     let navigate = useNavigate();
 
     const [userId, setUserId] = useState('');
@@ -33,9 +33,9 @@ const ViewAccount = () => {
         const fetchData = async () => {
             try {
                 if (userId) {
-                    const response = await axios.get(`http://127.0.0.1:8000/accounts/${userId}`, {
+                    const response = await axios.get(`http://127.0.0.1:8000/accounts/${userId}/`, {
                         headers: {
-                          Authorization: `Bearer ${token}`
+                          "Authorization": `Bearer ${token}`
                         }
                     });
                     const { email, name, avatar } = response.data;
