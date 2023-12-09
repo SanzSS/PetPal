@@ -48,7 +48,7 @@ class CreateUserSerializer(ModelSerializer):
 class UserSerializer(ModelSerializer):
     class Meta:
         model = User
-        fields = ['email', 'name', 'user_type', 'avatar']
+        fields = ['email', 'name', 'user_type', 'avatar', 'pk']
 
 class UpdateUserSerializer(ModelSerializer):
     class Meta:
