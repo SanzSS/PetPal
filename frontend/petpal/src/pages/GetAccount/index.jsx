@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/TokenContext';
 import { jwtDecode } from "jwt-decode";
+import './account_output.css';
 
 const ViewAccount = () => {
     const { token } = useAuth();
@@ -53,12 +54,12 @@ const ViewAccount = () => {
             <h1 className="text-6xl mt-12 text-blue3 font-extrabold text-center mb-10">
                 Account Settings
             </h1>
-            <div id="avatar-container">
+            {/* <div id="avatar-container">
                 {avatar && <img src={avatar} alt="User Avatar" id="avatar" className="rounded-full"/>}
-            </div>
+            </div> */}
     </div>
         </div>
-    <div className="h-[20rem] rounded-md border-blue3 border-4 bg-blue2 shadow-lg flex items-left p-3 mt-4 lg:w-[70%] flex-col w-[70%] md:w-[70%]">
+    <div className="h-1/2 rounded-md border-blue3 border-4 bg-blue2 shadow-lg flex items-left p-3 mt-4 lg:w-[70%] flex-col w-[70%] md:w-[70%]">
         <div className="self-end bg-gray-500 border border-black rounded-md w-14 text-center font-bold hover:bg-white">
         <Link to="/account/edit">Edit</Link>
         </div>

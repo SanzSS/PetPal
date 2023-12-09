@@ -12,6 +12,7 @@ const Layout = () => {
                     <Link to="/search"><h1 className="text-4xl text-white font-extrabold">PetPal</h1></Link>
                     <div className="flex justify-evenly items-center">
                         <Link to="/search" className="header-item p-4">Search</Link>
+
                         { userType === 'shelter' ? <Link to="/create_listing" className="header-item p-4">Create a Pet</Link> : <></>}
                         { userType === 'seeker' ? <Link to="/" className="header-item p-4">My Applications</Link> : <></>}
                         <Link to="/notifications" className="header-item p-4">Notifications</Link>
@@ -37,6 +38,7 @@ const Layout = () => {
                         </summary>
                         <div className="mt-[64px] flex flex-col">
                             <Link to="/search" className="text-white bg-blue3 pl-8 py-2 header-item">Search</Link>
+                            <Link to="/shelters" className="text-white bg-blue3 pl-8 py-2 header-item">Shelters</Link>
                             <Link to="/create_listing" className="text-white bg-blue3 pl-8 py-2 header-item">Create a Pet</Link>
                             <Link to="/account" className="text-white bg-blue3 pl-8 py-2 header-item">My Account</Link>
                             { userType === 'shelter' ? <li><Link to="../shelter/shelter-listings.html" className="dropdown-menu-item">My Pets</Link></li> : <></>}
