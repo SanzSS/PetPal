@@ -14,7 +14,7 @@ const Layout = () => {
                         <Link to="/search" className="header-item p-4">Search</Link>
 
                         { userType === 'shelter' ? <Link to="/create_listing" className="header-item p-4">Create a Pet</Link> : <></>}
-                        { userType === 'seeker' ? <Link to="/" className="header-item p-4">My Applications</Link> : <></>}
+                        { userType === 'seeker' ? <Link to="my_applications" className="header-item p-4">My Applications</Link> : <></>}
                         <Link to="/notifications" className="header-item p-4">Notifications</Link>
                         {/* Dropdown Menu */}
                         <details>
