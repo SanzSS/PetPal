@@ -1,12 +1,14 @@
 import axios from 'axios';
 
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
-import { fetchWithAuthorization } from '../../fetch';
+// import { fetchWithAuthorization } from '../../fetch';
 import ListingCard from '../../components/ListingCard'
 import ReviewCard from '../../components/ReviewCard';
 import { useAuth } from '../../contexts/TokenContext';
+
+import Reviews from '../../components/Reviews';
 
 
 const ViewShelter = () => {
@@ -14,8 +16,7 @@ const ViewShelter = () => {
 
     const [ shelter, setShelter ] = useState({});
     const{shelterID} = useParams();
-    const [email, setEmail] = useState('');
-    const [name, setName] = useState('');
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -48,9 +49,8 @@ const ViewShelter = () => {
 
                 <h1 className="font-bold block text-2xl pb-3 text-blue3"> Reviews </h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 p-2">
-                    {shelter.reviews?.map((review, index) => (
-                            <ReviewCard review={review} key={index}/>
-                    ))}
+                    {/* paginated reviews*/}
+                    <Reviews shelterID={shelterID}/>
                 </div>
 
                 <h1 className="font-bold block text-2xl	underline pb-3 text-blue3"> Contact Information </h1>

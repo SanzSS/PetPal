@@ -1,9 +1,14 @@
 const ReviewCard = ({review}) => {
+    if (!review) {
+        // Handle the case where review is undefined or null
+        return <></>; // or any other appropriate rendering or behavior
+    }
+
     return <>
-        <div class="p-2">
-            <span class="font-bold block">{ review.user }</span>
-            <span class="card-description">{ review.content }</span>
-            <span class="card-description">{ review.rating }</span>
+        <div className="p-2">
+            <span className="card-description">Rating: { review.rating } </span>
+            <span className="font-bold block">From: { review.user }</span>
+            <span className="card-description">{ review.content }</span>
         </div>
     </>
 }
