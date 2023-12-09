@@ -6,6 +6,7 @@ import ListingFilterOptionsResponsive from '../../components/ListingFilterOption
 import ListingSortOptionsResponsive from '../../components/ListingSortOptionsResponsive';
 import { fetchWithAuthorization } from '../../fetch';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useAuth } from '../../contexts/TokenContext';
 
 const LISTINGS_PER_PAGE = 16
 
@@ -33,6 +34,8 @@ const Search = () => {
         sort_by_listing_date: searchParams.get("sort_by_listing_date") ?? '',
     }), [searchParams]);
 
+    const { token } = useAuth();
+
     useEffect(() => {
         const params = new URLSearchParams();
 
@@ -44,7 +47,7 @@ const Search = () => {
 
         let url = `/listings/listing/?${params}`;
 
-        fetchWithAuthorization(url, {method: 'GET'}, navigate)
+        fetchWithAuthorization(url, {method: 'GET'}, navigate, token)
         .then(response => response.json())
         .then(json => {
             setListings(json.results);
@@ -54,7 +57,7 @@ const Search = () => {
             console.error('Error fetching data', error);
         });
 
-        fetchWithAuthorization('/listings/filters/', {method: 'GET'}, navigate)
+        fetchWithAuthorization('/listings/filters/', {method: 'GET'}, navigate, token)
         .then(response => response.json())
         .then(json => {
             setAllFilters(json)
