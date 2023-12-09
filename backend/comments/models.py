@@ -18,6 +18,7 @@ class Review(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE)
     content = models.TextField()
+    rating = models.FloatField(default=10)
     creation_date = models.DateTimeField(default=datetime.now)
 
     shelter = models.ForeignKey(settings.AUTH_USER_MODEL,

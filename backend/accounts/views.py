@@ -81,6 +81,6 @@ class GetAccount(RetrieveAPIView, UpdateAPIView):
             return ShelterSerializer
         elif self.request.user.user_type == "seeker":
             return UserSerializer
-
+    
 
 
