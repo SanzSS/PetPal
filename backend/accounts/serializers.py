@@ -3,7 +3,8 @@ from django.contrib.auth.password_validation import validate_password
 from rest_framework.serializers import (CharField, ModelSerializer,
                                         ValidationError)
 from .models import User
-
+from comments.serializers import ReviewSerializer
+from petlistings.serializers import PetListingSerializer
 
 
 class CreateUserSerializer(ModelSerializer):
@@ -49,6 +50,14 @@ class UserSerializer(ModelSerializer):
     class Meta:
         model = User
         fields = ['email', 'name', 'user_type', 'avatar']
+
+class ShelterSerializer(ModelSerializer):
+    reviews = ReviewSerializer(many=True, read_only=True)
+    pets = PetListingSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = User
+        fields = ['email', 'name', 'avatar', 'reviews', 'pets']
 
 class UpdateUserSerializer(ModelSerializer):
     class Meta:

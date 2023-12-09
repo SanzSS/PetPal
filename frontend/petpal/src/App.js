@@ -16,6 +16,7 @@ import Logout from './pages/Logout';
 import { UserTypeProvider } from './contexts/UserTypeContext';
 import CreateApplication from './pages/CreateApplication';
 import ListApplications from './pages/ListApplication';
+import ViewShelter from './pages/ViewShelter';
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
               <Route path="notifications" element={<Notifications />} />
               <Route path="listing/:petID/apply" element={< CreateApplication /> } />
               <Route path="my_applications" element={< ListApplications /> } /> {/* seeker and shelter */}
+              <Route path="shelter/:shelterID" element={<ViewShelter />} />
             </Route>
         </Routes>
       </UserTypeProvider>
