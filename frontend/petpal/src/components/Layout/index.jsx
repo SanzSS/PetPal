@@ -15,9 +15,9 @@ const Layout = () => {
                         <details>
                             <summary className="cursor-pointer header-item p-4">Menu</summary>
                             <ul className="absolute text-black bg-white w-auto rounded-md p-2 flex flex-col items-center border border-blue3 mt-1 ml-[-22px]">
-                                <li><a href="../general/account_shelter.html" className="dropdown-menu-item">My Account</a></li>
+                                <li><Link to="/my_profile" className="dropdown-menu-item">My Account</Link></li>
                                 <li><a href="../shelter/shelter-listings.html" className="dropdown-menu-item">My Pets</a></li>
-                                <li><a href="../general/login.html" className="dropdown-menu-item">Log Out</a></li>
+                                <li><a href="/logout" className="dropdown-menu-item">Log Out</a></li>
                             </ul>
                         </details>
                     </div>
@@ -34,10 +34,10 @@ const Layout = () => {
                         <div className="mt-[64px] flex flex-col">
                             <Link to="/search" className="text-white bg-blue3 pl-8 py-2 header-item">Search</Link>
                             <Link to="/create_listing" className="text-white bg-blue3 pl-8 py-2 header-item">Create a Pet</Link>
-                            <a href="../general/account_shelter.html" className="text-white bg-blue3 pl-8 py-2 header-item">My Account</a>
+                            <Link to="/my_profile" className="text-white bg-blue3 pl-8 py-2 header-item">My Account</Link>
                             <a href="../shelter/shelter-listings.html" className="text-white bg-blue3 pl-8 py-2 header-item">My Pets</a>
                             <a href="../general/notifications_shelter.html" className="text-white bg-blue3 pl-8 py-2 header-item">Notifications</a>
-                            <a href="../general/login.html" className="text-white bg-blue3 pl-8 py-2 mb-[-48px] header-item">Log Out</a>
+                            <Link to="/logout" className="text-white bg-blue3 pl-8 py-2 mb-[-48px] header-item">Log Out</Link>
                         </div>
                     </details>
                 </nav>

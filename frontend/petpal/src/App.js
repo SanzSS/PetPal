@@ -6,19 +6,35 @@ import './App.css';
 import CreateListing from './pages/CreateListing';
 import UpdateListing from './pages/UpdateListing';
 import Notifications from './pages/Notifications';
+import Login from './pages/Login';
+import { TokenProvider } from './contexts/TokenContext';
+import Signup from './pages/Signup'
+import ViewAccount from './pages/GetAccount';
+import EditAccount from './pages/EditAccount';
+import Logout from './pages/Logout';
 
 function App() {
-  return <BrowserRouter>
-      <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route path="search" element={<Search />} />
-            <Route path="create_listing" element={<CreateListing />} /> {/* Change to REST format? */}
-            <Route path="update_listing" element={<UpdateListing />} /> {/* Change to REST format? */}
-            <Route path="*" element={<NotFound />} />
-            <Route path="notifications" element={<Notifications />} />
-          </Route>
-      </Routes>
-    </BrowserRouter>;
+  return (
+    <BrowserRouter>
+      <TokenProvider>
+        <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Login />} />
+              <Route path="signup" element={<Signup />} />
+              <Route path="search" element={<Search />} />
+              <Route path="my_profile" element={<ViewAccount />} />
+              <Route path="my_profile/edit" element={<EditAccount />} />
+              <Route path="logout" element={<Logout />} />
+              <Route path="create_listing" element={<CreateListing />} /> {/* Change to REST format? */}
+              <Route path="update_listing" element={<UpdateListing />} /> {/* Change to REST format? */}
+              <Route path="*" element={<NotFound />} />
+              <Route path="notifications" element={<Notifications />} />
+            </Route>
+        </Routes>
+      </TokenProvider>
+    </BrowserRouter>
+  );
+
 }
 
 export default App;
