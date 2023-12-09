@@ -3,10 +3,14 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/TokenContext';
 import { Link } from 'react-router-dom';
+import { jwtDecode } from "jwt-decode";
+import axios from 'axios';
+import { useUserType } from '../../contexts/UserTypeContext';
 
 const Login = () => {
     let navigate = useNavigate();
     const { setToken } = useAuth();
+    const { setUserType } = useUserType();
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -66,6 +70,23 @@ const Login = () => {
             })
             .then(data => {
                 setToken(data.access);
+                const decodedToken = jwtDecode(data.access);
+                var userID = null;
+                if (decodedToken) {
+                    userID = decodedToken.user_id;
+                }
+                if (userID) {
+                    const response = axios.get(`http://127.0.0.1:8000/accounts/${userID}/`, {
+                        headers: {
+                            "Authorization": `Bearer ${data.access}`
+                        }
+                    });
+                    return response;
+                }
+            })
+            .then(response => {
+                const { user_type } = response.data;
+                setUserType(user_type);
                 navigate("/search");
             })
             .catch(error => {

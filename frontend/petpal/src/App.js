@@ -11,11 +11,13 @@ import Signup from './pages/Signup'
 import ViewAccount from './pages/GetAccount';
 import EditAccount from './pages/EditAccount';
 import Logout from './pages/Logout';
+import { UserTypeProvider } from './contexts/UserTypeContext';
 
 function App() {
   return (
     <BrowserRouter>
       <TokenProvider>
+      <UserTypeProvider>
         <Routes>
             <Route path="/" element={<Layout />}>
               <Route index element={<Login />} />
@@ -29,6 +31,7 @@ function App() {
               <Route path="*" element={<NotFound />} />
             </Route>
         </Routes>
+      </UserTypeProvider>
       </TokenProvider>
     </BrowserRouter>
   );
