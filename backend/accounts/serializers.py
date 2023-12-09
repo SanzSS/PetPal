@@ -49,7 +49,7 @@ class CreateUserSerializer(ModelSerializer):
 class UserSerializer(ModelSerializer):
     class Meta:
         model = User
-        fields = ['email', 'name', 'user_type', 'avatar']
+        fields = ['email', 'name', 'user_type', 'avatar', 'pk']
 
 class ShelterSerializer(ModelSerializer):
     reviews = ReviewSerializer(many=True, read_only=True)

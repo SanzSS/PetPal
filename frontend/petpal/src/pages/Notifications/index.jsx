@@ -1,18 +1,27 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAyMDAwNjkxLCJpYXQiOjE3MDE5NzkwOTEsImp0aSI6IjllZDIzMmY4Y2UyMTRlNjc4OTQ2ODdkMTVkOThiZWFlIiwidXNlcl9pZCI6MX0.A2gpcpTMMzyX5Oa88ymjaEIXLAwuWWw3LXblY5FycxE";
+import { useAuth } from '../../contexts/TokenContext';
+import { Link } from 'react-router-dom';
 const Notifications = () => {
+    const { token } = useAuth();
+    const [currFilter, setCurrFilter] = useState('Unread');
     const [notifs, setNotifs] = useState([]);
     const [next, setNext] = useState(null);
     const [prev, setPrev] = useState(null);
     const [url, setUrl] = useState('http://127.0.0.1:8000/notifications/');
+    const [sort, setSort] = useState(null);
     useEffect(() => {axios.get(url, {
         headers: {
           Authorization: `Bearer ${token}`
+        },
+        params: {
+            filter: currFilter,
+            sort: sort
         }
       }).then((response) => {
         setNext(response.data.next);
         setPrev(response.data.previous);
+        console.log(currFilter);
         let text = 'hello';
         let temp = [...notifs];
         for (let i = 0; i < response.data.results.length; i++) {
@@ -21,7 +30,7 @@ const Notifications = () => {
             } else if (response.data.results[i].content.type === 'review') {
                 text = 'left you a review!';
             } else if (response.data.results[i].content.type === 'application') {
-                text = 'submitted an application!';
+                text = 'updated your application!';
             };
             const notification = {
                 notif: response.data.results[i],
@@ -35,11 +44,12 @@ const Notifications = () => {
     })
     .catch((error) => {
         console.log(error);
-    });}, [url]);
-    console.log(next);
-    const handleButtonClick = (event) => {
-        const notif_id = null
-        axios.delete(url + notif_id, {
+    });}, [url, currFilter, sort]);
+
+
+    const handleButtonClick = (id) => {
+  
+        axios.delete(url + id + '/', {
             headers: {
               Authorization: `Bearer ${token}`
             }
@@ -48,12 +58,35 @@ const Notifications = () => {
             window.location.reload();
         })
     };
+    const handleFilterClick = () => {
+        if (currFilter === 'Unread') {
+            setCurrFilter('Read');
+        } else{
+            setCurrFilter('Unread');
+        }
+        setNotifs([]);
+        setUrl('http://127.0.0.1:8000/notifications/');
+    };
+    const handleSortClick = () => {
+        if (sort === null) {
+            setSort('create_time');
+        } else{
+            setSort(null);
+        }
+        setNotifs([]);
+        setUrl('http://127.0.0.1:8000/notifications/');
+    };
     return <body className="min-h-screen bg-blue1 flex flex-col">
             <div className="flex-1 flex-col">
                     <main className="items-center justify-center text-left flex flex-col">
                 <h1 className="lg:text-6xl my-12 text-blue3 font-extrabold md:text-6xl text-6xl">
                     Notifications
                 </h1>
+                <div className="flex flex-row gap-4">
+                    <button onClick={handleFilterClick} className=' bg-blue3 border border-blue3 text-white items-start font-bold py-2 px-4 rounded-md  mb-4 hover:bg-white hover:text-blue3 text-left'>{currFilter}</button>
+                    <button onClick={handleSortClick} className=' bg-blue3 border border-blue3 text-white items-start font-bold py-2 px-4 rounded-md  mb-4 hover:bg-white hover:text-blue3 text-left'>Sort By Time</button>
+
+                </div>
                 {notifs.map((obj, index) => {
                     let style = 'h-32 bg-slate-50 border border-gray-300 shadow-lg flex items-center p-3 gap-[75%]';
                     if (!obj.notif.state) {
@@ -61,15 +94,16 @@ const Notifications = () => {
                     } return (
                         <a key={index} href="../shelter/shelter-info.html" className="w-[75%]">
                         <div id="notif" className={style}>
-                            {/* <img src="./images/old-woman.jpeg" alt="User Avatar" className="w-9 h-9 rounded-full mr-4"></img> */}
                             <div>
                                 <p className="mb-3"> <span className="font-bold">{obj.notif.sender}</span> {obj.text}</p> 
                                 <p className="font-extralight text-xs"> Sent at {obj.notif.creation_date}</p>
                             </div>
-                            <button onClick={handleButtonClick} className="bg-blue3 border border-blue3 text-white items-center font-bold py-2 px-4 rounded-md mt-8 mb-8 hover:bg-white hover:text-blue3">Delete </button>
+                            <button onClick={() => handleButtonClick(obj.notif.pk)} className="bg-blue3 border border-blue3 text-white items-center font-bold py-2 px-4 rounded-md mt-8 mb-8 hover:bg-white hover:text-blue3">Delete </button>
+
                         </div>
+                        
                         </a>
-                    );})}
+                     );})}
                 
         <div className="flex flex-row gap-4">
         <button onClick={() => {
