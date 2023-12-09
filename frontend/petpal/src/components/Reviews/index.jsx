@@ -49,7 +49,7 @@ const Reviews = ({shelterID}) => {
                         setReviews([]);
                     }
                 }} className="bg-blue3 border border-blue3 text-white items-center font-bold py-2 px-4 rounded-md mt-8 mb-8 w-[6.5rem] hover:bg-white hover:text-blue3">Next</button>
-                </div>
+            </div>
         </div>
     </>
 }

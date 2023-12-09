@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+#content {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 #convo-title {
     margin-top: 3rem;
     text-align: center;
@@ -29,6 +35,7 @@
 
 #message {
     width: 100%;
+    margin: 2px;
 }
 
 
