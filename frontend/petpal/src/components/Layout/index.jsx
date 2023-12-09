@@ -10,7 +10,7 @@ const Layout = () => {
                     <div className="flex justify-evenly items-center">
                         <Link to="/search" className="header-item p-4">Search</Link>
                         <Link to="/create_listing" className="header-item p-4">Create a Pet</Link>
-                        <a href="../general/notifications_shelter.html" className="header-item p-4">Notifications</a>
+                        <Link to="/notifications" className="header-item p-4">Notifications</Link>
                         {/* Dropdown Menu */}
                         <details>
                             <summary className="cursor-pointer header-item p-4">Menu</summary>
