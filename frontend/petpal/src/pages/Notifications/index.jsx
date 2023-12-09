@@ -1,5 +1,3 @@
-import './dist/notifications_output.css';
-import './notifications.css'
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAyMDAwNjkxLCJpYXQiOjE3MDE5NzkwOTEsImp0aSI6IjllZDIzMmY4Y2UyMTRlNjc4OTQ2ODdkMTVkOThiZWFlIiwidXNlcl9pZCI6MX0.A2gpcpTMMzyX5Oa88ymjaEIXLAwuWWw3LXblY5FycxE";

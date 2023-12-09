@@ -117,25 +117,25 @@ const Login = () => {
     };
 
     return <>
-        <main>
-          <div className="container" id="content">
-            <h1 id="website-name" className="text-teal-900 font-bold text-6xl pt-20">PetPal</h1>
+        <main className="flex flex-col justify-center items-center mt-8">
+          <div className="grid grid-cols-1 w-10/12 xl:w-3/4 2xl:w-2/4 max-w-[836px] p-6" id="content">
+            <h1 id="website-name" className="text-blue3 font-bold text-6xl pt-20 text-center">PetPal</h1>
             <br/>
             <br/>
             <form onSubmit={login}>
-                <input type="email" id="form-email" name="email" placeholder="Email" onChange={handleInputChange} className="p-3 border border-solid border-teal-900 border-2 rounded-md" required/>
+                <input type="email" id="form-email" name="email" placeholder="Email" onChange={handleInputChange} className="p-3 border-solid text-blue3 border-blue3 border-2 rounded-md w-full" required/>
                 <p className="error">{formErrors.email}</p>
                 <br/>
-                <input type="password" id="password" name="password" placeholder="Password" onChange={handleInputChange} className="p-3 border border-solid border-teal-900 border-2 rounded-md" required/> 
+                <input type="password" id="password" name="password" placeholder="Password" onChange={handleInputChange} className="p-3 border-solid text-blue3 border-blue3 border-2 rounded-md w-full" required/> 
                 <p className="error">{formErrors.password}</p>
                 <br/>
-                <input type="submit" value="Login" id="login" onClick={(event) => login(event)} className="w-full p-3 rounded-md font-bold text-lg border-solid border-yellow-400 border-2 cursor-pointer p-3 justify-center inline-flex items-center no-underline text-center"/>
+                <input type="submit" value="Login" id="login" onClick={(event) => login(event)} className="button w-full cursor-pointer"/>
                 <br></br>
                 <p className="error">{loginError}</p>
                 <br></br>
             </form>
             <br></br>
-            <Link to="/signup" className="text-teal-900 text-base underline mb-20">Sign up</ Link>
+            <Link to="/signup" className="text-blue3 text-base underline mb-20 text-center">Sign up</ Link>
         </div>
       </main>
     </>
