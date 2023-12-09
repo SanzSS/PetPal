@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 const ListingCard = ({listing}) => {
     return <>
         <Link to={`../listing/${listing.id}`} class="card">
-            {listing.images.length !== 0 ? <img src={listing.images[0].image} class="w-full h-[250px] object-cover" /> : <div className="w-full h-[250px] flex justify-center items-center"><p>No Image Available</p></div>}
+            {listing.images.length !== 0 ? <img alt={listing.name} src={listing.images[0].image} class="w-full h-[250px] object-cover" /> : <div className="w-full h-[250px] flex justify-center items-center"><p>No Image Available</p></div>}
             <div class="p-2">
                 <span class="font-bold block capitalize">{ listing.name }</span>
                 <span class="card-description capitalize">{ listing.breed }</span>

@@ -14,6 +14,7 @@ import ViewAccount from './pages/GetAccount';
 import EditAccount from './pages/EditAccount';
 import Logout from './pages/Logout';
 import { UserTypeProvider } from './contexts/UserTypeContext';
+import ViewShelter from './pages/ViewShelter';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
               <Route path="listing/:listingID" element={<PetDetail />} />
               <Route path="*" element={<NotFound />} />
               <Route path="notifications" element={<Notifications />} />
+              <Route path="shelter/:shelterID" element={<ViewShelter />} />
             </Route>
         </Routes>
       </UserTypeProvider>

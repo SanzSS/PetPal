@@ -25,7 +25,7 @@ class PetListing(models.Model):
     months_old = models.PositiveIntegerField(validators=[MaxValueValidator(11.0)], null=True, default=0)
     years_old = models.PositiveIntegerField(null=True, default=0)
     size = models.FloatField(validators=[MinValueValidator(0.0)])
-    shelter = models.ForeignKey(User, on_delete=models.CASCADE)
+    shelter = models.ForeignKey(User, on_delete=models.CASCADE, related_name="pets")
     description = models.TextField(blank=True, null=True)
     behaviour = models.TextField(blank=True, null=True)
     medical_history = models.TextField(blank=True, null=True)
