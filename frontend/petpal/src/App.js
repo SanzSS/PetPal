@@ -34,7 +34,7 @@ function App() {
               <Route path="listing/:listingID" element={<PetDetail />} />
               <Route path="*" element={<NotFound />} />
               <Route path="notifications" element={<Notifications />} />
-              <Route path="pet/:petID/apply" element={< CreateApplication /> } />
+              <Route path="listing/:petID/apply" element={< CreateApplication /> } />
             </Route>
         </Routes>
       </UserTypeProvider>
