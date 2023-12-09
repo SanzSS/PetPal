@@ -67,13 +67,13 @@ const ViewAccount = () => {
             Email address: 
         </p>
         <div>
-            <input type="email" className="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2" value={email} />
+            <p className="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2 bg-white">{email}</p>
         </div>
         <p>
             Name:
         </p>
         <div>
-            <input type="text" className="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2" value={name} />
+            <p className="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2 bg-white">{name}</p>
         </div>
     </div>
     </main>
