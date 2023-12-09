@@ -4,7 +4,7 @@ from rest_framework.serializers import (CharField, ModelSerializer,
                                         ValidationError)
 from .models import User
 from comments.serializers import ReviewSerializer
-from applications.serializers import PetListingSerializer
+from petlistings.serializers import PetListingSerializer
 
 
 class CreateUserSerializer(ModelSerializer):
