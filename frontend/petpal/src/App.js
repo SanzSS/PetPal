@@ -28,12 +28,12 @@ function App() {
               <Route index element={<Login />} />
               <Route path="signup" element={<Signup />} />
               <Route path="search" element={<Search />} />
-              <Route path="my_profile" element={<ViewAccount />} />
+              <Route path="account" element={<ViewAccount />} />
+              <Route path="account/edit" element={<EditAccount />} />
               <Route path="user/:userID" element={<ViewAccount />} />
-              <Route path="my_profile/edit" element={<EditAccount />} />
               <Route path="logout" element={<Logout />} />
               <Route path="create_listing" element={<CreateListing />} /> {/* Change to REST format? */}
-              <Route path="update_listing" element={<UpdateListing />} /> {/* Change to REST format? */}
+              <Route path="update_listing/:listingID" element={<UpdateListing />} /> {/* Change to REST format? */}
               <Route path="listing/:listingID" element={<PetDetail />} />
               <Route path="*" element={<NotFound />} />
               <Route path="notifications" element={<Notifications />} />

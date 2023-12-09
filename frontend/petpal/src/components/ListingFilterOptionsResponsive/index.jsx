@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 
-const ListingFilterOptionsResponsive = ({setSearchParams, speciesFilter, breedsFilter, query}) => {
+const ListingFilterOptionsResponsive = ({setSearchParams, speciesFilter, breedsFilter, sheltersFilter, query}) => {
 
-    const [newFilters, setNewFilters] = useState({status: query.status, species: query.species, breed: query.breed, age: query.age, gender: query.gender, size: query.size});
+    const [newFilters, setNewFilters] = useState({shelter: query.shelter, status: query.status, species: query.species, breed: query.breed, age: query.age, gender: query.gender, size: query.size});
 
     useEffect(() => {
-        setNewFilters({status: query.status, species: query.species, breed: query.breed, age: query.age, gender: query.gender, size: query.size});
+        setNewFilters({shelter: query.shelter, status: query.status, species: query.species, breed: query.breed, age: query.age, gender: query.gender, size: query.size});
     }, [query]);
 
     const handleInputChange = (e) => {
@@ -32,6 +32,13 @@ const ListingFilterOptionsResponsive = ({setSearchParams, speciesFilter, breedsF
 
     return <form className="flex flex-col justify-start lg:hidden">
         <p className="mb-2">Filter By:</p>
+        <div className="filter-div">
+            <label for="filter-by-shelter">Shelter</label>
+            <select id="filter-by-shelter" name="shelter" className="filter-menu cursor-pointer" value={newFilters.shelter}  onChange={handleInputChange}>
+                <option value=""></option>
+                {sheltersFilter && (sheltersFilter.map((shelter, index) => (<option key={index} value={shelter} className="capitalize">{shelter.name}</option>)))}
+            </select>
+        </div>
         <div className="filter-div">
             <label for="filter-by-status">Status</label>
             <select id="filter-by-status" name="status" className="filter-menu cursor-pointer" value={newFilters.status} onChange={handleInputChange}>

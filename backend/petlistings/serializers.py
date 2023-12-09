@@ -1,6 +1,7 @@
 from rest_framework.serializers import ModelSerializer
 from .models import PetListing, ListingImage
 from rest_framework import serializers
+from accounts.models import User
 
 class ListingImageSerializer(ModelSerializer):
     class Meta:
@@ -49,7 +50,7 @@ class PetListingSerializer(ModelSerializer):
 
         return super().update(instance, validated_data)
     
-class FilterSerializer(ModelSerializer):
+class FilterSerializer(serializers.ModelSerializer):
     class Meta:
         model = PetListing
         fields = ['species', 'breed']
