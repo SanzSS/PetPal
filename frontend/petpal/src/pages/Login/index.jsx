@@ -74,7 +74,7 @@ const Login = () => {
                 } else {
                     // HTTP error
                     if (error.message.includes('401')) {
-                        setLoginError('Email and password combination is invalid.');
+                        setLoginError('No active account found with the given credentials.');
                     } else if (error.message.includes('400')) {
                         setLoginError('Bad request. Check your credentials.');
                     } else {
