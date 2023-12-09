@@ -8,12 +8,74 @@ const Application = ({application}) => {
     const { token } = useAuth();
     const { userType } = useUserType();
 
+    const [status, setStatus] = useState(
+        application.status
+    );
+
+    const [statusError, setStatusError] = useState('');
+
     const answersDict = {};
     application.answers.forEach(answer => {
         answersDict[answer.question_num] = answer.answer;
     });
 
     console.log(application);
+
+    const validate_form = () => {
+        var isValid = true;
+
+        var newErrors = '';
+
+        if (status.trim() === '') {
+            newErrors = 'Status cannot be blank';
+            isValid = false;
+        } else if (!['withdrawn', 'accepted', 'denied', 'pending'].includes(status)) {
+            console.log(status);
+            newErrors = 'Invalid status';
+            isValid = false;
+        } else {
+            newErrors = '';
+        }
+
+        setStatusError(newErrors);
+        return isValid;
+    }
+
+    const update = async (event) => {
+        event.preventDefault();
+
+        if (validate_form()) {
+            try {
+                await axios.patch(`http://127.0.0.1:8000/applications/${application.id}/`, 
+                    JSON.stringify({"status": status}),
+                    {headers: {
+                        "Authorization": `Bearer ${token}`,
+                        'Content-Type': 'application/json',
+                    }
+                });
+                setStatusError('Success!');
+            } catch (error) {
+                console.error(error)
+                if (error.response) {
+                        if (error.response.status < 500) {
+                            const errorString = error.response.data;
+                            setStatusError(errorString);
+                        } else {
+                            setStatusError('An error occurred during the application process.');
+                        }
+                }
+            }
+        }
+    }
+
+    const handleInputChange = (event) => {
+        event.preventDefault();
+        const { name, value } = event.target;
+
+        setStatus(
+          value
+        );
+    };
 
     return <>
         <div id="app-container" class="border border-2 border-teal-900 border-solid rounded-md w-10/12 flex items-center mb-4 mt-10">
@@ -27,6 +89,21 @@ const Application = ({application}) => {
                 </p>
                 {userType === 'shelter' ? (<Link to={`/user/${application.user.id}`}>See user</Link>) : (
         <Link to={`/listing/${application.pet.id}`}>See pet</Link>
+      )}
+                <p>
+            Application Status: 
+        </p>
+    {userType === 'shelter' ? 
+    (            <select onChange={handleInputChange} class="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2 bg-white">
+    <option value="" disabled="" selected="selected" class="placeholder border rounded-md shadow-md">{application.status}</option>
+        <option value="accepted">accepted</option>
+        <option value="denied">denied</option>
+    </select>) : 
+    (
+        <select onChange={handleInputChange} class="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2 bg-white">
+    <option value="" disabled="" selected="selected" class="placeholder border rounded-md shadow-md">{application.status}</option>
+        <option value="withdrawn">withdrawn</option>
+    </select>
       )}
                 <p>
             Your address: <span>*</span>
@@ -203,6 +280,11 @@ const Application = ({application}) => {
             {answersDict[22]}
             </p>
         </div>
+        {statusError && <p className="error">{JSON.stringify(statusError)}</p>}
+
+        <div className="items-center justify-center flex mt-4">
+            <input type="submit" onClick={(event) => update(event)} value="Save" id="submit" className="text-center w-[50%] bg-blue3 text-white font-extrabold text-2xl flex justify-center items-center rounded-md shadow-md mb-4 hover:bg-white hover:text-blue3 border border-blue3 hover:border hover:border-black lg:w-[50%] md:w-[50%]"/>
+          </div>
             </details>
         </div>
     </>

@@ -43,8 +43,8 @@ class ApplicationSerializer(ModelSerializer):
 
     class Meta:
         model = Application
-        fields = ['date', 'pet', 'status', 'answers', 'user']
-        read_only_fields = ['date', 'pet', 'status', 'answers', 'user']
+        fields = ['id', 'date', 'pet', 'status', 'answers', 'user']
+        read_only_fields = ['id', 'date', 'pet', 'status', 'answers', 'user']
 
 class CreateApplicationSerializer(ModelSerializer):
     answers = ApplicationAnswerSerializer(many=True)
@@ -184,8 +184,8 @@ class ListApplicationSerializer(ModelSerializer):
 
     class Meta:
         model = Application
-        fields = ['date', 'user', 'pet', 'answers', 'status', 'filter', 'sort', 'last_update']
-        read_only_fields = ['date', 'user', 'pet', 'answers', 'status', 'last_update']
+        fields = ['id', 'date', 'user', 'pet', 'answers', 'status', 'filter', 'sort', 'last_update']
+        read_only_fields = ['id', 'date', 'user', 'pet', 'answers', 'status', 'last_update']
 
     def to_representation(self, instance):
         return super().to_representation(instance)
