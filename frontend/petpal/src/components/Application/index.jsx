@@ -2,38 +2,18 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useAuth } from '../../contexts/TokenContext';
 import { useState, useEffect } from 'react';
+import { useUserType } from '../../contexts/UserTypeContext';
 
 const Application = ({application}) => {
     const { token } = useAuth();
-
-    // if (application.pet) {
-    //     try {
-    //         axios.get(`http://127.0.0.1:8000/listings/listing/${application.pet}/`, 
-    //             {headers: {
-    //                 "Authorization": `Bearer ${token}`
-    //             }
-    //         })
-    //         .then(response => {
-    //             if (response.status !== 200) {
-    //                 console.log(response);
-    //                 throw new Error(`HTTP error! Status: ${response.status}`);
-    //             }
-    //             return response.data;
-    //         })
-    //         .then(data => {
-    //             setPetName(data.name);
-    //         });
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // }
+    const { userType } = useUserType();
 
     const answersDict = {};
     application.answers.forEach(answer => {
         answersDict[answer.question_num] = answer.answer;
     });
 
-    console.log(answersDict);
+    console.log(application);
 
     return <>
         <div id="app-container" class="border border-2 border-teal-900 border-solid rounded-md w-10/12 flex items-center mb-4 mt-10">
@@ -45,6 +25,9 @@ const Application = ({application}) => {
                 <p class="text-left">
                     Date applied: {(new Date(application.date)).toDateString()}
                 </p>
+                {userType === 'shelter' ? (<Link to={`/user/${application.user.id}`}>See user</Link>) : (
+        <Link to={`/listing/${application.pet.id}`}>See pet</Link>
+      )}
                 <p>
             Your address: <span>*</span>
         </p>

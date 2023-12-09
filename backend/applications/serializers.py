@@ -13,12 +13,13 @@ from rest_framework.status import HTTP_403_FORBIDDEN, HTTP_405_METHOD_NOT_ALLOWE
 class UserSerializer(ModelSerializer):
     class Meta:
         model = get_user_model()
-        fields = ["email", "name", "user_type", "avatar"]
+        fields = ["id", "email", "name", "user_type", "avatar"]
 
 class PetListingSerializer(ModelSerializer):
     class Meta:
         model = PetListing
-        fields = ["name",
+        fields = ["id",
+                  "name",
                   "status",
                   "gender",
                   "species",

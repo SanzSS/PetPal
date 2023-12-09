@@ -28,6 +28,7 @@ function App() {
               <Route path="signup" element={<Signup />} />
               <Route path="search" element={<Search />} />
               <Route path="my_profile" element={<ViewAccount />} />
+              <Route path="user/:userID" element={<ViewAccount />} />
               <Route path="my_profile/edit" element={<EditAccount />} />
               <Route path="logout" element={<Logout />} />
               <Route path="create_listing" element={<CreateListing />} /> {/* Change to REST format? */}
