@@ -37,7 +37,7 @@ const ViewAccount = () => {
                     const { email, name, avatar } = response.data;
                     setEmail(email);
                     setName(name);
-                    setAvatar(avatar)
+                    setAvatar(avatar);
                 }
             } catch (error) {
                 console.error(error);
@@ -53,7 +53,9 @@ const ViewAccount = () => {
             <h1 className="text-6xl mt-12 text-blue3 font-extrabold text-center mb-10">
                 Account Settings
             </h1>
-            <img src={`media/${avatar}`} alt="User Avatar" className="w-30 h-30 rounded-full"/>
+            <div id="avatar-container">
+                {avatar && <img src={avatar} alt="User Avatar" id="avatar" className="rounded-full"/>}
+            </div>
     </div>
         </div>
     <div className="h-[20rem] rounded-md border-blue3 border-4 bg-blue2 shadow-lg flex items-left p-3 mt-4 lg:w-[70%] flex-col w-[70%] md:w-[70%]">
@@ -64,13 +66,13 @@ const ViewAccount = () => {
             Email address: 
         </p>
         <div>
-            <input type="email" className="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2" value={email} />
+            <p className="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2 bg-white">{email}</p>
         </div>
         <p>
             Name:
         </p>
         <div>
-            <input type="text" className="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2" value={name} />
+            <p className="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2 bg-white">{name}</p>
         </div>
     </div>
     </main>

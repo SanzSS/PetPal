@@ -48,8 +48,8 @@ const Layout = () => {
             </header>
             <Outlet />
         </div>
-        <footer class="flex w-full bg-blue3 text-white h-[3rem] justify-center items-center">
-            <p class="text-center">Copyright 2023 by Victor Yao, Dian Rong, Angela Zhuo and Sanzhar Shamshiyev.</p>
+        <footer className="flex w-full bg-blue3 text-white h-[3rem] justify-center items-center">
+            <p className="text-center">Copyright 2023 by Victor Yao, Dian Rong, Angela Zhuo and Sanzhar Shamshiyev.</p>
         </footer>
     </body>
 }

@@ -6,7 +6,7 @@ from rest_framework.generics import CreateAPIView, ListAPIView, UpdateAPIView, R
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.views import APIView
 from django.shortcuts import get_object_or_404, get_list_or_404
-from .serializers import CreateUserSerializer, UserSerializer, UpdateUserSerializer
+from .serializers import CreateUserSerializer, UserSerializer, UpdateUserSerializer, ShelterSerializer
 from .models import User
 from notifications.models import Notification
 from petlistings.models import PetListing
@@ -77,8 +77,10 @@ class GetAccount(RetrieveAPIView, UpdateAPIView):
     def get_serializer_class(self):
         if self.request.method == 'PATCH':
             return UpdateUserSerializer
-        if self.request.method == 'GET':
+        if self.request.method == 'GET' and self.request.user.user_type == "shelter":
+            return ShelterSerializer
+        elif self.request.user.user_type == "seeker":
             return UserSerializer
-
+    
 
 

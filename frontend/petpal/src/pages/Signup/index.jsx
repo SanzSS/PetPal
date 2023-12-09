@@ -98,8 +98,10 @@ const Signup = () => {
         toSend.append('password1', formData.password1);
         toSend.append('password2', formData.password2);
         toSend.append('user_type', formData.user_type);
-        toSend.append('avatar', formData.avatar);
-
+        if (formData.avatar) {
+            toSend.append('avatar', formData.avatar);
+        }
+        
         if (validate_form()) {
             try {
                 await axios.post('http://127.0.0.1:8000/accounts/', toSend);
