@@ -41,7 +41,6 @@ const ViewShelter = () => {
             <div className="grid gap-2 w-3/4">
                 <h1 className="font-bold block text-2xl pb-3 text-blue3"> Pets Here </h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 p-2">
-                    {/* console.log(shelter.pets); */}
                     {shelter.pets?.map((pet) => (
                         <ListingCard listing={pet} key={pet.id}/>
                     ))}
