@@ -1,9 +1,4 @@
-// Haha notif css files
-import '../../pages/Notifications/dist/notifications_output.css';
-import '../../pages/Notifications/notifications.css';
-
 import axios from 'axios';
-
 import { useState, useEffect } from 'react';
 // import { useParams, useNavigate } from 'react-router-dom';
 
