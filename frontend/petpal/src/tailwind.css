@@ -10,12 +10,16 @@
     @apply mb-6 w-full
 }
 
+.sort-div {
+    @apply mb-6 flex justify-between
+}
+
 .card {
     @apply border bg-white rounded shadow-md overflow-hidden
 }
 
 .button {
-    @apply text-white bg-blue3 font-bold rounded h-8 shadow-md hover:border-black hover:text-blue3 hover:bg-white hover:border-2
+    @apply text-white bg-blue3 font-bold rounded h-8 shadow-md hover:border-blue3 hover:text-blue3 hover:bg-white hover:border-2
 }
 
 .input {
