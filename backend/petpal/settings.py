@@ -53,7 +53,6 @@ INSTALLED_APPS = [
     'petlistings',
     'notifications',
     'keywords',
-    'corsheaders',
 ]
 
 MIDDLEWARE = [
