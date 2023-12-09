@@ -655,12 +655,20 @@ video {
   margin-top: 0.25rem;
 }
 
+.mt-10 {
+  margin-top: 2.5rem;
+}
+
 .mt-12 {
   margin-top: 3rem;
 }
 
 .mt-2 {
   margin-top: 0.5rem;
+}
+
+.mt-3 {
+  margin-top: 0.75rem;
 }
 
 .mt-4 {
@@ -673,14 +681,6 @@ video {
 
 .mt-\[64px\] {
   margin-top: 64px;
-}
-
-.mt-10 {
-  margin-top: 2.5rem;
-}
-
-.mt-3 {
-  margin-top: 0.75rem;
 }
 
 .box-border {
@@ -763,10 +763,6 @@ video {
   min-height: 100vh;
 }
 
-.w-1\/2 {
-  width: 50%;
-}
-
 .w-10\/12 {
   width: 83.333333%;
 }
@@ -775,12 +771,20 @@ video {
   width: 3.5rem;
 }
 
+.w-3\/4 {
+  width: 75%;
+}
+
 .w-9 {
   width: 2.25rem;
 }
 
 .w-\[22\%\] {
   width: 22%;
+}
+
+.w-\[50\%\] {
+  width: 50%;
 }
 
 .w-\[6\.5rem\] {
@@ -805,14 +809,6 @@ video {
 
 .w-screen {
   width: 100vw;
-}
-
-.w-\[50\%\] {
-  width: 50%;
-}
-
-.w-3\/4 {
-  width: 75%;
 }
 
 .max-w-\[836px\] {
@@ -1052,6 +1048,14 @@ video {
   padding-bottom: 4rem;
 }
 
+.pb-2 {
+  padding-bottom: 0.5rem;
+}
+
+.pb-3 {
+  padding-bottom: 0.75rem;
+}
+
 .pb-4 {
   padding-bottom: 1rem;
 }
@@ -1086,14 +1090,6 @@ video {
 
 .pt-8 {
   padding-top: 2rem;
-}
-
-.pb-2 {
-  padding-bottom: 0.5rem;
-}
-
-.pb-3 {
-  padding-bottom: 0.75rem;
 }
 
 .text-left {
@@ -1178,11 +1174,6 @@ video {
 .text-red-600 {
   --tw-text-opacity: 1;
   color: rgb(220 38 38 / var(--tw-text-opacity));
-}
-
-.text-teal-900 {
-  --tw-text-opacity: 1;
-  color: rgb(19 78 74 / var(--tw-text-opacity));
 }
 
 .text-white {
@@ -1351,12 +1342,12 @@ details > summary::-webkit-details-marker {
   display: none;
 }
 
-.hover\:border-2:hover {
-  border-width: 2px;
-}
-
 .hover\:border:hover {
   border-width: 1px;
+}
+
+.hover\:border-2:hover {
+  border-width: 2px;
 }
 
 .hover\:border-black:hover {
@@ -1457,30 +1448,30 @@ details > summary::-webkit-details-marker {
     width: 15%;
   }
 
-  .md\:w-\[70\%\] {
-    width: 70%;
-  }
-
-  .md\:w-\[83\%\] {
-    width: 83%;
-  }
-
   .md\:w-\[50\%\] {
     width: 50%;
+  }
+
+  .md\:w-\[70\%\] {
+    width: 70%;
   }
 
   .md\:w-\[75\%\] {
     width: 75%;
   }
 
-  .md\:text-6xl {
-    font-size: 3.75rem;
-    line-height: 1;
+  .md\:w-\[83\%\] {
+    width: 83%;
   }
 
   .md\:text-4xl {
     font-size: 2.25rem;
     line-height: 2.5rem;
+  }
+
+  .md\:text-6xl {
+    font-size: 3.75rem;
+    line-height: 1;
   }
 }
 
@@ -1493,16 +1484,16 @@ details > summary::-webkit-details-marker {
     display: none;
   }
 
-  .lg\:w-\[70\%\] {
-    width: 70%;
-  }
-
   .lg\:w-3\/4 {
     width: 75%;
   }
 
   .lg\:w-\[50\%\] {
     width: 50%;
+  }
+
+  .lg\:w-\[70\%\] {
+    width: 70%;
   }
 
   .lg\:grid-cols-4 {

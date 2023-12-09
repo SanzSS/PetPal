@@ -8,7 +8,7 @@ const Logout = () => {
     const { setUserType } = useUserType();
     setToken('');
     setUserType('');
-    navigate("/");
+    navigate("/login");
 
     return <>
     </>

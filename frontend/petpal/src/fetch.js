@@ -15,7 +15,7 @@ export async function fetchWithAuthorization(url, settings, navigate, loginToken
         case 401:
         case 403:
             // Redirect to the login page if unauthorized
-            navigate('/');
+            navigate('/login');
             break;
         default:
             break;

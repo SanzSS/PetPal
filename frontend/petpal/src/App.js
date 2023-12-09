@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import NotFound from './pages/NotFound';
 import Search from './pages/Search';
 import Layout from './components/Layout';
@@ -24,9 +24,10 @@ function App() {
       <TokenProvider>
       <UserTypeProvider>
         <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="signup" element={<Signup />} />
             <Route path="/" element={<Layout />}>
-              <Route index element={<Login />} />
-              <Route path="signup" element={<Signup />} />
+              <Route index element={<Navigate to="search" />} />
               <Route path="search" element={<Search />} />
               <Route path="account" element={<ViewAccount />} />
               <Route path="account/edit" element={<EditAccount />} />
