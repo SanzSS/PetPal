@@ -60,7 +60,6 @@ class GetAccount(RetrieveAPIView, UpdateAPIView):
             return self.request.user
         user = get_object_or_404(User, id=user_id)
         return user
-    #
     def delete(self, request, user_id):
         if self.request.user.pk != self.get_object().pk:
             return Response({"detail": "You do not have permission to delete this account."},
