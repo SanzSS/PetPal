@@ -59,9 +59,9 @@ const Layout = () => {
                         </summary>
                         <div className="mt-[64px] flex flex-col">
                             <Link to="/search" className="text-white bg-blue3 pl-8 py-2 header-item">Search</Link>
-                            <Link to="/create_listing" className="text-white bg-blue3 pl-8 py-2 header-item">Create a Pet</Link>
+                            { userType === 'seeker' ? <Link to="/my_applications" className="text-white bg-blue3 pl-8 py-2 header-item">My Applications</Link> : <Link to="/create_listing" className="text-white bg-blue3 pl-8 py-2 header-item">Create a Pet</Link>}
                             <Link to="/account" className="text-white bg-blue3 pl-8 py-2 header-item">My Account</Link>
-                            { userType === 'shelter' ? <li><Link to={`shelter/${userId}`} className="dropdown-menu-item">My Pets</Link></li> : <></>}
+                            { userType === 'seeker' ? <></> : <Link to={`shelter/${userId}`} className="text-white bg-blue3 pl-8 py-2 header-item">My Pets</Link>}
                             <Link to="/notifications" className="text-white bg-blue3 pl-8 py-2 header-item">Notifications</Link>
                             <Link to="/logout" className="text-white bg-blue3 pl-8 py-2 mb-[-48px] header-item">Log Out</Link>
                         </div>
