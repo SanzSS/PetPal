@@ -57,7 +57,7 @@ class ShelterSerializer(ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['email', 'name', 'avatar', 'reviews', 'pets']
+        fields = ['email', 'name', 'avatar', 'reviews', 'pets', 'user_type']
 
 class UpdateUserSerializer(ModelSerializer):
     class Meta:
