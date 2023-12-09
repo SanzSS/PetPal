@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom'
 import './style.css';
 import { fetchWithAuthorization } from '../../fetch';
+import { useAuth } from '../../contexts/TokenContext';
 
 const PetDetail = () => {
     const [ listing, setListing ] = useState({});
@@ -11,8 +12,10 @@ const PetDetail = () => {
 
     const navigate = useNavigate();
 
+    const { token } = useAuth();
+
     useEffect(() => {
-        fetchWithAuthorization(`/listings/listing/${listingID}/`, {method: 'GET'}, navigate)
+        fetchWithAuthorization(`/listings/listing/${listingID}/`, {method: 'GET'}, navigate, token)
         .then(response => response.json())
         .then(json => {
             setListing(json);

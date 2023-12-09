@@ -63,3 +63,15 @@ details > summary::-webkit-details-marker {
 .header-item {
     @apply transition ease-out duration-300 hover:bg-blue4 hover:rounded 
 }
+
+#avatar-container {
+    height: 12rem;
+    width: 12rem;
+}
+
+#avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+}

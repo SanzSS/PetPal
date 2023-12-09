@@ -1,10 +1,14 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom";
+import { fetchWithAuthorization } from '../../fetch';
+import { useAuth } from '../../contexts/TokenContext';
 
 const ListingForm = ({ initialValues, create }) => {
     const [formData, setFormData] = useState(initialValues);
 
     const navigate = useNavigate();
+
+    const { token } = useAuth();
 
     useEffect(() => {
         setFormData(initialValues);
@@ -41,7 +45,7 @@ const ListingForm = ({ initialValues, create }) => {
         }
         
         if (create) {
-            fetch(`/listings/listing/`, {method: 'POST', body: form}, navigate)
+            fetchWithAuthorization(`/listings/listing/`, {method: 'POST', body: form}, navigate, token)
             .then(response => {
                 if (!response.ok) {
                 throw new Error('Network response was not ok');

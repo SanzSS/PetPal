@@ -52,7 +52,6 @@ INSTALLED_APPS = [
     'petlistings',
     'notifications',
     'keywords',
-    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -66,6 +65,8 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
 ]
+
+
 ROOT_URLCONF = 'petpal.urls'
 
 TEMPLATES = [
