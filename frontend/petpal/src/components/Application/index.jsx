@@ -105,6 +105,12 @@ const Application = ({application}) => {
         <option value="withdrawn">withdrawn</option>
     </select>
       )}
+      <br></br>
+
+{userType === 'shelter' ? 
+    (            <p>Rating: {application.rating}</p>) : 
+    (<p></p>)}
+    <br></br>
                 <p>
             Your address: <span>*</span>
         </p>
