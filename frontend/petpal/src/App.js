@@ -9,6 +9,7 @@ import Login from './pages/Login';
 import { TokenProvider } from './contexts/TokenContext';
 import Signup from './pages/Signup'
 import ViewAccount from './pages/GetAccount';
+import EditAccount from './pages/EditAccount';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
               <Route path="signup" element={<Signup />} />
               <Route path="search" element={<Search />} />
               <Route path="my_profile" element={<ViewAccount />} />
+              <Route path="my_profile/edit" element={<EditAccount />} />
               <Route path="create_listing" element={<CreateListing />} /> {/* Change to REST format? */}
               <Route path="update_listing" element={<UpdateListing />} /> {/* Change to REST format? */}
               <Route path="*" element={<NotFound />} />

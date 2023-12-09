@@ -60,21 +60,21 @@ const ViewAccount = () => {
             <img src={avatar} alt="User Avatar" className="w-30 h-30 rounded-full"/>
     </div>
         </div>
-    <div className="h-[40rem] rounded-md border-blue3 border-4 bg-blue2 shadow-lg flex items-left p-3 mt-4 lg:w-[70%] flex-col w-[70%] md:w-[70%]">
+    <div className="h-[20rem] rounded-md border-blue3 border-4 bg-blue2 shadow-lg flex items-left p-3 mt-4 lg:w-[70%] flex-col w-[70%] md:w-[70%]">
         <div className="self-end bg-gray-500 border border-black rounded-md w-14 text-center font-bold hover:bg-white">
-        <button>Edit</button>
+        <Link to="/my_profile/edit">Edit</Link>
         </div>
         <p>
             Email address: 
         </p>
         <div>
-            <input type="email" className="border rounded-md shadow-md" value={email} />
+            <input type="email" className="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2" value={email} />
         </div>
         <p>
             Name:
         </p>
         <div>
-            <input type="text" className="border rounded-md shadow-md" value={name} />
+            <input type="text" className="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2" value={name} />
         </div>
     </div>
     </main>
