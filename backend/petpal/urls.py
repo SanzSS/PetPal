@@ -33,5 +33,7 @@ urlpatterns = [
     path('applications/', include('applications.urls', namespace='applications')),
 
     path('listings/', include('petlistings.urls', namespace='petlistings')),
-    path('notifications/', include('notifications.urls', namespace='notifications'))
+    path('notifications/', include('notifications.urls', namespace='notifications')),
+
+    path('keywords/', include('keywords.urls', namespace='keywords'))
 ]

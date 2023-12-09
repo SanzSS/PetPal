@@ -15,7 +15,7 @@ class Application(models.Model):
                              related_name='applications',
                              on_delete=models.CASCADE)
     pet = models.ForeignKey(PetListing, on_delete=models.CASCADE, null=True)
-    rating = models.IntegerField()
+    rating = models.IntegerField(default=0)
     class Status(models.TextChoices):
         PENDING = "pending"
         ACCEPTED = "accepted"
