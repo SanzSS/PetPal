@@ -14,6 +14,8 @@ import ViewAccount from './pages/GetAccount';
 import EditAccount from './pages/EditAccount';
 import Logout from './pages/Logout';
 import { UserTypeProvider } from './contexts/UserTypeContext';
+import CreateApplication from './pages/CreateApplication';
+import ListApplications from './pages/ListApplication';
 import ViewShelter from './pages/ViewShelter';
 
 function App() {
@@ -27,6 +29,7 @@ function App() {
               <Route path="signup" element={<Signup />} />
               <Route path="search" element={<Search />} />
               <Route path="my_profile" element={<ViewAccount />} />
+              <Route path="user/:userID" element={<ViewAccount />} />
               <Route path="my_profile/edit" element={<EditAccount />} />
               <Route path="logout" element={<Logout />} />
               <Route path="create_listing" element={<CreateListing />} /> {/* Change to REST format? */}
@@ -34,6 +37,8 @@ function App() {
               <Route path="listing/:listingID" element={<PetDetail />} />
               <Route path="*" element={<NotFound />} />
               <Route path="notifications" element={<Notifications />} />
+              <Route path="listing/:petID/apply" element={< CreateApplication /> } />
+              <Route path="my_applications" element={< ListApplications /> } /> {/* seeker and shelter */}
               <Route path="shelter/:shelterID" element={<ViewShelter />} />
             </Route>
         </Routes>
