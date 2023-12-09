@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import ListingForm from '../../components/ListingForm'
 import { fetchWithAuthorization } from '../../fetch';
+import { useAuth } from '../../contexts/TokenContext';
 
 const UpdateListing = () => {
     const [ listing, setListing ] = useState({});
@@ -9,14 +10,16 @@ const UpdateListing = () => {
 
     const navigate = useNavigate();
 
+    const { token } = useAuth();
+
     useEffect(() => {
-        fetchWithAuthorization(`/listings/listing/${listingID}/`, {method: 'GET'}, navigate)
+        fetchWithAuthorization(`/listings/listing/${listingID}/`, {method: 'GET'}, navigate, token)
         .then(response => response.json())
         .then(json => {
             setListing(json);
             console.log(json)
         })
-    }, [listingID]);
+    }, [listingID, navigate, token]);
 
     let initialValues = {
         listingID: listingID,

@@ -1,4 +1,3 @@
-import './style.css';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -62,19 +61,19 @@ const ViewAccount = () => {
         </div>
     <div className="h-1/2 rounded-md border-blue3 border-4 bg-blue2 shadow-lg flex items-left p-3 mt-4 lg:w-[70%] flex-col w-[70%] md:w-[70%]">
         <div className="self-end bg-gray-500 border border-black rounded-md w-14 text-center font-bold hover:bg-white">
-        <Link to="/my_profile/edit">Edit</Link>
+        <Link to="/account/edit">Edit</Link>
         </div>
         <p>
             Email address: 
         </p>
         <div>
-            <input type="email" className="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2" value={email} />
+            <p className="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2 bg-white">{email}</p>
         </div>
         <p>
             Name:
         </p>
         <div>
-            <input type="text" className="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2" value={name} />
+            <p className="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2 bg-white">{name}</p>
         </div>
     </div>
     </main>

@@ -1,5 +1,3 @@
-import './dist/notifications_output.css';
-import './notifications.css'
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useAuth } from '../../contexts/TokenContext';
