@@ -103,7 +103,7 @@ const Signup = () => {
 
         if (validate_form()) {
             try {
-                await axios.post('http://127.0.0.1:8000/accounts/', formData);
+                await axios.post('http://127.0.0.1:8000/accounts/', toSend);
                 navigate("/");
             } catch (error) {
                 console.error(error)
@@ -183,7 +183,7 @@ const Signup = () => {
                 <br />
                 <input type="submit" onClick={(event) => signup(event)} className="text-yellow-400 border-solid border-yellow-400 border-2 rounded-md cursor-pointer bg-teal-900 p-3 justify-center inline-flex items-center no-underline text-center w-full" value="Sign up" id="signup"/>
                 <br></br>
-                <p className="error">{signupError}</p>
+                <p className="error">{JSON.stringify(signupError)}</p>
                 <br></br>
             </form>
             <br></br>
@@ -192,6 +192,5 @@ const Signup = () => {
             </main>
         </>
 }
-
 
 export default Signup
