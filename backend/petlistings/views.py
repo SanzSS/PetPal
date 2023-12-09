@@ -105,7 +105,7 @@ class Listing(ListCreateAPIView):
 
 class Filters(ListAPIView):
     serializer_class = FilterSerializer
-    queryset = PetListing.objects.values('species', 'breed').distinct()
+    queryset = PetListing.objects.values('species', 'breed', 'shelter').distinct()
     pagination_class = None
 
     def get(self, request):
@@ -114,6 +114,8 @@ class Filters(ListAPIView):
         serializer = self.get_serializer(self.get_queryset(), many=True)
         species_list = [item['species'] for item in serializer.data]
         breed_list = [item['breed'] for item in serializer.data]
+        #shelter_list = [item['shelter'] for item in serializer.data]
+        #return Response({'shelter': shelter_list, 'species': species_list, 'breeds': breed_list})
         return Response({'species': species_list, 'breeds': breed_list})
 
 

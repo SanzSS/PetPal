@@ -62,7 +62,7 @@ const ListingForm = ({ initialValues, create }) => {
             });
         }
         else {
-            fetch(`http://127.0.0.1:8000/listings/listing/${formData.listingID}/`, {method: 'PATCH', body: form, headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzAxODMwMjMxLCJpYXQiOjE3MDE4MDg2MzEsImp0aSI6Ijg0NjZjY2U1MmU0NTRhNjQ5ZjY0NDI1NzFhOGFiNTJjIiwidXNlcl9pZCI6M30.Avuyyn7dDxSWButsUDNjUldCNDEUQL8iSawF8uj5OZM'}})
+            fetchWithAuthorization(`/listings/listing/${formData.listingID}/`, {method: 'PATCH', body: form}, navigate, token)
             .then(response => {
                 if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -70,8 +70,7 @@ const ListingForm = ({ initialValues, create }) => {
                 console.log(response.json()); // Parse the JSON data
             })
             .then(data => {
-                // Handle the response data
-                console.log('Success:', data);
+                navigate(`/listing/${formData.listingID}/`);
             })
             .catch(error => {
                 // Handle errors

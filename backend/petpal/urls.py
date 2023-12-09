@@ -33,4 +33,6 @@ urlpatterns = [
     path('listings/', include('petlistings.urls', namespace='petlistings')),
     path('notifications/', include('notifications.urls', namespace='notifications')),
     path('keywords/', include('keywords.urls', namespace='keywords'))
-]
+] 
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
