@@ -1,7 +1,7 @@
 from .models import PetListing, ListingImage
 from accounts.models import User
-from .serializers import PetListingSerializer
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from .serializers import PetListingSerializer, FilterSerializer
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView
 from django.shortcuts import get_object_or_404
 from .pagination import PetListingPagination
 from rest_framework.response import Response
@@ -22,18 +22,26 @@ class Listing(ListCreateAPIView):
     def get_queryset(self):
         queryset = PetListing.objects.all()
 
-        status = self.request.query_params.get('status', 'available')
+        search = self.request.query_params.get('search', None)
+        if search:
+            queryset = queryset.filter(name__contains=search)
+
+        status = self.request.query_params.get('status', None)
         shelter = self.request.query_params.get('shelter', None)
         species = self.request.query_params.get('species', None)
+        breed = self.request.query_params.get('breed', None)
         age = self.request.query_params.get('age', None)
         gender = self.request.query_params.get('gender', None)
         size = self.request.query_params.get('size', None)
 
-        queryset = queryset.filter(status=status)
+        if status:
+            queryset = queryset.filter(status=status)
         if shelter:
             queryset = queryset.filter(shelter=shelter)
         if species:
             queryset = queryset.filter(species=species)
+        if breed:
+            queryset = queryset.filter(breed=breed)
         if age:
             if age == 'baby':
                 queryset = queryset.filter(months_old__gte=0, months_old__lte=11).filter(Q(years_old=0) | Q(years_old__isnull=True))
@@ -87,10 +95,26 @@ class Listing(ListCreateAPIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
         listing = serializer.save()
-        images = self.request.data.getlist('images')
+        
+        images = self.request.FILES.getlist('images')
+
         for image_data in images:
             image, _ = ListingImage.objects.get_or_create(listing=listing, image=image_data)
             listing.images.add(image)
+
+
+class Filters(ListAPIView):
+    serializer_class = FilterSerializer
+    queryset = PetListing.objects.values('species', 'breed').distinct()
+    pagination_class = None
+
+    def get(self, request):
+        if not self.request.user.is_authenticated:
+            return Response({"detail": "You must be logged in to view pet listings."}, status=status.HTTP_401_UNAUTHORIZED)
+        serializer = self.get_serializer(self.get_queryset(), many=True)
+        species_list = [item['species'] for item in serializer.data]
+        breed_list = [item['breed'] for item in serializer.data]
+        return Response({'species': species_list, 'breeds': breed_list})
 
 
 class ManageListing(RetrieveUpdateDestroyAPIView):
@@ -128,7 +152,7 @@ class ManageListing(RetrieveUpdateDestroyAPIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
         listing = serializer.save()
-        images = self.request.data.getlist('images')
+        images = self.request.FILES.getlist('images')
         if images:
             old_images = listing.images.all()
             for image in old_images:
@@ -160,7 +184,7 @@ class ManageListing(RetrieveUpdateDestroyAPIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
         listing = serializer.save()
-        images = self.request.data.getlist('images')
+        images = self.request.FILES.getlist('images')
         if images:
             old_images = listing.images.all()
             for image in old_images:

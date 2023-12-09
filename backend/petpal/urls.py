@@ -20,20 +20,17 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('accounts/', include('accounts.urls', namespace='accounts')),
-
-     path('comments/', include('comments.urls', namespace='comments')),
-
-
+    path('comments/', include('comments.urls', namespace='comments')),
     path('applications/', include('applications.urls', namespace='applications')),
-
     path('listings/', include('petlistings.urls', namespace='petlistings')),
     path('notifications/', include('notifications.urls', namespace='notifications')),
-
     path('keywords/', include('keywords.urls', namespace='keywords'))
 ]
