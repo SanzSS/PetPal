@@ -19,7 +19,7 @@ const UpdateListing = () => {
             setListing(json);
             console.log(json)
         })
-    }, [listingID]);
+    }, [listingID, navigate, token]);
 
     let initialValues = {
         listingID: listingID,
