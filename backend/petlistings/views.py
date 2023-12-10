@@ -1,6 +1,6 @@
 from .models import PetListing, ListingImage
 from accounts.models import User
-from .serializers import PetListingSerializer, FilterSerializer
+from .serializers import PetListingSerializer, FilterSerializer, ShelterFilterSerializer
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView
 from django.shortcuts import get_object_or_404
 from .pagination import PetListingPagination
@@ -105,7 +105,7 @@ class Listing(ListCreateAPIView):
 
 class Filters(ListAPIView):
     serializer_class = FilterSerializer
-    queryset = PetListing.objects.values('species', 'breed', 'shelter').distinct()
+    queryset = PetListing.objects.values('species', 'breed').distinct()
     pagination_class = None
 
     def get(self, request):
@@ -114,9 +114,20 @@ class Filters(ListAPIView):
         serializer = self.get_serializer(self.get_queryset(), many=True)
         species_list = [item['species'] for item in serializer.data]
         breed_list = [item['breed'] for item in serializer.data]
-        #shelter_list = [item['shelter'] for item in serializer.data]
-        #return Response({'shelter': shelter_list, 'species': species_list, 'breeds': breed_list})
         return Response({'species': species_list, 'breeds': breed_list})
+    
+class ShelterFilters(ListAPIView):
+    serializer_class = ShelterFilterSerializer
+    queryset = User.objects.values('name', 'id').distinct().filter(user_type='shelter')
+    pagination_class = None
+
+    def get(self, request):
+        if not self.request.user.is_authenticated:
+            return Response({"detail": "You must be logged in to view users."}, status=status.HTTP_401_UNAUTHORIZED)
+        serializer = self.get_serializer(self.get_queryset(), many=True)
+        shelter_ids = [item['id'] for item in serializer.data]
+        shelter_names = [item['name'] for item in serializer.data]
+        return Response({'shelter_ids': shelter_ids, 'shelter_names': shelter_names})
 
 
 class ManageListing(RetrieveUpdateDestroyAPIView):

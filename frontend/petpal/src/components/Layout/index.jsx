@@ -42,7 +42,7 @@ const Layout = () => {
                             <summary className="cursor-pointer header-item p-4">Menu</summary>
                             <ul className="absolute text-black bg-white w-auto rounded-md p-2 flex flex-col items-center border border-blue3 mt-1 ml-[-22px]">
                                 <li><Link to="/account" className="dropdown-menu-item">My Account</Link></li>
-                                { userType === 'shelter' ? <li><Link to={`shelter/${userId}`} className="dropdown-menu-item">My Pets</Link></li> : <></>}
+                                { userType === 'seeker' ? <></> : <li><Link to={`shelter/${userId}`} className="dropdown-menu-item">My Pets</Link></li>}
                                 <li><Link to="/logout" className="dropdown-menu-item">Log Out</Link></li>
                             </ul>
                         </details>

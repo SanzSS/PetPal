@@ -20,6 +20,7 @@ const Search = () => {
     const navigate = useNavigate();
 
     const query = useMemo(() => ({
+        shelter: parseInt(searchParams.get("shelter")) ?? '',
         page: parseInt(searchParams.get("page") ?? 1),
         search: searchParams.get("search") ?? '',
         status: searchParams.get("status") ?? 'available',
@@ -57,11 +58,18 @@ const Search = () => {
             console.error('Error fetching data', error);
         });
 
-        fetchWithAuthorization('/listings/filters/', {method: 'GET'}, navigate, token)
-        .then(response => response.json())
-        .then(json => {
-            setAllFilters(json)
-            setAllFilters({...allFilters, shelters: []})
+        Promise.all([
+            fetchWithAuthorization('/listings/filters/', { method: 'GET' }, navigate, token)
+                .then(response => response.json()),
+            fetchWithAuthorization('/listings/shelterfilters/', { method: 'GET' }, navigate, token)
+                .then(response => response.json())
+        ])
+        .then(([filtersResponse, shelterFiltersResponse]) => {
+            setAllFilters({
+                ...allFilters,
+                ...filtersResponse,
+                shelters: shelterFiltersResponse
+            });
         })
         .catch(error => {
             console.error('Error fetching data', error);
