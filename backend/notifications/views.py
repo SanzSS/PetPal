@@ -29,16 +29,19 @@ class Notif(APIView):
         content = notif.content
         print(notif.content_type.model)
         if notif.content_type.model == 'comment':
-            return redirect(reverse_lazy('comments:application', kwargs={'application_id':
-                                                           content.application.pk
-                                                       }))
+            # return redirect(reverse_lazy('comments:application', kwargs={'application_id':
+            #                                                content.application.pk
+            #                                            }))
+            return Response({'key': content.application.pk})
         if notif.content_type.model == 'review':
-            return redirect(reverse_lazy('comments:shelter',
-                                kwargs={'shelter_id': content.shelter.pk}))
+            # return redirect(reverse_lazy('comments:shelter',
+            #                     kwargs={'shelter_id': content.shelter.pk}))
+            return Response({'key': content.shelter.pk})
         if notif.content_type.model == 'application':
-            return redirect(reverse_lazy('applications:application-get-update',
-                                kwargs={'application_id': notif.content_id,
-                                        }))
+            # return redirect(reverse_lazy('applications:application-get-update',
+            #                     kwargs={'application_id': notif.content_id,
+            #                             }))
+            return Response({'key': notif.content_id})
 
     def get_object(self, queryset=None):
         key1 = self.request.user.pk
@@ -62,7 +65,7 @@ class NotifList(APIView):
                                              None)  # Default to 'create_time'
         filter_errors = []
         sort_errors = []
-        if filter and filter not in ['read', 'unread']:
+        if filter and filter not in ['Read', 'Unread']:
             filter_errors.append(f"'{filter}' is not a valid status.")
         if sort and sort not in ['create_time']:
             sort_errors.append(
@@ -77,9 +80,9 @@ class NotifList(APIView):
         if errors:
             raise ValidationError(errors)
 
-        if filter == 'read':
+        if filter == 'Read':
             queryset = queryset.filter(state=True)
-        elif filter == 'unread':
+        elif filter == 'Unread':
             queryset = queryset.filter(state=False)
 
         if sort == 'create_time':

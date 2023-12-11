@@ -14,9 +14,12 @@ import ViewAccount from './pages/GetAccount';
 import EditAccount from './pages/EditAccount';
 import Logout from './pages/Logout';
 import { UserTypeProvider } from './contexts/UserTypeContext';
+import Shelters from './pages/ListShelters';
+
 import CreateApplication from './pages/CreateApplication';
 import ListApplications from './pages/ListApplication';
 import ViewShelter from './pages/ViewShelter';
+import Comments from './pages/Comments';
 
 function App() {
   return (
@@ -38,9 +41,11 @@ function App() {
               <Route path="listing/:listingID" element={<PetDetail />} />
               <Route path="*" element={<NotFound />} />
               <Route path="notifications" element={<Notifications />} />
+              <Route path="shelters" element={<Shelters />} />
               <Route path="listing/:petID/apply" element={< CreateApplication /> } />
               <Route path="my_applications" element={< ListApplications /> } /> {/* seeker and shelter */}
               <Route path="shelter/:shelterID" element={<ViewShelter />} />
+              <Route path="comments/:applicationID" element={<Comments />} />
             </Route>
         </Routes>
       </UserTypeProvider>

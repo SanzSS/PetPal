@@ -2,6 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
+#convo-title {
+    margin-top: 3rem;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#comments {
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+#self {
+    align-self: flex-end;
+    margin: 1rem;
+}
+
+#others {
+    align-self: flex-start;
+    margin: 1rem;
+}
+
+#message {
+    width: 100%;
+}
+
+
 .filter-menu {
     @apply w-full rounded shadow-md
 }

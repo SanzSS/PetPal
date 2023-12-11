@@ -5,7 +5,6 @@ import { useParams } from 'react-router-dom';
 
 // import { fetchWithAuthorization } from '../../fetch';
 import ListingCard from '../../components/ListingCard'
-import ReviewCard from '../../components/ReviewCard';
 import { useAuth } from '../../contexts/TokenContext';
 
 import Reviews from '../../components/Reviews';
