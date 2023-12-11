@@ -2,25 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-p {
-    font-size: 1rem;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
-  
- }
-
- input {
-    align-content: left;
-    border-color: black;
-    width: 100%;
-}
-
-input[type="checkbox"] {
-    width: 10px;
-    border-color: black;
-}
-
-
 .filter-menu {
     @apply w-full rounded shadow-md
 }
@@ -64,14 +45,3 @@ details > summary::-webkit-details-marker {
     @apply transition ease-out duration-300 hover:bg-blue4 hover:rounded 
 }
 
-#avatar-container {
-    height: 12rem;
-    width: 12rem;
-}
-
-#avatar {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center center;
-}
