@@ -69,29 +69,29 @@ const EditAccount = () => {
     </div> */}
 </div>
 </div>
-<div className="h-1/2 rounded-md border-blue3 border-4 bg-blue2 shadow-lg flex items-left p-3 mt-4 lg:w-[70%] flex-col w-[70%] md:w-[70%]">
+<div id="profile-container" className="h-1/2 rounded-md border-blue3 border-4 bg-blue2 shadow-lg flex items-left p-3 mt-4 lg:w-[70%] flex-col w-[70%] md:w-[70%]">
 
 <form onSubmit={handleSubmit}>
-<p>
+<p id='account-attribute'>
     Email address: 
 </p>
 <div>
-    <input type="email" className="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2" placeholder={email} onChange={(e) => setEmail(e.target.value)} />
+    <input type="email" id='account-value' className="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2" placeholder={email} onChange={(e) => setEmail(e.target.value)} />
 </div>
-<p>
+<p id='account-attribute'>
     Name:
 </p>
 <div>
-    <input type="text" className="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2" placeholder={name} onChange={(e) => setName(e.target.value)}/>
+    <input type="text" id='account-value' className="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2" placeholder={name} onChange={(e) => setName(e.target.value)}/>
 </div>
-<p>
+<p id='account-attribute'>
     Password:
 </p>
 <div>
-    <input type="password" className="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2" onChange={(e) => setPassword(e.target.value)} />
+    <input type="password" id='account-value' className="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2" onChange={(e) => setPassword(e.target.value)} />
 </div>
 <div className=' text-center'>
-<input type="submit" value="Update" className=" bg-gray-500 border border-black rounded-md w-[8%] mt-3 text-center font-bold hover:bg-white"/>
+<input type="submit" value="Update" id='account-value' className=" bg-gray-500 border border-black rounded-md w-[8%] mt-3 text-center font-bold hover:bg-white"/>
 </div>
 </form>
 </div>

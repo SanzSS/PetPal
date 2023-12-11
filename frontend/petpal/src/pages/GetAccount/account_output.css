@@ -1463,7 +1463,7 @@ video {
   transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
 }
 
-p {
+/* p {
   font-size: 1rem;
   margin-bottom: 1rem;
   margin-top: 1rem;
@@ -1478,7 +1478,7 @@ input {
 input[type="checkbox"] {
   width: 10px;
   border-color: black;
-}
+} */
 
 .filter-menu {
   width: 100%;
