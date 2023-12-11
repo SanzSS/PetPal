@@ -106,4 +106,7 @@ details > summary::-webkit-details-marker {
 
 #account-value {
     margin-bottom: 1rem;
+    align-content: left;
+    border-color: black;
+    width: 100%;
  }
