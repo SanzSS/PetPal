@@ -4,15 +4,31 @@ import { Link } from 'react-router-dom'
 import './style.css';
 import { fetchWithAuthorization } from '../../fetch';
 import { useAuth } from '../../contexts/TokenContext';
+import { jwtDecode } from "jwt-decode";
 
 const PetDetail = () => {
     const [ listing, setListing ] = useState({});
+    const [ shelter, setShelter ] = useState({});
     const { listingID } = useParams();
     const [ currentImageIndex, setCurrentImageIndex ] = useState(0);
+    const [userId, setUserId] = useState('');
 
     const navigate = useNavigate();
 
     const { token } = useAuth();
+
+    useEffect(() => {
+        if (token) {
+            try {
+                const decodedToken = jwtDecode(token);
+                if (decodedToken) {
+                    setUserId(decodedToken.user_id);
+                }
+            } catch (error) {
+                console.error('Error decoding token:', error);
+            }
+        }
+    }, [token]);
 
     useEffect(() => {
         fetchWithAuthorization(`/listings/listing/${listingID}/`, {method: 'GET'}, navigate, token)
@@ -21,6 +37,16 @@ const PetDetail = () => {
             setListing(json);
         })
     }, [listingID]);
+
+    useEffect(() => {
+        fetchWithAuthorization(`/accounts/${listing.shelter}/`, {method: 'GET'}, navigate, token)
+        .then(response => response.json())
+        .then(json => {
+            setShelter(json);
+        })
+    }, [listing]);
+
+    
 
     const handleNextImage = () => {
         setCurrentImageIndex((prevIndex) => (prevIndex + 1) % (listing?.images.length || 0));
@@ -51,13 +77,16 @@ const PetDetail = () => {
         statusColor = 'text-gray-600'
     }
 
+    console.log(userId)
+    console.log(listing.shelter)
+
     return <>
         <main className="flex flex-col justify-center items-center pb-16 mt-12">
             <div className="grid grid-cols-1 gap-4 w-10/12 xl:w-3/4 2xl:w-2/4 max-w-[836px] p-6 rounded-md border-blue3 border-4 bg-white">
                 <div className="flex justify-between capitalize">
-                    <Link to={`../update_listing/${listing.id}`} className="text-white bg-blue3 font-bold rounded shadow-md border-2 border-blue3 hover:border-black hover:text-blue3 hover:bg-white">Edit</Link>
+                    {userId === listing.shelter ? <Link to={`../update_listing/${listing.id}`} className="text-white bg-blue3 font-bold rounded shadow-md border-2 border-blue3 hover:border-black hover:text-blue3 hover:bg-white">Edit</Link> : <p></p>}
                     <p className={statusColor}>{listing?.status}</p>
-                    <p>{listing?.shelter}</p>
+                    <p>{shelter.name}</p>
                 </div>
                 <div className="relative group">
                     {listing.images && listing.images.length > 0 ? (<img className="h-[400px] w-full object-cover rounded-md border-blue3 border-4" src={`http://127.0.0.1:8000/${listing.images[currentImageIndex]}`} />) : <div className="text-center h-[400px] w-full object-cover rounded-md border-blue3 border-4 flex justify-center items-center"><p>No Image Available</p></div>}

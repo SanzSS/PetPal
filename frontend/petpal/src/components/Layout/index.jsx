@@ -35,16 +35,14 @@ const Layout = () => {
                     <Link to="/search"><h1 className="text-4xl text-white font-extrabold">PetPal</h1></Link>
                     <div className="flex justify-evenly items-center">
                         <Link to="/search" className="header-item p-4">Search</Link>
-
-                        { userType === 'shelter' ? <Link to="/create_listing" className="header-item p-4">Create a Pet</Link> : <></>}
-                        { userType === 'seeker' ? <Link to="/my_applications" className="header-item p-4">My Applications</Link> : <></>}
+                        { userType === 'seeker' ? <Link to="/my_applications" className="header-item p-4">My Applications</Link> : <><Link to="/create_listing" className="header-item p-4">Create a Pet</Link> <Link to="/my_applications" className="header-item p-4">Received Applications</Link></>}
                         <Link to="/notifications" className="header-item p-4">Notifications</Link>
                         {/* Dropdown Menu */}
                         <details>
                             <summary className="cursor-pointer header-item p-4">Menu</summary>
                             <ul className="absolute text-black bg-white w-auto rounded-md p-2 flex flex-col items-center border border-blue3 mt-1 ml-[-22px]">
                                 <li><Link to="/account" className="dropdown-menu-item">My Account</Link></li>
-                                { userType === 'shelter' ? <li><Link to={`shelter/${userId}`} className="dropdown-menu-item">My Pets</Link></li> : <></>}
+                                { userType === 'seeker' ? <></> : <li><Link to={`shelter/${userId}`} className="dropdown-menu-item">My Pets</Link></li>}
                                 <li><Link to="/logout" className="dropdown-menu-item">Log Out</Link></li>
                             </ul>
                         </details>
@@ -61,10 +59,9 @@ const Layout = () => {
                         </summary>
                         <div className="mt-[64px] flex flex-col">
                             <Link to="/search" className="text-white bg-blue3 pl-8 py-2 header-item">Search</Link>
-                            <Link to="/shelters" className="text-white bg-blue3 pl-8 py-2 header-item">Shelters</Link>
-                            <Link to="/create_listing" className="text-white bg-blue3 pl-8 py-2 header-item">Create a Pet</Link>
+                            { userType === 'seeker' ? <Link to="/my_applications" className="text-white bg-blue3 pl-8 py-2 header-item">My Applications</Link> : <><Link to="/create_listing" className="text-white bg-blue3 pl-8 py-2 header-item">Create a Pet</Link><Link to="/my_applications" className="text-white bg-blue3 pl-8 py-2 header-item">Received Applications</Link></>}
                             <Link to="/account" className="text-white bg-blue3 pl-8 py-2 header-item">My Account</Link>
-                            { userType === 'shelter' ? <li><Link to={`shelter/${userId}`} className="dropdown-menu-item">My Pets</Link></li> : <></>}
+                            { userType === 'seeker' ? <></> : <Link to={`shelter/${userId}`} className="text-white bg-blue3 pl-8 py-2 header-item">My Pets</Link>}
                             <Link to="/notifications" className="text-white bg-blue3 pl-8 py-2 header-item">Notifications</Link>
                             <Link to="/logout" className="text-white bg-blue3 pl-8 py-2 mb-[-48px] header-item">Log Out</Link>
                         </div>

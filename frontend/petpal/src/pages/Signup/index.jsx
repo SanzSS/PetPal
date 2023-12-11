@@ -189,7 +189,7 @@ const Signup = () => {
                     <br></br>
                 </form>
                 <br></br>
-                <Link to="/" id="login" className="underline mb-20 text-center">Login</Link>
+                <Link to="/login" id="login" className="underline mb-20 text-center">Login</Link>
                 </div>
             </main>
         </>
