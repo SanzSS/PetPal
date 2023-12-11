@@ -91,7 +91,7 @@ const EditAccount = () => {
     <input type="password" id='account-value' className="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2" onChange={(e) => setPassword(e.target.value)} />
 </div>
 <div className=' text-center'>
-<input type="submit" value="Update" id='account-value' className=" bg-gray-500 border border-black rounded-md w-[8%] mt-3 text-center font-bold hover:bg-white"/>
+<input type="submit" value="Update" className=" bg-gray-500 border border-black rounded-md w-[8%] mt-3 text-center font-bold hover:bg-white"/>
 </div>
 </form>
 </div>
