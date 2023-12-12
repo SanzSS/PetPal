@@ -90,3 +90,35 @@ details > summary {
 details > summary::-webkit-details-marker {
     display: none;
 }
+
+#avatar-container {
+    height: 10rem;
+    width: 10rem;
+  }
+  
+  #avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+  }
+  
+  #profile-container {
+    margin-bottom: 4rem;
+  }
+
+  #account-attribute, #account-value {
+    font-size: 1rem;
+ }
+
+ #account-attribute {
+    margin-bottom: 1rem;
+    margin-top: 1rem; 
+}
+
+#account-value {
+    margin-bottom: 1rem;
+    align-content: left;
+    border-color: black;
+    width: 100%;
+ }
