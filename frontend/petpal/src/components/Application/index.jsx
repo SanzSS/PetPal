@@ -92,13 +92,13 @@ const Application = ({application}) => {
             Application Status: 
         </p>
     {userType === 'shelter' ? 
-    (            <select onChange={handleInputChange} class="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2 bg-white">
+    (            <select onChange={handleInputChange} class="border rounded-md shadow-md p-3 border-solid border-blue3 border-2 bg-white">
     <option value="" disabled="" selected="selected" class="placeholder border rounded-md shadow-md">{application.status}</option>
         <option value="accepted">accepted</option>
         <option value="denied">denied</option>
     </select>) : 
     (
-        <select onChange={handleInputChange} class="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2 bg-white">
+        <select onChange={handleInputChange} class="border rounded-md shadow-md p-3 border-solid border-blue3 border-2 bg-white">
     <option value="" disabled="" selected="selected" class="placeholder border rounded-md shadow-md">{application.status}</option>
         <option value="withdrawn">withdrawn</option>
     </select>
@@ -113,7 +113,7 @@ const Application = ({application}) => {
             Your address: <span>*</span>
         </p>
         <div>
-            <p type="text" name="question1" className="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2 bg-white" required>{answersDict[1]}</p>
+            <p type="text" name="question1" className="border rounded-md shadow-md p-3 border-solid border-blue3 border-2 bg-white" required>{answersDict[1]}</p>
         </div>
 
                 <p>
@@ -280,7 +280,7 @@ const Application = ({application}) => {
                 </p>
 
         <div>
-            <p name="question22"  className="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2 bg-white" required>
+            <p name="question22"  className="border rounded-md shadow-md p-3 border-solid border-blue3 border-2 bg-white" required>
             {answersDict[22]}
             </p>
         </div>
