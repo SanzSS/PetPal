@@ -72,13 +72,13 @@ const Comments = () => {
             <div>
                 <h1 id="convo-title">Conversation about {application.pet?.name}</h1>
             </div>
-            <div id="comments" className="border border-2 border-teal-900 border-solid rounded-md ">
+            <div id="comments" className="border border-2 border-blue3 border-solid rounded-md ">
                 {comments.results?.map((comment) => (
                         <CommentCard comment={comment} username={username}/>
                 ))}
                 <div className="w-full" id="chatbox">
                     <form action="../application/conversation-sent.html" className="flex justify-between items-center flex-row">
-                        <input id="message" name="message" placeholder="Type your message" required className="p-3 border border-solid border-teal-900 border-2 rounded-md"></input>
+                        <input id="message" name="message" placeholder="Type your message" required className="p-3 border border-solid border-blue3 border-2 rounded-md"></input>
                         <input type="submit" value="Send" id="send" className="p-3 rounded-md font-bold text-lg border-solid border-yellow-400 border-2 cursor-pointer p-3 justify-center inline-flex items-center no-underline text-center"></input>
                         </form>
                 </div>

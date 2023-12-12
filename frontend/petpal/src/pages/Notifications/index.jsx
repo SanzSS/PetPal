@@ -88,9 +88,9 @@ const Notifications = () => {
 
                 </div>
                 {notifs.map((obj, index) => {
-                    let style = 'h-32 bg-slate-50 border border-gray-300 shadow-lg flex items-center p-3 gap-[75%]';
+                    let style = 'h-32 bg-slate-50 border border-gray-300 shadow-lg flex items-center p-3 gap-[75%] relative';
                     if (!obj.notif.state) {
-                        style = 'h-32 bg-slate-50 border border-gray-300 shadow-lg flex items-center p-3 gap-[75%] border-l-blue-500';
+                        style = 'h-32 bg-slate-50 border border-gray-300 shadow-lg flex items-center p-3 gap-[75%] border-l-blue-500 relative';
                     } return (
                         <a key={index} href="../shelter/shelter-info.html" className="w-[75%]">
                         <div id="notif" className={style}>
@@ -98,7 +98,7 @@ const Notifications = () => {
                                 <p className="mb-3"> <span className="font-bold">{obj.notif.sender}</span> {obj.text}</p> 
                                 <p className="font-extralight text-xs"> Sent at {obj.notif.creation_date}</p>
                             </div>
-                            <button onClick={() => handleButtonClick(obj.notif.pk)} className="bg-blue3 border border-blue3 text-white items-center font-bold py-2 px-4 rounded-md mt-8 mb-8 hover:bg-white hover:text-blue3">Delete </button>
+                            <button onClick={() => handleButtonClick(obj.notif.pk)} className="bg-blue3 border border-blue3 text-white items-center font-bold py-2 px-4 rounded-md mt-8 mb-8 hover:bg-white hover:text-blue3 absolute right-6">Delete </button>
 
                         </div>
                         

@@ -143,7 +143,7 @@ const ListingForm = ({ initialValues, create }) => {
                 <textarea id="special" class="input h-24" name="special_requirements" value={formData.special_requirements} onChange={handleInputChange}></textarea>
             </div>
             <div class="flex flex-col">
-                <input type="submit" class="button mx-2 mt-4 mb-2" value={create === true ? "Create Pet Listing" : "Update Pet Listing"} />
+                <input type="submit" class="button mx-2 mt-4 mb-2 cursor-pointer" value={create === true ? "Create Pet Listing" : "Update Pet Listing"} />
             </div>
         </form>
     </>
