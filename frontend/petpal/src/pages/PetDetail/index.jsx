@@ -76,8 +76,9 @@ const PetDetail = () => {
         statusColor = 'text-gray-600'
     }
 
-    console.log(userId)
-    console.log(listing.shelter)
+    const handleApply = () => {
+        navigate(`../listing/${listingID}/apply`)
+    };
 
     return <>
         <main className="flex flex-col justify-center items-center pb-16 mt-12">
@@ -145,6 +146,9 @@ const PetDetail = () => {
                 <div>
                     <h2 className="font-bold">Listing Date</h2>
                     <p>{formattedDate}</p>
+                </div>
+                <div className="flex justify-center">
+                    <button className="button w-1/2" onClick={handleApply}>Apply</button>
                 </div>
             </div>
         </main>
