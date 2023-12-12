@@ -3,7 +3,6 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../contexts/TokenContext';
 import { jwtDecode } from "jwt-decode";
-import './account_output.css';
 
 const ViewAccount = () => {
     const { token } = useAuth();
@@ -48,36 +47,31 @@ const ViewAccount = () => {
     }, [userId, token]);
     
     return <> 
-            <main className="items-center justify-center text-left flex flex-col">
-        <div className="items-center flex justify-center flex-col">
-            <div className="flex justify-center items-center flex-col">
-            <h1 className="text-6xl mt-12 text-blue3 font-extrabold text-center mb-10">
-                Account Settings
-            </h1>
-            {/* <div id="avatar-container">
-                {avatar && <img src={avatar} alt="User Avatar" id="avatar" className="rounded-full"/>}
-            </div> */}
-    </div>
-        </div>
-    <div className="h-1/2 rounded-md border-blue3 border-4 bg-blue2 shadow-lg flex items-left p-3 mt-4 lg:w-[70%] flex-col w-[70%] md:w-[70%]">
-        <div className="self-end bg-gray-500 border border-black rounded-md w-14 text-center font-bold hover:bg-white">
-        <Link to="/account/edit">Edit</Link>
-        </div>
-        <p>
-            Email address: 
-        </p>
-        <div>
-            <p className="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2 bg-white">{email}</p>
-        </div>
-        <p>
-            Name:
-        </p>
-        <div>
-            <p className="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2 bg-white">{name}</p>
-        </div>
-    </div>
-    </main>
-        </>
+        <main className="items-center justify-center text-left flex flex-col">
+            <div className="items-center flex justify-center flex-col">
+                <h1 className="text-6xl mt-12 text-blue3 font-extrabold text-center mb-10">
+                    Account Settings
+                </h1>
+                {/* <div id="avatar-container">
+                    {avatar && <img src={avatar} alt="User Avatar" id="avatar" className="rounded-full"/>}
+                </div> */}
+            </div>
+            <div className="h-1/2 rounded-md border-blue3 border-4 bg-blue2 shadow-lg flex items-left p-3 mt-4 flex-col w-[70%]">
+                <div className="self-end">
+                    <Link to="/account/edit" className="button p-1">Edit</Link>
+                </div>
+                <div className="my-2">
+                    <p>Email address:</p>
+                    <p className="rounded-md shadow-md p-3 border-solid border-blue3 border-2 w-full my-2 bg-white">{email}</p>
+                </div>
+                
+                <div className="my-2">
+                    <p>Name:</p>
+                    <p className="rounded-md shadow-md p-3 border-solid border-blue3 border-2 w-full my-2 bg-white">{name}</p>
+                </div>
+            </div>
+        </main>
+    </>
 }
 
 export default ViewAccount

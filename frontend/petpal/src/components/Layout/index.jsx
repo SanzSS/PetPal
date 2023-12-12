@@ -31,7 +31,7 @@ const Layout = () => {
         <div className="flex-1">
             <header>
                 {/* Navigation Bar */}
-                <nav className="hidden sm:flex sm:bg-blue3 sm:h-[70px] sm:text-white sm:justify-between sm:items-center sm:px-16">
+                <nav className="hidden lg:flex lg:bg-blue3 lg:h-[70px] lg:text-white lg:justify-between lg:items-center lg:px-16">
                     <Link to="/search"><h1 className="text-4xl text-white font-extrabold">PetPal</h1></Link>
                     <div className="flex justify-evenly items-center">
                         <Link to="/search" className="header-item p-4">Search</Link>
@@ -49,7 +49,7 @@ const Layout = () => {
                     </div>
                 </nav>
                 {/* Mobile Navigation Bar */}
-                <nav className="sm:hidden flex flex-col bg-blue3 w-screen pb-4">
+                <nav className="lg:hidden flex flex-col bg-blue3 w-screen pb-4">
                     <Link to="/search" className="self-center pt-2"><h1 className="text-4xl text-white font-extrabold">PetPal</h1></Link>
                     <details className="relative top-[-48px] right-4">
                         <summary className="absolute top-4 right-4">
