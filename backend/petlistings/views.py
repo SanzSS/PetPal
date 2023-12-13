@@ -37,7 +37,7 @@ class Listing(ListCreateAPIView):
         if status:
             queryset = queryset.filter(status__iexact=status)
         if shelter:
-            queryset = queryset.filter(shelter__iexact=shelter)
+            queryset = queryset.filter(shelter=shelter)
         if species:
             queryset = queryset.filter(species__iexact=species)
         if breed:
