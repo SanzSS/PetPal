@@ -38,8 +38,8 @@ const UpdateListing = () => {
     }
 
     return <>
-        <main class="flex flex-col items-center pb-16">
-            <h1 class="text-4xl md:text-6xl my-12 text-blue3 font-extrabold">Update Pet Information</h1>
+        <main className="flex flex-col items-center pb-16">
+            <h1 className="text-4xl md:text-6xl my-12 text-blue3 font-extrabold">Update Pet Information</h1>
             <ListingForm initialValues={initialValues} create={false} />
         </main>
     </>

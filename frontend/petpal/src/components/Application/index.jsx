@@ -78,13 +78,13 @@ const Application = ({application}) => {
     };
 
     return <>
-        <div id="app-container" class="w-full flex items-center mb-4 mt-10">
-            <details class="w-full flex items-center px-6 bg-white rounded-md border-2 border-blue3 border-solid">
-                <summary class="text-center cursor-pointer w-full text-lg mt-3 mb-3 font-bold capitalize" id="app">{application.pet.name}</summary>
-                <a href="../application/conversation.html" class="font-bold text-yellow-400 border-solid border-yellow-400 border-2 rounded-md cursor-pointer bg-blue3 p-3 justify-center inline-flex items-center no-underline text-center hover:bg-yellow-400 hover:text-blue3 hover:border-blue3">
+        <div id="app-container" className="w-full flex items-center mb-4 mt-10">
+            <details className="w-full flex items-center px-6 bg-white rounded-md border-2 border-blue3 border-solid">
+                <summary className="text-center cursor-pointer w-full text-lg mt-3 mb-3 font-bold capitalize" id="app">{application.pet.name}</summary>
+                <a href="../application/conversation.html" className="font-bold text-yellow-400 border-solid border-yellow-400 border-2 rounded-md cursor-pointer bg-blue3 p-3 justify-center inline-flex items-center no-underline text-center hover:bg-yellow-400 hover:text-blue3 hover:border-blue3">
                     Chat
                 </a>
-                <p class="text-left">
+                <p className="text-left">
                     Date applied: {(new Date(application.date)).toDateString()}
                 </p>
                 {userType === 'shelter' ? (<Link to={`/user/${application.user.id}`}>See user</Link>) : (<Link to={`/listing/${application.pet.id}`}>See pet</Link>)}
@@ -92,14 +92,14 @@ const Application = ({application}) => {
             Application Status: 
         </p>
     {userType === 'shelter' ? 
-    (            <select onChange={handleInputChange} class="rounded-md shadow-md p-3 border-solid border-blue3 border-2 bg-white">
-    <option value="" disabled="" selected="selected" class="placeholder border rounded-md shadow-md">{application.status}</option>
+    (            <select onChange={handleInputChange} className="rounded-md shadow-md p-3 border-solid border-blue3 border-2 bg-white">
+    <option value="" disabled="" selected="selected" className="placeholder border rounded-md shadow-md">{application.status}</option>
         <option value="accepted">accepted</option>
         <option value="denied">denied</option>
     </select>) : 
     (
-        <select onChange={handleInputChange} class="rounded-md shadow-md p-3 border-solid border-blue3 border-2 bg-white">
-    <option value="" disabled="" selected="selected" class="placeholder border rounded-md shadow-md">{application.status}</option>
+        <select onChange={handleInputChange} className="rounded-md shadow-md p-3 border-solid border-blue3 border-2 bg-white">
+    <option value="" disabled="" selected="selected" className="placeholder border rounded-md shadow-md">{application.status}</option>
         <option value="withdrawn">withdrawn</option>
     </select>
       )}
