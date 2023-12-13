@@ -16,8 +16,8 @@ const CreateListing = () => {
         special_requirements: '',
     }
     return <>
-        <main class="flex flex-col items-center pb-16">
-            <h1 class="text-4xl sm:text-6xl my-12 text-blue3 font-extrabold">Create a Pet Listing</h1>
+        <main className="flex flex-col items-center pb-16">
+            <h1 className="text-4xl sm:text-6xl my-12 text-blue3 font-extrabold">Create a Pet Listing</h1>
             <ListingForm initialValues={initialValues} create={true}/>
         </main>
     </>
