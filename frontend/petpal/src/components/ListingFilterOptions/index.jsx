@@ -19,6 +19,7 @@ const ListingFilterOptions = ({setSearchParams, speciesFilter, breedsFilter, she
     const handleSaveFilters = () => {
         setSearchParams(() => ({
             ...query,
+            shelter: newFilters.shelter,
             status: newFilters.status, 
             species: newFilters.species, 
             breed: newFilters.breed, 
@@ -34,9 +35,9 @@ const ListingFilterOptions = ({setSearchParams, speciesFilter, breedsFilter, she
         <p className="mb-2">Filter By:</p>
         <div className="filter-div">
             <label for="filter-by-shelter">Shelter</label>
-            <select id="filter-by-shelter" name="shelter" className="filter-menu cursor-pointer" value={newFilters.shelter}  onChange={handleInputChange}>
+            <select id="filter-by-shelter" name="shelter" className="filter-menu cursor-pointer capitalize" value={newFilters.shelter}  onChange={handleInputChange}>
                 <option value=""></option>
-                {sheltersFilter && (sheltersFilter.map((shelter, index) => (<option key={index} value={shelter} className="capitalize">{shelter.name}</option>)))}
+                {sheltersFilter && (sheltersFilter.shelter_ids.map((shelter_id, index) => (<option key={shelter_id} value={shelter_id} className="capitalize">{sheltersFilter.shelter_names[index]}</option>)))}
             </select>
         </div>
         <div className="filter-div">

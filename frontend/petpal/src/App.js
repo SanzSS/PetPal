@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import NotFound from './pages/NotFound';
 import Search from './pages/Search';
 import Layout from './components/Layout';
@@ -14,6 +14,8 @@ import ViewAccount from './pages/GetAccount';
 import EditAccount from './pages/EditAccount';
 import Logout from './pages/Logout';
 import { UserTypeProvider } from './contexts/UserTypeContext';
+import Shelters from './pages/ListShelters';
+
 import CreateApplication from './pages/CreateApplication';
 import ListApplications from './pages/ListApplication';
 import ViewShelter from './pages/ViewShelter';
@@ -25,9 +27,10 @@ function App() {
       <TokenProvider>
       <UserTypeProvider>
         <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
             <Route path="/" element={<Layout />}>
-              <Route index element={<Login />} />
-              <Route path="signup" element={<Signup />} />
+              <Route index element={<Navigate to="search" />} />
               <Route path="search" element={<Search />} />
               <Route path="account" element={<ViewAccount />} />
               <Route path="account/edit" element={<EditAccount />} />
@@ -38,6 +41,7 @@ function App() {
               <Route path="listing/:listingID" element={<PetDetail />} />
               <Route path="*" element={<NotFound />} />
               <Route path="notifications" element={<Notifications />} />
+              <Route path="shelters" element={<Shelters />} />
               <Route path="listing/:petID/apply" element={< CreateApplication /> } />
               <Route path="my_applications" element={< ListApplications /> } /> {/* seeker and shelter */}
               <Route path="shelter/:shelterID" element={<ViewShelter />} />

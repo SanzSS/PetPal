@@ -20,6 +20,7 @@ const Search = () => {
     const navigate = useNavigate();
 
     const query = useMemo(() => ({
+        shelter: parseInt(searchParams.get("shelter")) ?? '',
         page: parseInt(searchParams.get("page") ?? 1),
         search: searchParams.get("search") ?? '',
         status: searchParams.get("status") ?? 'available',
@@ -57,11 +58,18 @@ const Search = () => {
             console.error('Error fetching data', error);
         });
 
-        fetchWithAuthorization('/listings/filters/', {method: 'GET'}, navigate, token)
-        .then(response => response.json())
-        .then(json => {
-            setAllFilters(json)
-            setAllFilters({...allFilters, shelters: []})
+        Promise.all([
+            fetchWithAuthorization('/listings/filters/', { method: 'GET' }, navigate, token)
+                .then(response => response.json()),
+            fetchWithAuthorization('/listings/shelterfilters/', { method: 'GET' }, navigate, token)
+                .then(response => response.json())
+        ])
+        .then(([filtersResponse, shelterFiltersResponse]) => {
+            setAllFilters({
+                ...allFilters,
+                ...filtersResponse,
+                shelters: shelterFiltersResponse
+            });
         })
         .catch(error => {
             console.error('Error fetching data', error);
@@ -106,21 +114,21 @@ const Search = () => {
                     </div>
                     <div className="text-center flex justify-center mt-4">
                         {query.page > 1 ? <a onClick={() => setSearchParams({...query, page: query.page - 1})} className="button px-2 py-1 border-2 border-blue3 hover:text-blue3 font-extrabold cursor-pointer flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-caret-left-fill" viewBox="0 0 16 16">
                                 <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
                             </svg>
                         </a> : <a className="text-white bg-gray-500 rounded h-8 shadow-md hover:border-2 px-2 py-1 border-2 border-gray-500 font-extrabold cursor-default flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-caret-left-fill" viewBox="0 0 16 16">
                                 <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
                             </svg>
                         </a> }
                         <p className="inline text-white bg-blue3 font-bold rounded h-8 shadow-md px-2 py-1 mx-2">Page {query.page}</p>
                         {query.page < totalPages ? <a onClick={() => setSearchParams({...query, page: query.page + 1})} className="button px-2 py-1 border-2 border-blue3 hover:text-blue3 font-extrabold cursor-pointer flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-caret-right-fill" viewBox="0 0 16 16">
                                 <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
                             </svg>
                         </a> : <a className="text-white bg-gray-500 rounded h-8 shadow-md hover:border-2 px-2 py-1 border-2 border-gray-500 font-extrabold cursor-default flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-caret-right-fill" viewBox="0 0 16 16">
                                 <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
                             </svg>
                         </a> }

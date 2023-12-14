@@ -1,6 +1,6 @@
 from .models import PetListing, ListingImage
 from accounts.models import User
-from .serializers import PetListingSerializer, FilterSerializer
+from .serializers import PetListingSerializer, FilterSerializer, ShelterFilterSerializer
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, ListAPIView
 from django.shortcuts import get_object_or_404
 from .pagination import PetListingPagination
@@ -24,7 +24,7 @@ class Listing(ListCreateAPIView):
 
         search = self.request.query_params.get('search', None)
         if search:
-            queryset = queryset.filter(name__contains=search)
+            queryset = queryset.filter(name__icontains=search)
 
         status = self.request.query_params.get('status', None)
         shelter = self.request.query_params.get('shelter', None)
@@ -35,13 +35,13 @@ class Listing(ListCreateAPIView):
         size = self.request.query_params.get('size', None)
 
         if status:
-            queryset = queryset.filter(status=status)
+            queryset = queryset.filter(status__iexact=status)
         if shelter:
             queryset = queryset.filter(shelter=shelter)
         if species:
-            queryset = queryset.filter(species=species)
+            queryset = queryset.filter(species__iexact=species)
         if breed:
-            queryset = queryset.filter(breed=breed)
+            queryset = queryset.filter(breed__iexact=breed)
         if age:
             if age == 'baby':
                 queryset = queryset.filter(months_old__gte=0, months_old__lte=11).filter(Q(years_old=0) | Q(years_old__isnull=True))
@@ -52,7 +52,7 @@ class Listing(ListCreateAPIView):
             elif age == 'senior':
                 queryset = queryset.filter(years_old__gte=12)
         if gender:
-            queryset = queryset.filter(gender=gender)
+            queryset = queryset.filter(gender__iexact=gender)
         if size:
             if size == '0-20':
                 queryset = queryset.filter(size__gte=0, size__lte=20)
@@ -105,18 +105,29 @@ class Listing(ListCreateAPIView):
 
 class Filters(ListAPIView):
     serializer_class = FilterSerializer
-    queryset = PetListing.objects.values('species', 'breed', 'shelter').distinct()
+    queryset = PetListing.objects.values('species', 'breed').distinct()
     pagination_class = None
 
     def get(self, request):
         if not self.request.user.is_authenticated:
             return Response({"detail": "You must be logged in to view pet listings."}, status=status.HTTP_401_UNAUTHORIZED)
         serializer = self.get_serializer(self.get_queryset(), many=True)
-        species_list = [item['species'] for item in serializer.data]
-        breed_list = [item['breed'] for item in serializer.data]
-        #shelter_list = [item['shelter'] for item in serializer.data]
-        #return Response({'shelter': shelter_list, 'species': species_list, 'breeds': breed_list})
-        return Response({'species': species_list, 'breeds': breed_list})
+        species_list = {item['species'].lower() for item in serializer.data}
+        breed_list = {item['breed'].lower() for item in serializer.data}
+        return Response({'species': list(species_list), 'breeds': list(breed_list)})
+    
+class ShelterFilters(ListAPIView):
+    serializer_class = ShelterFilterSerializer
+    queryset = User.objects.values('name', 'id').distinct().filter(user_type='shelter')
+    pagination_class = None
+
+    def get(self, request):
+        if not self.request.user.is_authenticated:
+            return Response({"detail": "You must be logged in to view users."}, status=status.HTTP_401_UNAUTHORIZED)
+        serializer = self.get_serializer(self.get_queryset(), many=True)
+        shelter_ids = [item['id'] for item in serializer.data]
+        shelter_names = [item['name'] for item in serializer.data]
+        return Response({'shelter_ids': shelter_ids, 'shelter_names': shelter_names})
 
 
 class ManageListing(RetrieveUpdateDestroyAPIView):

@@ -1,4 +1,4 @@
 from rest_framework.pagination import PageNumberPagination
 
 class CommentPagination(PageNumberPagination):
-    page_size = 9
+    page_size = 8

@@ -44,17 +44,12 @@ const ListApplications = () => {
     }, [token, userType]);
     
     return <> 
-<main>
-          <div class="container" id="content">
-          {userType === 'shelter' ? (
-        <h1 className="mt-10">Applications for our pets</h1>
-      ) : (
-        <h1 className="mt-10">Past Applications</h1>
-      )}
+        <main className="flex flex-col items-center pb-16">
+          <div id="content">
+            {userType === 'shelter' ? (<h1 className="text-6xl my-12 text-blue3 font-extrabold text-center">Received Applications</h1>) : (<h1 className="text-6xl my-12 text-blue3 font-extrabold text-center">Past Applications</h1>)}
             
             {Array.isArray(applications) && applications.map((application) => (
-  <Application application={application} key={application.id} />
-))}
+            <Application application={application} key={application.id} />))}
             </div>
         </main>
         </>
