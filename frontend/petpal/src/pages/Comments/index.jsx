@@ -27,7 +27,7 @@ const Comments = () => {
     const [url, setUrl] = useState(`http://127.0.0.1:8000/comments/application/${applicationID}/`);
     const [newComment, setNewComment] = useState("")
 
-
+    const [error, setError] = useState("")
 
     useEffect(() => {
         if (token) {
@@ -74,7 +74,7 @@ const Comments = () => {
             }
         };
         fetchData();
-    }, [applicationID, userID, url, token]);
+    }, [applicationID, userID, url, token, newComment]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -89,17 +89,20 @@ const Comments = () => {
                     }
             });
             // get comments
-            const response_comments = await axios.get(url, {
-                headers: {
-                  "Authorization": `Bearer ${token}`
-                }
-            });
-            setComments(response_comments.data);
-            setNext(response_comments.data.next);
-            setPrev(response_comments.data.previous);
-        } catch (error) {
-            console.log(error)
+            // const response_comments = await axios.get(url, {
+            //     headers: {
+            //       "Authorization": `Bearer ${token}`
+            //     }
+            // });
+            // setComments(response_comments.data);
+            // setNext(response_comments.data.next);
+            // setPrev(response_comments.data.previous);
+        } catch (APIerror) {
+            console.log(APIerror);
+            setError("Content may not be blank");
         }
+        setUrl(`http://127.0.0.1:8000/comments/application/${applicationID}/`);
+        setNewComment("");
     } 
 
     return <>
@@ -113,31 +116,35 @@ const Comments = () => {
                 ))}
                 <div className="w-full" id="chatbox">
                     <form onSubmit={handleSubmit} className="flex justify-between items-center flex-row">
-                        <input id="message" name="message" onChange={(e) => setNewComment(e.target.value)} placeholder="Type your message" required className="p-3 border border-solid border-blue3 border-2 rounded-md"></input>
+                        <input id="message" name="message" value={newComment} onChange={(e) => setNewComment(e.target.value)} placeholder="Type your message" required className="p-3 border border-solid border-blue3 border-2 rounded-md"></input>
                         <input type="submit" value="Send" id="send" className="p-3 rounded-md font-bold text-lg border-solid border-yellow-400 border-2 cursor-pointer p-3 justify-center inline-flex items-center no-underline text-center"></input>
                     </form>
+                    <p className="col-span-2 self-center text-sm">{error}</p>
                 </div>
             </div>
-            {/* <div id="comments" className="rounded-md ">
-                {comments.results?.map((comment) => (
-                        <CommentCard comment={comment} username={username}/>
-                ))}
-            </div> */}
-            <div className="flex flex-row gap-4">
-                <button onClick={() => {
-                    if (prev != null) {
+
+            <div className="flex flex-row gap-4 mx-8">
+                {prev != null && (
+                    <button
+                        onClick={() => {
                         setUrl(prev);
                         setComments([]);
-                    }
-                }} className="bg-blue3 border border-blue3 text-white items-center font-bold py-2 px-4 rounded-md mt-8 mb-8 w-[6.5rem] hover:bg-white hover:text-blue3">Previous</button>
+                        }}
+                        className="bg-blue3 border border-blue3 text-white items-center font-bold py-2 px-4 rounded-md mt-8 mb-8 w-[6.5rem] hover:bg-white hover:text-blue3"
+                        >
+                        Previous
+                    </button>
+                )}
+                {next != null && (
                 <button onClick={() => {
                     // console.log(next);
                     if (next != null) {
                         setUrl(next);
                         setComments([]);
                     }
-                }} className="bg-blue3 border border-blue3 text-white items-center font-bold py-2 px-4 rounded-md mt-8 mb-8 w-[6.5rem] hover:bg-white hover:text-blue3">Next</button>
-            </div>
+                    }} className="bg-blue3 border border-blue3 text-white items-center font-bold py-2 px-4 rounded-md mt-8 mb-8 w-[6.5rem] hover:bg-white hover:text-blue3">Next</button>
+                )}
+                </div>
         </div>
     </>
 }

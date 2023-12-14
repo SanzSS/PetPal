@@ -1,3 +1,5 @@
+/* Where u put manual styling */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -50,6 +52,18 @@
     object-position: center center;
 }
 
+#review-input {
+    margin: 0px;
+    padding: 2px;
+}
+
+button#review-input {
+    margin: -1px;
+    padding: 0;
+    width: 40%;
+    justify-self: center;
+    font-size: 12px;
+}
 
 .filter-menu {
     @apply w-full rounded shadow-md
