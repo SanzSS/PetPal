@@ -23,10 +23,6 @@ const Layout = () => {
         }
     }, [token]);
 
-    useEffect(() => {
-        console.log(userType); // either 'seeker', 'shelter', or ''
-    }, [userType]);
-
     return <body className="min-h-screen bg-blue1 flex flex-col">
         <div className="flex-1">
             <header>
