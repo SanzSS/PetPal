@@ -44,14 +44,36 @@ const Keyword = ({keyword, setKeywords, index}) => {
         });
     };
 
+    const handleDelete = () => {
+        if (keyword.id) {
+            axios.delete(`http://127.0.0.1:8000/keywords/edit/${keyword.id}`, {
+                headers: {
+                Authorization: `Bearer ${token}`,
+                },
+            })
+          .then(() => {
+            // Update the keywords state to remove the deleted keyword
+            setKeywords(prevKeywords => prevKeywords.filter((_, i) => i !== index));
+            })
+          .catch(error => {
+            console.error(error);
+            });
+        } else {
+          // If the keyword doesn't have an id, it hasn't been saved to the backend yet
+          // Simply remove it from the state
+          setKeywords(prevKeywords => prevKeywords.filter((_, i) => i !== index));
+        }
+    };
+    
+
     return <>
         <div id="keyword" className="my-2">
             <input type="text" name="keyword" onChange={(event) => handleWordChange(event, index)} value={word} className="w-full rounded-md shadow-md p-3 border-solid border-blue3 border-2 bg-white" required/>
             <input type="number" name="weight" onChange={(event) => handleWeightChange(event, index)} value={weight} className="w-full rounded-md shadow-md p-3 border-solid border-blue3 border-2 bg-white" required/>
         </div>
-        {/* <div className="items-center justify-center flex mt-4">
-            <input type="submit" onClick={(event) => update(event)} value="Save" id="submit" className="button w-1/2 mb-6 text-xl cursor-pointer"/>
-          </div> */}
+        <button onClick={handleDelete} id='delete-keyword' className="text-white rounded-md mb-4 p-2 px-4 font-extrabold cursor-pointer hover:bg-white hover:border-2">
+            Delete
+        </button>
     </>
 }
 

@@ -133,7 +133,17 @@ details > summary::-webkit-details-marker {
 
  #keyword {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto auto auto;
     gap: 1rem;
     padding: 1rem;
+ }
+
+ #delete-keyword {
+    background-color: red;
+ }
+
+ #delete-keyword:hover {
+    color: red;
+    border-color: red;
+    background-color: white;
  }

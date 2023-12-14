@@ -152,7 +152,7 @@ const EditKeywords = () => {
                 <button onClick={addBlankKeyword} className="text-center p-3 bg-blue3 text-white font-extrabold text-xl flex justify-center items-center rounded-xl shadow-md cursor-pointer hover:text-blue3 hover:bg-white hover:border-2 hover:border-blue3">
                     Add a new keyword
                 </button>
-                <div className="h-1/2 rounded-md border-blue3 border-4 bg-blue2 shadow-lg flex p-3 mt-4 flex-col w-[70%]">
+                <div className="h-1/2 rounded-md border-blue3 border-4 bg-blue2 shadow-lg flex p-3 mt-4 flex-col w-[100%]">
                     <div id="keyword" className="my-2">
                         <h3 className="w-full p-3 text-2xl font-extrabold text-center">Word</h3>
                         <h3 className="w-full p-3 text-2xl font-extrabold text-center">Weight</h3>
