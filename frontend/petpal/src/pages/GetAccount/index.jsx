@@ -52,9 +52,10 @@ const ViewAccount = () => {
                 <h1 className="text-6xl mt-12 text-blue3 font-extrabold text-center mb-10">
                     Account Settings
                 </h1>
+                {avatar && 
                 <div id="avatar-container">
-                    {avatar && <img src={avatar} alt="User Avatar" id="avatar" className="rounded-full"/>}
-                </div>
+                    <img src={avatar} alt="User Avatar" id="avatar" className="rounded-full"/>
+                </div>}
             </div>
             <div id="profile-container" className="h-1/2 rounded-md border-blue3 border-4 bg-blue2 shadow-lg flex items-left p-3 mt-4 flex-col w-[70%]">
                 <div className="self-end">
