@@ -24,9 +24,9 @@ const ApplicationFilterOptions = ({setSearchParams, query}) => {
     return <form className="lg:flex lg:flex-col lg:justify-start lg:pt-[50px]">
         <p className="mb-2">Filter By:</p>
         <div className="filter-div">
-            <label for="filter-by-status">Status</label>
+            <label htmlFor="filter-by-status">Status</label>
             <select id="filter-by-status" name="status" className="filter-menu cursor-pointer" value={filter} onChange={handleInputChange}>
-                <option value="accepted" selected>Accepted</option>
+                <option value="accepted">Accepted</option>
                 <option value="pending">Pending</option>
                 <option value="Denied">Denied</option>
                 <option value="withdrawn">Withdrawn</option>

@@ -12,14 +12,14 @@ const Application = ({application}) => {
         application.status
     );
 
+    const [rating, setRating] = useState(0);
+
     const [statusError, setStatusError] = useState('');
 
     const answersDict = {};
     application.answers.forEach(answer => {
         answersDict[answer.question_num] = answer.answer;
     });
-
-    console.log(application);
 
     const validate_form = () => {
         var isValid = true;
@@ -68,6 +68,28 @@ const Application = ({application}) => {
         }
     }
 
+    useEffect(() => {
+        try {
+            axios.get(`http://127.0.0.1:8000/keywords/score/${application.id}/`, 
+                {headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            })
+            .then(response => {
+                if (response.status !== 200) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                console.log(response);
+                return response.data;
+            })
+            .then(data => {
+                setRating(data.score);
+            });
+        } catch (error) {
+            console.error(error)
+        }
+    }, [application, token]);  
+
     const handleInputChange = (event) => {
         event.preventDefault();
         const { name, value } = event.target;
@@ -92,20 +114,20 @@ const Application = ({application}) => {
             Application Status: 
         </p>
     {userType === 'shelter' ? 
-    (<select onChange={handleInputChange} className="rounded-md shadow-md p-3 border-solid border-blue3 border-2 bg-white cursor-pointer">
-    <option value="" disabled="" selected="selected" className="placeholder border rounded-md shadow-md">{application.status}</option>
+    (<select onChange={handleInputChange} defaultValue="" className="rounded-md shadow-md p-3 border-solid border-blue3 border-2 bg-white cursor-pointer">
+    <option value="" disabled="" className="placeholder border rounded-md shadow-md">{application.status}</option>
         <option value="accepted">accepted</option>
         <option value="denied">denied</option>
     </select>) : 
-    (<select onChange={handleInputChange} className="rounded-md shadow-md p-3 border-solid border-blue3 border-2 bg-white cursor-pointer">
-        <option value="" disabled="" selected="selected" className="placeholder border rounded-md shadow-md">{application.status}</option>
+    (<select onChange={handleInputChange} defaultValue="" className="rounded-md shadow-md p-3 border-solid border-blue3 border-2 bg-white cursor-pointer">
+        <option value="" disabled="" className="placeholder border rounded-md shadow-md">{application.status}</option>
         <option value="withdrawn">withdrawn</option>
     </select>
       )}
       <br></br>
 
 {userType === 'shelter' ? 
-    (            <p>Rating: {application.rating}</p>) : 
+    (            <p>Rating: {rating}</p>) : 
     (<p></p>)}
     <br></br>
                 <p>

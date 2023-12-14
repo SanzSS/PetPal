@@ -20,6 +20,7 @@ import CreateApplication from './pages/CreateApplication';
 import ListApplications from './pages/ListApplication';
 import ViewShelter from './pages/ViewShelter';
 import Comments from './pages/Comments';
+import EditKeywords from './pages/EditKeywords';
 
 function App() {
   return (
@@ -46,6 +47,7 @@ function App() {
               <Route path="my_applications" element={< ListApplications /> } /> {/* seeker and shelter */}
               <Route path="shelter/:shelterID" element={<ViewShelter />} />
               <Route path="comments/:applicationID" element={<Comments />} />
+              <Route path="listing/:petID/keywords" element={< EditKeywords /> } />
             </Route>
         </Routes>
       </UserTypeProvider>

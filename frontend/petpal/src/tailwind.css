@@ -149,4 +149,22 @@ details > summary::-webkit-details-marker {
     margin-right: 3rem;
     display: flex;
     flex-direction: column;
+    align-items: center;
+ }
+
+ #keyword {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 1rem;
+    padding: 1rem;
+ }
+
+ #delete-keyword {
+    background-color: #9A0007;
+ }
+
+ #delete-keyword:hover {
+    color: #9A0007;
+    border-color: #9A0007;
+    background-color: white;
  }

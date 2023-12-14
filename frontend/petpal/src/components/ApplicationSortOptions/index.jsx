@@ -24,11 +24,11 @@ const ApplicationSortOptions = ({setSearchParams, query}) => {
     return <form className="lg:flex lg:flex-col lg:justify-start lg:pt-[10px]">
         <p className="mb-2">Sort By:</p>
         <div className="sort-div">
-            <label for="sort-by-create-time">Creation Time</label>
+            <label htmlFor="sort-by-create-time">Creation Time</label>
             <input className="transform scale-125 cursor-pointer" type="checkbox" id="sort-by-create-time" name="create_time" onChange={handleInputChange} />
         </div>
         <div className="sort-div">
-            <label for="sort-by-update-time">Update Time</label>
+            <label htmlFor="sort-by-update-time">Update Time</label>
             <input className="transform scale-125 cursor-pointer" type="checkbox" id="sort-by-update-time" name="update_time" onChange={handleInputChange} />
         </div>
         <input onClick={handleSaveSort} type="button" value="Sort" className="button mt-2 cursor-pointer" />
