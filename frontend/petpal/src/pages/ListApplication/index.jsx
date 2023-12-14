@@ -45,14 +45,11 @@ const ListApplications = () => {
             if (response.status !== 200) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
-            console.log(response);
             return response.data;
         })
         .then(data => {
             setApplications(data.results);
-            console.log(Math.ceil(data.count/LISTINGS_PER_PAGE));
             setTotalPages(Math.ceil(data.count/LISTINGS_PER_PAGE));
-            console.log(data.count);
         })
         .catch(error => {
             console.error(error)
