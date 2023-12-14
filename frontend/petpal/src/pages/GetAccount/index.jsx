@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/TokenContext';
 import { jwtDecode } from "jwt-decode";
 
@@ -11,6 +11,7 @@ const ViewAccount = () => {
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const [avatar, setAvatar] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (token) {
@@ -45,6 +46,23 @@ const ViewAccount = () => {
         };
         fetchData();
     }, [userId, token]);
+
+    const handleDelete = () => {
+        try {
+            if (userId) {
+                axios.delete(`http://127.0.0.1:8000/accounts/${userId}/`, {
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                      }
+                    })}
+                navigate('/login');
+        }
+        catch (error) {
+                        console.error(error);
+                    }
+                
+                
+    }
     
     return <> 
         <main className="items-center justify-center text-left flex flex-col">
@@ -70,6 +88,9 @@ const ViewAccount = () => {
                     <p className="rounded-md shadow-md p-3 border-solid border-blue3 border-2 w-full my-2 bg-white">{name}</p>
                 </div>
             </div>
+            <button onClick={() => handleDelete()} className='w-[9%] bg-red-600 border border-blue3 text-white items-center font-bold rounded-md hover:bg-white hover:text-blue3 md:text-[1rem] text-[0.5rem] mt-[5rem]'>
+                Delete Account
+            </button>
         </main>
     </>
 }
