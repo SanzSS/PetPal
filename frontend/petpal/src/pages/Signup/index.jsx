@@ -170,11 +170,11 @@ const Signup = () => {
                     <br></br>
                     <p className="error">{formErrors.user_type}</p>
                     <br></br>
-                    <label htmlFor="avatar">Avatar:</label>
+                    <label htmlFor="avatar_field">Avatar:</label>
                     <br></br>
                     <input
                         type="file"
-                        id="avatar"
+                        id="avatar_field"
                         name="avatar"
                         accept="image/*"
                         onChange={handleFileChange}
