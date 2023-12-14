@@ -5,6 +5,8 @@ import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useUserType } from '../../contexts/UserTypeContext';
 import Application from '../../components/Application';
 
+const LISTINGS_PER_PAGE = 5;
+
 const ListApplications = () => {
     let navigate = useNavigate();
     const { token } = useAuth();
@@ -12,7 +14,6 @@ const ListApplications = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const [applications, setApplications] = useState([]);
     const [totalPages, setTotalPages] = useState(1);
-    const [input, setInput] = useState('');
     const [allFilters, setAllFilters] = useState({});
 
     const query = useMemo(() => ({
@@ -20,6 +21,7 @@ const ListApplications = () => {
         filter: searchParams.get("filter") ?? '',
         sort: searchParams.get("sort") ?? 'create_time',
     }), [searchParams]);
+    console.log(query);
 
     useEffect(() => {
         const params = new URLSearchParams();
@@ -31,6 +33,7 @@ const ListApplications = () => {
         });
 
         let url = `http://127.0.0.1:8000/applications/?${params}`;
+        console.log(url);
 
         axios.get(url, 
         {headers: {
@@ -41,10 +44,14 @@ const ListApplications = () => {
             if (response.status !== 200) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
+            console.log(response);
             return response.data;
         })
         .then(data => {
             setApplications(data.results);
+            console.log(Math.ceil(data.count/LISTINGS_PER_PAGE));
+            setTotalPages(Math.ceil(data.count/LISTINGS_PER_PAGE));
+            console.log(data.count);
         })
         .catch(error => {
             console.error(error)
@@ -57,7 +64,7 @@ const ListApplications = () => {
                     // }
             }
         });
-    }, [token, userType]);
+    }, [token, userType, query]);
     
     return <> 
         <main className="flex flex-col items-center pb-16">
@@ -68,25 +75,25 @@ const ListApplications = () => {
             <Application application={application} key={application.id} />))}
 
 <div className="text-center flex justify-center mt-4">
-                        {query.page > 1 ? <a onClick={() => setSearchParams({...query, page: query.page - 1})} className="button px-2 py-1 border-2 border-blue3 hover:text-blue3 font-extrabold cursor-pointer flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                        {query.page > 1 ? <button onClick={() => setSearchParams({...query, page: query.page - 1})} className="button px-2 py-1 border-2 border-blue3 hover:text-blue3 font-extrabold cursor-pointer flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-caret-left-fill" viewBox="0 0 16 16">
                                 <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
                             </svg>
-                        </a> : <a className="text-white bg-gray-500 rounded h-8 shadow-md hover:border-2 px-2 py-1 border-2 border-gray-500 font-extrabold cursor-default flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                        </button> : <button className="text-white bg-gray-500 rounded h-8 shadow-md hover:border-2 px-2 py-1 border-2 border-gray-500 font-extrabold cursor-default flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-caret-left-fill" viewBox="0 0 16 16">
                                 <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
                             </svg>
-                        </a> }
+                        </button> }
                         <p className="inline text-white bg-blue3 font-bold rounded h-8 shadow-md px-2 py-1 mx-2">Page {query.page}</p>
-                        {query.page < totalPages ? <a onClick={() => setSearchParams({...query, page: query.page + 1})} className="button px-2 py-1 border-2 border-blue3 hover:text-blue3 font-extrabold cursor-pointer flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                        {query.page < totalPages ? <button onClick={() => setSearchParams({...query, page: query.page + 1})} className="button px-2 py-1 border-2 border-blue3 hover:text-blue3 font-extrabold cursor-pointer flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-caret-right-fill" viewBox="0 0 16 16">
                                 <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
                             </svg>
-                        </a> : <a className="text-white bg-gray-500 rounded h-8 shadow-md hover:border-2 px-2 py-1 border-2 border-gray-500 font-extrabold cursor-default flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                        </button> : <button className="text-white bg-gray-500 rounded h-8 shadow-md hover:border-2 px-2 py-1 border-2 border-gray-500 font-extrabold cursor-default flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-caret-right-fill" viewBox="0 0 16 16">
                                 <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
                             </svg>
-                        </a> }
+                        </button> }
                     </div>
             </div>
         </main>
