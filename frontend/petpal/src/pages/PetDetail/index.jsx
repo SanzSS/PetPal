@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { fetchWithAuthorization } from '../../fetch';
 import { useAuth } from '../../contexts/TokenContext';
 import { jwtDecode } from "jwt-decode";
+import { useUserType } from '../../contexts/UserTypeContext';
 
 const PetDetail = () => {
     const [ listing, setListing ] = useState({});
@@ -15,6 +16,7 @@ const PetDetail = () => {
     const navigate = useNavigate();
 
     const { token } = useAuth();
+    const { userType } = useUserType();
 
     useEffect(() => {
         if (token) {
@@ -147,9 +149,9 @@ const PetDetail = () => {
                     <h2 className="font-bold">Listing Date</h2>
                     <p>{formattedDate}</p>
                 </div>
-                <div className="flex justify-center">
+                { userType === 'seeker' ? <div className="flex justify-center">
                     <button className="button w-1/2" onClick={handleApply}>Apply</button>
-                </div>
+                </div>: <></>}
             </div>
         </main>
     </>

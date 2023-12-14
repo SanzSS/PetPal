@@ -92,14 +92,13 @@ const Application = ({application}) => {
             Application Status: 
         </p>
     {userType === 'shelter' ? 
-    (            <select onChange={handleInputChange} className="rounded-md shadow-md p-3 border-solid border-blue3 border-2 bg-white">
+    (<select onChange={handleInputChange} className="rounded-md shadow-md p-3 border-solid border-blue3 border-2 bg-white cursor-pointer">
     <option value="" disabled="" selected="selected" className="placeholder border rounded-md shadow-md">{application.status}</option>
         <option value="accepted">accepted</option>
         <option value="denied">denied</option>
     </select>) : 
-    (
-        <select onChange={handleInputChange} className="rounded-md shadow-md p-3 border-solid border-blue3 border-2 bg-white">
-    <option value="" disabled="" selected="selected" className="placeholder border rounded-md shadow-md">{application.status}</option>
+    (<select onChange={handleInputChange} className="rounded-md shadow-md p-3 border-solid border-blue3 border-2 bg-white cursor-pointer">
+        <option value="" disabled="" selected="selected" className="placeholder border rounded-md shadow-md">{application.status}</option>
         <option value="withdrawn">withdrawn</option>
     </select>
       )}
@@ -287,7 +286,7 @@ const Application = ({application}) => {
         {statusError && <p className="error">{JSON.stringify(statusError)}</p>}
 
         <div className="items-center justify-center flex mt-4">
-            <input type="submit" onClick={(event) => update(event)} value="Save" id="submit" className="text-center w-[50%] bg-blue3 text-white font-extrabold text-2xl flex justify-center items-center rounded-md shadow-md mb-4 hover:bg-white hover:text-blue3 border border-blue3 hover:border hover:border-black lg:w-[50%] md:w-[50%]"/>
+            <input type="submit" onClick={(event) => update(event)} value="Save" id="submit" className="button w-1/2 mb-6 text-xl cursor-pointer"/>
           </div>
             </details>
         </div>

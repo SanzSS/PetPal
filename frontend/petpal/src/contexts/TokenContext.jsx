@@ -16,7 +16,7 @@ export const TokenProvider = ({ children }) => {
         localStorage.setItem('token',token);
       } else {
         localStorage.removeItem('token');
-        navigate('/');
+        navigate('/login');
       }
     }, [token]);
   
