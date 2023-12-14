@@ -15,7 +15,7 @@ import CommentCard from '../../components/CommentCard';
 
 const Comments = () => {
     const { token } = useAuth();
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     const{applicationID} = useParams();
     const [ application, setApplication] = useState({});

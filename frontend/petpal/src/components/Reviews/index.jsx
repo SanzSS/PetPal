@@ -13,6 +13,8 @@ const Reviews = ({shelterID}) => {
     const [prev, setPrev] = useState(null);
     const [url, setUrl] = useState(`http://127.0.0.1:8000/comments/shelter/${shelterID}`);
 
+    const [newRating, setNewRating] = useState("");
+    const [newContent, setNewContent] = useState("");
 
     useEffect(() => {axios.get(url, {
         headers: {
@@ -35,6 +37,12 @@ const Reviews = ({shelterID}) => {
             {reviews.map((review, index) => (
                 <ReviewCard review={review} key={index}/>
             ))}
+            {/* a section to write a new comment */}
+            <div className="p-2 grid grid-cols-2">
+                    <p className="card-description">Rating: </p>
+                    <input id="review-input" className="input h-6 m-0 p-2" value={newRating} onChange={(e) => setNewRating(e.target.value)}/>
+                    <input id="review-input" className="input col-span-2 h-6 m-0 p-2" value={newContent} onChange={(e) => setNewContent(e.target.value)}/>
+            </div>
         </div>
         <div className="flex flex-row gap-4 justify-center">
             <button onClick={() => {
