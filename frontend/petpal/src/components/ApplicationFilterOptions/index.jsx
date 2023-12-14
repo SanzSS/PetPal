@@ -21,7 +21,7 @@ const ApplicationFilterOptions = ({setSearchParams, query}) => {
         }));
     };
 
-    return <form className="hidden lg:flex lg:flex-col lg:justify-start lg:pt-[50px]">
+    return <form className="lg:flex lg:flex-col lg:justify-start lg:pt-[50px]">
         <p className="mb-2">Filter By:</p>
         <div className="filter-div">
             <label for="filter-by-status">Status</label>

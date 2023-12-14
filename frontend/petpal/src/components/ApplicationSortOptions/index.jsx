@@ -21,7 +21,7 @@ const ApplicationSortOptions = ({setSearchParams, query}) => {
         }));
     };
 
-    return <form className="hidden lg:flex lg:flex-col lg:justify-start lg:pt-[120px]">
+    return <form className="lg:flex lg:flex-col lg:justify-start lg:pt-[10px]">
         <p className="mb-2">Sort By:</p>
         <div className="sort-div">
             <label for="sort-by-create-time">Creation Time</label>
