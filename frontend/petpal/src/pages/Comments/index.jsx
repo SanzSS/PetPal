@@ -115,8 +115,8 @@ const Comments = () => {
                     <form onSubmit={handleSubmit} className="flex justify-between items-center flex-row">
                         <input id="message" name="message" onChange={(e) => setNewComment(e.target.value)} placeholder="Type your message" required className="p-3 border border-solid border-blue3 border-2 rounded-md"></input>
                         <input type="submit" value="Send" id="send" className="p-3 rounded-md font-bold text-lg border-solid border-yellow-400 border-2 cursor-pointer p-3 justify-center inline-flex items-center no-underline text-center"></input>
-                        </form>
-                    </div>
+                    </form>
+                </div>
             </div>
             {/* <div id="comments" className="rounded-md ">
                 {comments.results?.map((comment) => (
