@@ -3,6 +3,8 @@ import { jwtDecode } from "jwt-decode";
 
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 
 // import { fetchWithAuthorization } from '../../fetch';
 import { useAuth } from '../../contexts/TokenContext';
@@ -13,6 +15,7 @@ import CommentCard from '../../components/CommentCard';
 
 const Comments = () => {
     const { token } = useAuth();
+    const navigate = useNavigate();
 
     const{applicationID} = useParams();
     const [ application, setApplication] = useState({});
@@ -22,7 +25,7 @@ const Comments = () => {
     const [next, setNext] = useState(null);
     const [prev, setPrev] = useState(null);
     const [url, setUrl] = useState(`http://127.0.0.1:8000/comments/application/${applicationID}/`);
-
+    const [newComment, setNewComment] = useState("")
 
 
 
@@ -73,6 +76,32 @@ const Comments = () => {
         fetchData();
     }, [applicationID, userID, url, token]);
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const commentJSON = {"content": newComment};
+        try {
+            await axios.post(`http://127.0.0.1:8000/comments/application/${applicationID}/`, 
+                    JSON.stringify(commentJSON),
+                    {headers: {
+                        "Authorization": `Bearer ${token}`,
+                        'Content-Type': 'application/json',
+                    }
+            });
+            // get comments
+            const response_comments = await axios.get(url, {
+                headers: {
+                  "Authorization": `Bearer ${token}`
+                }
+            });
+            setComments(response_comments.data);
+            setNext(response_comments.data.next);
+            setPrev(response_comments.data.previous);
+        } catch (error) {
+            console.log(error)
+        }
+    } 
+
     return <>
         <div className="container" id="content">
             <div>
@@ -83,8 +112,8 @@ const Comments = () => {
                         <CommentCard comment={comment} username={username}/>
                 ))}
                 <div className="w-full" id="chatbox">
-                    <form action="../application/conversation-sent.html" className="flex justify-between items-center flex-row">
-                        <input id="message" name="message" placeholder="Type your message" required className="p-3 border border-solid border-blue3 border-2 rounded-md"></input>
+                    <form onSubmit={handleSubmit} className="flex justify-between items-center flex-row">
+                        <input id="message" name="message" onChange={(e) => setNewComment(e.target.value)} placeholder="Type your message" required className="p-3 border border-solid border-blue3 border-2 rounded-md"></input>
                         <input type="submit" value="Send" id="send" className="p-3 rounded-md font-bold text-lg border-solid border-yellow-400 border-2 cursor-pointer p-3 justify-center inline-flex items-center no-underline text-center"></input>
                         </form>
                     </div>
