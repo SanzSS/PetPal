@@ -122,3 +122,10 @@ details > summary::-webkit-details-marker {
     border-color: black;
     width: 100%;
  }
+
+ #content {
+    margin-left: 3rem;
+    margin-right: 3rem;
+    display: flex;
+    flex-direction: column;
+ }

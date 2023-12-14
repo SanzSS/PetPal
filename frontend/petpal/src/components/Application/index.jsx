@@ -81,9 +81,9 @@ const Application = ({application}) => {
         <div id="app-container" className="w-full flex items-center mb-4 mt-10">
             <details className="w-full flex items-center px-6 bg-white rounded-md border-2 border-blue3 border-solid">
                 <summary className="text-center cursor-pointer w-full text-lg mt-3 mb-3 font-bold capitalize" id="app">{application.pet.name}</summary>
-                <a href="../application/conversation.html" className="font-bold text-yellow-400 border-solid border-yellow-400 border-2 rounded-md cursor-pointer bg-blue3 p-3 justify-center inline-flex items-center no-underline text-center hover:bg-yellow-400 hover:text-blue3 hover:border-blue3">
+                <Link to={`/comments/${application.id}`} className="font-bold text-yellow-400 border-solid border-yellow-400 border-2 rounded-md cursor-pointer bg-blue3 p-3 justify-center inline-flex items-center no-underline text-center hover:bg-yellow-400 hover:text-blue3 hover:border-blue3">
                     Chat
-                </a>
+                </Link>
                 <p className="text-left">
                     Date applied: {(new Date(application.date)).toDateString()}
                 </p>
