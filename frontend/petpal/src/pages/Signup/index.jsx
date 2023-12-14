@@ -174,7 +174,6 @@ const Signup = () => {
                     <br></br>
                     <input
                         type="file"
-                        id="avatar"
                         name="avatar"
                         accept="image/*"
                         onChange={handleFileChange}
