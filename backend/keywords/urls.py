@@ -24,4 +24,5 @@ app_name = "keyword"
 urlpatterns = [
     path('<int:petlisting_id>/', views.KeywordView.as_view(), name="keywords"),
     path('edit/<int:pk>/', views.EditKeywordView.as_view(), name="edit-keyword"),
+    path('score/<application_id>/', views.Score.as_view(), name="score")
 ]
