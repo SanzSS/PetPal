@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom'
-import './style.css';
 import { fetchWithAuthorization } from '../../fetch';
 import { useAuth } from '../../contexts/TokenContext';
 import { jwtDecode } from "jwt-decode";
@@ -77,8 +76,9 @@ const PetDetail = () => {
         statusColor = 'text-gray-600'
     }
 
-    console.log(userId)
-    console.log(listing.shelter)
+    const handleApply = () => {
+        navigate(`../listing/${listingID}/apply`)
+    };
 
     return <>
         <main className="flex flex-col justify-center items-center pb-16 mt-12">
@@ -107,45 +107,48 @@ const PetDetail = () => {
                 <p className="text-2xl font-bold text-center capitalize">{listing?.name}</p>
                 <div className="grid grid-cols-4">
                     <div className='flex flex-col items-center capitalize'>
-                        <h2>Species</h2>
+                        <h2 className="font-bold">Species</h2>
                         <p>{listing?.species}</p>
                     </div>
                     <div className='flex flex-col items-center capitalize'>
-                        <h2>Breed</h2>
+                        <h2 className="font-bold">Breed</h2>
                         <p>{listing?.breed}</p>
                     </div>
                     <div className='flex flex-col items-center capitalize'>
-                        <h2>Gender</h2>
+                        <h2 className="font-bold">Gender</h2>
                         <p>{listing?.gender}</p>
                     </div>
                     <div className='flex flex-col items-center'>
-                        <h2>Size</h2>
+                        <h2 className="font-bold">Size</h2>
                         <p>{listing?.size} lbs</p>
                     </div>
                 </div>
                 <div>
-                <h2>Age</h2>
-                <p>{listing?.years_old} years, {listing?.months_old} months old</p>
+                    <h2 className="font-bold">Age</h2>
+                    <p>{listing?.years_old} years, {listing?.months_old} months old</p>
                 </div>
                 <div>
-                <h2>Description</h2>
-                <p>{listing?.description || 'N/A'}</p>
+                    <h2 className="font-bold">Description</h2>
+                    <p>{listing?.description || 'N/A'}</p>
                 </div>
                 <div>
-                <h2>Behaviour</h2>
-                <p>{listing?.behaviour || 'N/A'}</p>
+                    <h2 className="font-bold">Behaviour</h2>
+                    <p>{listing?.behaviour || 'N/A'}</p>
                 </div>
                 <div>
-                <h2>Medical History</h2>
-                <p>{listing?.medical_history || 'N/A'}</p>
+                    <h2 className="font-bold">Medical History</h2>
+                    <p>{listing?.medical_history || 'N/A'}</p>
                 </div>
                 <div>
-                <h2>Special Requirements</h2>
-                <p>{listing?.special_requirements || 'N/A'}</p>
+                    <h2 className="font-bold">Special Requirements</h2>
+                    <p>{listing?.special_requirements || 'N/A'}</p>
                 </div>
                 <div>
-                    <h2>Listing Date</h2>
+                    <h2 className="font-bold">Listing Date</h2>
                     <p>{formattedDate}</p>
+                </div>
+                <div className="flex justify-center">
+                    <button className="button w-1/2" onClick={handleApply}>Apply</button>
                 </div>
             </div>
         </main>

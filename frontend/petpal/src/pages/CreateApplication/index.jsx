@@ -120,218 +120,150 @@ const CreateApplication = () => {
     };
     
     return <> 
-    <main>
-        <div className="w-[75%] md:w-[75%] lg:w-3/4">
-        <form>
-        <h1 className="lg:text-6xl md:text-6xl text-4xl my-12 text-blue3 font-extrabold text-center justify-center items-center">
-            Adoption Application
-        </h1>
-
-        <p>
-            Your address: <span>*</span>
-        </p>
+    <main className="flex flex-col justify-center items-center">
         <div>
-            <input type="text" name="question1" onChange={handleInputChange} className="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2 bg-white" required/>
+            <h1 className="lg:text-6xl md:text-6xl text-4xl my-12 text-blue3 font-extrabold text-center justify-center items-center">
+                Adoption Application
+            </h1>
+            <form className="grid grid-cols-1 max-w-[836px] p-6 pt-4 rounded-md border-blue3 border-4 bg-blue2 mb-16">
+                <div className="my-2">
+                    <p className="mb-1">Your address: <span>*</span></p>
+                    <input type="text" name="question1" onChange={handleInputChange} className="w-full rounded-md shadow-md p-3 border-solid border-blue3 border-2 bg-white" required/>
+                </div>
+                <div className="my-2">
+                    <p className="mb-1">City: <span>*</span></p>
+                    <input type="text" name="question2" onChange={handleInputChange} className="w-full rounded-md shadow-md p-3 border-solid border-blue3 border-2 bg-white" required/>
+                </div>
+                <div className="my-2">
+                    <p className="mb-1">Postal Code: <span>*</span></p>
+                    <input type="text" name="question3" onChange={handleInputChange} className="w-full rounded-md shadow-md p-3 border-solid border-blue3 border-2 bg-white" required/>
+                </div>
+                <div className="my-2">
+                    <p className="mb-1">Phone number: <span>*</span></p>
+                    <input type="text" name="question4" onChange={handleInputChange} className="w-full rounded-md shadow-md p-3 border-solid border-blue3 border-2 bg-white" required/>
+                </div>
+                <div className="my-2">
+                    <p className="mb-1">Email: <span>*</span></p>
+                    <input type="email" name="question5" onChange={handleInputChange} className="w-full rounded-md shadow-md p-3 border-solid border-blue3 border-2 bg-white" required/>
+                </div>
+                <div className="my-2">
+                    <p className="mb-1">Are you 21 years of age and over?: <span>*</span></p>
+                    <select name="question6" onChange={handleInputChange} className="w-full rounded-md shadow-md p-3 border-solid border-blue3 border-2 bg-white cursor-pointer" required>
+                        <option value="" className="placeholder" disabled="" selected="selected">Select</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+                <div className="my-2">
+                    <p className="mb-1">
+                        List all members of your household including number of children and their ages.<br></br>
+                        Who will be primarily responsible for the care of this pet?
+                    </p>
+                    <textarea name="question7" onChange={handleInputChange} id="" cols="80" rows="10" className="w-full rounded-md shadow-md p-3 border-solid border-blue3 border-2 bg-white" required></textarea>
+                </div>
+                <div className="my-2">
+                    <p className="mb-1">Do you live in a house, apartment, condominium or townhouse?: <span>*</span></p>
+                    <select name="question8" onChange={handleInputChange} className="w-full rounded-md shadow-md p-3 border-solid border-blue3 border-2 bg-white cursor-pointer" required>
+                        <option value="" className="placeholder" disabled="" selected="selected">Select</option>
+                        <option value="House">House</option>
+                        <option value="Apartment">Apartment</option>
+                        <option value="Condo">Condo</option>
+                        <option value="Townhouse">Townhouse</option>
+                    </select>
+                </div>
+                <div className="my-2">
+                    <p className="mb-1">Do you own or rent your home?: <span>*</span></p>
+                    <select name="question9" onChange={handleInputChange} className="w-full rounded-md shadow-md p-3 border-solid border-blue3 border-2 bg-white cursor-pointer" required>
+                        <option value="" className="placeholder" disabled="" selected="selected">Select</option>
+                        <option value="Own">Own</option>
+                        <option value="Rent">Rent</option>
+                    </select>
+                </div>
+                <div className="my-2">
+                    <p className="mb-1">How long have you lived at your current address (in years)?: <span>*</span></p>
+                    <input name="question10" onChange={handleInputChange} type="number" className="w-full rounded-md shadow-md p-3 border-solid border-blue3 border-2 bg-white" required/>
+                </div>
+                <div className="my-2">
+                    <p className="mb-1">Do you have plans to move from your current address within the next 3 months?: <span>*</span></p>
+                    <select name="question11" onChange={handleInputChange} className="w-full rounded-md shadow-md p-3 border-solid border-blue3 border-2 bg-white cursor-pointer" required>
+                    <option value="" className="placeholder" disabled="" selected="selected">Select</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+                <div className="my-2">
+                    <p className="mb-1">Do you have a securely fenced in yard?: <span>*</span></p>
+                    <select name="question12" onChange={handleInputChange} className="w-full rounded-md shadow-md p-3 border-solid border-blue3 border-2 bg-white cursor-pointer" required>
+                    <option value="" className="placeholder" disabled="" selected="selected">Select</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+                <div className="my-2">
+                    <p className="mb-1">Do you have a pool?: <span>*</span></p>
+                    <select name="question13" onChange={handleInputChange} className="w-full rounded-md shadow-md p-3 border-solid border-blue3 border-2 bg-white cursor-pointer" required>
+                    <option value="" className="placeholder" disabled="" selected="selected">Select</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+                <div className="my-2">
+                    <p className="mb-1">Why have you chosen this particular dog?: <span>*</span></p>
+                    <textarea name="question14" onChange={handleInputChange} id="" cols="80" rows="10" className="w-full rounded-md shadow-md p-3 border-solid border-blue3 border-2 bg-white" required></textarea>
+                </div>
+                <div className="my-2">
+                    <p className="mb-1">Please explain your reasons for wanting to adopt a dog: <span>*</span></p>
+                    <textarea name="question15" onChange={handleInputChange} id="" cols="80" rows="10" className="w-full rounded-md shadow-md p-3 border-solid border-blue3 border-2 bg-white" required></textarea>
+                </div>
+                <div className="my-2">
+                    <p className="mb-1">For whom are you adopting a dog? For you or for someone else? (If for someone else, who?): <span>*</span></p>
+                    <textarea name="question16" onChange={handleInputChange} id="" cols="80" rows="10" className="w-full rounded-md shadow-md p-3 border-solid border-blue3 border-2 bg-white" required></textarea>
+                </div>
+                <div className="my-2">
+                    <p className="mb-1">What experience do you have as a dog owner? If you have been a dog owner, please tell us about your previous dogs: <span>*</span></p>
+                    <textarea name="question17" onChange={handleInputChange} id="" cols="80" rows="10" className="w-full rounded-md shadow-md p-3 border-solid border-blue3 border-2 bg-white"></textarea>
+                </div>
+                <div className="my-2">
+                    <p className="mb-1">How long has it been since you've had a dog in your life?: <span>*</span></p>
+                    <input name="question18" onChange={handleInputChange} type="number" className="w-full rounded-md shadow-md p-3 border-solid border-blue3 border-2 bg-white" required/>
+                </div>
+                <div className="my-2">
+                    <p className="mb-1">Do you have dog training experience? And if so, what training do you have?: <span>*</span></p>
+                    <textarea name="question19" onChange={handleInputChange} id="" cols="80" rows="10" className="w-full rounded-md shadow-md p-3 border-solid border-blue3 border-2 bg-white" required></textarea>
+                </div>
+                <div className="my-2">
+                    <p className="mb-1">Do you currently have any pets?: <span>*</span></p>
+                    <select name="question20" onChange={handleInputChange} className="w-full rounded-md shadow-md p-3 border-solid border-blue3 border-2 bg-white cursor-pointer" required>
+                    <option value="" disabled="" selected="selected" className="placeholder border rounded-md shadow-md">Select</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+                <div className="my-2">
+                    <p className="mb-1">Is any member of your family allergic to dogs?: <span>*</span></p>
+                    <select name="question21" onChange={handleInputChange} className="w-full rounded-md shadow-md p-3 border-solid border-blue3 border-2 bg-white cursor-pointer" required>
+                    <option value="" className="placeholder" disabled="" selected="selected">Select</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+                <div className="my-2">
+                    <p className="mb-1">Are you applying for a young puppy (6 months old or younger)? <span>*</span></p>
+                    <select name="question22" onChange={handleInputChange} className="w-full rounded-md shadow-md p-3 border-solid border-blue3 border-2 bg-white cursor-pointer" required>
+                    <option value="" className="placeholder" disabled="" selected="selected">Select</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+
+                <div className="items-center justify-center flex mt-4">
+                    <input type="submit" onClick={(event) => submit(event)} value="Submit" id="submit" className="button w-1/2 text-xl cursor-pointer"/>
+                </div>
+                {answersError && <p className="error">{JSON.stringify(answersError)}</p>}
+            </form>
         </div>
-
-        <p>
-            City: <span>*</span>
-        </p>
-        <div>
-            <input type="text" name="question2" onChange={handleInputChange} className="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2 bg-white" required/>
-        </div>
-
-        <p>
-            Postal Code: <span>*</span>
-        </p>
-        <div>
-            <input type="text" name="question3" onChange={handleInputChange} className="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2 bg-white" required/>
-        </div>
-
-        <p>
-            Phone number: <span>*</span>
-        </p>
-        <div>
-            <input type="text" name="question4" onChange={handleInputChange} className="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2 bg-white" required/>
-        </div>
-
-        <p>
-            Email: <span>*</span>
-        </p>
-        <div>
-            <input type="email" name="question5" onChange={handleInputChange} className="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2 bg-white" required/>
-        </div>
-
-        <p>
-            Are you 21 years of age and over?: <span>*</span>
-        </p>
-        <div>
-            <select name="question6" onChange={handleInputChange} className="border rounded-md shadow-lg" required>
-                <option value="" className="placeholder" disabled="" selected="selected">Select</option>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-            </select>
-        </div>
-
-        <p>
-            List all members of your household including number of children and their ages. 
-            Who will be primarily responsible for the care of this pet?
-        </p>
-        <div>
-            <textarea name="question7" onChange={handleInputChange} id="" cols="80" rows="10" className="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2 bg-white" required></textarea>
-        </div>
-
-        <p>
-            Do you live in a house, apartment, condominium or townhouse?: <span>*</span>
-        </p>
-        <div>
-            <select name="question8" onChange={handleInputChange} className="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2 bg-white" required>
-                <option value="" className="placeholder" disabled="" selected="selected">Select</option>
-                <option value="House">House</option>
-                <option value="Apartment">Apartment</option>
-                <option value="Condo">Condo</option>
-                <option value="Townhouse">Townhouse</option>
-            </select>
-        </div>
-
-        <p>
-            Do you own or rent your home?: <span>*</span>
-        </p>
-        <div>
-            <select name="question9" onChange={handleInputChange} className="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2 bg-white" required>
-                <option value="" className="placeholder" disabled="" selected="selected">Select</option>
-                <option value="Own">Own</option>
-                <option value="Rent">Rent</option>
-            </select>
-        </div>
-
-        <p>
-            How long have you lived at your current address (in years)?: <span>*</span>
-        </p>
-        <div>
-            <input name="question10" onChange={handleInputChange} type="number" className="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2 bg-white" required/>
-        </div>
-
-        <p>
-            Do you have plans to move from your current address within the next 3 months?: <span>*</span>
-        </p>
-        <div>
-            <select name="question11" onChange={handleInputChange} className="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2 bg-white" required>
-            <option value="" className="placeholder" disabled="" selected="selected">Select</option>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-            </select>
-        </div>
-
-        <p>
-            Do you have a securely fenced in yard?: <span>*</span>
-        </p>
-        <div>
-            <select name="question12" onChange={handleInputChange} className="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2 bg-white" required>
-            <option value="" className="placeholder" disabled="" selected="selected">Select</option>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-            </select>
-        </div>
-
-        <p>
-            Do you have a pool?: <span>*</span>
-        </p>
-        <div>
-            <select name="question13" onChange={handleInputChange} className="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2 bg-white" required>
-            <option value="" className="placeholder" disabled="" selected="selected">Select</option>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-            </select>
-        </div>
-
-        <p>
-            Why have you chosen this particular dog?: <span>*</span>
-        </p>
-        <div>
-            <textarea name="question14" onChange={handleInputChange} id="" cols="80" rows="10" className="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2 bg-white" required></textarea>
-        </div>
-        
-        <p>
-            Please explain your reasons for wanting to adopt a dog: <span>*</span>
-        </p>
-        <div>
-            <textarea name="question15" onChange={handleInputChange} id="" cols="80" rows="10" className="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2 bg-white" required></textarea>
-        </div>
-
-        <p>
-            For whom are you adopting a dog? For you or for someone else? (If for someone else, who?): <span>*</span>
-        </p>
-        <div>
-            <textarea name="question16" onChange={handleInputChange} id="" cols="80" rows="10" className="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2 bg-white" required></textarea>
-        </div>
-
-        <p>
-            What experience do you have as a dog owner? If you have been a dog owner, please tell us about your previous dogs: <span>*</span>
-        </p>
-        <div>
-            <textarea name="question17" onChange={handleInputChange} id="" cols="80" rows="10" className="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2 bg-white"></textarea>
-        </div>
-
-        <p>
-            How long has it been since you've had a dog in your life?: <span>*</span>
-        </p>
-        <div>
-            <input name="question18" onChange={handleInputChange} type="number" className="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2 bg-white" required/>
-        </div>
-
-        <p>
-            Do you have dog training experience? And if so, what training do you have?: <span>*</span>
-        </p>
-        <div>
-            <textarea name="question19" onChange={handleInputChange} id="" cols="80" rows="10" className="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2 bg-white" required></textarea>
-        </div>
-
-        <p>
-            Do you currently have any pets?: <span>*</span>
-
-        </p>
-        <div>
-            <select name="question20" onChange={handleInputChange} className="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2 bg-white" required>
-            <option value="" disabled="" selected="selected" className="placeholder border rounded-md shadow-md">Select</option>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-            </select>
-        </div>
-
-        <p>
-            Is any member of your family allergic to dogs?: <span>*</span>
-        </p>
-
-        <div>
-            <select name="question21" onChange={handleInputChange} className="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2 bg-white" required>
-            <option value="" className="placeholder" disabled="" selected="selected">Select</option>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-            </select>
-        </div>
-
-        <p>
-            Are you applying for a young puppy (6 months old or younger)? <span>*</span>
-        </p>
-
-        <div>
-            <select name="question22" onChange={handleInputChange} className="border rounded-md shadow-md p-3 border-solid border-teal-900 border-2 bg-white" required>
-            <option value="" className="placeholder" disabled="" selected="selected">Select</option>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-            </select>
-        </div>
-
-          <div className="items-center justify-center flex mt-4">
-            <input type="submit" onClick={(event) => submit(event)} value="Submit" id="submit" className="text-center w-[50%] bg-blue3 text-white font-extrabold text-2xl flex justify-center items-center rounded-md shadow-md mb-4 hover:bg-white hover:text-blue3 border border-blue3 hover:border hover:border-black lg:w-[50%] md:w-[50%]"/>
-          </div>
-          <br></br>
-        {answersError && <p className="error">{JSON.stringify(answersError)}</p>}
-        </form>
-    </div>
     </main>
-        </>
+    </>
 }
 
 export default CreateApplication;
