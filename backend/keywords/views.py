@@ -1,11 +1,13 @@
-
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, get_list_or_404, get_object_or_404
+from django.views import View
 
 from rest_framework import status
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
+from applications.models import Application
 from petlistings.models import PetListing
 
 from .models import Keyword
@@ -58,4 +60,17 @@ class EditKeywordView(RetrieveUpdateDestroyAPIView):
     def destroy(self, request, pk):
         keyword = get_object_or_404(Keyword, id=pk)
         return super().destroy(request)
-        
+
+class Score(View):
+    def get(self, request, application_id):
+        score = 0
+        application = get_object_or_404(Application, id=application_id)
+
+        # for keyword in the listings' keywords
+        for keyword in application.pet.keywords.all():
+            for answer in application.answers.all():
+                if keyword.keyword in answer.answer:
+                    score = score + keyword.weight
+                    print(answer.answer)
+                    break
+        return JsonResponse({"score": score})        
