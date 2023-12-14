@@ -4,6 +4,8 @@ import { useAuth } from '../../contexts/TokenContext';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useUserType } from '../../contexts/UserTypeContext';
 import Application from '../../components/Application';
+import ApplicationSortOptions from '../../components/ApplicationSortOptions';
+import ApplicationFilterOptions from '../../components/ApplicationFilterOptions';
 
 const LISTINGS_PER_PAGE = 5;
 
@@ -14,7 +16,6 @@ const ListApplications = () => {
     const [searchParams, setSearchParams] = useSearchParams();
     const [applications, setApplications] = useState([]);
     const [totalPages, setTotalPages] = useState(1);
-    const [allFilters, setAllFilters] = useState({});
 
     const query = useMemo(() => ({
         page: parseInt(searchParams.get("page") ?? 1),
@@ -55,14 +56,6 @@ const ListApplications = () => {
         })
         .catch(error => {
             console.error(error)
-            if (error.response) {
-                    // if (error.response.status < 500) {
-                    //     const errorString = error.response.data;
-                    //     setAnswersError(errorString);
-                    // } else {
-                    //     setAnswersError('An error occurred during the application process.');
-                    // }
-            }
         });
     }, [token, userType, query]);
     
@@ -70,7 +63,10 @@ const ListApplications = () => {
         <main className="flex flex-col items-center pb-16">
           <div id="content">
             {userType === 'shelter' ? (<h1 className="text-6xl my-12 text-blue3 font-extrabold text-center">Received Applications</h1>) : (<h1 className="text-6xl my-12 text-blue3 font-extrabold text-center">Past Applications</h1>)}
-            
+            <div>
+                <ApplicationSortOptions setSearchParams={setSearchParams} query={query}/>
+                <ApplicationFilterOptions setSearchParams={setSearchParams} query={query}/>
+            </div>
             {Array.isArray(applications) && applications.map((application) => (
             <Application application={application} key={application.id} />))}
 
