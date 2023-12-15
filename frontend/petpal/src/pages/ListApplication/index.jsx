@@ -33,7 +33,7 @@ const ListApplications = () => {
             }
         });
 
-        let url = `http://127.0.0.1:8000/applications/?${params}`;
+        let url = `http://3.16.70.156:8000/api/applications/?${params}`;
         console.log(url);
 
         axios.get(url, 

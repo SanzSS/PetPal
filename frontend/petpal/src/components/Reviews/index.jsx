@@ -11,7 +11,7 @@ const Reviews = ({shelterID}) => {
     const [reviews, setReviews ] = useState([]);
     const [next, setNext] = useState(null);
     const [prev, setPrev] = useState(null);
-    const [url, setUrl] = useState(`http://127.0.0.1:8000/comments/shelter/${shelterID}`);
+    const [url, setUrl] = useState(`http://3.16.70.156:8000/api/comments/shelter/${shelterID}`);
 
     const [newRating, setNewRating] = useState("");
     const [newContent, setNewContent] = useState("");
@@ -35,7 +35,7 @@ const Reviews = ({shelterID}) => {
 
         const reviewJSON = {"content": newContent, "rating": newRating};
         try {
-            await axios.post(`http://127.0.0.1:8000/comments/shelter/${shelterID}/`, 
+            await axios.post(`http://3.16.70.156:8000/apicomments/shelter/${shelterID}/`, 
                     JSON.stringify(reviewJSON),
                     {headers: {
                         "Authorization": `Bearer ${token}`,
@@ -48,7 +48,7 @@ const Reviews = ({shelterID}) => {
         }
         setNewContent("");
         setNewRating("");
-        setUrl(`http://127.0.0.1:8000/comments/shelter/${shelterID}`);
+        setUrl(`http://3.16.70.156:8000/api/comments/shelter/${shelterID}`);
     } 
 
 
