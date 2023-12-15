@@ -98,7 +98,7 @@ const CreateApplication = () => {
                 console.error(error)
                 if (error.response) {
                         if (error.response.status < 500) {
-                            const errorString = error.response.data;
+                            const errorString = error.response.data.message;
                             setAnswersError(errorString);
                         } else {
                             setAnswersError('An error occurred during the application process.');
@@ -259,7 +259,7 @@ const CreateApplication = () => {
                 <div className="items-center justify-center flex mt-4">
                     <input type="submit" onClick={(event) => submit(event)} value="Submit" id="submit" className="button w-1/2 text-xl cursor-pointer"/>
                 </div>
-                {answersError && <p className="error">{JSON.stringify(answersError)}</p>}
+                {answersError && <p className="error">{answersError}</p>}
             </form>
         </div>
     </main>

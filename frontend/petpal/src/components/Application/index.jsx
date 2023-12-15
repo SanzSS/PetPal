@@ -30,7 +30,6 @@ const Application = ({application}) => {
             newErrors = 'Status cannot be blank';
             isValid = false;
         } else if (!['withdrawn', 'accepted', 'denied', 'pending'].includes(status)) {
-            console.log(status);
             newErrors = 'Invalid status';
             isValid = false;
         } else {
@@ -58,7 +57,7 @@ const Application = ({application}) => {
                 console.error(error)
                 if (error.response) {
                         if (error.response.status < 500) {
-                            const errorString = error.response.data;
+                            const errorString = error.response.data["status:"];
                             setStatusError(errorString);
                         } else {
                             setStatusError('An error occurred during the application process.');
@@ -310,7 +309,7 @@ const Application = ({application}) => {
             {answersDict[22]}
             </p>
         </div>
-        {statusError && <p className="error">{JSON.stringify(statusError)}</p>}
+        {statusError && <p className="error">{statusError}</p>}
 
         <div className="items-center justify-center flex mt-4">
             <input type="submit" onClick={(event) => update(event)} value="Save" id="submit" className="button w-1/2 mb-6 text-xl cursor-pointer"/>
