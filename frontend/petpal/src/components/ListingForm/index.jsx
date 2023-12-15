@@ -74,6 +74,7 @@ const ListingForm = ({ initialValues, create }) => {
             })
             .then(data => {
                 console.log('Success:', data);
+                navigate(`/listing/${formData.listingID}/`)
             })
             .catch(error => {
                 setError(JSON.parse(error.message));
@@ -115,12 +116,12 @@ const ListingForm = ({ initialValues, create }) => {
             </div>
             <div className="flex flex-col">
                 <label for="age" className="label">Age (Years)</label>
-                <input type="number" id="age" className="input" name="years_old" value={formData.years_old} onChange={handleInputChange} />
+                <input type="number" id="age" className="input" name="years_old" value={formData.years_old} onChange={handleInputChange} required/>
                 {error?.years_old && <p className="text-red-500 ml-[0.5rem]">{error.years_old[0]}</p>}
             </div>
             <div className="flex flex-col">
                 <label for="age" className="label">Age (Months)</label>
-                <input type="number" id="age" className="input" name="months_old" value={formData.months_old} onChange={handleInputChange} />
+                <input type="number" id="age" className="input" name="months_old" value={formData.months_old} onChange={handleInputChange} required/>
                 {error?.months_old && <p className="text-red-500 ml-[0.5rem]">{error.months_old[0]}</p>}
                 {submitted && (!formData.months_old || formData.months_old == 0) && (!formData.years_old || formData.years_old == 0) && <p className="text-red-500 ml-[0.5rem]">At least one of months_old or years_old must be greater than 0.</p>}
             </div>
@@ -157,6 +158,8 @@ const ListingForm = ({ initialValues, create }) => {
             <div className="flex flex-col">
                 <input type="submit" className="button mx-2 mt-4 mb-2 cursor-pointer" value={create === true ? "Create Pet Listing" : "Update Pet Listing"} />
             </div>
+            {submitted && create && <p className="text-blue3 ml-[0.5rem]">Pet listing created successfully! </p>}
+            {error && <p className="text-red-500 ml-[0.5rem]">An error occurred while creating a pet listing.</p>}
         </form>
     </>
 }
