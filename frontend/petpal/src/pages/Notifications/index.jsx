@@ -113,7 +113,7 @@ const Notifications = () => {
                                         headers: {
                                           Authorization: `Bearer ${token}`
                                         }
-                                      }).then((response) => {nav(path + response.data.key)});
+                                      }).then((response) => {if (path !== '/my_applications') {nav(path + response.data.key)} else {nav(path)}});
                                 } catch (error) {
                                     console.error(error);
                                 }
