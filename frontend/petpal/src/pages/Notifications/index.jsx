@@ -82,8 +82,8 @@ const Notifications = () => {
                     Notifications
                 </h1>
                 <div className="flex flex-row gap-4">
-                    <button onClick={handleFilterClick} className=' bg-blue3 border border-blue3 text-white items-start font-bold py-2 px-4 rounded-md  mb-4 hover:bg-white hover:text-blue3 text-left'>{currFilter}</button>
-                    <button onClick={handleSortClick} className=' bg-blue3 border border-blue3 text-white items-start font-bold py-2 px-4 rounded-md  mb-4 hover:bg-white hover:text-blue3 text-left'>Sort By Time</button>
+                    <button onClick={handleFilterClick} className=' bg-blue3 border-2 border-blue3 text-white items-start font-bold py-2 px-4 rounded-md  mb-4 hover:bg-white hover:text-blue3 text-left'>{currFilter}</button>
+                    <button onClick={handleSortClick} className=' bg-blue3 border-2 border-blue3 text-white items-start font-bold py-2 px-4 rounded-md  mb-4 hover:bg-white hover:text-blue3 text-left'>Sort By Time</button>
 
                 </div>
                 {notifs.map((obj, index) => {
@@ -126,28 +126,27 @@ const Notifications = () => {
                      );})}
                 
         <div className="flex flex-row gap-4">
-        <button onClick={() => {
+        {prev != null && <button onClick={() => {
             if (prev != null) {
                 setUrl(prev);
                 setNotifs([]);
             }
-        }} className="bg-blue3 border border-blue3 text-white items-center font-bold py-2 px-4 rounded-md mt-8 mb-8 w-[6.5rem] hover:bg-white hover:text-blue3">
+        }} className="bg-blue3 border-2 border-blue3 text-white items-center font-bold py-2 px-4 rounded-md mt-8 mb-8 w-[6.5rem] hover:bg-white hover:text-blue3">
             Previous
-            </button>
-        <button onClick={() => {
+            </button>}
+        {next != null && <button onClick={() => {
             console.log(next);
             if (next != null) {
                 setUrl(next);
                 setNotifs([]);
             }
-        }} className="bg-blue3 border border-blue3 text-white items-center font-bold py-2 px-4 rounded-md mt-8 mb-8 w-[6.5rem] hover:bg-white hover:text-blue3">
+        }} className="bg-blue3 border-2 border-blue3 text-white items-center font-bold py-2 px-4 rounded-md mt-8 mb-8 w-[6.5rem] hover:bg-white hover:text-blue3">
             Next
-            </button>
+            </button>}
         </div>
         
         </main>
-    </div>
-         
+        </div>
         </body>
         
 
