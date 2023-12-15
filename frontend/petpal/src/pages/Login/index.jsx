@@ -139,7 +139,7 @@ const Login = () => {
                         <br></br>
                     </form>
                     <br></br>
-                    <Link to="/signup" className="text-blue3 text-base underline mb-20 text-center">Sign up</ Link>
+                    <Link to="signup" className="text-blue3 text-base underline mb-20 text-center">Sign up</ Link>
                 </main>
             </div>
             <footer className="flex w-full bg-blue3 text-white h-[3rem] justify-center items-center">
