@@ -71,7 +71,7 @@ const Keyword = ({keyword, setKeywords, index}) => {
             <input type="text" name="keyword" onChange={(event) => handleWordChange(event, index)} value={word} className="w-full rounded-md shadow-md p-3 border-solid border-blue3 border-2 bg-white" required/>
             <input type="number" name="weight" onChange={(event) => handleWeightChange(event, index)} value={weight} className="w-full rounded-md shadow-md p-3 border-solid border-blue3 border-2 bg-white" required/>
         </div>
-        <button onClick={handleDelete} id='delete-keyword' className="text-white rounded-md mb-4 p-2 px-4 font-extrabold cursor-pointer hover:bg-white hover:border-2">
+        <button onClick={handleDelete} id='delete-keyword' className="text-white rounded-md mb-4 p-2 px-4 mx-4 font-extrabold cursor-pointer hover:bg-white border-2 border-[#9A0007]">
             Delete
         </button>
     </>
