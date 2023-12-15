@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '../../contexts/TokenContext';
 import { jwtDecode } from "jwt-decode";
+import { URL } from '../../url';
 
 const ViewAccount = () => {
     const { token } = useAuth();
@@ -34,7 +35,7 @@ const ViewAccount = () => {
         const fetchData = async () => {
             try {
                 if (userId) {
-                    const response = await axios.get(`http://127.0.0.1:8000/accounts/${userId}/`, {
+                    const response = await axios.get(`${URL}accounts/${userId}/`, {
                         headers: {
                           "Authorization": `Bearer ${token}`
                         }
@@ -55,7 +56,7 @@ const ViewAccount = () => {
     const handleDelete = () => {
         try {
             if (userId) {
-                axios.delete(`http://127.0.0.1:8000/accounts/${userId}/`, {
+                axios.delete(`${URL}accounts/${userId}/`, {
                     headers: {
                         "Authorization": `Bearer ${token}`
                       }
