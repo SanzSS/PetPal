@@ -126,23 +126,27 @@ const Notifications = () => {
                      );})}
                 
         <div className="flex flex-row gap-4">
-        {prev != null && <button onClick={() => {
-            if (prev != null) {
-                setUrl(prev);
-                setNotifs([]);
-            }
-        }} className="bg-blue3 border-2 border-blue3 text-white items-center font-bold py-2 px-4 rounded-md mt-8 mb-8 w-[6.5rem] hover:bg-white hover:text-blue3">
-            Previous
-            </button>}
-        {next != null && <button onClick={() => {
-            console.log(next);
-            if (next != null) {
-                setUrl(next);
-                setNotifs([]);
-            }
-        }} className="bg-blue3 border-2 border-blue3 text-white items-center font-bold py-2 px-4 rounded-md mt-8 mb-8 w-[6.5rem] hover:bg-white hover:text-blue3">
-            Next
-            </button>}
+        {prev != null && (
+                    <button
+                        onClick={() => {
+                        setUrl(prev);
+                        setNotifs([]);
+                        }}
+                        className="bg-blue3 border border-blue3 text-white items-center font-bold py-2 px-4 rounded-md mt-8 mb-8 w-[6.5rem] hover:bg-white hover:text-blue3"
+                        >
+                        Previous
+                    </button>
+                )}
+                {next != null && (
+                <button onClick={() => {
+                    // console.log(next);
+                    if (next != null) {
+                        setUrl(next);
+                        setNotifs([]);
+                    }
+                    }} className="bg-blue3 border border-blue3 text-white items-center font-bold py-2 px-4 rounded-md mt-8 mb-8 w-[6.5rem] hover:bg-white hover:text-blue3">Next</button>
+                )}
+
         </div>
         
         </main>
