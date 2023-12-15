@@ -74,6 +74,7 @@ const ListingForm = ({ initialValues, create }) => {
             })
             .then(data => {
                 console.log('Success:', data);
+                navigate(`/listing/${formData.listingID}/`)
             })
             .catch(error => {
                 setError(JSON.parse(error.message));
@@ -157,6 +158,8 @@ const ListingForm = ({ initialValues, create }) => {
             <div className="flex flex-col">
                 <input type="submit" className="button mx-2 mt-4 mb-2 cursor-pointer" value={create === true ? "Create Pet Listing" : "Update Pet Listing"} />
             </div>
+            {submitted && create && <p className="text-blue3 ml-[0.5rem]">Pet listing created successfully! </p>}
+            {error && <p className="text-red-500 ml-[0.5rem]">An error occurred while creating a pet listing.</p>}
         </form>
     </>
 }
