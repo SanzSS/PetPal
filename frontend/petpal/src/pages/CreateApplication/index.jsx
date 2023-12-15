@@ -162,7 +162,7 @@ const CreateApplication = () => {
                 <div className="my-2">
                     <p className="mb-1">
                         List all members of your household including number of children and their ages.<br></br>
-                        Who will be primarily responsible for the care of this pet?<span>*</span>
+                        Who will be primarily responsible for the care of this pet? *
                     </p>
                     <textarea name="question7" onChange={handleInputChange} id="" cols="80" rows="10" className="w-full rounded-md shadow-md p-3 border-solid border-blue3 border-2 bg-white" required></textarea>
                 </div>
