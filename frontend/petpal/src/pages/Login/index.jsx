@@ -75,7 +75,7 @@ const Login = () => {
                     userID = decodedToken.user_id;
                 }
                 if (userID) {
-                    const response = axios.get(`http://3.16.70.156:8000/accounts/${userID}/`, {
+                    const response = axios.get(`http://3.16.70.156:8000/api/accounts/${userID}/`, {
                         headers: {
                             "Authorization": `Bearer ${data.access}`
                         }
