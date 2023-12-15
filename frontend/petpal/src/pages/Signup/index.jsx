@@ -199,9 +199,12 @@ const Signup = () => {
                                     {Object.keys(signupError).map((attribute, index) => (
                                     <div key={index}>
                                         {signupError[attribute].map((error, errorIndex) => (
+                                            <>
                                             <p key={errorIndex} className="error">
                                             {error}
                                             </p>
+                                            <br></br>
+                                            </>
                                         ))}
                                     </div>
                                     ))}
