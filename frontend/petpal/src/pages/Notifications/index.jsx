@@ -94,7 +94,11 @@ const Notifications = () => {
                         style = 'h-32 bg-slate-50 border border-gray-300 shadow-lg flex items-center p-3 gap-[75%] border-l-blue-500 relative w-[100%] mb-[1rem] text-base xl:text-sm hover:bg-blue-400';
                     } 
                     if (obj.notif.content.type === 'comment') {
-                        path = '/comments/'
+                        path = '/comments/' + obj.notif.content_id;
+                    } else if (obj.notif.content.type === 'review') {
+                        path = '/shelter/' + obj.notif.content_id;
+                    } else if (obj.notif.content.type === 'application') { 
+                        path = '/myapplications';
                     }
                     
                     return (
@@ -111,7 +115,7 @@ const Notifications = () => {
                                     console.error(error);
                                 }
                             }
-                        } key={index} to={path + obj.notif.content_id} className=" w-[90%]">
+                        } key={index} to={path} className=" w-[90%]">
                         <div className={style}>
                             <div>
                                 <p className="mb-3"> <span className="font-bold">{obj.notif.sender}</span> {obj.text}</p> 

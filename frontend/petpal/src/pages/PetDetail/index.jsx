@@ -91,7 +91,9 @@ const PetDetail = () => {
                     <p>{shelter.name}</p>
                 </div>
                 <div className="relative group">
+
                     {listing.images && listing.images.length > 0 ? (<img className="h-[400px] w-full object-cover rounded-md border-blue3 border-4" src={`http://3.16.70.156:8000/api/${listing.images[currentImageIndex]}`} />) : <div className="text-center h-[400px] w-full object-cover rounded-md border-blue3 border-4 flex justify-center items-center"><p>No Image Available</p></div>}
+
                     {listing.images && listing.images.length > 1 && (
                     <button onClick={handlePreviousImage} className="absolute left-0 top-[50%] pl-6">
                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" className="bi bi-arrow-left-circle-fill text-white opacity-0 group-hover:opacity-90 transition-opacity duration-300" viewBox="0 0 16 16">
