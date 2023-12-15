@@ -29,7 +29,7 @@ const Reviews = ({shelterID}) => {
     })
     .catch((error) => {
         console.log(error);
-    });}, [url, token]);
+    });}, [url, token, newRating]);
     
     const handleSubmit = async () => {
 

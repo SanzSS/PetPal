@@ -111,7 +111,7 @@ const Comments = () => {
                 <h1 id="convo-title" className="capitalize">Conversation about {application.pet?.name}</h1>
             </div>
             <div id="comments" className="border-2 border-blue3 border-solid rounded-md w-3/4 mt-4">
-                {comments.results?.map((comment) => (
+                {comments.results?.slice().reverse().map((comment) => (
                         <CommentCard comment={comment} username={username}/>
                 ))}
                 <div className="w-full" id="chatbox">
