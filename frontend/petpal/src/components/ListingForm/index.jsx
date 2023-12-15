@@ -5,9 +5,10 @@ import { useAuth } from '../../contexts/TokenContext';
 
 const ListingForm = ({ initialValues, create }) => {
     const [formData, setFormData] = useState(initialValues);
+    const [error, setError] = useState("");
+    const [submitted, setSubmitted] = useState(false);
 
     const navigate = useNavigate();
-
     const { token } = useAuth();
 
     useEffect(() => {
@@ -43,56 +44,60 @@ const ListingForm = ({ initialValues, create }) => {
                 form.append('images', image);
             });
         }
-        
+
         if (create) {
             fetchWithAuthorization(`/listings/listing/`, {method: 'POST', body: form}, navigate, token)
             .then(response => {
                 if (!response.ok) {
-                throw new Error('Network response was not ok');
+                    return response.json().then(errorData => {
+                        throw new Error(JSON.stringify(errorData));
+                    });
                 }
-                console.log(response.json()); // Parse the JSON data
+                return response.json();
             })
             .then(data => {
-                // Handle the response data
                 console.log('Success:', data);
             })
             .catch(error => {
-                // Handle errors
-                console.error('Error:', error);
+                setError(JSON.parse(error.message));
             });
         }
         else {
             fetchWithAuthorization(`/listings/listing/${formData.listingID}/`, {method: 'PATCH', body: form}, navigate, token)
             .then(response => {
                 if (!response.ok) {
-                throw new Error('Network response was not ok');
+                    return response.json().then(errorData => {
+                        throw new Error(JSON.stringify(errorData));
+                    });
                 }
-                console.log(response.json()); // Parse the JSON data
+                return response.json();
             })
             .then(data => {
-                navigate(`/listing/${formData.listingID}/`);
+                console.log('Success:', data);
             })
             .catch(error => {
-                // Handle errors
-                console.error('Error:', error);
+                setError(JSON.parse(error.message));
             });
         }
-      };
+        setSubmitted(true);
+    };
 
     return <>
         <form onSubmit={handleSubmit} className="grid grid-cols-1 w-10/12 xl:w-3/4 2xl:w-2/4 max-w-[836px] p-6 rounded-md border-blue3 border-4 bg-blue2">
             <div className="flex flex-col">
                 <label for="name" className="label">Status</label>
-                <select id="status" name="status" className="input" value={formData.status} onChange={handleInputChange} required>
+                <select id="status" name="status" className="input cursor-pointer" value={formData.status} onChange={handleInputChange} required>
                     <option value="available">Available</option>
                     <option value="adopted">Adopted</option>
                     <option value="pending">Pending</option>
                     <option value="withdrawn">Withdrawn</option>
+                    {error?.status && <p className="text-red-500 ml-[0.5rem]">{error.status[0]}</p>}
                 </select>
             </div>
             <div className="flex flex-col">
                 <label for="name" className="label">Pet Name</label>
                 <input type="text" id="name" className="input box-border" name="name" value={formData.name} onChange={handleInputChange} required />
+                {error?.name && <p className="text-red-500 ml-[0.5rem]">{error.name[0]}</p>}
             </div>
             <div className="flex flex-col">
                 <label for="photo" className="label">Photos</label>
@@ -101,18 +106,23 @@ const ListingForm = ({ initialValues, create }) => {
             <div className="flex flex-col">
                 <label for="species" className="label">Species</label>
                 <input type="text" id="species" className="input" name="species" value={formData.species} onChange={handleInputChange} required />
+                {error?.species && <p className="text-red-500 ml-[0.5rem]">{error.species[0]}</p>}
             </div>
             <div className="flex flex-col">
                 <label for="breed" className="label">Breed</label>
                 <input type="text" id="breed" className="input" name="breed" value={formData.breed} onChange={handleInputChange} required />
+                {error?.breed && <p className="text-red-500 ml-[0.5rem]">{error.breed[0]}</p>}
             </div>
             <div className="flex flex-col">
                 <label for="age" className="label">Age (Years)</label>
                 <input type="number" id="age" className="input" name="years_old" value={formData.years_old} onChange={handleInputChange} />
+                {error?.years_old && <p className="text-red-500 ml-[0.5rem]">{error.years_old[0]}</p>}
             </div>
             <div className="flex flex-col">
                 <label for="age" className="label">Age (Months)</label>
                 <input type="number" id="age" className="input" name="months_old" value={formData.months_old} onChange={handleInputChange} />
+                {error?.months_old && <p className="text-red-500 ml-[0.5rem]">{error.months_old[0]}</p>}
+                {submitted && (!formData.months_old || formData.months_old == 0) && (!formData.years_old || formData.years_old == 0) && <p className="text-red-500 ml-[0.5rem]">At least one of months_old or years_old must be greater than 0.</p>}
             </div>
             <div className="flex flex-col">
                 <label for="gender" className="label">Gender</label>
@@ -121,10 +131,12 @@ const ListingForm = ({ initialValues, create }) => {
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                 </select>
+                {error?.gender && <p className="text-red-500 ml-[0.5rem]">{error.gender[0]}</p>}
             </div>
             <div className="flex flex-col">
                 <label for="size" className="label">Size (in lbs)</label>
                 <input type="number" id="size" className="input" name="size" value={formData.size} onChange={handleInputChange} required />
+                {error?.size && <p className="text-red-500 ml-[0.5rem]">{error.size[0]}</p>}
             </div>
             <div className="flex flex-col">
                 <label for="description" className="label">Description</label>

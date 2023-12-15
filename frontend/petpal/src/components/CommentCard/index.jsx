@@ -8,15 +8,15 @@ const CommentCard = ({comment, username}) => {
         {comment.user === username ? (
         // on the right
         <div id="self">
-            <p id="from-self">From: {comment.user}</p>
+            <p id="from-self" className="font-bold block capitalize">From: {comment.user}</p>
             {/* if it's the user, then put it on the right, otherwise, put it on the left */}
-            <span className="font-bold block">{comment.content}</span>
+            <span className="block">{comment.content}</span>
         </div>
         ) : (
         // on the left
         <div id="others">
-            <p id="from-others">From: {comment.user}</p>
-            <span className="font-bold block">{comment.content}</span>
+            <p id="from-others" className="font-bold block capitalize">From: {comment.user}</p>
+            <span className="block">{comment.content}</span>
         </div>
         )}
     </>
