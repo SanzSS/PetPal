@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 
 
 const Shelters = () => {
-    const [url, setUrl] = useState('http://127.0.0.1:8000/accounts/shelters/');
+    const [url, setUrl] = useState('http://3.16.70.156:8000/api/accounts/shelters/');
     const { token } = useAuth();
     const [shelters, setShelters] = useState([]);
     const [next, setNext] = useState(null);

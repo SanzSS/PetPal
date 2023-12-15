@@ -14,7 +14,7 @@ const CreateApplication = () => {
     useEffect(() => {
         if (petID) {
             try {
-                axios.get(`http://127.0.0.1:8000/listings/listing/${petID}/`, 
+                axios.get(`http://3.16.70.156:8000/api/listings/listing/${petID}/`, 
                     {headers: {
                         "Authorization": `Bearer ${token}`
                     }
@@ -86,7 +86,7 @@ const CreateApplication = () => {
 
         if (validate_form()) {
             try {
-                await axios.post(`http://127.0.0.1:8000/applications/pet/${petID}/`, 
+                await axios.post(`http://3.16.70.156:8000/api/applications/pet/${petID}/`, 
                     JSON.stringify(outputObject),
                     {headers: {
                         "Authorization": `Bearer ${token}`,

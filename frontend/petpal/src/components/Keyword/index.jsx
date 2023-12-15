@@ -46,7 +46,7 @@ const Keyword = ({keyword, setKeywords, index}) => {
 
     const handleDelete = () => {
         if (keyword.id) {
-            axios.delete(`http://127.0.0.1:8000/keywords/edit/${keyword.id}`, {
+            axios.delete(`http://3.16.70.156:8000/api/keywords/edit/${keyword.id}`, {
                 headers: {
                 Authorization: `Bearer ${token}`,
                 },
