@@ -2,8 +2,8 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useAuth } from '../../contexts/TokenContext';
 import { Link } from 'react-router-dom';
-import { URL } from '../../url';
 const Notifications = () => {
+    const URL = 'http://3.16.70.156/api/';
     const { token } = useAuth();
     const [currFilter, setCurrFilter] = useState('Unread');
     const [notifs, setNotifs] = useState([]);

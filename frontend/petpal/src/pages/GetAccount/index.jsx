@@ -3,9 +3,9 @@ import axios from 'axios';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '../../contexts/TokenContext';
 import { jwtDecode } from "jwt-decode";
-import { URL } from '../../url';
 
 const ViewAccount = () => {
+    const URL = 'http://3.16.70.156/api/';
     const { token } = useAuth();
     const { userID } = useParams();
     console.log(userID);
