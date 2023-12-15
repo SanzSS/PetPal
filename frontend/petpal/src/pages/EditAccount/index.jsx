@@ -13,6 +13,7 @@ const EditAccount = () => {
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const [avatar, setAvatar] = useState(null);
+    const [tempAvatar, setTempAvatar] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -54,11 +55,17 @@ const EditAccount = () => {
         
         const form = new FormData();
 
-        form.append('email', email)
-        form.append('name', name)
-        form.append('password', password)
-        if (avatar) {
-            form.append('avatar', avatar);
+        if (email) {
+            form.append('email', email);
+        }
+        if (name) {
+            form.append('name', name);
+        }
+        if (password) {
+            form.append('password', password);
+        }
+        if (tempAvatar) {
+            form.append('avatar', tempAvatar);
         }
 
         axios.patch(`http://127.0.0.1:8000/accounts/${userId}/`, form, {
@@ -66,6 +73,7 @@ const EditAccount = () => {
               Authorization: `Bearer ${token}`
             }})
             .then(() => {
+                setAvatar(tempAvatar);
                 navigate('/account');
             })
             .catch(error => {
@@ -78,9 +86,10 @@ const EditAccount = () => {
             <h1 className="text-6xl mt-12 text-blue3 font-extrabold text-center mb-10">
                 Account Settings
             </h1>
+            {avatar && 
             <div id="avatar-container">
-                {avatar && <img src={avatar} alt="User Avatar" id="avatar" className="rounded-full"/>}
-            </div>
+                <img src={avatar} alt="User Avatar" id="avatar" className="rounded-full"/>
+            </div>}
         </div>
         <div className="h-1/2 rounded-md border-blue3 border-4 bg-blue2 shadow-lg flex items-left p-3 mt-4 mb-16 flex-col w-[70%]">
 
@@ -92,7 +101,7 @@ const EditAccount = () => {
                     id="avatar_field"
                     name="avatar"
                     accept="image/*"
-                    onChange={(e) => setAvatar(e.target.files[0])}
+                    onChange={(e) => setTempAvatar(e.target.files[0])}
                     className="p-3 border-solid border-blue3 border-2 rounded-md bg-white w-full"
                 />
             </div>
