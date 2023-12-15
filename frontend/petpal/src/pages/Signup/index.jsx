@@ -105,7 +105,7 @@ const Signup = () => {
         
         if (validate_form()) {
             try {
-                console.log(URl + 'accounts/');
+                console.log(URL + 'accounts/');
                 await axios.post(URL + 'accounts/', toSend);
                 navigate("/login");
             } catch (error) {
