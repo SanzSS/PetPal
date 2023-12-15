@@ -117,17 +117,24 @@ const Application = ({application}) => {
         <p>
             Application Status: 
         </p>
-    {userType === 'shelter' ? 
+    {userType === 'shelter' && (application.status !== 'pending') ? 
+    (<select onChange={handleInputChange} defaultValue="" className="rounded-md shadow-md p-3 border-solid border-blue3 border-2 bg-white cursor-pointer">
+    <option value="" disabled="" className="placeholder border rounded-md shadow-md">{application.status}</option>
+    </select>) 
+    : userType === 'shelter' ? 
     (<select onChange={handleInputChange} defaultValue="" className="rounded-md shadow-md p-3 border-solid border-blue3 border-2 bg-white cursor-pointer">
     <option value="" disabled="" className="placeholder border rounded-md shadow-md">{application.status}</option>
         <option value="accepted">accepted</option>
         <option value="denied">denied</option>
-    </select>) : 
+    </select>) 
+    : userType === 'seeker' && (application.status === 'withdrawn' || application.status === 'denied') ?
     (<select onChange={handleInputChange} defaultValue="" className="rounded-md shadow-md p-3 border-solid border-blue3 border-2 bg-white cursor-pointer">
         <option value="" disabled="" className="placeholder border rounded-md shadow-md">{application.status}</option>
-        <option value="withdrawn">withdrawn</option>
-    </select>
-      )}
+    </select>)
+    : (<select onChange={handleInputChange} defaultValue="" className="rounded-md shadow-md p-3 border-solid border-blue3 border-2 bg-white cursor-pointer">
+    <option value="" disabled="" className="placeholder border rounded-md shadow-md">{application.status}</option>
+    <option value="withdrawn">withdrawn</option>
+</select>)}
       <br></br>
 
 {userType === 'shelter' ? 
