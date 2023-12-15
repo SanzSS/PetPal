@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 const Signup = () => {
-    const URL = 'http://3.16.70.156/api/';
+    const URL = 'http://3.16.70.156:8000/api/';
     let navigate = useNavigate();
     const [formData, setFormData] = useState({
         email: '',

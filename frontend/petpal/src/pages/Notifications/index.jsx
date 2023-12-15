@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '../../contexts/TokenContext';
 import { Link } from 'react-router-dom';
 const Notifications = () => {
-    const URL = 'http://3.16.70.156/api/';
+    const URL = 'http://3.16.70.156:8000/api/';
     const { token } = useAuth();
     const [currFilter, setCurrFilter] = useState('Unread');
     const [notifs, setNotifs] = useState([]);

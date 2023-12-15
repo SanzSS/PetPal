@@ -5,7 +5,7 @@ import { useAuth } from '../../contexts/TokenContext';
 import { jwtDecode } from "jwt-decode";
 
 const ViewAccount = () => {
-    const URL = 'http://3.16.70.156/api/';
+    const URL = 'http://3.16.70.156:8000/api/';
     const { token } = useAuth();
     const { userID } = useParams();
     console.log(userID);
