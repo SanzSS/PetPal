@@ -65,7 +65,7 @@ const Notifications = () => {
             setCurrFilter('Unread');
         }
         setNotifs([]);
-        setUrl('http://127.0.0.1:8000/notifications/');
+        setUrl(URL + 'notifications/');
     };
     const handleSortClick = () => {
         if (sort === null) {
@@ -74,7 +74,7 @@ const Notifications = () => {
             setSort(null);
         }
         setNotifs([]);
-        setUrl('http://127.0.0.1:8000/notifications/');
+        setUrl(URL + 'notifications/');
     };
     return <body className="min-h-screen bg-blue1 flex flex-col">
             <div className="flex-1 flex-col">
@@ -98,7 +98,7 @@ const Notifications = () => {
                     } else if (obj.notif.content.type === 'review') {
                         path = '/shelter/' + obj.notif.content_id;
                     } else if (obj.notif.content.type === 'application') { 
-                        path = '/myapplications';
+                        path = '/my_applications';
                     }
                     
                     return (
