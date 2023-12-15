@@ -54,7 +54,7 @@ const CreateApplication = () => {
         {}
     );
 
-    const [answersError, setAnswersError] = useState('');
+    const [answersError, setAnswersError] = useState([]);
 
     const validate_form = () => {
         var isValid = true;
@@ -70,7 +70,7 @@ const CreateApplication = () => {
             }
         }
   
-        setAnswersError(newErrors);
+        setAnswersError([newErrors]);
         return isValid;
     }
 
@@ -98,10 +98,15 @@ const CreateApplication = () => {
                 console.error(error)
                 if (error.response) {
                         if (error.response.status < 500) {
-                            const errorString = error.response.data;
-                            setAnswersError(errorString);
+                            console.log(error.response);
+                            if (error.response.data.message) {
+                                const errorString = error.response.data.message;
+                                setAnswersError([errorString]);
+                            } else if (error.response.data.answers) {
+                                setAnswersError(error.response.data.answers);
+                            }
                         } else {
-                            setAnswersError('An error occurred during the application process.');
+                            setAnswersError(['An error occurred during the application process.']);
                         }
                 }
             }
@@ -259,7 +264,16 @@ const CreateApplication = () => {
                 <div className="items-center justify-center flex mt-4">
                     <input type="submit" onClick={(event) => submit(event)} value="Submit" id="submit" className="button w-1/2 text-xl cursor-pointer"/>
                 </div>
-                {answersError && <p className="error">{JSON.stringify(answersError)}</p>}
+                {answersError && (
+                                    answersError.map((error, errorIndex) => (
+                                        <>
+                                        <p key={errorIndex} className="error">
+                                        {error}
+                                        </p>
+                                        <br></br>
+                                        </>
+                                    ))
+                            )}
             </form>
         </div>
     </main>
