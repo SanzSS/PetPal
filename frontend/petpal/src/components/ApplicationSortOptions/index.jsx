@@ -31,7 +31,7 @@ const ApplicationSortOptions = ({setSearchParams, query}) => {
             <label htmlFor="sort-by-update-time">Update Time</label>
             <input className="transform scale-125 cursor-pointer" type="checkbox" id="sort-by-update-time" name="update_time" onChange={handleInputChange} />
         </div>
-        <input onClick={handleSaveSort} type="button" value="Sort" className="button mt-2 cursor-pointer" />
+        <input onClick={handleSaveSort} type="button" value="Sort" className="button mt-2 cursor-pointer w-full" />
     </form>
 }
 
