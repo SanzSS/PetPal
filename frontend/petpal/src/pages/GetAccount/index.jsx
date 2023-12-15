@@ -1,30 +1,34 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useAuth } from '../../contexts/TokenContext';
 import { jwtDecode } from "jwt-decode";
 
 const ViewAccount = () => {
     const { token } = useAuth();
-
-    const [userId, setUserId] = useState('');
+    const { userID } = useParams();
+    console.log(userID);
+    
+    const [userId, setUserId] = useState(userID || '');
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const [avatar, setAvatar] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (token) {
-            try {
-                const decodedToken = jwtDecode(token);
-                if (decodedToken) {
-                    setUserId(decodedToken.user_id);
+        if (!userID) {
+            if (token) {
+                try {
+                    const decodedToken = jwtDecode(token);
+                    if (decodedToken) {
+                        setUserId(decodedToken.user_id);
+                    }
+                } catch (error) {
+                    console.error('Error decoding token:', error);
                 }
-            } catch (error) {
-                console.error('Error decoding token:', error);
             }
         }
-    }, [token]);
+    }, [token, userID]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -42,6 +46,7 @@ const ViewAccount = () => {
                 }
             } catch (error) {
                 console.error(error);
+                navigate("*");
             }
         };
         fetchData();
@@ -77,7 +82,7 @@ const ViewAccount = () => {
             </div>
             <div id="profile-container" className="h-1/2 rounded-md border-blue3 border-4 bg-blue2 shadow-lg flex items-left p-3 mt-4 flex-col w-[70%]">
                 <div className="self-end">
-                    <Link to="/account/edit" className="button p-1">Edit</Link>
+                    {!userID && <Link to="/account/edit" className="button p-1">Edit</Link>}
                 </div>
                 <div className="my-2">
                     <p>Email address:</p>
@@ -89,9 +94,10 @@ const ViewAccount = () => {
                     <p className="rounded-md shadow-md p-3 border-solid border-blue3 border-2 w-full my-2 bg-white">{name}</p>
                 </div>
             </div>
+            {!userID &&
             <button onClick={() => handleDelete()} className='w-[9%] bg-red-600 border border-blue3 text-white items-center font-bold rounded-md hover:bg-white hover:text-blue3 md:text-[1rem] text-[0.5rem] mt-[5rem]'>
                 Delete Account
-            </button>
+            </button>}
         </main>
     </>
 }
