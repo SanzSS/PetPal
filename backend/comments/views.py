@@ -67,7 +67,7 @@ class CommentView(ListCreateAPIView):
         elif self.request.user == application.pet.shelter:
             receiver = application.user
 
-        Notification.objects.create(content_type=content_type, content_id=application_id,
+        Notification.objects.create(content_type=content_type, content_id=new_comment.id,
                                     content=new_comment, sender=self.request.user, receiver=receiver, state=False)
         
     def post(self, request, *args, **kwargs):
