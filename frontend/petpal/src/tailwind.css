@@ -168,3 +168,7 @@ details > summary::-webkit-details-marker {
     border-color: #9A0007;
     background-color: white;
  }
+
+ #application-answer {
+    margin-bottom: 2rem;
+ }
