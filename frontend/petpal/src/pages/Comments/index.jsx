@@ -24,7 +24,7 @@ const Comments = () => {
     const [username, setUsername] = useState('');
     const [next, setNext] = useState(null);
     const [prev, setPrev] = useState(null);
-    const [url, setUrl] = useState(`http://127.0.0.1:8000/comments/application/${applicationID}/`);
+    const [url, setUrl] = useState(`http://3.16.70.156:8000/api/comments/application/${applicationID}/`);
     const [newComment, setNewComment] = useState("")
 
     const [error, setError] = useState("")
@@ -44,7 +44,7 @@ const Comments = () => {
         const fetchData = async () => {
             try {
                 if (applicationID) {
-                    const response_app = await axios.get(`http://127.0.0.1:8000/applications/${applicationID}/`, {
+                    const response_app = await axios.get(`http://3.16.70.156:8000/api/applications/${applicationID}/`, {
                         headers: {
                           "Authorization": `Bearer ${token}`
                         }
@@ -52,7 +52,7 @@ const Comments = () => {
                     setApplication(response_app.data);
 
                     // get userID
-                    const response_user_info = await axios.get(`http://127.0.0.1:8000/accounts/${userID}/`, {
+                    const response_user_info = await axios.get(`http://3.16.70.156:8000/api/accounts/${userID}/`, {
                         headers: {
                           "Authorization": `Bearer ${token}`
                         }
@@ -81,7 +81,7 @@ const Comments = () => {
 
         const commentJSON = {"content": newComment};
         try {
-            await axios.post(`http://127.0.0.1:8000/comments/application/${applicationID}/`, 
+            await axios.post(`http://3.16.70.156:8000/api/comments/application/${applicationID}/`, 
                     JSON.stringify(commentJSON),
                     {headers: {
                         "Authorization": `Bearer ${token}`,
@@ -101,7 +101,7 @@ const Comments = () => {
             console.log(APIerror);
             setError("Content may not be blank");
         }
-        setUrl(`http://127.0.0.1:8000/comments/application/${applicationID}/`);
+        setUrl(`http://3.16.70.156:8000/api/comments/application/${applicationID}/`);
         setNewComment("");
     } 
 

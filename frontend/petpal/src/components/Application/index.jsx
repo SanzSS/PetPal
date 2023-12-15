@@ -45,7 +45,7 @@ const Application = ({application}) => {
 
         if (validate_form()) {
             try {
-                await axios.patch(`http://127.0.0.1:8000/applications/${application.id}/`, 
+                await axios.patch(`http://3.16.70.156:8000/api/applications/${application.id}/`, 
                     JSON.stringify({"status": status}),
                     {headers: {
                         "Authorization": `Bearer ${token}`,
@@ -69,7 +69,7 @@ const Application = ({application}) => {
 
     useEffect(() => {
         try {
-            axios.get(`http://127.0.0.1:8000/keywords/score/${application.id}/`, 
+            axios.get(`http://3.16.70.156:8000/api/keywords/score/${application.id}/`, 
                 {headers: {
                     "Authorization": `Bearer ${token}`
                 }

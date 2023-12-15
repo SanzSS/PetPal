@@ -21,7 +21,7 @@ const EditKeywords = () => {
     useEffect(() => {
         if (petID) {
             try {
-                axios.get(`http://127.0.0.1:8000/listings/listing/${petID}/`, 
+                axios.get(`http://3.16.70.156:8000/api/listings/listing/${petID}/`, 
                     {headers: {
                         "Authorization": `Bearer ${token}`
                     }
@@ -52,7 +52,7 @@ const EditKeywords = () => {
     }, []);
 
     const fetchKeywords = () => {
-        let url = `http://127.0.0.1:8000/keywords/${petID}`;
+        let url = `http://3.16.70.156:8000/api/keywords/${petID}`;
 
         axios.get(url, 
         {headers: {
@@ -85,7 +85,7 @@ const EditKeywords = () => {
         console.log(keyword);
         if (keyword.id) {
             // patch
-            axios.patch(`http://127.0.0.1:8000/keywords/edit/${keyword.id}/`, {
+            axios.patch(`http://3.16.70.156:8000/api/keywords/edit/${keyword.id}/`, {
                 keyword: keyword.keyword,
                 weight: keyword.weight,
             }, {
@@ -104,7 +104,7 @@ const EditKeywords = () => {
                 console.error('Error updating keyword', error);
             });
         } else {
-            axios.post(`http://127.0.0.1:8000/keywords/${petID}/`, {
+            axios.post(`http://3.16.70.156:8000/api/keywords/${petID}/`, {
             keyword: keyword.keyword,
             weight: keyword.weight
             }, {

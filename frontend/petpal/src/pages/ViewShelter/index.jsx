@@ -21,7 +21,7 @@ const ViewShelter = () => {
         const fetchData = async () => {
             try {
                 if (shelterID) {
-                    const response = await axios.get(`http://127.0.0.1:8000/accounts/${shelterID}/`, {
+                    const response = await axios.get(`http://3.16.70.156:8000/api/accounts/${shelterID}/`, {
                         headers: {
                           "Authorization": `Bearer ${token}`
                         }
