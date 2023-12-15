@@ -35,7 +35,7 @@ const Reviews = ({shelterID}) => {
 
         const reviewJSON = {"content": newContent, "rating": newRating};
         try {
-            await axios.post(`http://3.16.70.156:8000/apicomments/shelter/${shelterID}/`, 
+            await axios.post(`http://3.16.70.156:8000/api/comments/shelter/${shelterID}/`, 
                     JSON.stringify(reviewJSON),
                     {headers: {
                         "Authorization": `Bearer ${token}`,
