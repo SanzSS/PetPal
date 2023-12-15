@@ -33,7 +33,7 @@ const EditAccount = () => {
         const fetchData = async () => {
             try {
                 if (userId) {
-                    const response = await axios.get(`http://127.0.0.1:8000/accounts/${userId}/`, {
+                    const response = await axios.get(`http://3.16.70.156:8000/api/accounts/${userId}/`, {
                         headers: {
                           "Authorization": `Bearer ${token}`
                         }
@@ -68,7 +68,7 @@ const EditAccount = () => {
             form.append('avatar', tempAvatar);
         }
 
-        axios.patch(`http://127.0.0.1:8000/accounts/${userId}/`, form, {
+        axios.patch(`http://3.16.70.156:8000/api/accounts/${userId}/`, form, {
             headers: {
               Authorization: `Bearer ${token}`
             }})

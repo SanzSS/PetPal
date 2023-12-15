@@ -65,7 +65,7 @@ const Notifications = () => {
             setCurrFilter('Unread');
         }
         setNotifs([]);
-        setUrl('http://127.0.0.1:8000/notifications/');
+        setUrl('http://3.16.70.156:8000/api/notifications/');
     };
     const handleSortClick = () => {
         if (sort === null) {
@@ -74,7 +74,7 @@ const Notifications = () => {
             setSort(null);
         }
         setNotifs([]);
-        setUrl('http://127.0.0.1:8000/notifications/');
+        setUrl('http://3.16.70.156:8000/api/notifications/');
     };
     return <body className="min-h-screen bg-blue1 flex flex-col">
             <div className="flex-1 flex-col">

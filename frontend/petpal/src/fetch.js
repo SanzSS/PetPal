@@ -1,4 +1,4 @@
-const domain = "http://localhost:8000";
+const domain = "http://3.16.70.156:8000/api";
 
 export async function fetchWithAuthorization(url, settings, navigate, loginToken) {
     const token = "Bearer " + loginToken;
