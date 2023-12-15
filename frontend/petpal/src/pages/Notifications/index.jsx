@@ -2,7 +2,9 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { useAuth } from '../../contexts/TokenContext';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 const Notifications = () => {
+    const nav = useNavigate();
     const URL = 'http://3.16.70.156:8000/api/';
     const { token } = useAuth();
     const [currFilter, setCurrFilter] = useState('Unread');
@@ -94,9 +96,10 @@ const Notifications = () => {
                         style = 'h-32 bg-slate-50 border border-gray-300 shadow-lg flex items-center p-3 gap-[75%] border-l-blue-500 relative w-[100%] mb-[1rem] text-base xl:text-sm hover:bg-blue-400';
                     } 
                     if (obj.notif.content.type === 'comment') {
-                        path = '/comments/' + obj.notif.content_id;
+                        path = '/comments/';
+                        console.log(path);
                     } else if (obj.notif.content.type === 'review') {
-                        path = '/shelter/' + obj.notif.content_id;
+                        path = '/shelter/';
                     } else if (obj.notif.content.type === 'application') { 
                         path = '/my_applications';
                     }
@@ -104,18 +107,18 @@ const Notifications = () => {
                     return (
                         <div className='w-[75%] flex flex-row gap-[1rem]'>
                         <Link onClick={
-                            () => {
+                            async () => {
                                 try {
                                     axios.get(url + obj.notif.pk + '/', {
                                         headers: {
                                           Authorization: `Bearer ${token}`
                                         }
-                                      });
+                                      }).then((response) => {nav(path + response.data.key)});
                                 } catch (error) {
                                     console.error(error);
                                 }
                             }
-                        } key={index} to={path} className=" w-[90%]">
+                        } key={index} className=" w-[90%]">
                         <div className={style}>
                             <div>
                                 <p className="mb-3"> <span className="font-bold">{obj.notif.sender}</span> {obj.text}</p> 

@@ -14,7 +14,7 @@ class NotificationSerializer(serializers.ModelSerializer):
     content = GenericRelatedField(read_only=True)
     sender = serializers.StringRelatedField()
     receiver = serializers.StringRelatedField()
-
+    
     class Meta:
         model = Notification
         fields = ['content', 'sender', 'receiver', 'state', 'creation_date', 'pk', 'content_id']
