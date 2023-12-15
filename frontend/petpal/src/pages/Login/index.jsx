@@ -54,7 +54,7 @@ const Login = () => {
         event.preventDefault();
 
         if (validate_form()) {
-            fetch('http://127.0.0.1:8000/api/token/', {
+            fetch('http://3.16.70.156:8000/api/token/', {
                 method: 'POST', 
                 body: new URLSearchParams(formData).toString(),
                 headers: {
@@ -75,7 +75,7 @@ const Login = () => {
                     userID = decodedToken.user_id;
                 }
                 if (userID) {
-                    const response = axios.get(`http://127.0.0.1:8000/accounts/${userID}/`, {
+                    const response = axios.get(`http://3.16.70.156:8000/accounts/${userID}/`, {
                         headers: {
                             "Authorization": `Bearer ${data.access}`
                         }
