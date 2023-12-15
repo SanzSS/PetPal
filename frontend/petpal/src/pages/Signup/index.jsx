@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { URL } from '../../url';
 
 const Signup = () => {
 
@@ -104,7 +105,7 @@ const Signup = () => {
         
         if (validate_form()) {
             try {
-                await axios.post('http://127.0.0.1:8000/accounts/', toSend);
+                await axios.post(URL + 'accounts/', toSend);
                 navigate("/login");
             } catch (error) {
                 console.error(error)
