@@ -62,7 +62,7 @@ const Reviews = ({shelterID}) => {
                     <button onClick={() => {
                         handleSubmit();
                         }
-                    } id="review-input" className="col-span-2 bg-blue3 border border-blue3 text-white items-center font-bold rounded-md h-5 hover:bg-white hover:text-blue3">Submit</button>
+                    } id="review-input" className="col-span-2 bg-blue3 border-2 border-blue3 text-white items-center font-bold rounded-md h-5 hover:bg-white hover:text-blue3">Submit</button>
                     <p className="col-span-2 self-center text-sm">{error}</p>
             </div>
 
@@ -77,7 +77,7 @@ const Reviews = ({shelterID}) => {
                     setUrl(prev);
                     setReviews([]);
                     }}
-                    className="bg-blue3 border border-blue3 text-white font-bold py-2 px-4 rounded-md mt-8 mb-8 w-[6.5rem] hover:bg-white hover:text-blue3"
+                    className="bg-blue3 border-2 border-blue3 text-white font-bold py-2 px-4 rounded-md mt-8 mb-8 w-[6.5rem] hover:bg-white hover:text-blue3"
                     >
                     Previous
                 </button>
@@ -89,7 +89,7 @@ const Reviews = ({shelterID}) => {
                     setUrl(next);
                     setReviews([]);
                 }
-                }} className="bg-blue3 border border-blue3 text-white items-center font-bold py-2 px-4 rounded-md mt-8 mb-8 w-[6.5rem] hover:bg-white hover:text-blue3">Next</button>
+                }} className="bg-blue3 border-2 border-blue3 text-white items-center font-bold py-2 px-4 rounded-md mt-8 mb-8 w-[6.5rem] hover:bg-white hover:text-blue3">Next</button>
             )}
         </div>
     </>
