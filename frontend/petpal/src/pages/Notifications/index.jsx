@@ -121,7 +121,7 @@ const Notifications = () => {
                         </div>
                         
                         </Link>
-                        <button onClick={() => handleButtonClick(obj.notif.pk)} className="h-[2rem] my-[3rem] w-[8.5%] bg-red-600 border border-blue3 text-white items-center font-bold rounded-md hover:bg-white hover:text-blue3 md:text-[1rem] text-[0.5rem]">Delete </button>
+                        <button onClick={() => handleButtonClick(obj.notif.pk)} className="h-[2rem] my-[3rem] w-[8.5%] bg-[#9A0007] border-2 border-[#9A0007] text-white items-center font-bold rounded-md hover:bg-white hover:text-[#9A0007] md:text-[1rem] text-[0.5rem]">Delete </button>
                         </div>
                      );})}
                 

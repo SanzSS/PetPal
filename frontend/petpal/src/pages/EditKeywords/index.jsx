@@ -149,17 +149,17 @@ const EditKeywords = () => {
         <main className="flex flex-col items-center pb-16">
             <div id="content">
                 <h1 className="text-6xl my-12 text-blue3 font-extrabold text-center">Keywords</h1>
-                <button onClick={addBlankKeyword} className="text-center p-3 bg-blue3 text-white font-extrabold text-xl flex justify-center items-center rounded-xl shadow-md cursor-pointer hover:text-blue3 hover:bg-white border-2 border-blue3 hover:border-blue3">
+                <button onClick={addBlankKeyword} className="text-center p-3 bg-blue3 text-white font-bold text-xl flex justify-center items-center rounded-xl shadow-md cursor-pointer hover:text-blue3 hover:bg-white border-2 border-blue3 hover:border-blue3">
                     Add a new keyword
                 </button>
                 <div className="h-1/2 rounded-md border-blue3 border-4 bg-blue2 shadow-lg flex p-3 mt-4 flex-col w-3/4">
                     <div id="keyword">
-                        <h3 className="w-full text-2xl font-extrabold text-center">Word</h3>
-                        <h3 className="w-full text-2xl font-extrabold text-center">Weight</h3>
+                        <h3 className="w-full text-2xl font-bold text-center">Word</h3>
+                        <h3 className="w-full text-2xl font-bold text-center">Weight</h3>
                     </div>
                     {Array.isArray(keywords) && keywords.map((keyword, index) => (
                     <Keyword keyword={keyword} key={keyword.id} setKeywords={setKeywords} index={index} />))}
-                    <button onClick={handleSave} className="text-white bg-blue3 rounded-md mt-4 p-2 px-4 mx-4 font-extrabold cursor-pointer hover:text-blue3 hover:bg-white border-2 border-blue3 hover:border-blue3">
+                    <button onClick={handleSave} className="text-white bg-blue3 rounded-md mt-4 p-2 px-4 mx-4 font-bold cursor-pointer hover:text-blue3 hover:bg-white border-2 border-blue3 hover:border-blue3">
                         Save Keywords
                     </button>
                     <p className="error mt-4">{error}</p>
