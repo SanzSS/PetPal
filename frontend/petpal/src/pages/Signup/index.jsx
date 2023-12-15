@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 const Signup = () => {
-
+    const URL = 'http://3.16.70.156:8000/api/';
     let navigate = useNavigate();
     const [formData, setFormData] = useState({
         email: '',
@@ -104,7 +104,8 @@ const Signup = () => {
         
         if (validate_form()) {
             try {
-                await axios.post('http://127.0.0.1:8000/accounts/', toSend);
+                console.log(URL + 'accounts/');
+                await axios.post(URL + 'accounts/', toSend);
                 navigate("/login");
             } catch (error) {
                 console.error(error)

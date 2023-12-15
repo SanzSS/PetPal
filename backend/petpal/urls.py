@@ -28,12 +28,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('accounts/', include('accounts.urls', namespace='accounts')),
-    path('comments/', include('comments.urls', namespace='comments')),
-    path('applications/', include('applications.urls', namespace='applications')),
-    path('listings/', include('petlistings.urls', namespace='petlistings')),
-    path('notifications/', include('notifications.urls', namespace='notifications')),
-    path('keywords/', include('keywords.urls', namespace='keywords'))
+    path('api/accounts/', include('accounts.urls', namespace='accounts')),
+    path('api/comments/', include('comments.urls', namespace='comments')),
+    path('api/applications/', include('applications.urls', namespace='applications')),
+    path('api/listings/', include('petlistings.urls', namespace='petlistings')),
+    path('api/notifications/', include('notifications.urls', namespace='notifications')),
+    path('api/keywords/', include('keywords.urls', namespace='keywords'))
 ] 
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

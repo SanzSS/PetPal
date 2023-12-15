@@ -3,12 +3,13 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '../../contexts/TokenContext';
 import { Link } from 'react-router-dom';
 const Notifications = () => {
+    const URL = 'http://3.16.70.156:8000/api/';
     const { token } = useAuth();
     const [currFilter, setCurrFilter] = useState('Unread');
     const [notifs, setNotifs] = useState([]);
     const [next, setNext] = useState(null);
     const [prev, setPrev] = useState(null);
-    const [url, setUrl] = useState('http://127.0.0.1:8000/notifications/');
+    const [url, setUrl] = useState(URL + 'notifications/');
     const [sort, setSort] = useState(null);
     useEffect(() => {axios.get(url, {
         headers: {

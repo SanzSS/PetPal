@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # React server
+    "http://localhost:3000", "http://3.16.70.156", "http://3.16.70.156:80"  # React server
 ]
 
 
@@ -32,9 +32,9 @@ CORS_ALLOWED_ORIGINS = [
 SECRET_KEY = 'django-insecure-8!&34ftj^s*uys-fbos90x&6%c9#6fukq05+l3^4sx+u-dmgke'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['3.16.70.156', '0.0.0.0']
 
 
 # Application definition

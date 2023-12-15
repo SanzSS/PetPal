@@ -5,6 +5,7 @@ import { useAuth } from '../../contexts/TokenContext';
 import { jwtDecode } from "jwt-decode";
 
 const ViewAccount = () => {
+    const URL = 'http://3.16.70.156:8000/api/';
     const { token } = useAuth();
     const { userID } = useParams();
     console.log(userID);
@@ -34,7 +35,7 @@ const ViewAccount = () => {
         const fetchData = async () => {
             try {
                 if (userId) {
-                    const response = await axios.get(`http://127.0.0.1:8000/accounts/${userId}/`, {
+                    const response = await axios.get(`${URL}accounts/${userId}/`, {
                         headers: {
                           "Authorization": `Bearer ${token}`
                         }
@@ -55,7 +56,7 @@ const ViewAccount = () => {
     const handleDelete = () => {
         try {
             if (userId) {
-                axios.delete(`http://127.0.0.1:8000/accounts/${userId}/`, {
+                axios.delete(`${URL}accounts/${userId}/`, {
                     headers: {
                         "Authorization": `Bearer ${token}`
                       }
