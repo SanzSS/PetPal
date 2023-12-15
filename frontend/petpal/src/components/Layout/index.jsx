@@ -31,6 +31,7 @@ const Layout = () => {
                     <Link to="/search"><h1 className="text-4xl text-white font-extrabold">PetPal</h1></Link>
                     <div className="flex justify-evenly items-center">
                         <Link to="/search" className="header-item p-4">Search</Link>
+                        <Link to="/shelters" className="header-item p-4">Shelters</Link>
                         { userType === 'seeker' ? <Link to="/my_applications" className="header-item p-4">My Applications</Link> : <><Link to="/create_listing" className="header-item p-4">Create a Pet</Link> <Link to="/my_applications" className="header-item p-4">Received Applications</Link></>}
                         <Link to="/notifications" className="header-item p-4">Notifications</Link>
                         {/* Dropdown Menu */}
@@ -55,6 +56,7 @@ const Layout = () => {
                         </summary>
                         <div className="mt-[64px] flex flex-col">
                             <Link to="/search" className="text-white bg-blue3 pl-8 py-2 header-item">Search</Link>
+                            <Link to="/shelters" className="text-white bg-blue3 pl-8 py-2 header-item">Shelters</Link>
                             { userType === 'seeker' ? <Link to="/my_applications" className="text-white bg-blue3 pl-8 py-2 header-item">My Applications</Link> : <><Link to="/create_listing" className="text-white bg-blue3 pl-8 py-2 header-item">Create a Pet</Link><Link to="/my_applications" className="text-white bg-blue3 pl-8 py-2 header-item">Received Applications</Link></>}
                             <Link to="/account" className="text-white bg-blue3 pl-8 py-2 header-item">My Account</Link>
                             { userType === 'seeker' ? <></> : <Link to={`shelter/${userId}`} className="text-white bg-blue3 pl-8 py-2 header-item">My Pets</Link>}
