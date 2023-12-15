@@ -40,7 +40,7 @@ const UpdateListing = () => {
     return <>
         <main className="flex flex-col items-center pb-16">
             <h1 className="text-4xl md:text-6xl my-12 text-blue3 font-extrabold">Update Pet Information</h1>
-            <Link to={`/listing/${listingID}/keywords`} className="text-white bg-blue3 rounded-md mt-4 mb-4 p-2 px-4 font-extrabold cursor-pointer hover:text-blue3 hover:bg-white hover:border-2 hover:border-blue3">
+            <Link to={`/listing/${listingID}/keywords`} className="text-white bg-blue3 rounded-md mt-4 mb-4 p-2 px-4 font-extrabold cursor-pointer hover:text-blue3 hover:bg-white border-2 border-blue3 hover:border-blue3">
                 Edit Keywords
             </Link>
             <ListingForm initialValues={initialValues} create={false} />

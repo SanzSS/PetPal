@@ -95,7 +95,7 @@ const ViewAccount = () => {
                 </div>
             </div>
             {!userID &&
-            <button onClick={() => handleDelete()} className='w-[9%] bg-red-600 border-2 border-red-600 text-white items-center font-bold rounded-md hover:bg-white hover:text-red-600 hover:border-red-600 md:text-[1rem] text-[0.5rem] mb-16'>
+            <button onClick={() => handleDelete()} className='w-[9%] bg-red-600 border-2 border-red-600 text-white items-center font-bold rounded-md hover:bg-white hover:text-red-600 hover:border-red-600 md:text-[1rem] text-[0.5rem] my-16'>
                 Delete Account
             </button>}
         </main>
