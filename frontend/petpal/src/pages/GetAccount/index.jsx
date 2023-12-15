@@ -80,7 +80,7 @@ const ViewAccount = () => {
                     <img src={avatar} alt="User Avatar" id="avatar" className="rounded-full"/>
                 </div>}
             </div>
-            <div id="profile-container" className="h-1/2 rounded-md border-blue3 border-4 bg-blue2 shadow-lg flex items-left p-3 mt-4 flex-col w-[70%]">
+            <div className="h-1/2 rounded-md border-blue3 border-4 bg-blue2 shadow-lg flex items-left p-3 mt-4 flex-col w-[70%]">
                 <div className="self-end">
                     {!userID && <Link to="/account/edit" className="button p-1">Edit</Link>}
                 </div>
