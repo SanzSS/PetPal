@@ -21,7 +21,7 @@ const ApplicationFilterOptions = ({setSearchParams, query}) => {
         }));
     };
 
-    return <form className="lg:flex lg:flex-col lg:justify-start lg:pt-[50px]">
+    return <form className="lg:flex lg:flex-col lg:justify-start lg:pt-[50px] mt-12">
         <p className="mb-2">Filter By:</p>
         <div className="filter-div">
             <label htmlFor="filter-by-status">Status</label>
@@ -33,7 +33,7 @@ const ApplicationFilterOptions = ({setSearchParams, query}) => {
                 <option value="">All</option>
             </select>
         </div>
-        <input onClick={handleSaveFilters} type="button" value="Save Filters" className="button mt-2 cursor-pointer" />
+        <input onClick={handleSaveFilters} type="button" value="Save Filters" className="button mt-2 cursor-pointer w-full" />
     </form>
 }
 
