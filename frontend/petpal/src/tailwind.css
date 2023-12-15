@@ -145,11 +145,11 @@ details > summary::-webkit-details-marker {
  }
 
  #content {
-    margin-left: 3rem;
-    margin-right: 3rem;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-left: 3rem;
+    padding-right: 3rem;
  }
 
  #keyword {
@@ -167,4 +167,8 @@ details > summary::-webkit-details-marker {
     color: #9A0007;
     border-color: #9A0007;
     background-color: white;
+ }
+
+ #application-answer {
+    margin-bottom: 2rem;
  }
