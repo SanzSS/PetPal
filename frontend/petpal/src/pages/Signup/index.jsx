@@ -110,6 +110,7 @@ const Signup = () => {
                 console.error(error)
                 if (error.response) {
                         if (error.response.status === 400) {
+                            console.log(error.response);
                             const errorString = error.response.data;
                             setSignupError(errorString);
                         } else {
@@ -193,7 +194,19 @@ const Signup = () => {
                             <br />
                             <input type="submit" onClick={(event) => signup(event)} className="button w-full cursor-pointer" value="Sign up" id="signup"/>
                             <br></br>
-                            {signupError && <p className="error">{JSON.stringify(signupError)}</p>}
+                            {signupError && (
+                                <div>
+                                    {Object.keys(signupError).map((attribute, index) => (
+                                    <div key={index}>
+                                        {signupError[attribute].map((error, errorIndex) => (
+                                            <p key={errorIndex} className="error">
+                                            {error}
+                                            </p>
+                                        ))}
+                                    </div>
+                                    ))}
+                                </div>
+                            )}
                             <br></br>
                         </form>
                         <br></br>
