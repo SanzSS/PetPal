@@ -154,7 +154,7 @@ const Signup = () => {
                         <h1 id="website-name" className="text-blue3 font-bold text-6xl pt-10 text-center">PetPal</h1>
                         <br></br>
                         <br></br>
-                        <form>
+                        <form className="w-full">
                             <input type="text" id="name" name="name" placeholder="Name" required onChange={handleInputChange} className="p-3 border-solid border-blue3 border-2 rounded-md w-full"/>
                             <br></br>
                             <p className="error">{formErrors.name}</p>
