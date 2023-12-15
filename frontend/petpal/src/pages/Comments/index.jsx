@@ -106,18 +106,18 @@ const Comments = () => {
     } 
 
     return <>
-        <div className="container" id="content">
+        <div className="container mb-12" id="content">
             <div>
-                <h1 id="convo-title">Conversation about {application.pet?.name}</h1>
+                <h1 id="convo-title" className="capitalize">Conversation about {application.pet?.name}</h1>
             </div>
-            <div id="comments" className="border border-2 border-blue3 border-solid rounded-md ">
+            <div id="comments" className="border-2 border-blue3 border-solid rounded-md w-3/4 mt-4">
                 {comments.results?.map((comment) => (
                         <CommentCard comment={comment} username={username}/>
                 ))}
                 <div className="w-full" id="chatbox">
                     <form onSubmit={handleSubmit} className="flex justify-between items-center flex-row">
-                        <input id="message" name="message" value={newComment} onChange={(e) => setNewComment(e.target.value)} placeholder="Type your message" required className="p-3 border border-solid border-blue3 border-2 rounded-md"></input>
-                        <input type="submit" value="Send" id="send" className="p-3 rounded-md font-bold text-lg border-solid border-yellow-400 border-2 cursor-pointer p-3 justify-center inline-flex items-center no-underline text-center"></input>
+                        <input id="message" name="message" value={newComment} onChange={(e) => setNewComment(e.target.value)} placeholder="Type your message" required className="p-3 border-solid border-blue3 border-2 rounded-md"></input>
+                        <input type="submit" value="Send" id="send" className="p-[10px] mr-[2px] rounded-md font-bold text-lg border-solid border-blue3 border-2 cursor-pointer justify-center inline-flex items-center no-underline text-center bg-blue3 text-white hover:bg-white hover:text-blue3"></input>
                     </form>
                     <p className="col-span-2 self-center text-sm">{error}</p>
                 </div>
@@ -130,7 +130,7 @@ const Comments = () => {
                         setUrl(prev);
                         setComments([]);
                         }}
-                        className="bg-blue3 border border-blue3 text-white items-center font-bold py-2 px-4 rounded-md mt-8 mb-8 w-[6.5rem] hover:bg-white hover:text-blue3"
+                        className="bg-blue3 border-2 border-blue3 text-white items-center font-bold py-2 px-4 rounded-md mt-8 mb-8 w-[6.5rem] hover:bg-white hover:text-blue3"
                         >
                         Previous
                     </button>
@@ -142,7 +142,7 @@ const Comments = () => {
                         setUrl(next);
                         setComments([]);
                     }
-                    }} className="bg-blue3 border border-blue3 text-white items-center font-bold py-2 px-4 rounded-md mt-8 mb-8 w-[6.5rem] hover:bg-white hover:text-blue3">Next</button>
+                    }} className="bg-blue3 border-2 border-blue3 text-white items-center font-bold py-2 px-4 rounded-md mt-8 mb-8 w-[6.5rem] hover:bg-white hover:text-blue3">Next</button>
                 )}
                 </div>
         </div>
