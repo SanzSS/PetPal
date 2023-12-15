@@ -92,7 +92,7 @@ const PetDetail = () => {
                 </div>
                 <div className="relative group">
 
-                    {listing.images && listing.images.length > 0 ? (<img className="h-[400px] w-full object-cover rounded-md border-blue3 border-4" src={`http://3.16.70.156:8000/api/${listing.images[currentImageIndex]}`} />) : <div className="text-center h-[400px] w-full object-cover rounded-md border-blue3 border-4 flex justify-center items-center"><p>No Image Available</p></div>}
+                    {listing.images && listing.images.length > 0 ? (<img className="h-[400px] w-full object-cover rounded-md border-blue3 border-4" src={`http://3.16.70.156:8000${listing.images[currentImageIndex]}`} />) : <div className="text-center h-[400px] w-full object-cover rounded-md border-blue3 border-4 flex justify-center items-center"><p>No Image Available</p></div>}
 
                     {listing.images && listing.images.length > 1 && (
                     <button onClick={handlePreviousImage} className="absolute left-0 top-[50%] pl-6">
