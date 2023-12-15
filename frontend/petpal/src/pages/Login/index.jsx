@@ -116,27 +116,36 @@ const Login = () => {
     };
 
     return <>
-        <main className="flex flex-col justify-center items-center mt-8">
-          <div className="grid grid-cols-1 w-10/12 xl:w-3/4 2xl:w-2/4 max-w-[836px] p-6" id="content">
-            <h1 id="website-name" className="text-blue3 font-bold text-6xl pt-20 text-center">PetPal</h1>
-            <br/>
-            <br/>
-            <form onSubmit={login}>
-                <input type="email" id="form-email" name="email" placeholder="Email" onChange={handleInputChange} className="p-3 border-solid text-blue3 border-blue3 border-2 rounded-md w-full" required/>
-                <p className="error">{formErrors.email}</p>
-                <br/>
-                <input type="password" id="password" name="password" placeholder="Password" onChange={handleInputChange} className="p-3 border-solid text-blue3 border-blue3 border-2 rounded-md w-full" required/> 
-                <p className="error">{formErrors.password}</p>
-                <br/>
-                <input type="submit" value="Login" id="login" onClick={(event) => login(event)} className="button w-full cursor-pointer"/>
-                <br></br>
-                <p className="error">{loginError}</p>
-                <br></br>
-            </form>
-            <br></br>
-            <Link to="/signup" className="text-blue3 text-base underline mb-20 text-center">Sign up</ Link>
-        </div>
-      </main>
+        <body className="min-h-screen bg-blue1 flex flex-col">
+            <div className="flex-1">
+                <header>
+                    {/* Navigation Bar */}
+                    <nav className="flex bg-blue3 h-[70px] text-white justify-between items-center px-16">
+                        <h1 className="text-4xl text-white font-extrabold">PetPal</h1>
+                    </nav>
+                </header>
+                <main className="flex flex-col justify-center items-center pb-16 mt-12">
+                    <h1 id="website-name" className="text-blue3 font-bold text-6xl pt-20 text-center mb-16">PetPal</h1>
+                    <form onSubmit={login} className="w-10/12 max-w-[836px]">
+                        <input type="email" id="form-email" name="email" placeholder="Email" onChange={handleInputChange} className="p-3 border-solid text-blue3 border-blue3 border-2 rounded-md w-full" required/>
+                        <p className="error">{formErrors.email}</p>
+                        <br/>
+                        <input type="password" id="password" name="password" placeholder="Password" onChange={handleInputChange} className="p-3 border-solid text-blue3 border-blue3 border-2 rounded-md w-full" required/> 
+                        <p className="error">{formErrors.password}</p>
+                        <br/>
+                        <input type="submit" value="Login" id="login" onClick={(event) => login(event)} className="button w-full cursor-pointer"/>
+                        <br></br>
+                        <p className="error">{loginError}</p>
+                        <br></br>
+                    </form>
+                    <br></br>
+                    <Link to="/signup" className="text-blue3 text-base underline mb-20 text-center">Sign up</ Link>
+                </main>
+            </div>
+            <footer className="flex w-full bg-blue3 text-white h-[3rem] justify-center items-center">
+                <p className="text-center">Copyright 2023 by Victor Yao, Dian Rong, Angela Zhuo and Sanzhar Shamshiyev.</p>
+            </footer>
+        </body>
     </>
 }
 

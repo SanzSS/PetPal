@@ -82,8 +82,8 @@ const Notifications = () => {
                     Notifications
                 </h1>
                 <div className="flex flex-row gap-4">
-                    <button onClick={handleFilterClick} className=' bg-blue3 border border-blue3 text-white items-start font-bold py-2 px-4 rounded-md  mb-4 hover:bg-white hover:text-blue3 text-left'>{currFilter}</button>
-                    <button onClick={handleSortClick} className=' bg-blue3 border border-blue3 text-white items-start font-bold py-2 px-4 rounded-md  mb-4 hover:bg-white hover:text-blue3 text-left'>Sort By Time</button>
+                    <button onClick={handleFilterClick} className=' bg-blue3 border-2 border-blue3 text-white items-start font-bold py-2 px-4 rounded-md  mb-4 hover:bg-white hover:text-blue3 text-left'>{currFilter}</button>
+                    <button onClick={handleSortClick} className=' bg-blue3 border-2 border-blue3 text-white items-start font-bold py-2 px-4 rounded-md  mb-4 hover:bg-white hover:text-blue3 text-left'>Sort By Time</button>
 
                 </div>
                 {notifs.map((obj, index) => {
@@ -121,7 +121,7 @@ const Notifications = () => {
                         </div>
                         
                         </Link>
-                        <button onClick={() => handleButtonClick(obj.notif.pk)} className="h-[2rem] my-[3rem] w-[8.5%] bg-red-600 border border-blue3 text-white items-center font-bold rounded-md hover:bg-white hover:text-blue3 md:text-[1rem] text-[0.5rem]">Delete </button>
+                        <button onClick={() => handleButtonClick(obj.notif.pk)} className="h-[2rem] my-[3rem] w-[8.5%] bg-[#9A0007] border-2 border-[#9A0007] text-white items-center font-bold rounded-md hover:bg-white hover:text-[#9A0007] md:text-[1rem] text-[0.5rem]">Delete </button>
                         </div>
                      );})}
                 
@@ -146,11 +146,11 @@ const Notifications = () => {
                     }
                     }} className="bg-blue3 border border-blue3 text-white items-center font-bold py-2 px-4 rounded-md mt-8 mb-8 w-[6.5rem] hover:bg-white hover:text-blue3">Next</button>
                 )}
+
         </div>
         
         </main>
-    </div>
-         
+        </div>
         </body>
         
 

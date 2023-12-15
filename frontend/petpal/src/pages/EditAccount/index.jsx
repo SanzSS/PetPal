@@ -13,6 +13,7 @@ const EditAccount = () => {
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
     const [avatar, setAvatar] = useState(null);
+    const [tempAvatar, setTempAvatar] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -48,20 +49,31 @@ const EditAccount = () => {
         };
         fetchData();
     }, [userId, token]);
+
     const handleSubmit = (e) => {
         e.preventDefault();
         
         const form = new FormData();
 
-        form.append('email', email)
-        form.append('name', name)
-        form.append('password', password)
+        if (email) {
+            form.append('email', email);
+        }
+        if (name) {
+            form.append('name', name);
+        }
+        if (password) {
+            form.append('password', password);
+        }
+        if (tempAvatar) {
+            form.append('avatar', tempAvatar);
+        }
 
         axios.patch(`http://127.0.0.1:8000/accounts/${userId}/`, form, {
             headers: {
               Authorization: `Bearer ${token}`
             }})
             .then(() => {
+                setAvatar(tempAvatar);
                 navigate('/account');
             })
             .catch(error => {
@@ -74,13 +86,25 @@ const EditAccount = () => {
             <h1 className="text-6xl mt-12 text-blue3 font-extrabold text-center mb-10">
                 Account Settings
             </h1>
-            {/* <div id="avatar-container">
-                {avatar && <img src={avatar} alt="User Avatar" id="avatar" className="rounded-full"/>}
-            </div> */}
+            {avatar && 
+            <div id="avatar-container">
+                <img src={avatar} alt="User Avatar" id="avatar" className="rounded-full"/>
+            </div>}
         </div>
-        <div className="h-1/2 rounded-md border-blue3 border-4 bg-blue2 shadow-lg flex items-left p-3 mt-4 lg:w-[70%] flex-col w-[70%] md:w-[70%]">
+        <div className="h-1/2 rounded-md border-blue3 border-4 bg-blue2 shadow-lg flex items-left p-3 mt-4 mb-16 flex-col w-[70%]">
 
         <form onSubmit={handleSubmit}>
+            <div className="my-2">
+                <p>Avatar:</p>
+                <input
+                    type="file"
+                    id="avatar_field"
+                    name="avatar"
+                    accept="image/*"
+                    onChange={(e) => setTempAvatar(e.target.files[0])}
+                    className="p-3 border-solid border-blue3 border-2 rounded-md bg-white w-full"
+                />
+            </div>
             <div className="my-2">
                 <p>Email address: </p>
                 <input type="email" className="rounded-md shadow-md p-3 border-solid border-blue3 border-2 w-full my-2" placeholder={email} onChange={(e) => setEmail(e.target.value)} />

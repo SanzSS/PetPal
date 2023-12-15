@@ -37,21 +37,21 @@ const ViewShelter = () => {
 
     return <>
         <main className="flex flex-col items-center pb-16">
-            <h1 className="text-6xl my-12 text-blue3 font-extrabold md:text-4xl text-center px-1 capitalize">{shelter.name}</h1>
+            <h1 className="text-6xl my-12 text-blue3 font-extrabold text-center px-1 capitalize">{shelter.name}</h1>
             <div className="grid gap-2 w-3/4">
-                <h1 className="font-bold block text-2xl pb-3 text-blue3"> Pets Here </h1>
+                <h1 className="font-bold block text-4xl pb-3 text-blue3"> Our Pets </h1>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 p-2">
                     {shelter.pets?.map((pet) => (
                         <ListingCard listing={pet} key={pet.id}/>
                     ))}
                 </div>
 
-                <h1 className="font-bold block text-2xl pb-3 text-blue3"> Reviews </h1>
+                <h1 className="font-bold block text-4xl pb-3 text-blue3 mt-16"> Reviews </h1>
                 <div className="bg-blue2 rounded-md">
                     {/* paginated reviews*/}
                     <Reviews shelterID={shelterID}/>
                 </div>
-                <h1 className="font-bold block text-2xl	underline pb-3 text-blue3"> Contact Information </h1>
+                <h1 className="font-bold block text-4xl	underline pb-3 text-blue3 mt-16"> Contact Information </h1>
                     <div className="p-2">
                     <span className="block"> Email: {shelter?.email}</span>
                 </div>

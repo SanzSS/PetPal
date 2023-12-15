@@ -1,6 +1,14 @@
+/* Where u put manual styling */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#content {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 #convo-title {
     margin-top: 3rem;
@@ -29,6 +37,7 @@
 
 #message {
     width: 100%;
+    margin: 2px;
 }
 
 #avatar-container {
@@ -43,6 +52,18 @@
     object-position: center center;
 }
 
+#review-input {
+    margin: 0px;
+    padding: 2px;
+}
+
+button#review-input {
+    margin: -1px;
+    padding: 0;
+    width: 40%;
+    justify-self: center;
+    font-size: 12px;
+}
 
 .filter-menu {
     @apply w-full rounded shadow-md
@@ -61,7 +82,7 @@
 }
 
 .button {
-    @apply text-white bg-blue3 font-bold rounded h-8 shadow-md hover:border-blue3 hover:text-blue3 hover:bg-white hover:border-2
+    @apply text-white bg-blue3 border-2 border-blue3 font-bold rounded h-8 shadow-md hover:border-blue3 hover:text-blue3 hover:bg-white hover:border-2
 }
 
 .input {
@@ -92,8 +113,8 @@ details > summary::-webkit-details-marker {
 }
 
 #avatar-container {
-    height: 10rem;
-    width: 10rem;
+    height: 15rem;
+    width: 15rem;
   }
   
   #avatar {
@@ -121,4 +142,33 @@ details > summary::-webkit-details-marker {
     align-content: left;
     border-color: black;
     width: 100%;
+ }
+
+ #content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 3rem;
+    padding-right: 3rem;
+ }
+
+ #keyword {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 1rem;
+    padding: 1rem;
+ }
+
+ #delete-keyword {
+    background-color: #9A0007;
+ }
+
+ #delete-keyword:hover {
+    color: #9A0007;
+    border-color: #9A0007;
+    background-color: white;
+ }
+
+ #application-answer {
+    margin-bottom: 2rem;
  }
